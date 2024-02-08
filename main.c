@@ -6,22 +6,16 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:05:49 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/08 18:21:51 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/08 18:31:09 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <fcntl.h>
-#include <stdlib.h>
-#include <string.h>
-#include <signal.h>
+#include "minishell.h"
 
 static void	ft_action(int sig)
 {
 	printf("\nyou can't kill me\n");
+	(void)sig;
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -36,4 +30,7 @@ int	main(int argc, char **argv, char **envp)
 	input[1] = "grep -e .c";
 	error = pipex(input, (int []){0, 1}, envp);
 	printf("error: %d\n", error);
+	(void)argc;
+	(void)argv;
+	return (0);
 }

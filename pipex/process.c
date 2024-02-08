@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/08 18:17:33 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/08 18:40:36 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ void	parent(t_pipex *pipex)
 {
 	if (execve(pipex->path2, pipex->cmd2, NULL) < 0)
 		ft_error ("parent", EXECVE);
-	if (pipex->filein != -1)
-		close(pipex->filein);
-	if (pipex->fileout != -1)
-		close(pipex->fileout);
+	if (pipex->fd_in > 2)
+		close(pipex->fd_in);
+	if (pipex->fd_out > 2)
+		close(pipex->fd_out);
 }
 
 int	checkfile_fd(t_pipex *pipex)
@@ -54,9 +54,7 @@ int	checkfile_fd(t_pipex *pipex)
 	if (access(pipex->filein, F_OK | R_OK) == -1)
 		ft_error("1", ACCESS);
 	if (access(pipex->fileout, F_OK | W_OK) == -1)
-		ft_error("1", ACCESS);
-	pipex->fd_in = open(pipex->filein, O_RDONLY, 0644);
-	pipex->fd_out = open(pipex->fileout, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		ft_error("1", ACCESS);	
 	if (pipex->fd_in < 0 || pipex->fd_out < 0)
 		ft_error("2", OPEN);
 	return (0);
@@ -66,8 +64,8 @@ void	ft_execute(t_pipex *pipex)
 {
 	if (dup2(pipex->fd_in, STDIN_FILENO) == -1)
 		ft_error("2", DUP);
-	child(&pipex);
+	child(pipex);
 	if (dup2(pipex->fd_out, STDOUT_FILENO) == -1)
 		ft_error("2", DUP);
-	parent(&pipex);
+	parent(pipex);
 }

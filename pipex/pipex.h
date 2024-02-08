@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:52:32 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/08 18:06:39 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/08 18:34:36 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_pipex
 	int		fd_out;
 }				t_pipex;
 
-void	path_execve(char *command, char **envp);
+char	*path_execve(char *command, char **envp);
 void	child(t_pipex *pipex);
 void	parent(t_pipex *pipex);
 int		checkfile_fd(t_pipex *pipex);

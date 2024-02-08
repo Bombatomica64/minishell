@@ -6,13 +6,13 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/08 18:13:53 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/08 18:34:23 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	path_execve(char *command, char **envp)
+char	*path_execve(char *command, char **envp)
 {
 	int		i;
 	char	*tmp_path;
@@ -41,10 +41,9 @@ void	path_execve(char *command, char **envp)
 int	pipex(char **input, int fd[2], char **envp)
 {
 	t_pipex	pipex;
-	char	**temp;
 
-	pipex.input = fd[0];
-	pipex.output = fd[1];
+	pipex.fd_in = fd[0];
+	pipex.fd_out = fd[1];
 	pipex.cmd1 = ft_split(input[0], ' ');
 	pipex.cmd2 = ft_split(input[1], ' ');
 	pipex.path1 = path_execve(pipex.cmd1[0], envp);
@@ -57,6 +56,6 @@ int	pipex(char **input, int fd[2], char **envp)
 	checkfile_fd(&pipex);
 
 	ft_execute(&pipex);
-	
-	free_cmd_path(&data);
+
+	return (0);
 }

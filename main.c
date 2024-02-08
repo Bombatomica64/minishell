@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:05:49 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/08 17:51:56 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/08 18:21:09 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,16 @@ static void	ft_action(int sig)
 	printf("\nyou can't kill me\n");
 }
 
-int main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
-	char	*arg[] = {"ls", NULL};
-	char	*arg2[] = {"echo", "ciao", NULL};
-	char	*inpt;
-	int		i = 0;
+	char	**input;
+	int 	error;
 
 	signal(SIGINT, ft_action);
-	while ( i < 10 )
-	{
-		inpt = readline("MINISHELL: ");
-		add_history(inpt);
-		if ((strcmp(inpt, "ls")) == 0)
-		{
-			execve("/usr/bin/ls", arg, NULL);
-		}
-		if ((strcmp(inpt, "echo")) == 0)
-			execve("/usr/bin/echo", arg2, NULL);
-		++i;
-	}
+	input = malloc(sizeof(char *) * 3);
+	input[2] = NULL;
+	input[0] = "ls -l";
+	input[1] = "grep -e .c";
+	error = pipex(input, (int []){0, 1}, envp);
+	printf("error: %d\n", error);
 }

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:05:20 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/08 18:17:42 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/08 18:22:18 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <fcntl.h>
 # include <errno.h>
 # include "utils/utils.h"
-# include "pipex/pipex.h"
+# include "./pipex/pipex.h"
 
 typedef enum e_error
 {

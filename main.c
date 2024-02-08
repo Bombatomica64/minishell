@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:05:49 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/08 18:21:09 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/08 18:21:51 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	ft_action(int sig)
 int	main(int argc, char **argv, char **envp)
 {
 	char	**input;
-	int 	error;
+	int		error;
 
 	signal(SIGINT, ft_action);
 	input = malloc(sizeof(char *) * 3);

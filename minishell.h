@@ -21,4 +21,9 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
+enum e_error
+{
+	NO_PATH
+}
+
 #endif

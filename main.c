@@ -10,8 +10,41 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(argc, argv)
+#include <stdio.h>
+#include <unistd.h>
+#include <readline/readline.h>
+#include <readline/history.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <string.h>
+#include <signal.h>
+
+static void	ft_action(int sig)
 {
-	printf("Hello World\n");
-	return (0);
+	printf("\nyou can't kill me\n");
+}
+
+int main(int argc, char **argv, char **envp)
+{
+	char *arg[] = {"ls", NULL};
+	char *arg2[] = {"echo", "ciao", NULL};
+	char *inpt;
+	int i = 0;
+	
+	signal(SIGINT, ft_action);
+	while ( i < 10 )
+	{
+	    inpt = readline("MINISHELL: ");
+        add_history(inpt);
+		// printf("%s\n", inpt);
+        if((strcmp(inpt, "ls")) == 0)
+		{
+			execve("/usr/bin/ls", arg ,NULL);
+		}
+		if((strcmp(inpt, "echo")) == 0)
+			execve("/usr/bin/echo", arg2 ,NULL);
+        ++i;
+    }
+	printf("%s", inpt);
+    return 0;
 }

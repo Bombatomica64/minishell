@@ -37,11 +37,11 @@ $(NAME):
 clean:
 	@make clean -C $(FT_PRINTF)
 	@rm -f $(NAME)
-	@echo "Cleaned objects successfully!"
+	@echo "Cleaned "$(NAME)" and libft objects successfully!"
 	
 fclean: clean
 	@make fclean -C $(FT_PRINTF)
-	@echo "Cleaned "$(NAME)" successfully!"
+	@echo "FCleaned "$(NAME)" and fclean libft successfully!"
 	
 re: fclean all
 	make re -C $(FT_PRINTF)

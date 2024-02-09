@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:05:49 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/09 12:45:01 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/09 16:27:55 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 static void	ft_action(int sig)
 {
-	// printf("\nyou can't kill me\n");
-	printf("\nminishell> ");
-	(void)sig;
+	if (sig == SIGINT)
+		printf("\nminishell> ");
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -24,13 +23,12 @@ int	main(int argc, char **argv, char **envp)
 	char	**input;
 	int		error;
 	char	*read;
-	int		i;
 
 	int original_stdin = dup(STDIN_FILENO);
     int original_stdout = dup(STDOUT_FILENO);
-	i = 0;
 	signal(SIGINT, ft_action);
-	while ( i < 5 )
+	signal(SIGQUIT, SIG_IGN);
+	while (1)
 	{
 		if (isatty(STDIN_FILENO) == 0)
 		{
@@ -42,6 +40,7 @@ int	main(int argc, char **argv, char **envp)
 		if (read == NULL)
 		{
 			printf("EOF received, exiting\n");
+			return (EXIT_SUCCESS);
 		}
 		else if((strcmp(read, "a")) == 0)
 		{
@@ -52,7 +51,6 @@ int	main(int argc, char **argv, char **envp)
 			error = pipex(input, (int []){0, 1}, envp);
 			printf("error: %d\n", error);
 		}
-		i++;
 	}
 	(void)argc;
 	(void)argv;

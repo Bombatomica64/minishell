@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/09 10:36:44 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/09 12:16:25 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,27 @@ void	child(t_pipex *pipex)
 
 void	parent(t_pipex *pipex)
 {
-	if (execve(pipex->path2, pipex->cmd2, NULL) == -1)
-		ft_error ("parent", EXECVE);
-	printf("done\n");
-	if (pipex->fd_in > 2)
-		close(pipex->fd_in);
-	if (pipex->fd_out > 2)
-		close(pipex->fd_out);
+	pid_t	pid;
+
+	pid = fork();
+	if (pid == -1)
+		ft_error("2", FORK);
+	if (pid == 0)
+	{
+		if (execve(pipex->path2, pipex->cmd2, NULL) == -1)
+			ft_error ("2", EXECVE);
+	}
+	else
+	{
+		waitpid(pid, NULL, 0);
+		printf("%d", pipex->fd_in);
+		printf("%d", pipex->fd_out);
+		if (pipex->fd_in > 2)
+			close(pipex->fd_in);
+		if (pipex->fd_out > 2)
+			close(pipex->fd_out);
+		printf("done\n");
+	}
 }
 
 int	checkfile_fd(t_pipex *pipex)

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:52:32 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/08 18:34:36 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/09 10:03:07 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void	ft_execute(t_pipex *pipex);
  * @param input The commands to execute divided by the pipe
  * @param fd The file descriptors to use
  * @param envp The environment variables to use
- * @return 0 if the commands are executed correctly, -1 if an error occurred
+ * @return 0 if the commands are executed correctly;
+ * -1 if an error occurred
 */
 int		pipex(char **input, int fd[2], char **envp);
 

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/08 18:34:23 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/09 10:07:17 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,7 @@ int	pipex(char **input, int fd[2], char **envp)
 	pipex.path2 = path_execve(pipex.cmd2[0], envp);
 	if (pipex.path2 == NULL)
 		ft_error("2", NO_PATH);
-
 	checkfile_fd(&pipex);
-
 	ft_execute(&pipex);
-
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/09 15:33:35 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/09 17:51:53 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*path_execve(char *command, char **envp)
 	return (NULL);
 }
 
-int	pipex(char **input, int fd[2], char **envp)
+int	pipex(char **input, int *fd[2], char **envp)
 {
 	t_pipex	pipex;
 
@@ -56,3 +56,9 @@ int	pipex(char **input, int fd[2], char **envp)
 	ft_execute(&pipex);
 	return (0);
 }
+
+//fd [1][0] = -2
+
+//int *fd[2];
+//fd[0] = {0 , 1}; 
+//pipe(fd[1]);

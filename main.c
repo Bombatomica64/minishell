@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:05:49 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/09 16:27:55 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/09 18:38:06 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,20 @@ static void	ft_action(int sig)
 	if (sig == SIGINT)
 		printf("\nminishell> ");
 }
+
+// TODO:
+// [grep e] {< file} | [wc -l] {>> file2} | [cat -e] {>> file3}
+
+// [grep e] {<< file} | [wc -l]          heredoc
+
+// [grep e] | [wc -l] {> file}
+
+// [grep e] {< file1} {< file2}         multiple input files
+
+// [grep e] {> file1} {> file2}         multiple output files
+
+/* **imput = {"grep e", "wc -l", "cat -e", NULL};
+struttura per gli fd*/
 
 int	main(int argc, char **argv, char **envp)
 {

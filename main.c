@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:05:49 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/09 16:27:55 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/09 18:07:18 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ int	main(int argc, char **argv, char **envp)
 	char	**input;
 	int		error;
 	char	*read;
+	int		original_stdin;
+	int		original_stdout;
 
-	int original_stdin = dup(STDIN_FILENO);
-    int original_stdout = dup(STDOUT_FILENO);
+	original_stdin = dup(STDIN_FILENO);
+	original_stdout = dup(STDOUT_FILENO);
 	signal(SIGINT, ft_action);
 	signal(SIGQUIT, SIG_IGN);
 	while (1)
@@ -33,7 +35,7 @@ int	main(int argc, char **argv, char **envp)
 		if (isatty(STDIN_FILENO) == 0)
 		{
 			dup2(original_stdin, STDIN_FILENO);
-    		dup2(original_stdout, STDOUT_FILENO);
+			dup2(original_stdout, STDOUT_FILENO);
 		}
 		read = readline("minishell> ");
 		add_history(read);
@@ -42,7 +44,7 @@ int	main(int argc, char **argv, char **envp)
 			printf("EOF received, exiting\n");
 			return (EXIT_SUCCESS);
 		}
-		else if((strcmp(read, "a")) == 0)
+		else if ((strcmp(read, "a")) == 0)
 		{
 			input = malloc(sizeof(char *) * 3);
 			input[2] = NULL;

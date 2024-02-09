@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:05:49 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/09 12:29:36 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/09 12:45:01 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static void	ft_action(int sig)
 {
-	printf("\nyou can't kill me\n");
+	// printf("\nyou can't kill me\n");
+	printf("\nminishell> ");
 	(void)sig;
 }
 
@@ -31,17 +32,11 @@ int	main(int argc, char **argv, char **envp)
 	signal(SIGINT, ft_action);
 	while ( i < 5 )
 	{
-		if (isatty(STDIN_FILENO))
-		{
-			printf("stdin is a terminal\n");
-		}
-		else 
+		if (isatty(STDIN_FILENO) == 0)
 		{
 			dup2(original_stdin, STDIN_FILENO);
     		dup2(original_stdout, STDOUT_FILENO);
-			printf("stdin has been redirected\n");
 		}
-		
 		read = readline("minishell> ");
 		add_history(read);
 		if (read == NULL)

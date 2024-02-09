@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:05:49 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/09 12:45:01 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/09 15:55:57 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,11 @@ int	main(int argc, char **argv, char **envp)
 	char	**input;
 	int		error;
 	char	*read;
-	int		i;
 
 	int original_stdin = dup(STDIN_FILENO);
     int original_stdout = dup(STDOUT_FILENO);
-	i = 0;
 	signal(SIGINT, ft_action);
-	while ( i < 5 )
+	while (1)
 	{
 		if (isatty(STDIN_FILENO) == 0)
 		{
@@ -52,7 +50,6 @@ int	main(int argc, char **argv, char **envp)
 			error = pipex(input, (int []){0, 1}, envp);
 			printf("error: %d\n", error);
 		}
-		i++;
 	}
 	(void)argc;
 	(void)argv;

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+         #
+#    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/02/09 12:52:53 by gduranti         ###   ########.fr        #
+#    Updated: 2024/02/09 15:33:22 by lmicheli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ bonus: $(BONUS_NAME)
 
 $(NAME): 
 	@make all -C $(FT_PRINTF)
-	@$(CC) $(SRC) $(LIB) -o $(NAME)
+	@$(CC) $(OBJ) $(LIB) -o $@ -lreadline
 	@echo "Compiled "$(NAME)" successfully!"
 
 clean:

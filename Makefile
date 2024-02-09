@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
+#    By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/02/09 15:52:03 by lmicheli         ###   ########.fr        #
+#    Updated: 2024/02/09 15:54:35 by mruggier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-CC = cc -Wall -Wextra -Werror -lreadline -g
+CC = cc -Wall -Wextra -Werror -g
 
 PIPEX = pipex/pipex.c \
 	pipex/process.c
@@ -31,7 +31,7 @@ bonus: $(BONUS_NAME)
 
 $(NAME): 
 	@make all -C $(FT_PRINTF)
-	@$(CC) $(SRC) $(LIB) -o $(NAME)
+	@$(CC) $(SRC) $(LIB) -o $(NAME) -lreadline
 	@echo "Compiled "$(NAME)" successfully!"
 
 clean:
@@ -48,7 +48,7 @@ re: fclean all
 
 replay: clean
 	@rm -f $(NAME)
-	@$(CC) $(SRC) $(LIB) -o $(NAME)
+	@$(CC) $(SRC) $(LIB) -o $(NAME) -lreadline
 	@echo "ReCompiled "$(NAME)" successfully!"
 
 .PHONY: all clean fclean re replay

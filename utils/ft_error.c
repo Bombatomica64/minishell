@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:14:28 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/08 18:43:22 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/13 19:59:13 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@ void	ft_error(const char *str, t_error error)
 		exit(127);
 	}
 	else if (error == DUP)
-		printf("pipex: dup error\n");
+		perror("pipex: dup error");
 	else if (error == EXECVE)
-		printf("pipex: execve error\n");
+		perror("pipex: execve error");
 	else if (error == PIPE)
-		printf("pipex: pipe error\n");
+		perror("pipex: pipe error");
 	else if (error == FORK)
-		printf("pipex: fork error\n");
+		perror("pipex: fork error");
 	else if (error == ACCESS)
-		printf("pipex: access error\n");
+		perror("pipex: access error");
 	else if (error == OPEN)
-		printf("pipex: open error\n");
+		perror("pipex: open error");
 	else
-		printf("pipex: unknown error\n");
+		perror("pipex: unknown error");
 }
 // Path: utils/utils.h

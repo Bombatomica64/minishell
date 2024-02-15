@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:52:32 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/09 17:53:19 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:16:05 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PIPEX_H
 
 # include "../utils/utils.h"
+# include "../data.h"
 
 typedef struct s_pipex
 {
@@ -33,6 +34,7 @@ void	parent(t_pipex *pipex);
 int		checkfile_fd(t_pipex *pipex);
 void	ft_execute(t_pipex *pipex);
 
+
 /**
  * @brief This function will execute 2 commands between a SINGLE pipe
  * @example pipex(ft_split(commands, '|'), fd, , envp);
@@ -42,6 +44,6 @@ void	ft_execute(t_pipex *pipex);
  * @return 0 if the commands are executed correctly;
  * -1 if an error occurred
 */
-int		pipex(char **input, int *fd[2], char **envp);
+int	pipex(char **cmds, char **files, int fd[2], char **envp);
 
 #endif

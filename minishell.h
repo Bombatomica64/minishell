@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:05:20 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/09 18:37:34 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/13 21:27:56 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include "data.h"
 # include "pipex/pipex.h"
 
 // typedef enum e_error
@@ -26,23 +27,10 @@
 // 	OPEN
 // }	t_error;
 
-typedef enum e_io
-{
-	INPUT = 0, // < file
-	HEREDOC,   // << limiter
-	TRUNC,     // > file rewrites
-	APPEND     // >> file add more lines
-
-}	t_io;
-
-typedef struct s_file
-{
-	int		fd;
-	t_io	type;
-	char	*file;
-
-}	t_file;
 
 
+int	ft_splut(char *str, t_input **input);
+void	ft_fd_out(t_data *data);
+int	ft_fd_in(t_data data);
 
 #endif

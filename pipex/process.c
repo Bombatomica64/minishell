@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/09 12:16:25 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/15 16:37:26 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,10 @@ void	parent(t_pipex *pipex)
 	else
 	{
 		waitpid(pid, NULL, 0);
-		printf("%d", pipex->fd_in);
-		printf("%d", pipex->fd_out);
 		if (pipex->fd_in > 2)
 			close(pipex->fd_in);
 		if (pipex->fd_out > 2)
 			close(pipex->fd_out);
-		printf("done\n");
 	}
 }
 
@@ -68,6 +65,8 @@ int	checkfile_fd(t_pipex *pipex)
 {
 	if (pipex->fd_in < 0 || pipex->fd_out < 0)
 		ft_error("2", OPEN);
+	printf("filein: %s\n", pipex->filein);
+	printf("fileout: %s\n", pipex->fileout);
 	if (pipex->fd_in > 2)
 		if (access(pipex->filein, F_OK | R_OK) == -1)
 			ft_error("1", ACCESS);

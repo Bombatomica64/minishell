@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/09 17:51:53 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/15 15:55:49 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,20 @@ char	*path_execve(char *command, char **envp)
 	return (NULL);
 }
 
-int	pipex(char **input, int *fd[2], char **envp)
+int	pipex(char **cmds, char **files, int fd[2], char **envp)
 {
 	t_pipex	pipex;
 
+	pipex.filein = files[0];
+	pipex.fileout = files[1];
+	printf("filein = %s\n", pipex.filein);
+	printf("fileout = %s\n", pipex.fileout);
 	pipex.fd_in = fd[0];
+	printf("fd[0] = %d\n", pipex.fd_in);
 	pipex.fd_out = fd[1];
-	pipex.cmd1 = ft_split(input[0], ' ');
-	pipex.cmd2 = ft_split(input[1], ' ');
+	printf("fd[1] = %d\n", pipex.fd_out);
+	pipex.cmd1 = ft_split(cmds[0], ' ');
+	pipex.cmd2 = ft_split(cmds[1], ' ');
 	pipex.path1 = path_execve(pipex.cmd1[0], envp);
 	if (pipex.path1 == NULL)
 		ft_error("1", NO_PATH);

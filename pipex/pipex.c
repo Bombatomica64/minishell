@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/15 15:55:49 by marvin           ###   ########.fr       */
+/*   Updated: 2024/02/16 22:28:01 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	pipex(char **cmds, char **files, int fd[2], char **envp)
 {
 	t_pipex	pipex;
 
+	printf("cmds[0] = %s\n", cmds[0]);
+	printf("cmds[1] = %s\n", cmds[1]);
 	pipex.filein = files[0];
 	pipex.fileout = files[1];
 	printf("filein = %s\n", pipex.filein);

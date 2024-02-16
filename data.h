@@ -54,13 +54,24 @@ typedef struct s_input
 
 }	t_input;
 
+typedef struct s_pipex_data
+{
+	char	**cmds; //name
+	char	**files; //name
+	int		*fds; // 2 fd (io)
+
+}	t_pipex_data;
+
 typedef struct s_data
 {
 	int		nb_total; // total number of commands and files in input
 	int		nb_files; // number of files
 	int		nb_cmds; // number of commands
 	int		fd_in; // input file descriptor
-	int		*fd_out; // all output file descriptor
+	int		fd_out; // output file descriptor
+	t_bool	input_found; // true if there is an input file, false if there isn't
+	
+	t_pipex_data	in_p; // pipex data
 	t_input	*input; // array of commands and files
 
 }	t_data;

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:05:49 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/15 17:19:08 by marvin           ###   ########.fr       */
+/*   Updated: 2024/02/16 23:06:09 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,22 @@ struttura per gli fd*/
 //#include <fcntl.h>
 
 
+void	malloc_input(char *str, t_data *data)
+{
+	int		i;
+	int		nb;
+
+	i = 0;
+	nb = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == '|' || str[i] == '<' || str[i] == '>')
+			nb++;
+		i++;
+	}
+	data->input = malloc(sizeof(t_input) * (nb + 1));
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
@@ -65,42 +81,13 @@ int	main(int argc, char **argv, char **envp)
 			return (EXIT_SUCCESS);
 		}
 		
-		data.input = malloc(sizeof(t_input) * 8); // calc number of commands and files
-		
+		malloc_input(terminal_input, &data);
 		data.nb_total = ft_splut(terminal_input, &data.input);
+		data.fd_in = ft_fd_in(data); //piccolo duplicato, basterebbe metterli nella funzione fd_for_pipex
+		data.fd_out = ft_fd_out(data); //ma magari vogliamo fare più comandi in una linea, tipo && o ;
 
-		i = 0;
-		while (i < data.nb_total)
-		{
-			if (data.input[i].is_a_file == TRUE)
-				printf("file[%d]: %s\n", i, data.input[i].file.name);
-			else
-				printf("cmd[%d]: %s\n", i, data.input[i].cmd.name);
-			i++;
-		}
-
-
-		data.fd_in = ft_fd_in(data);
-		ft_fd_out(&data);
-
-		printf("fd_in: %d\n", data.fd_in);
-		i = 0;
-		while (data.fd_out[i] != -1)
-		{
-			printf("fd_out[%d]: %d\n", i, data.fd_out[i]);
-			i++;
-		}
-
-		
-
-
-
-		
-		error = pipex((char *[]){data.input[0].cmd.name, data.input[1].cmd.name, NULL}, (char *[]){NULL, data.input[2].file.name}, (int []){data.fd_in, data.fd_out[0]}, envp);
-
-       
-
-
+		input_for_pipex(&data, 0);
+		error = pipex(data.in_p.cmds, data.in_p.files, data.in_p.fds, envp);
 	}
 	(void)argc;
 	(void)argv;
@@ -109,7 +96,6 @@ int	main(int argc, char **argv, char **envp)
 	(void)error;
 
 	free(data.input);
-	free(data.fd_out);
 	free(terminal_input);
 	
 

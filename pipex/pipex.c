@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/16 22:28:01 by marvin           ###   ########.fr       */
+/*   Updated: 2024/02/17 02:05:32 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,28 +38,40 @@ char	*path_execve(char *command, char **envp)
 	return (NULL);
 }
 
+int	ft_matrixlen(char **matrix)
+{
+	int	i;
+
+	i = 0;
+	while (matrix[i] != NULL)
+		i++;
+	return (i);
+}
+
 int	pipex(char **cmds, char **files, int fd[2], char **envp)
 {
 	t_pipex	pipex;
+	int		i;
+	int		len;
 
-	printf("cmds[0] = %s\n", cmds[0]);
-	printf("cmds[1] = %s\n", cmds[1]);
 	pipex.filein = files[0];
 	pipex.fileout = files[1];
-	printf("filein = %s\n", pipex.filein);
-	printf("fileout = %s\n", pipex.fileout);
 	pipex.fd_in = fd[0];
-	printf("fd[0] = %d\n", pipex.fd_in);
 	pipex.fd_out = fd[1];
-	printf("fd[1] = %d\n", pipex.fd_out);
-	pipex.cmd1 = ft_split(cmds[0], ' ');
-	pipex.cmd2 = ft_split(cmds[1], ' ');
-	pipex.path1 = path_execve(pipex.cmd1[0], envp);
-	if (pipex.path1 == NULL)
-		ft_error("1", NO_PATH);
-	pipex.path2 = path_execve(pipex.cmd2[0], envp);
-	if (pipex.path2 == NULL)
-		ft_error("2", NO_PATH);
+	len = ft_matrixlen(cmds);
+	pipex.cmd = malloc(sizeof(char **) * (len + 1));
+	pipex.path = malloc(sizeof(char *) * (len + 1));
+	i = 0;
+	while (cmds[i] != NULL)
+	{
+		pipex.cmd[i] = ft_split(cmds[i], ' ');
+		pipex.path[i] = path_execve(pipex.cmd[i][0], envp);
+		if (pipex.path[i] == NULL)
+			ft_error("1", NO_PATH);
+		i++;
+	}
+	pipex.cmd[i] = NULL;
+	pipex.path[i] = NULL;
 	checkfile_fd(&pipex);
 	ft_execute(&pipex);
 	return (0);

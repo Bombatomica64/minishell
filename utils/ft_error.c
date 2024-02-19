@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:14:28 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/19 11:44:03 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/19 12:15:36 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
+
+t_bool	ft_malloc_err(void *ptr, char *str)
+{
+	if (!ptr)
+	{
+		dup2(2, 1);
+		ft_printf("Error: Unexpected malloc behaviour at %s\n", str);
+		return (TRUE);
+	}
+	return (FALSE);
+}
 
 void	ft_error(const char *str, t_error error)
 {

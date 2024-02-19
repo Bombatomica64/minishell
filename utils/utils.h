@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/09 15:57:04 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/19 12:15:59 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ typedef enum e_error
 
 void	free_matrix(char **matrix);
 void	ft_error(const char *str, t_error error);
+t_bool	ft_malloc_err(void *ptr, char *str);
 
 #endif

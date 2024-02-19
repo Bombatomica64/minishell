@@ -18,7 +18,7 @@ $(NAME): $(OBJS)
 	@ranlib $(NAME)
 	@echo "Compiled "$(NAME)" successfully!"
 $(OBJS): %.o: %.c
-	@$(CC) $(CFLAGS) -I $(LIBFT_DIR) -I $(GET_NEXT_LINE_DIR) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 clean:
 	@rm -f $(OBJS)
 	@echo "Cleaned objects successfully!"

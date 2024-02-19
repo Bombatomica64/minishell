@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:52:32 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/19 16:36:15 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/19 17:32:14 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 # include "../utils/utils.h"
 
 char	*path_execve(char *command, char **envp);
-void	child(t_pipex *pipex, int i);
-void	parent(t_pipex *pipex, int i);
-int		checkfile_fd(t_pipex *pipex);
-void	ft_execute(t_pipex *pipex);
+void	child(t_data *data, int i);
+void	parent(t_data *data, int i);
+int		checkfile_fd(t_data *data);
+void	ft_execute(t_data *data);
 
 /**
  * @brief This function will execute 2 commands between a SINGLE pipe

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:14:28 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/13 19:59:13 by marvin           ###   ########.fr       */
+/*   Updated: 2024/02/19 11:44:03 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void	ft_error(const char *str, t_error error)
 {
+	dup2(2, 1);
 	if (error == NO_PATH)
 	{
-		printf("pipex: command not found: %s\n", str);
+		ft_printf("pipex: command not found: %s\n", str);
 		exit(127);
 	}
 	else if (error == DUP)

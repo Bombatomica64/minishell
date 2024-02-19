@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:05:49 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/19 10:02:56 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/19 11:49:17 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,17 @@ int	main(int argc, char **argv, char **envp)
 	int		error;
 	char	*terminal_input;
 	int		i;
-	
-	int original_stdin = dup(STDIN_FILENO);
-  int original_stdout = dup(STDOUT_FILENO);
+
+	data.original_stdin = dup(STDIN_FILENO);
+	data.original_stdout = dup(STDOUT_FILENO);
 	signal(SIGINT, ft_action);
 	signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
 		if (isatty(STDIN_FILENO) == 0)
 		{
-			dup2(original_stdin, STDIN_FILENO);
-			dup2(original_stdout, STDOUT_FILENO);
+			dup2(data.original_stdin, STDIN_FILENO);
+			dup2(data.original_stdout, STDOUT_FILENO);
 		}
 		terminal_input = readline("minishell> ");
 		add_history(terminal_input);
@@ -79,26 +79,14 @@ int	main(int argc, char **argv, char **envp)
 			printf("EOF received, exiting\n");
 			return (EXIT_SUCCESS);
 		}
-		
 		malloc_input(terminal_input, &data);
 		data.nb_total = ft_splut(terminal_input, &data.input);
-		data.fd_in = ft_fd_in(data); //piccolo duplicato, basterebbe metterli nella funzione fd_for_pipex
-		data.fd_out = ft_fd_out(data); //ma magari vogliamo fare più comandi in una linea, tipo && o ;
-
+		data.fd_in = ft_fd_in(data);
+		data.fd_out = ft_fd_out(data);
 		input_for_pipex(&data, 0);
 		error = pipex(data.in_p.cmds, data.in_p.files, data.in_p.fds, envp);
 	}
-	(void)argc;
-	(void)argv;
-	(void)envp;
-	(void)i;
-	(void)error;
-
 	free(data.input);
 	free(terminal_input);
-	
-
-	
 	return (0);
-
 }

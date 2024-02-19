@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/17 01:59:38 by marvin           ###   ########.fr       */
+/*   Updated: 2024/02/19 11:43:24 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	child(t_pipex *pipex, int i)
 		if (dup2(fd[1], STDOUT_FILENO) == -1)
 			ft_error("1", DUP);
 		if (execve(pipex->path[i], pipex->cmd[i], NULL) < 0)
-			ft_error("1", EXECVE);
+			ft_error(pipex->path, EXECVE);
 	}
 	else
 	{
@@ -45,7 +45,7 @@ void	parent(t_pipex *pipex, int i)
 
 	pid = fork();
 	if (pid == -1)
-		ft_error("2", FORK);
+		ft_error("parent", FORK);
 	if (pid == 0)
 	{
 		if (execve(pipex->path[i], pipex->cmd[i], NULL) == -1)

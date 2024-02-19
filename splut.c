@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splut.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 10:47:08 by marvin            #+#    #+#             */
-/*   Updated: 2024/02/19 10:10:32 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/19 11:34:55 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	skip_spaces(char **str)
 
 void	get_file_name(char **str, int x, t_input *input)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while ((*str)[i] != '|' && (*str)[i] != '>'
@@ -45,7 +45,7 @@ void	get_file_name(char **str, int x, t_input *input)
 
 void	get_cmd_name(char **str, int x, t_input *input)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while ((*str)[i] != '|' && (*str)[i] != '>'
@@ -99,7 +99,7 @@ int	check_file_tipe(char **str, int x, t_input *input)
 
 int	ft_splut(char *str, t_input **input)
 {
-	int x;
+	int	x;
 
 	x = 0;
 	while (*str != '\0')
@@ -111,7 +111,7 @@ int	ft_splut(char *str, t_input **input)
 			skip_spaces(&str);
 			get_file_name(&str, x, *input);
 			if ((*input)[x].file.type == INPUT)
-				(*input)[x].file.fd = open((*input)[x].file.name, O_RDONLY , 0777);
+				(*input)[x].file.fd = open((*input)[x].file.name, O_RDONLY, 0777);
 			else if ((*input)[x].file.type == TRUNC || (*input)[x].file.type == APPEND)
 				(*input)[x].file.fd = open((*input)[x].file.name, O_WRONLY | O_CREAT | (*input)[x].file.type, 0777);
 			//else if ((*input)[x].file.type == HEREDOC) -_-

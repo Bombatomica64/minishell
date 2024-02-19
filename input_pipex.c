@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_pipex.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 23:05:54 by marvin            #+#    #+#             */
-/*   Updated: 2024/02/16 23:05:54 by marvin           ###   ########.fr       */
+/*   Updated: 2024/02/19 11:40:30 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	fd_for_pipex(t_data *data)
 {
-	data->in_p.fds = malloc(sizeof(int) * (data->nb_cmds * 2));
+	//data->in_p.fds = malloc(sizeof(int) * (data->nb_cmds * 2));
 	/*if (data->in_p.fds == NULL)
 		ft_error("malloc", MALLOC_ERROR);*/
 	data->in_p.fds[0] = data->fd_in;
@@ -29,11 +29,11 @@ void	malloc_input_pipex(t_data *data, int i)
 	while (i < data->nb_total)
 	{
 		if (data->input[i].is_a_file == TRUE)
-			{
-				data->nb_files++;
-				if (data->input[i].file.type == INPUT)
-					data->input_found = TRUE;
-			}
+		{
+			data->nb_files++;
+			if (data->input[i].file.type == INPUT)
+				data->input_found = TRUE;
+		}
 		else
 			data->nb_cmds++;
 		i++;

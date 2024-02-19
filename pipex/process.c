@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/09 12:16:25 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/17 01:59:38 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	child(t_pipex *pipex)
+void	child(t_pipex *pipex, int i)
 {
 	pid_t	pid;
 	int		fd[2];
@@ -27,7 +27,7 @@ void	child(t_pipex *pipex)
 		close(fd[0]);
 		if (dup2(fd[1], STDOUT_FILENO) == -1)
 			ft_error("1", DUP);
-		if (execve(pipex->path1, pipex->cmd1, NULL) < 0)
+		if (execve(pipex->path[i], pipex->cmd[i], NULL) < 0)
 			ft_error("1", EXECVE);
 	}
 	else
@@ -39,7 +39,7 @@ void	child(t_pipex *pipex)
 	}
 }
 
-void	parent(t_pipex *pipex)
+void	parent(t_pipex *pipex, int i)
 {
 	pid_t	pid;
 
@@ -48,19 +48,16 @@ void	parent(t_pipex *pipex)
 		ft_error("2", FORK);
 	if (pid == 0)
 	{
-		if (execve(pipex->path2, pipex->cmd2, NULL) == -1)
+		if (execve(pipex->path[i], pipex->cmd[i], NULL) == -1)
 			ft_error ("2", EXECVE);
 	}
 	else
 	{
 		waitpid(pid, NULL, 0);
-		printf("%d", pipex->fd_in);
-		printf("%d", pipex->fd_out);
 		if (pipex->fd_in > 2)
 			close(pipex->fd_in);
 		if (pipex->fd_out > 2)
 			close(pipex->fd_out);
-		printf("done\n");
 	}
 }
 
@@ -79,10 +76,17 @@ int	checkfile_fd(t_pipex *pipex)
 
 void	ft_execute(t_pipex *pipex)
 {
+	int		i;
+
+	i = 0;
 	if (dup2(pipex->fd_in, STDIN_FILENO) == -1)
 		ft_error("2", DUP);
-	child(pipex);
+	while (pipex->path[i + 1] != NULL)
+	{
+		child(pipex, i);
+		i++;
+	}
 	if (dup2(pipex->fd_out, STDOUT_FILENO) == -1)
 		ft_error("2", DUP);
-	parent(pipex);
+	parent(pipex, i);
 }

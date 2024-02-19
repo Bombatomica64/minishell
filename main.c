@@ -18,16 +18,52 @@ static void	ft_action(int sig)
 		printf("\nminishell> ");
 }
 
+
+// TODO:
+
+// [grep e] {< file} | [wc -l] {>> file2} | [cat -e] {>> file3}  NON ESISTE, NON FUNZIONA
+
+// [grep e] {<< file} | [wc -l]          heredoc   posso fare che in input non ci sia nulla e nel mentre leggo da terminale finche non trovo il limiter. quando trovato mando EOF
+
+// [grep e] | [wc -l] {> file}
+
+// [grep e] {< file1} {< file2}         multiple input files      NON ESISTE, NON FUNZIONA  l'unico input sarà file2
+
+// [grep e] {> file1} {> file2}         multiple output files   NON ESISTE, NON FUNZIONA  l'unico output sarà file2
+
+/* **imput = {"grep e", "wc -l", "cat -e", NULL};
+struttura per gli fd*/
+
+// grep a < file1 | uniq | wc -l > file2   grep a < file1 | uniq > file2 > file3 IN QUESTO CASO L'UNICO FILE OUTPUT é file3
+
+//#include <fcntl.h>
+
+
+void	malloc_input(char *str, t_data *data)
+{
+	int		i;
+	int		nb;
+
+	i = 0;
+	nb = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == '|' || str[i] == '<' || str[i] == '>')
+			nb++;
+		i++;
+	}
+	data->input = malloc(sizeof(t_input) * (nb + 1));
+}
+
 int	main(int argc, char **argv, char **envp)
 {
-	char	**input;
+	t_data	data;
 	int		error;
-	char	*read;
-	int		original_stdin;
-	int		original_stdout;
-
-	original_stdin = dup(STDIN_FILENO);
-	original_stdout = dup(STDOUT_FILENO);
+	char	*terminal_input;
+	int		i;
+	
+	int original_stdin = dup(STDIN_FILENO);
+  int original_stdout = dup(STDOUT_FILENO);
 	signal(SIGINT, ft_action);
 	signal(SIGQUIT, SIG_IGN);
 	while (1)
@@ -37,24 +73,33 @@ int	main(int argc, char **argv, char **envp)
 			dup2(original_stdin, STDIN_FILENO);
 			dup2(original_stdout, STDOUT_FILENO);
 		}
-		read = readline("minishell> ");
-		add_history(read);
-		if (read == NULL)
+		terminal_input = readline("minishell> ");
+		add_history(terminal_input);
+		if (terminal_input == NULL)
 		{
 			printf("EOF received, exiting\n");
 			return (EXIT_SUCCESS);
 		}
-		else if ((strcmp(read, "a")) == 0)
-		{
-			input = malloc(sizeof(char *) * 3);
-			input[2] = NULL;
-			input[0] = "ls -l";
-			input[1] = "grep -n .c";
-			error = pipex(input, (int []){0, 1}, envp);
-			printf("error: %d\n", error);
-		}
+		
+		malloc_input(terminal_input, &data);
+		data.nb_total = ft_splut(terminal_input, &data.input);
+		data.fd_in = ft_fd_in(data); //piccolo duplicato, basterebbe metterli nella funzione fd_for_pipex
+		data.fd_out = ft_fd_out(data); //ma magari vogliamo fare più comandi in una linea, tipo && o ;
+
+		input_for_pipex(&data, 0);
+		error = pipex(data.in_p.cmds, data.in_p.files, data.in_p.fds, envp);
 	}
 	(void)argc;
 	(void)argv;
+	(void)envp;
+	(void)i;
+	(void)error;
+
+	free(data.input);
+	free(terminal_input);
+	
+
+	
 	return (0);
+
 }

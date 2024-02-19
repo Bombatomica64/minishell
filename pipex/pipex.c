@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/09 15:33:35 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/17 02:05:32 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,47 @@ char	*path_execve(char *command, char **envp)
 	return (NULL);
 }
 
-int	pipex(char **input, int fd[2], char **envp)
+int	ft_matrixlen(char **matrix)
+{
+	int	i;
+
+	i = 0;
+	while (matrix[i] != NULL)
+		i++;
+	return (i);
+}
+
+int	pipex(char **cmds, char **files, int fd[2], char **envp)
 {
 	t_pipex	pipex;
+	int		i;
+	int		len;
 
+	pipex.filein = files[0];
+	pipex.fileout = files[1];
 	pipex.fd_in = fd[0];
 	pipex.fd_out = fd[1];
-	pipex.cmd1 = ft_split(input[0], ' ');
-	pipex.cmd2 = ft_split(input[1], ' ');
-	pipex.path1 = path_execve(pipex.cmd1[0], envp);
-	if (pipex.path1 == NULL)
-		ft_error("1", NO_PATH);
-	pipex.path2 = path_execve(pipex.cmd2[0], envp);
-	if (pipex.path2 == NULL)
-		ft_error("2", NO_PATH);
+	len = ft_matrixlen(cmds);
+	pipex.cmd = malloc(sizeof(char **) * (len + 1));
+	pipex.path = malloc(sizeof(char *) * (len + 1));
+	i = 0;
+	while (cmds[i] != NULL)
+	{
+		pipex.cmd[i] = ft_split(cmds[i], ' ');
+		pipex.path[i] = path_execve(pipex.cmd[i][0], envp);
+		if (pipex.path[i] == NULL)
+			ft_error("1", NO_PATH);
+		i++;
+	}
+	pipex.cmd[i] = NULL;
+	pipex.path[i] = NULL;
 	checkfile_fd(&pipex);
 	ft_execute(&pipex);
 	return (0);
 }
+
+//fd [1][0] = -2
+
+//int *fd[2];
+//fd[0] = {0 , 1}; 
+//pipe(fd[1]);

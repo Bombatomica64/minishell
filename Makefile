@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/02/09 15:54:35 by mruggier         ###   ########.fr        #
+#    Updated: 2024/02/16 23:07:53 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ PIPEX = pipex/pipex.c \
 UTILS = utils/ft_error.c \
 	utils/free_matrix.c
 
-SRC = main.c $(PIPEX) $(UTILS)
+SRC = main.c splut.c fd_inout.c input_pipex.c $(PIPEX) $(UTILS)
 
 FT_PRINTF = ft_printf
 LIB = ft_printf/libftprintf.a

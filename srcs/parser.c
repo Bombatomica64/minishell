@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:50:51 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/19 18:07:27 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:37:48 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	skip_spaces(char **str)
 		(*str)++;
 }
 
-ft_file_type(char **str)
+t_type	ft_file_type(char **str)
 {
 	if (**str == '<')
 	{
@@ -42,10 +42,70 @@ ft_file_type(char **str)
 		else
 			return (TRUNC);
 	}
-	return (COMMAND); check se e' un built in
+	return (COMMAND); //check se e' un built in
 }
 
-void	get_name(char *str, int tmp_type)
+void	change_stops(t_bool *quote, int *i, char c, char quote_type)
+{
+	if (quote_type == '\0')
+	{
+		quote_type = c;
+		*quote = TRUE;
+		return ;
+	}
+	if (c == quote_type)
+	{
+		if (*quote == FALSE)
+			*quote = TRUE;
+		else
+			*quote = FALSE;
+		(*i)++;
+	}
+}
+
+t_bool	is_not_limiter(char c)
+{
+	if (c != '<' && c != '>' && c != '\0' && c != '|')
+		return (TRUE);
+	return (FALSE);
+}
+
+char	*get_name(char *str, int tmp_type)
+{
+	char	*tmp;
+	int		i;
+	t_bool	quote;
+	char	c;
+	char	quote_type;
+
+	i = 0;
+	quote = FALSE;
+	quote_type = '\0';
+	if (tmp_type == COMMAND || tmp_type == BUILT_IN)
+	{
+		while (is_not_limiter(str[i]))
+		{
+			if (str[i] == '\'' || str[i] == '\"')
+				change_stops(&quote, &i, &str[i], &quote_type);
+			tmp[i] = str[i];
+			i++;
+		}
+	}
+	else
+	{
+		while (str[i] != ' ' && str[i] != '\0')
+		{
+			if (str[i] == '\'' || str[i] == '\"')
+				change_stops(&quote, &i, &str[i], &quote_type);
+			tmp[i] = str[i]; 
+			i++;
+		}
+	}
+	if (quote == TRUE) //readline quote fino a che 
+	
+	
+	
+}
 
 void	ft_parser(char *str, t_data *data)
 {

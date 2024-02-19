@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/17 02:05:32 by marvin           ###   ########.fr       */
+/*   Updated: 2024/02/19 17:12:09 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,32 +48,29 @@ int	ft_matrixlen(char **matrix)
 	return (i);
 }
 
-int	pipex(char **cmds, char **files, int fd[2], char **envp)
+int	pipex(t_data *data, int fd[2], char **envp)
 {
-	t_pipex	pipex;
 	int		i;
 	int		len;
 
-	pipex.filein = files[0];
-	pipex.fileout = files[1];
-	pipex.fd_in = fd[0];
-	pipex.fd_out = fd[1];
-	len = ft_matrixlen(cmds);
-	pipex.cmd = malloc(sizeof(char **) * (len + 1));
-	pipex.path = malloc(sizeof(char *) * (len + 1));
+	data->pipex.fd_in = fd[0];
+	data->pipex.fd_out = fd[1];
+	len = ft_matrixlen(data->in_p.cmds);
+	data->pipex.cmd = malloc(sizeof(char *) * (len + 1));
+	data->pipex.path = malloc(sizeof(char *) * (len + 1));
 	i = 0;
-	while (cmds[i] != NULL)
+	while (data->in_p.cmds[i] != NULL)
 	{
-		pipex.cmd[i] = ft_split(cmds[i], ' ');
-		pipex.path[i] = path_execve(pipex.cmd[i][0], envp);
-		if (pipex.path[i] == NULL)
-			ft_error("1", NO_PATH);
+		data->pipex.cmd[i] = ft_split(data->in_p.cmds[i], ' ');
+		data->pipex.path[i] = path_execve(data->pipex.cmd[i][0], envp);
+		if (data->pipex.path[i] == NULL)
+			ft_error("command not found in path", NO_PATH, 127);
 		i++;
 	}
-	pipex.cmd[i] = NULL;
-	pipex.path[i] = NULL;
-	checkfile_fd(&pipex);
-	ft_execute(&pipex);
+	data->pipex.cmd[i] = NULL;
+	data->pipex.path[i] = NULL;
+	checkfile_fd(data);
+	ft_execute(data);
 	return (0);
 }
 

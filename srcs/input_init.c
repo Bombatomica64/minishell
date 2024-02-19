@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_manage.c                                     :+:      :+:    :+:   */
+/*   input_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:28:06 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/19 15:41:23 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:44:29 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ void	malloc_input(char *str, t_data *data)
 			nb++;
 		i++;
 	}
-	data->input = malloc(sizeof(t_input) * (nb + 1));
+	data->nb_total = nb;
 }
 
-t_data	ft_data_init()
+t_data	ft_data_init(void)
 {
 	t_data	data;
 

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:52:32 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/19 16:34:58 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/19 17:32:14 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,11 @@
 
 # include "../utils/utils.h"
 
-typedef struct s_pipex
-{
-	char	***cmd;
-	char	**path;
-	char	*filein;
-	char	*fileout;
-	int		fd_in;
-	int		fd_out;
-}				t_pipex;
-
 char	*path_execve(char *command, char **envp);
-void	child(t_pipex *pipex, int i);
-void	parent(t_pipex *pipex, int i);
-int		checkfile_fd(t_pipex *pipex);
-void	ft_execute(t_pipex *pipex);
+void	child(t_data *data, int i);
+void	parent(t_data *data, int i);
+int		checkfile_fd(t_data *data);
+void	ft_execute(t_data *data);
 
 /**
  * @brief This function will execute 2 commands between a SINGLE pipe
@@ -40,6 +30,6 @@ void	ft_execute(t_pipex *pipex);
  * @return 0 if the commands are executed correctly;
  * -1 if an error occurred
 */
-int		pipex(char **cmds, char **files, int fd[2], char **envp);
+int		pipex(t_data *data, int fd[2], char **envp);
 
 #endif

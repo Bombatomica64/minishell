@@ -3,24 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   data.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 21:13:02 by marvin            #+#    #+#             */
-/*   Updated: 2024/02/13 21:13:02 by marvin           ###   ########.fr       */
+/*   Updated: 2024/02/19 10:28:51 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DATA_H
 # define DATA_H
 
-#include <fcntl.h>
-#include <unistd.h>
-
-typedef enum e_bool
-{
-    FALSE = 0,
-    TRUE = 1
-} t_bool;
+# include "utils/utils.h"
 
 typedef enum e_io
 {
@@ -42,7 +35,7 @@ typedef struct s_file
 typedef struct s_cmd
 {
 	char	*name;
-
+	char	*path;
 }	t_cmd;
 
 typedef struct s_input

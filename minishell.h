@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:05:20 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/09 17:07:26 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/19 10:15:57 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,6 @@
 
 # include "data.h"
 # include "pipex/pipex.h"
-
-// typedef enum e_error
-// {
-// 	NO_PATH,
-// 	DUP,
-// 	EXECVE,
-// 	PIPE,
-// 	FORK,
-// 	ACCESS,
-// 	OPEN
-// }	t_error;
-char **input;
-{
-	void *content
-	*next;
-}
-
-
 
 int		ft_splut(char *str, t_input **input);
 int		ft_fd_out(t_data data);

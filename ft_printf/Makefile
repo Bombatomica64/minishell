@@ -2,7 +2,7 @@
 NAME = libftprintf.a
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 SRCS = ft_atoi.c     ft_isascii.c      ft_lstadd_front.c  ft_lstmap.c   ft_memcpy.c        ft_putchar_fd.c   ft_split.c     ft_strlcat.c  ft_strnstr.c  ft_toupper.c \
 ft_bzero.c    ft_isdigit.c      ft_lstclear.c      ft_lstnew.c   ft_memmove.c       ft_putendl_fd.c   ft_strchr.c    ft_strlcpy.c  ft_strrchr.c  ft_unsigned_itoa.c \

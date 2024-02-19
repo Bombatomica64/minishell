@@ -6,7 +6,7 @@
 #    By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/02/19 15:51:12 by gduranti         ###   ########.fr        #
+#    Updated: 2024/02/19 15:53:01 by gduranti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,14 @@ PIPEX = pipex/pipex.c \
 UTILS = utils/ft_error.c \
 	utils/free_matrix.c
 
-SRC = $(PIPEX) $(UTILS) \
-	srcs/main.c \
+SRCS = srcs/main.c \
 	srcs/splut.c \
 	srcs/fd_inout.c \
 	srcs/input_pipex.c \
 	srcs/input_init.c \
 	srcs/tty_run.c
+
+SRC = $(PIPEX) $(UTILS) $(SRCS)
 
 FT_PRINTF = ft_printf
 LIB = ft_printf/libftprintf.a

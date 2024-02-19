@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:05:49 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/19 11:49:17 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/19 12:04:36 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,10 @@ int	main(int argc, char **argv, char **envp)
 	char	*terminal_input;
 	int		i;
 
+	(void) argc;
+	(void) argv;
+	(void) i;
+	(void) error;
 	data.original_stdin = dup(STDIN_FILENO);
 	data.original_stdout = dup(STDOUT_FILENO);
 	signal(SIGINT, ft_action);

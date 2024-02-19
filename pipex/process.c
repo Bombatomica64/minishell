@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/19 11:43:24 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/19 12:05:00 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	child(t_pipex *pipex, int i)
 		if (dup2(fd[1], STDOUT_FILENO) == -1)
 			ft_error("1", DUP);
 		if (execve(pipex->path[i], pipex->cmd[i], NULL) < 0)
-			ft_error(pipex->path, EXECVE);
+			ft_error(pipex->path[i], EXECVE);
 	}
 	else
 	{

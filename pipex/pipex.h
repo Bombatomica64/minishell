@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:52:32 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/19 15:49:56 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:34:58 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	parent(t_pipex *pipex, int i);
 int		checkfile_fd(t_pipex *pipex);
 void	ft_execute(t_pipex *pipex);
 
-
 /**
  * @brief This function will execute 2 commands between a SINGLE pipe
  * @example pipex(ft_split(commands, '|'), fd, , envp);
@@ -41,6 +40,6 @@ void	ft_execute(t_pipex *pipex);
  * @return 0 if the commands are executed correctly;
  * -1 if an error occurred
 */
-int	pipex(char **cmds, char **files, int fd[2], char **envp);
+int		pipex(char **cmds, char **files, int fd[2], char **envp);
 
 #endif

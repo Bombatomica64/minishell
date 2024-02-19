@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 21:13:02 by marvin            #+#    #+#             */
-/*   Updated: 2024/02/19 11:40:20 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/19 11:59:51 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_file
 typedef struct s_cmd
 {
 	char	*name;
-
+	char	*path;
 }	t_cmd;
 
 typedef struct s_input

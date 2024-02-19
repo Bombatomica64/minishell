@@ -6,7 +6,7 @@
 #    By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/02/19 15:31:16 by gduranti         ###   ########.fr        #
+#    Updated: 2024/02/19 15:42:02 by gduranti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRC = $(PIPEX) $(UTILS) \
 	splut.c \
 	fd_inout.c \
 	input_pipex.c \
-	input_manage.c
+	input_manage.c \
+	tty_run.c
 
 FT_PRINTF = ft_printf
 LIB = ft_printf/libftprintf.a

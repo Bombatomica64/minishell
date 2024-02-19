@@ -6,7 +6,7 @@
 #    By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/02/19 10:36:59 by gduranti         ###   ########.fr        #
+#    Updated: 2024/02/19 16:05:45 by gduranti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,11 +20,14 @@ PIPEX = pipex/pipex.c \
 UTILS = utils/ft_error.c \
 	utils/free_matrix.c
 
-SRC = $(PIPEX) $(UTILS) \
-	main.c \
-	splut.c \
-	fd_inout.c \
-	input_pipex.c 
+SRCS = srcs/main.c \
+	srcs/splut.c \
+	srcs/fd_inout.c \
+	srcs/input_pipex.c \
+	srcs/input_init.c \
+	srcs/tty_run.c
+
+SRC = $(PIPEX) $(UTILS) $(SRCS)
 
 FT_PRINTF = ft_printf
 LIB = ft_printf/libftprintf.a
@@ -40,17 +43,17 @@ $(NAME):
 
 clean:
 	@make clean -C $(FT_PRINTF)
-	@rm -f $(NAME)
 	@echo "Cleaned "$(NAME)" and libft objects successfully!"
 	
 fclean: clean
 	@make fclean -C $(FT_PRINTF)
+	@rm -f $(NAME)
 	@echo "FCleaned "$(NAME)" and fclean libft successfully!"
 	
 re: fclean all
 	make re -C $(FT_PRINTF)
 
-replay: clean
+replay:
 	@rm -f $(NAME)
 	@$(CC) $(SRC) $(LIB) -o $(NAME) -lreadline
 	@echo "ReCompiled "$(NAME)" successfully!"

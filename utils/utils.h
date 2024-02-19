@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/19 16:21:01 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:37:37 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,16 @@ typedef struct s_pipex_data
 	int		fds[2]; // 2 fd (i/o)
 }	t_pi_d;
 
+typedef struct s_pipex
+{
+	char	***cmd;
+	char	**path;
+	char	*filein;
+	char	*fileout;
+	int		fd_in;
+	int		fd_out;
+}				t_pipex;
+
 typedef struct s_data
 {
 	int		nb_total; // total number of commands and files in input
@@ -99,7 +109,7 @@ typedef struct s_data
 }	t_data;
 
 void	free_matrix(char **matrix);
-void	ft_error(const char *str, t_error error);
+void	ft_error(const char *str, t_error error, int errnbr);
 t_bool	ft_malloc_err(void *ptr, char *str);
 void	ft_freenclose(t_data *data);
 

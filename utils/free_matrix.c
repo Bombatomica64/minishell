@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:10:53 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/19 15:57:58 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:23:17 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,7 @@ void	ft_freenclose(t_data *data)
 	int i;
 
 	i = -1;
-	while (++i < data->nb_total)
-	{
-		if (data->input[i].is_a_file == TRUE)
-			free(data->input[i].file.name);
-		else
-			free(data->input[i].cmd.name);
-	}
+	ft_inputclear(&data->input);
 	free_matrix(data->in_p.cmds);
 	free_matrix(data->in_p.files);
 	free(data->input);

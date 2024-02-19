@@ -6,17 +6,11 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:05:49 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/19 12:29:04 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:30:29 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static void	ft_action(int sig)
-{
-	if (sig == SIGINT)
-		printf("\nminishell> ");
-}
 
 // TODO:
 
@@ -37,23 +31,6 @@ struttura per gli fd*/
 
 //#include <fcntl.h>
 
-
-void	malloc_input(char *str, t_data *data)
-{
-	int		i;
-	int		nb;
-
-	i = 0;
-	nb = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == '|' || str[i] == '<' || str[i] == '>')
-			nb++;
-		i++;
-	}
-	data->input = malloc(sizeof(t_input) * (nb + 1));
-}
-
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
@@ -65,8 +42,7 @@ int	main(int argc, char **argv, char **envp)
 	(void) argv;
 	(void) i;
 	(void) error;
-	data.original_stdin = dup(STDIN_FILENO);
-	data.original_stdout = dup(STDOUT_FILENO);
+	data = ft_data_init();
 	signal(SIGINT, ft_action);
 	signal(SIGQUIT, SIG_IGN);
 	while (1)

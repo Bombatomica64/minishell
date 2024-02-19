@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:05:20 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/19 10:15:57 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:30:12 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 # include "data.h"
 # include "pipex/pipex.h"
+
+//input manage
+void	ft_action(int sig);
+void	malloc_input(char *str, t_data *data);
+t_data	ft_data_init();
 
 int		ft_splut(char *str, t_input **input);
 int		ft_fd_out(t_data data);

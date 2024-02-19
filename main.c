@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:05:49 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/09 18:07:18 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/19 10:02:56 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,9 @@ static void	ft_action(int sig)
 		printf("\nminishell> ");
 }
 
-
 // TODO:
 
-// [grep e] {< file} | [wc -l] {>> file2} | [cat -e] {>> file3}  NON ESISTE, NON FUNZIONA
+// {< file} [grep e] | [wc -l] {>> file2} | [cat -e] {>> file3}  NON ESISTE, NON FUNZIONA
 
 // [grep e] {<< file} | [wc -l]          heredoc   posso fare che in input non ci sia nulla e nel mentre leggo da terminale finche non trovo il limiter. quando trovato mando EOF
 

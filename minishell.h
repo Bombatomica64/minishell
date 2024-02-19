@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:05:20 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/16 23:07:28 by marvin           ###   ########.fr       */
+/*   Updated: 2024/02/09 17:07:26 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@
 // 	ACCESS,
 // 	OPEN
 // }	t_error;
+char **input;
+{
+	void *content
+	*next;
+}
 
 
 

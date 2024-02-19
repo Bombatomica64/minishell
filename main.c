@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:05:49 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/16 23:06:09 by marvin           ###   ########.fr       */
+/*   Updated: 2024/02/09 18:07:18 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	main(int argc, char **argv, char **envp)
 	int		i;
 	
 	int original_stdin = dup(STDIN_FILENO);
-    int original_stdout = dup(STDOUT_FILENO);
+  int original_stdout = dup(STDOUT_FILENO);
 	signal(SIGINT, ft_action);
 	signal(SIGQUIT, SIG_IGN);
 	while (1)
@@ -71,7 +71,7 @@ int	main(int argc, char **argv, char **envp)
 		if (isatty(STDIN_FILENO) == 0)
 		{
 			dup2(original_stdin, STDIN_FILENO);
-    		dup2(original_stdout, STDOUT_FILENO);
+			dup2(original_stdout, STDOUT_FILENO);
 		}
 		terminal_input = readline("minishell> ");
 		add_history(terminal_input);

@@ -6,15 +6,14 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:05:20 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/19 15:38:00 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:48:17 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "data.h"
-# include "pipex/pipex.h"
+# include "../pipex/pipex.h"
 
 //input manage
 void	ft_action(int sig);

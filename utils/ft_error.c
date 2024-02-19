@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:14:28 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/19 12:15:36 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/19 17:49:57 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_error(const char *str, t_error error)
 		exit(127);
 	}
 	else if (error == DUP)
-		perror("pipex: dup error");
+		ft_printf("%s failed to duplicate file descriptor\n", str);
 	else if (error == EXECVE)
 		perror("pipex: execve error");
 	else if (error == PIPE)

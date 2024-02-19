@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/19 17:39:22 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/19 17:49:18 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	parent(t_data *data, int i)
 int	checkfile_fd(t_data *data)
 {
 	if (data->pipex.fd_in < 0 || data->pipex.fd_out < 0)
-		ft_error("2", OPEN, 101);
+		ft_error("open", OPEN, 101);
 	if (data->pipex.fd_in > 2)
 		if (access(data->pipex.filein, F_OK | R_OK) == -1)
 			ft_error("input file", ACCESS, 133);

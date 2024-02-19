@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/19 15:23:11 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:21:01 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,33 +46,35 @@ typedef enum e_error
 	OPEN
 }	t_error;
 
-typedef enum e_io
+typedef enum e_type
 {
 	INPUT = 0,// < file in input
 	HEREDOC,// << limiter, terminal input until limiter
+	COMMAND,
+	BUILT_IN,
 	TRUNC = O_TRUNC,// > file, rewrites the lines in  the output file
 	APPEND = O_APPEND// >> file, add more lines in the output file
-}	t_io;
+}	t_type;
 
-typedef struct s_file
-{
-	int		fd;
-	t_io	type;
-	char	*name; // file name without the type (> >> < << UwU)
-}	t_file;
+// typedef struct s_file
+// {
+// 	int		fd;
+// 	t_io	type;
+// 	char	*name; // file name without the type (> >> < << UwU)
+// }	t_file;
 
-typedef struct s_cmd
-{
-	char	*name;
-	char	*path;
-}	t_cmd;
+// typedef struct s_cmd
+// {
+// 	char	*name;
+// 	char	*path;
+// }	t_cmd;
 
 typedef struct s_input
 {
-	//int		i; // position of the command or file [1: grep e] {2: < file 2}
-	t_cmd	cmd; // command, set to NULL if it's a file
-	t_file	file; // file, set to NULL if it's a command
-	t_bool	is_a_file; // true if it's a file, false if it's a command
+	char			*node;
+	t_type			type;
+	struct s_input	prev;
+	struct s_input	next;
 }	t_input;
 
 typedef struct s_pipex_data
@@ -100,5 +102,12 @@ void	free_matrix(char **matrix);
 void	ft_error(const char *str, t_error error);
 t_bool	ft_malloc_err(void *ptr, char *str);
 void	ft_freenclose(t_data *data);
+
+// list functions
+t_input	*ft_inputnew(char *str, t_type type);
+void	ft_inputclear(t_input **lst);
+void	ft_inputadd_back(t_input **lst, t_input *new);
+void	ft_inputadd_front(t_input **lst, t_input *new);
+t_input	*ft_inputlast(t_input **stack);
 
 #endif

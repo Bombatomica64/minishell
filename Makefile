@@ -6,7 +6,7 @@
 #    By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/02/19 16:05:45 by gduranti         ###   ########.fr        #
+#    Updated: 2024/02/19 16:20:02 by gduranti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ PIPEX = pipex/pipex.c \
 	pipex/process.c
 
 UTILS = utils/ft_error.c \
-	utils/free_matrix.c
+	utils/free_matrix.c \
+	utils/list_funct.c 
 
 SRCS = srcs/main.c \
 	srcs/splut.c \

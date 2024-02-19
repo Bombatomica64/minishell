@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/19 12:05:00 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:07:52 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ void	child(t_pipex *pipex, int i)
 	int		fd[2];
 
 	if (pipe(fd) == -1)
-		ft_error("1", PIPE);
+		ft_error("child pipe", PIPE);
 	pid = fork();
 	if (pid == -1)
-		ft_error("1", FORK);
+		ft_error("child pipe", FORK);
 	if (pid == 0)
 	{
 		close(fd[0]);
 		if (dup2(fd[1], STDOUT_FILENO) == -1)
-			ft_error("1", DUP);
+			ft_error("child pipe", DUP);
 		if (execve(pipex->path[i], pipex->cmd[i], NULL) < 0)
 			ft_error(pipex->path[i], EXECVE);
 	}
@@ -34,7 +34,7 @@ void	child(t_pipex *pipex, int i)
 	{
 		close(fd[1]);
 		if (dup2(fd[0], STDIN_FILENO) == -1)
-			ft_error("1", DUP);
+			ft_error("child pipe", DUP);
 		waitpid(pid, NULL, 0);
 	}
 }
@@ -45,11 +45,11 @@ void	parent(t_pipex *pipex, int i)
 
 	pid = fork();
 	if (pid == -1)
-		ft_error("parent", FORK);
+		ft_error("parent pipe", FORK, 124);
 	if (pid == 0)
 	{
 		if (execve(pipex->path[i], pipex->cmd[i], NULL) == -1)
-			ft_error ("2", EXECVE);
+			ft_error ("parent pipe", EXECVE, 126);
 	}
 	else
 	{
@@ -64,13 +64,13 @@ void	parent(t_pipex *pipex, int i)
 int	checkfile_fd(t_pipex *pipex)
 {
 	if (pipex->fd_in < 0 || pipex->fd_out < 0)
-		ft_error("2", OPEN);
+		ft_error("non valid fd", OPEN, 101);
 	if (pipex->fd_in > 2)
 		if (access(pipex->filein, F_OK | R_OK) == -1)
-			ft_error("1", ACCESS);
+			ft_error("wrong ", ACCESS, 133);
 	if (pipex->fd_out > 2)
 		if (access(pipex->fileout, F_OK | W_OK) == -1)
-			ft_error("1", ACCESS);
+			ft_error("1", ACCESS, 133);
 	return (0);
 }
 
@@ -80,7 +80,7 @@ void	ft_execute(t_pipex *pipex)
 
 	i = 0;
 	if (dup2(pipex->fd_in, STDIN_FILENO) == -1)
-		ft_error("2", DUP);
+		ft_error("2", DUP, 13);
 	while (pipex->path[i + 1] != NULL)
 	{
 		child(pipex, i);

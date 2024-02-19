@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:05:49 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/19 12:29:04 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:55:53 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ struttura per gli fd*/
 // grep a < file1 | uniq | wc -l > file2   grep a < file1 | uniq > file2 > file3 IN QUESTO CASO L'UNICO FILE OUTPUT é file3
 
 //#include <fcntl.h>
-
 
 void	malloc_input(char *str, t_data *data)
 {
@@ -90,7 +89,7 @@ int	main(int argc, char **argv, char **envp)
 		data.fd_in = ft_fd_in(data);
 		data.fd_out = ft_fd_out(data);
 		input_for_pipex(&data, 0);
-		error = pipex(data.in_p.cmds, data.in_p.files, data.in_p.fds, envp);
+		error = pipex(&data, data.in_p.fds, envp);
 	}
 	free(data.input);
 	free(terminal_input);

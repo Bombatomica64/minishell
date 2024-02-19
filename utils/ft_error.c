@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:14:28 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/19 12:15:36 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:34:31 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,13 @@ t_bool	ft_malloc_err(void *ptr, char *str)
 	return (FALSE);
 }
 
-void	ft_error(const char *str, t_error error)
+void	ft_error(const char *str, t_error error, int errnbr)
 {
 	dup2(2, 1);
 	if (error == NO_PATH)
-	{
-		ft_printf("pipex: command not found: %s\n", str);
-		exit(127);
-	}
+		ft_printf("Command %s\n", str);
 	else if (error == DUP)
-		perror("pipex: dup error");
+		ft_printf("DUP2 failed in %s\n", str);
 	else if (error == EXECVE)
 		perror("pipex: execve error");
 	else if (error == PIPE)
@@ -45,5 +42,6 @@ void	ft_error(const char *str, t_error error)
 		perror("pipex: open error");
 	else
 		perror("pipex: unknown error");
+	exit(errnbr);
 }
 // Path: utils/utils.h

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:05:49 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/19 12:04:36 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/19 12:29:04 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ int	main(int argc, char **argv, char **envp)
 			printf("EOF received, exiting\n");
 			return (EXIT_SUCCESS);
 		}
+		if (terminal_input[0] == '\0')
+			continue ;
 		malloc_input(terminal_input, &data);
 		data.nb_total = ft_splut(terminal_input, &data.input);
 		data.fd_in = ft_fd_in(data);

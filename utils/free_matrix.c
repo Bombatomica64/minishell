@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_matrix.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:10:53 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/19 16:23:17 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:56:22 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,6 @@ void	free_matrix(char **matrix)
 
 void	ft_freenclose(t_data *data)
 {
-	int i;
-
-	i = -1;
 	ft_inputclear(&data->input);
 	free_matrix(data->in_p.cmds);
 	free_matrix(data->in_p.files);

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:27:22 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/20 10:23:09 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:56:52 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ft_inputadd_back(t_input **lst, t_input *new)
 		*lst = new;
 	else
 	{
-		tmp_lst = ft_nbrlast(lst);
+		tmp_lst = ft_inputlast(lst);
 		tmp_lst->next = new;
 		new->prev = tmp_lst;
 	}

@@ -6,7 +6,7 @@
 #    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/02/20 11:11:12 by lmicheli         ###   ########.fr        #
+#    Updated: 2024/02/20 16:16:15 by lmicheli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,12 +22,16 @@ UTILS = utils/ft_error.c \
 	utils/list_funct.c \
 	utils/utils.c
 
-SRCS = srcs/main.c \
-	srcs/splut.c \
-	srcs/fd_inout.c \
+#	srcs/splut.c \
 	srcs/input_pipex.c \
+	srcs/fd_inout.c 
+
+SRCS = srcs/main.c \
 	srcs/input_init.c \
-	srcs/tty_run.c
+	srcs/tty_run.c \
+	srcs/parser.c \
+	srcs/parser_utils.c \
+	srcs/quotehandler.c
 
 SRC = $(PIPEX) $(UTILS) $(SRCS)
 
@@ -53,7 +57,6 @@ fclean: clean
 	@echo "FCleaned "$(NAME)" and fclean libft successfully!"
 	
 re: fclean all
-	make re -C $(FT_PRINTF)
 
 replay:
 	@rm -f $(NAME)

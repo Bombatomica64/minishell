@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:05:20 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/20 12:18:52 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:15:07 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,12 @@ void	malloc_input_pipex(t_data *data, int i);
 void	input_for_pipex(t_data *data, int i);
 //parser
 t_type	ft_file_type(char **str);
+void	parser(char *str, t_data *data);
+char	*join_char(char *str, char c);
 
 //quotes
-void	quote_start(t_bool *quote, char *c, char *quote_type);
+void	quote_start(t_bool *quote, char c, char *quote_type);
 void	quote_waiting(char **tmp, t_bool *quote, char *quote_type, t_type type);
 void	quote_display(char *quote_type);
+t_bool	check_quote(char *tmp, char quote_type);
 #endif

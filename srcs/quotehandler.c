@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:27:46 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/02/20 12:20:36 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:08:25 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,28 +34,28 @@ void	quote_waiting(char **tmp, t_bool *quote, char *quote_type, t_type type)
 {
 	while (*quote == TRUE)
 	{
-		quotedisplay(quote_type);
+		quote_display(quote_type);
 		if (type == COMMAND || type == BUILT_IN)
 		{
-			
+			printf("quote> ");
 		}
 		else if (type == HEREDOC)
 		{
-			/* code */
+			printf("heredoc> ");
 		}
 		else if (type == INPUT)
 		{
-			*tmp = ft_strjoin(tmp, readline("> "));
+			*tmp = ft_strjoin(*tmp, readline("> "));
 		}
 		else if (type == APPEND)
 		{
-			/* code */
+			printf("append> ");
 		}
 		else if (type == TRUNC)
 		{
-			/* code */
+			printf("trunc> ");
 		}
-		if (checkquote(*tmp, *quote_type) == TRUE)
+		if (check_quote(*tmp, *quote_type) == TRUE)
 			*quote = FALSE;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/20 16:10:19 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:19:27 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	ft_do_it(t_data *data, char **envp, char *terminal_input, int error)
 {
-	//malloc_input(terminal_input, data);
+	// malloc_input(terminal_input, data);
 	// data->nb_total = ft_splut(terminal_input, &(data->input));
 	// data->fd_in = ft_fd_in(*data);
 	// data->fd_out = ft_fd_out(*data);
 	parser(terminal_input, data);
-	//input_for_pipex(data, 0);
-	//error = pipex(t_data *data, fd[2]);
+	// input_for_pipex(data, 0);
+	// error = pipex(t_data *data, fd[2]);
 	(void) envp;
 	(void) error;
 	(void) data;

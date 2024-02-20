@@ -14,13 +14,13 @@
 
 void	ft_do_it(t_data *data, char **envp, char *terminal_input, int error)
 {
-	//malloc_input(terminal_input, data);
+	// malloc_input(terminal_input, data);
 	// data->nb_total = ft_splut(terminal_input, &(data->input));
 	// data->fd_in = ft_fd_in(*data);
 	// data->fd_out = ft_fd_out(*data);
 	parser(terminal_input, data);
-	//input_for_pipex(data, 0);
-	//error = pipex(t_data *data, fd[2]);
+	// input_for_pipex(data, 0);
+	// error = pipex(t_data *data, fd[2]);
 	(void) envp;
 	(void) error;
 	(void) data;

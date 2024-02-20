@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:28:06 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/20 11:02:13 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:38:31 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	malloc_input(char *str, t_data *data)
 	data->nb_total = nb;
 }
 
-t_data	ft_data_init(void)
+t_data	ft_data_init(char **envp)
 {
 	t_data	data;
 
@@ -56,5 +56,7 @@ t_data	ft_data_init(void)
 	data.fd_in = 0;
 	data.fd_out = 0;
 	data.input = NULL;
+	data.envp = matrix_dup(envp);
+	data.directory = getcwd(NULL, 0);
 	return (data);
 }

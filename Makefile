@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+         #
+#    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/02/20 11:31:09 by sgarigli         ###   ########.fr        #
+#    Updated: 2024/02/20 11:11:12 by lmicheli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ PIPEX = pipex/pipex.c \
 
 UTILS = utils/ft_error.c \
 	utils/free_matrix.c \
-	utils/list_funct.c 
+	utils/list_funct.c \
+	utils/utils.c
 
 SRCS = srcs/main.c \
 	srcs/splut.c \

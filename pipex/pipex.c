@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/19 17:12:09 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:37:17 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_matrixlen(char **matrix)
 	return (i);
 }
 
-int	pipex(t_data *data, int fd[2], char **envp)
+int	pipex(t_data *data, int fd[2])
 {
 	int		i;
 	int		len;
@@ -62,7 +62,7 @@ int	pipex(t_data *data, int fd[2], char **envp)
 	while (data->in_p.cmds[i] != NULL)
 	{
 		data->pipex.cmd[i] = ft_split(data->in_p.cmds[i], ' ');
-		data->pipex.path[i] = path_execve(data->pipex.cmd[i][0], envp);
+		data->pipex.path[i] = path_execve(data->pipex.cmd[i][0], data->envp);
 		if (data->pipex.path[i] == NULL)
 			ft_error("command not found in path", NO_PATH, 127);
 		i++;

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:14:28 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/19 18:07:01 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:16:43 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ void	ft_error(const char *str, t_error error, int errnbr)
 {
 	dup2(2, 1);
 	if (error == NO_PATH)
-	{
 		ft_printf("pipex: command not found: %s\n", str);
-		exit(127);
-	}
 	else if (error == DUP)
 		ft_printf("%s failed to duplicate file descriptor\n", str);
 	else if (error == EXECVE)

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:50:51 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/20 11:44:03 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:45:06 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 		else
 			*tmp = ft_strrchr(tmp_path, '/') + 1;
 	}
+	return (tmp_path);
 }
 
 void	ft_parser(char *str, t_data *data)

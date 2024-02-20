@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:50:51 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/20 10:28:28 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 10:29:20 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,9 @@ char	*get_name(char *str, int tmp_type)
 		while (str[i] != ' ' && str[i] != '\0')
 		{
 			if (str[i] == '\'' || str[i] == '\"')
-			{
-				change_stops(&quote, &str[i++], &quote_type);
-				i++;
-				continue ;
-			}
-			tmp[i] = str[i];
+				change_stops(&quote, &str[i], &quote_type);
+			else
+				tmp[i] = str[i];
 			i++;
 		}
 	}

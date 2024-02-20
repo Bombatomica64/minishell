@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:50:51 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/20 11:31:13 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:44:03 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,11 +106,13 @@ char	*get_name(char *str, int tmp_type)
 		quote_waiting(&tmp, &quote, &quote_type, tmp_type);
 	return (tmp);
 }
+
 char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 {
 	char	*tmp_path;
 	int		i;
 	int		j;
+	char	*comm;
 
 	i = 0;
 	if (tmp_type == COMMAND || tmp_type == BUILT_IN)
@@ -130,8 +132,10 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 				ft_newstrjoin(tmp_path, (*tmp)[i]);
 			i++;
 		}
-		if (ft_strchr(tmp_path, '/') == NULL)
+		if (ft_strrchr(tmp_path, '/') == NULL)
 			tmp_path = path_execve(tmp_path, data->envp);
+		else
+			*tmp = ft_strrchr(tmp_path, '/') + 1;
 	}
 }
 

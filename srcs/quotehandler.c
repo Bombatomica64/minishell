@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotehandler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:27:46 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/02/20 12:10:46 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:08:25 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,37 +30,37 @@ void	quote_start(t_bool *quote, char c, char *quote_type)
 	}
 }
 
-void	quote_waiting(char **tmp, t_bool *quote, char *quote_type, t_type tmp_type)
+void	quote_waiting(char **tmp, t_bool *quote, char *quote_type, t_type type)
 {
-	while(*quote == TRUE)
+	while (*quote == TRUE)
 	{
-		quotedisplay(quote_type);
-		if (tmp_type == COMMAND || tmp_type == BUILT_IN)
+		quote_display(quote_type);
+		if (type == COMMAND || type == BUILT_IN)
 		{
-			
+			printf("quote> ");
 		}
-		else if (tmp_type == HEREDOC)
+		else if (type == HEREDOC)
 		{
-			/* code */
+			printf("heredoc> ");
 		}
-		else if (tmp_type == INPUT)
+		else if (type == INPUT)
 		{
-			*tmp = ft_strjoin(tmp, readline("> "));
+			*tmp = ft_strjoin(*tmp, readline("> "));
 		}
-		else if (tmp_type == APPEND)
+		else if (type == APPEND)
 		{
-			/* code */
+			printf("append> ");
 		}
-		else if (tmp_type == TRUNC)
+		else if (type == TRUNC)
 		{
-			/* code */
+			printf("trunc> ");
 		}
-		if (checkquote(*tmp, *quote_type) == TRUE)
+		if (check_quote(*tmp, *quote_type) == TRUE)
 			*quote = FALSE;
 	}
 }
 
-void	quotedisplay(char *quote_type)
+void	quote_display(char *quote_type)
 {
 	if (*quote_type == '\'')
 	{
@@ -77,8 +77,8 @@ void	quotedisplay(char *quote_type)
 		rl_redisplay();
 	}
 }
- // Doesn't check correctly
-t_bool	checkquote(char *tmp, char quote_type)
+
+t_bool	check_quote(char *tmp, char quote_type)
 {
 	int	i;
 

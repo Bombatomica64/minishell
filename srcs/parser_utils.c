@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/20 12:13:01 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:13:48 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,22 @@ t_type	ft_file_type(char **str)
 	return (COMMAND);
 }
 
-void	quote_start(t_bool *quote, char c, char quote_type)
+char	*join_char(char *str, char c)
 {
-	if (quote_type == '\0')
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = malloc(sizeof(char) * (ft_strlen(str) + 2));
+	if (!tmp)
+		return (NULL);
+	while (str[i])
 	{
-		quote_type = c;
-		*quote = TRUE;
-		return ;
+		tmp[i] = str[i];
+		i++;
 	}
-	if (c == quote_type)
-	{
-		if (*quote == FALSE)
-			*quote = TRUE;
-		else
-			*quote = FALSE;
-		quote_type = '\0';
-	}
+	tmp[i] = c;
+	tmp[i + 1] = '\0';
+	free(str);
+	return (tmp);
 }

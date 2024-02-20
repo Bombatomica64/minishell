@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotehandler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:27:46 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/02/20 16:08:25 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 18:16:21 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	quote_waiting(char **tmp, t_bool *quote, char *quote_type, t_type type)
 {
 	while (*quote == TRUE)
 	{
-		quote_display(quote_type);
+		//quote_display(quote_type);
 		if (type == COMMAND || type == BUILT_IN)
 		{
 			printf("quote> ");
@@ -45,7 +45,7 @@ void	quote_waiting(char **tmp, t_bool *quote, char *quote_type, t_type type)
 		}
 		else if (type == INPUT)
 		{
-			*tmp = ft_strjoin(*tmp, readline("> "));
+			*tmp = ft_strjoin(*tmp, readline("quote> "));
 		}
 		else if (type == APPEND)
 		{

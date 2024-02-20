@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/20 16:10:19 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:30:35 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_tty_exec(t_data *data, char **envp)
 	char	*terminal_input;
 
 	error = 0;
+	// (void) envp;
 	while (1)
 	{
 		if (isatty(STDIN_FILENO) == 0)

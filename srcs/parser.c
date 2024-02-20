@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:50:51 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/20 16:15:35 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 18:15:03 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 char	*get_name(char *str, int tmp_type)
 {
-	char	*tmp;
 	int		i;
 	t_bool	quote;
 	char	quote_type;
+	char	*tmp;
 
 	i = 0;
+	tmp = NULL;
 	quote = FALSE;
-	quote_type = '\0';
+	quote_type = '\0';	
+	skip_spaces(&str);
 	if (tmp_type == COMMAND || tmp_type == BUILT_IN)
 	{
 		while (is_not_limiter(str[i]))
@@ -32,14 +34,18 @@ char	*get_name(char *str, int tmp_type)
 			i++;
 		}
 	}
-	else
+	if (tmp_type == INPUT)
 	{
-		while (str[i] != ' ' && str[i] != '\0')
+		//while ((str[i] != ' ' && quote == FALSE) || str[i] != '\0')
+		while (is_not_limiter(str[i]))
 		{
 			if (str[i] == '\'' || str[i] == '\"')
+			{
 				quote_start(&quote, str[i], &quote_type);
+				//quote_waiting(&tmp, &quote, &quote_type, tmp_type);
+			}
 			else
-				tmp[i] = str[i];
+				tmp = join_char(tmp, str[i]);
 			i++;
 		}
 	}
@@ -98,7 +104,14 @@ void	parser(char *str, t_data *data)
 	skip_spaces(&str);
 	tmp_type = ft_file_type(&str);
 	tmp = get_name(str, tmp_type);
-	tmp_path = get_path(&tmp, tmp_type, data);
-	ft_inputadd_back(&(*data).input, ft_inputnew(tmp, tmp_path, tmp_type));
+	printf("str = %s\n", str);
+	printf("tmp = %s\n", tmp);
+	printf("type = %d\n", tmp_type);
+	// tmp_path = get_path(&tmp, tmp_type, data);
+	// ft_inputadd_back(&(*data).input, ft_inputnew(tmp, tmp_path, tmp_type));
+	(void)data;
+	(void)tmp;
+	(void)tmp_path;
+	(void)tmp_type;
 }
 // Path: srcs/parser.c

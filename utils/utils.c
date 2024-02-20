@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/20 11:35:10 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:11:45 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,17 @@ char	**matrix_dup(char **matrix)
 	}
 	new_matrix[i] = NULL;
 	return (new_matrix);
+}
+
+t_bool	is_not_limiter(char c)
+{
+	if (c != '<' && c != '>' && c != '\0' && c != '|')
+		return (TRUE);
+	return (FALSE);
+}
+
+void	skip_spaces(char **str)
+{
+	while (**str == ' ' && **str != '\0')
+		(*str)++;
 }

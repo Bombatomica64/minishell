@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:05:20 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/20 11:32:38 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:13:51 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int		ft_fd_in(t_data data);
 void	fd_for_pipex(t_data *data);
 void	malloc_input_pipex(t_data *data, int i);
 void	input_for_pipex(t_data *data, int i);
+t_type	ft_file_type(char **str);
 
 #endif

@@ -6,69 +6,11 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:50:51 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/20 11:45:06 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:12:58 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	skip_spaces(char **str)
-{
-	while (**str == ' ' && **str != '\0')
-		(*str)++;
-}
-
-t_type	ft_file_type(char **str)
-{
-	if (**str == '<')
-	{
-		(*str)++;
-		if (**str == '<')
-		{
-			return (HEREDOC);
-			(*str)++;
-		}
-		else
-			return (INPUT);
-	}
-	else if (**str == '>')
-	{
-		(*str)++;
-		if (**str == '>')
-		{
-			return (APPEND);
-			(*str)++;
-		}
-		else
-			return (TRUNC);
-	}
-	return (COMMAND); //check se e' un built in
-}
-
-void	quote_start(t_bool *quote, char c, char quote_type)
-{
-	if (quote_type == '\0')
-	{
-		quote_type = c;
-		*quote = TRUE;
-		return ;
-	}
-	if (c == quote_type)
-	{
-		if (*quote == FALSE)
-			*quote = TRUE;
-		else
-			*quote = FALSE;
-		quote_type = '\0';
-	}
-}
-
-t_bool	is_not_limiter(char c)
-{
-	if (c != '<' && c != '>' && c != '\0' && c != '|')
-		return (TRUE);
-	return (FALSE);
-}
 
 char	*get_name(char *str, int tmp_type)
 {
@@ -136,6 +78,15 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 			tmp_path = path_execve(tmp_path, data->envp);
 		else
 			*tmp = ft_strrchr(tmp_path, '/') + 1;
+	}
+	else if (tmp_type != HEREDOC)
+	{
+		if (ft_strrchr(*tmp, '/') == NULL)
+			tmp_path = ft_newstrjoin(data->directory, *tmp);
+		else if (*tmp[0] == '/' || *tmp[0] == '~')
+			tmp_path = ft_strdup(*tmp);
+		else
+			tmp_path = ft_newstrjoin(data->directory, *tmp);
 	}
 	return (tmp_path);
 }

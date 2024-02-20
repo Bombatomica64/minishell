@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/19 17:25:45 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 10:23:36 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef enum e_type
 typedef struct s_input
 {
 	char			*node;
+	char			*path;
 	t_type			type;
 	struct s_input	*prev;
 	struct s_input	*next;
@@ -102,7 +103,7 @@ t_bool	ft_malloc_err(void *ptr, char *str);
 void	ft_freenclose(t_data *data);
 
 // list functions
-t_input	*ft_inputnew(char *str, t_type type);
+t_input	*ft_inputnew(char *node, char *path, t_type type);
 void	ft_inputclear(t_input **lst);
 void	ft_inputadd_back(t_input **lst, t_input *new);
 void	ft_inputadd_front(t_input **lst, t_input *new);

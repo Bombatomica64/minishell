@@ -56,3 +56,6 @@ dkms.conf
 
 #temp files
 .nfs*
+
+# executables
+minishell

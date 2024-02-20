@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:50:51 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/20 12:12:58 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:55:29 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 				j = i;
 				while ((*tmp)[j] != "\'" || (*tmp)[j] != '\"')
 					j++;
-				ft_strjoin_2free(tmp_path, ft_strncpy_noquote(*tmp, i, j));
+				tmp_path = ft_strjoin_2free(tmp_path, ft_strncpy_noquote(*tmp, i, j));
 				i = j;
 			}
 			else

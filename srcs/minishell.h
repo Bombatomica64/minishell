@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:05:20 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/19 15:48:17 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:32:38 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 //input manage
 void	ft_action(int sig);
 void	malloc_input(char *str, t_data *data);
-t_data	ft_data_init();
+t_data	ft_data_init(char **envp);
 void	ft_tty_exec(t_data *data, char **envp);
 
 int		ft_splut(char *str, t_input **input);

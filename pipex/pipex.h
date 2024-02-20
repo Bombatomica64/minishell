@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:52:32 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/19 17:32:14 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:16:25 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_execute(t_data *data);
 /**
  * @brief This function will execute 2 commands between a SINGLE pipe
  * @example pipex(ft_split(commands, '|'), fd, , envp);
- * @param input The commands to execute divided by the pipe
+ * @param data the data containing all the information of a command line 
  * @param fd The file descriptors to use and the fd to connect multiple pipes
  * @param envp The environment variables to use
  * @return 0 if the commands are executed correctly;

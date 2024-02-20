@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/20 10:23:36 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 10:38:22 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct s_data
 	int		fd_out; // output file descriptor
 	int		original_stdin;
 	int		original_stdout;
+	char	*directory;
 	t_bool	input_found; // true if there is an input file, false if there isn't
 	t_pi_d	in_p; // pipex input data
 	t_pipex	pipex; // pipex data

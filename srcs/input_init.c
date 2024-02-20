@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:28:06 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/19 16:44:29 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 10:41:47 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ t_data	ft_data_init(void)
 	data.fd_in = 0;
 	data.fd_out = 0;
 	data.input = NULL;
+	data.directory = getcwd(NULL, 0);
 	return (data);
 }

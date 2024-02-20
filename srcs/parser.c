@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:50:51 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/20 10:34:44 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:27:42 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,6 @@ t_type	ft_file_type(char **str)
 			return (TRUNC);
 	}
 	return (COMMAND); //check se e' un built in
-}
-
-void	quote_start(t_bool *quote, char c, char quote_type)
-{
-	if (quote_type == '\0')
-	{
-		quote_type = c;
-		*quote = TRUE;
-		return ;
-	}
-	if (c == quote_type)
-	{
-		if (*quote == FALSE)
-			*quote = TRUE;
-		else
-			*quote = FALSE;
-	}
 }
 
 t_bool	is_not_limiter(char c)

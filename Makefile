@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+         #
+#    By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/02/19 16:20:02 by gduranti         ###   ########.fr        #
+#    Updated: 2024/02/20 11:31:09 by sgarigli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRCS = srcs/main.c \
 	srcs/fd_inout.c \
 	srcs/input_pipex.c \
 	srcs/input_init.c \
-	srcs/tty_run.c
+	srcs/tty_run.c \
+	srcs/quotehandler.c
 
 SRC = $(PIPEX) $(UTILS) $(SRCS)
 

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/20 11:36:49 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:11:55 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,7 @@ t_input	*ft_inputlast(t_input **stack);
 char	*ft_strncpy_noquote(char *str, int start, int end);
 char	*ft_strjoin_2free(char *old_str, char *buf);
 char	**matrix_dup(char **matrix);
+t_bool	is_not_limiter(char c);
+void	skip_spaces(char **str);
 
 #endif

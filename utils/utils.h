@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/20 12:11:55 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:22:48 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ typedef enum e_type
 
 typedef struct s_input
 {
-	char			*node;
-	char			*path;
-	t_type			type;
-	struct s_input	*prev;
-	struct s_input	*next;
+	char			*node; // command or file name
+	char			*path; // path of the command or file
+	t_type			type; // type of the node
+	struct s_input	*prev; // previous node
+	struct s_input	*next; // next node
 }	t_input;
 
 typedef struct s_pipex_data
@@ -74,12 +74,12 @@ typedef struct s_pipex_data
 
 typedef struct s_pipex
 {
-	char	***cmd;
-	char	**path;
-	char	*filein;
-	char	*fileout;
-	int		fd_in;
-	int		fd_out;
+	char	***cmd; // array of matrix of commands
+	char	**path; // array of paths
+	char	*filein; // input file name
+	char	*fileout; // output file name
+	int		fd_in; // input file descriptor
+	int		fd_out;// output file descriptor
 }				t_pipex;
 
 typedef struct s_data
@@ -89,10 +89,10 @@ typedef struct s_data
 	int		nb_cmds; // number of commands
 	int		fd_in; // input file descriptor
 	int		fd_out; // output file descriptor
-	int		original_stdin;
-	int		original_stdout;
-	char	*directory;
-	char	**envp;
+	int		original_stdin; // dupped stdin
+	int		original_stdout; // dupped stdout
+	char	*directory; // current working directory
+	char	**envp; // current environment
 	t_bool	input_found; // true if there is an input file, false if there isn't
 	t_pi_d	in_p; // pipex input data
 	t_pipex	pipex; // pipex data
@@ -105,6 +105,7 @@ t_bool	ft_malloc_err(void *ptr, char *str);
 void	ft_freenclose(t_data *data);
 
 // list functions
+
 t_input	*ft_inputnew(char *node, char *path, t_type type);
 void	ft_inputclear(t_input **lst);
 void	ft_inputadd_back(t_input **lst, t_input *news);

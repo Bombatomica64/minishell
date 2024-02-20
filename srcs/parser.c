@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:50:51 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/20 10:29:20 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 10:34:44 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_type	ft_file_type(char **str)
 	return (COMMAND); //check se e' un built in
 }
 
-void	change_stops(t_bool *quote, char c, char quote_type)
+void	quote_start(t_bool *quote, char c, char quote_type)
 {
 	if (quote_type == '\0')
 	{
@@ -85,7 +85,7 @@ char	*get_name(char *str, int tmp_type)
 		while (is_not_limiter(str[i]))
 		{
 			if (str[i] == '\'' || str[i] == '\"')
-				change_stops(&quote, &str[i], &quote_type);
+				quote_start(&quote, &str[i], &quote_type);
 			tmp[i] = str[i];
 			i++;
 		}
@@ -95,14 +95,15 @@ char	*get_name(char *str, int tmp_type)
 		while (str[i] != ' ' && str[i] != '\0')
 		{
 			if (str[i] == '\'' || str[i] == '\"')
-				change_stops(&quote, &str[i], &quote_type);
+				quote_start(&quote, &str[i], &quote_type);
 			else
 				tmp[i] = str[i];
 			i++;
 		}
 	}
 	if (quote == TRUE)
-		quote_waiting(&tmp, &quote, &quote_type);
+		quote_waiting(&tmp, &quote, &quote_type, tmp_type);
+	return (tmp);
 }
 
 void	ft_parser(char *str, t_data *data)

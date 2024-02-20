@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:50:51 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/20 11:09:42 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:18:01 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 				j = i;
 				while ((*tmp)[j] != "\'" || (*tmp)[j] != '\"')
 					j++;
-				ft_strjoin(tmp_path,ft_sesso()); 
+				ft_newstrjoin(tmp_path, ft_strncpy_noquote(*tmp, i, j));
 				i = j;
 			}
 			else

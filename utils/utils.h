@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/20 10:38:22 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:20:59 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 
 typedef enum e_bool
 {
-	TRUE,
 	FALSE,
+	TRUE,
 	ERROR = -1
 }	t_bool;
 
@@ -106,8 +106,18 @@ void	ft_freenclose(t_data *data);
 // list functions
 t_input	*ft_inputnew(char *node, char *path, t_type type);
 void	ft_inputclear(t_input **lst);
-void	ft_inputadd_back(t_input **lst, t_input *new);
-void	ft_inputadd_front(t_input **lst, t_input *new);
+void	ft_inputadd_back(t_input **lst, t_input *news);
+void	ft_inputadd_front(t_input **lst, t_input *news);
 t_input	*ft_inputlast(t_input **stack);
+
+/**
+ * @brief: funtion outputs a copy of a string allocated with no quoutes
+ * @param: str, string to be copied
+ * @param: start, start index of the string
+ * @param: end, end index of the string
+ * @return: a copy of the string without quotes
+*/
+char	*ft_strncpy_noquote(char *str, int start, int end);
+char	*ft_strjoin_2free(char *old_str, char *buf);
 
 #endif

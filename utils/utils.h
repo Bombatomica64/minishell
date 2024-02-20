@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/20 11:20:59 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:36:49 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ typedef struct s_data
 	int		original_stdin;
 	int		original_stdout;
 	char	*directory;
+	char	**envp;
 	t_bool	input_found; // true if there is an input file, false if there isn't
 	t_pi_d	in_p; // pipex input data
 	t_pipex	pipex; // pipex data
@@ -119,5 +120,6 @@ t_input	*ft_inputlast(t_input **stack);
 */
 char	*ft_strncpy_noquote(char *str, int start, int end);
 char	*ft_strjoin_2free(char *old_str, char *buf);
+char	**matrix_dup(char **matrix);
 
 #endif

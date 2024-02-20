@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/20 11:19:32 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:35:10 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,27 @@ char	*ft_strjoin_2free(char *old_str, char *buf)
 	free(old_str);
 	free(buf);
 	return (res);
+}
+
+char	**matrix_dup(char **matrix)
+{
+	char	**new_matrix;
+	int		i;
+
+	if (!matrix)
+		return (NULL);
+	i = 0;
+	while (matrix[i] != NULL)
+		i++;
+	new_matrix = (char **)malloc(sizeof(char *) * (i + 1));
+	if (!new_matrix)
+		return (NULL);
+	i = 0;
+	while (matrix[i] != NULL)
+	{
+		new_matrix[i] = ft_strdup(matrix[i]);
+		i++;
+	}
+	new_matrix[i] = NULL;
+	return (new_matrix);
 }

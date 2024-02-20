@@ -27,7 +27,8 @@ SRCS = srcs/main.c \
 	srcs/fd_inout.c \
 	srcs/input_pipex.c \
 	srcs/input_init.c \
-	srcs/tty_run.c
+	srcs/tty_run.c \
+	srcs/quotehandler.c
 
 SRC = $(PIPEX) $(UTILS) $(SRCS)
 

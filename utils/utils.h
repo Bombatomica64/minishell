@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/21 17:25:06 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/21 17:33:45 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 
 typedef enum e_bool
 {
-	FALSE,
-	TRUE,
+	FALSE, // 0
+	TRUE, // 1
 	ERROR = -1
 }	t_bool;
 
@@ -101,9 +101,36 @@ typedef struct s_data
 
 // free and error functions
 
+/**
+ * @brief Function that frees a string matrix
+ * @param matrix matrix to be freed
+*/
 void	free_matrix(char **matrix);
+
+/**
+ * @brief Function that outputs an error message, 
+ * frees the data and exits current command
+ * @param str, string to help identify the error
+ * @param error, type of error
+ * @param errnbr, exit error number
+ * @param data, data to be freed
+ * @return void
+*/
 void	ft_error(const char *str, t_error error, int errnbr, t_data *data);
+
+/**
+ * @brief Function that checks if a malloc has failed
+ * @param ptr pointer to be checked
+ * @param str string to help identify where is the error
+ * @return TRUE if malloc has failed, FALSE if it hasn't
+*/
 t_bool	ft_malloc_err(void *ptr, char *str);
+
+/**
+ * @brief Function that frees the data and closes the file descriptors
+ * @param data, data to be freed
+ * @return void
+*/
 void	freenclose(t_data *data);
 
 // list functions

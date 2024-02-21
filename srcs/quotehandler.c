@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:27:46 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/02/20 18:16:21 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/21 11:15:27 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	quote_waiting(char **tmp, t_bool *quote, char *quote_type, t_type type)
 		}
 		else if (type == INPUT)
 		{
-			*tmp = ft_strjoin(*tmp, readline("quote> "));
+			*tmp = ft_strjoin(*tmp, readline("\033[0;34mquote> \033[0m"));
 		}
 		else if (type == APPEND)
 		{
@@ -66,14 +66,14 @@ void	quote_display(char *quote_type)
 	{
 		printf("\n");
 		rl_on_new_line();
-		rl_replace_line("quote", 0);
+		rl_replace_line("d", 0);
 		rl_redisplay();
 	}
 	else if (*quote_type == '\"')
 	{
 		printf("\n");
 		rl_on_new_line();
-		rl_replace_line("dquote", 0);
+		rl_replace_line("", 0);
 		rl_redisplay();
 	}
 }

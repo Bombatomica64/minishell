@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:28:06 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/20 18:10:41 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/21 11:06:17 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_action(int sig)
 {
 	if (sig == SIGINT)
 	{
-		printf("\nminishell> ");
+		printf("\033[0;32m\nminishell> \033[0m");
 		// printf("\n");
 		// rl_on_new_line();
 		// rl_replace_line("", 0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fd_inout.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:05:07 by marvin            #+#    #+#             */
-/*   Updated: 2024/02/21 18:01:50 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:09:49 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,39 +32,39 @@ int	open_type(char *str, t_type type)
 
 int	fd_in(t_data data)
 {
-	while (data.input != NULL && (data.input.type != INPUT
-			|| data.input.type != HEREDOC))
+	while (data.input != NULL && (data.input->type != INPUT
+			|| data.input->type != HEREDOC))
 		data.input = data.input->next;
-	while (data.input != NULL && (data.input.type == INPUT
-			|| data.input.type == HEREDOC))
+	while (data.input != NULL && (data.input->type == INPUT
+			|| data.input->type == HEREDOC))
 	{
-		if (data.input.type == INPUT && data.input.next.type != INPUT
-			&& data.input.next.type != HEREDOC)
-			return (open_type(data.input.node, INPUT));
-		if (data.input.type == HEREDOC)
-			heredoc_creat(data.input.node);
-		if (data.input.type.next != INPUT && data.input.type.next != HEREDOC)
+		if (data.input->type == INPUT && data.input->next->type != INPUT
+			&& data.input->next->type != HEREDOC)
+			return (open_type(data.input->node, INPUT));
+		if (data.input->type == HEREDOC)
+			heredoc_creat(data.input->node);
+		if (data.input->next->type != INPUT && data.input->next->type != HEREDOC)
 			return (open_type(".heredoc.txt", INPUT));
-		data.input = data.input.next;
+		data.input = data.input->next;
 	}
 	return (STDIN_FILENO);
 }
 
 int	fd_out(t_data data)
 {
-	while (data.input != NULL && (data.input.type != TRUNC
-			|| data.input.type != APPEND))
+	while (data.input != NULL && (data.input->type != TRUNC
+			|| data.input->type != APPEND))
 		data.input = data.input->next;
-	while (data.input != NULL && (data.input.type == TRUNC
-			|| data.input.type == APPEND))
+	while (data.input != NULL && (data.input->type == TRUNC
+			|| data.input->type == APPEND))
 	{
-		if (data.input.type == TRUNC && data.input.next.type != TRUNC
-			&& data.input.next.type != APPEND)
-			return (open_type(data.input.node, TRUNC));
-		if (data.input.type == APPEND && data.input.next.type != TRUNC
-			&& data.input.next.type != APPEND)
-			return (open_type(data.input.node, APPEND));
-		data.input = data.input.next;
+		if (data.input->type == TRUNC && data.input->next->type != TRUNC
+			&& data.input->next->type != APPEND)
+			return (open_type(data.input->node, TRUNC));
+		if (data.input->type == APPEND && data.input->next->type != TRUNC
+			&& data.input->next->type != APPEND)
+			return (open_type(data.input->node, APPEND));
+		data.input = data.input->next;
 	}
 	return (STDOUT_FILENO);
 }

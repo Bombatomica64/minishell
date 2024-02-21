@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:14:28 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/21 12:31:52 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:29:01 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_bool	ft_malloc_err(void *ptr, char *str)
 	return (FALSE);
 }
 
-void	ft_error(const char *str, t_error error, int errnbr)
+void	ft_error(const char *str, t_error error, int errnbr, t_data *data)
 {
 	dup2(2, 1);
 	if (error == NO_PATH)
@@ -42,6 +42,8 @@ void	ft_error(const char *str, t_error error, int errnbr)
 		ft_printf("Open error in %s\n", str);
 	else
 		perror("pipex: unknown error");
+	if (data)
+		freenclose(data);
 	exit(errnbr);
 }
 // Path: utils/utils.h

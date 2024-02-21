@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/21 17:33:45 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/21 17:47:25 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,9 +135,33 @@ void	freenclose(t_data *data);
 
 // list functions
 
+/**
+ * @brief Function that creates a new node of t_input type
+ * @param node command or file name
+ * @param path path of the command or file
+ * @param type type of the node
+ * @return a new node of t_input type
+*/
 t_input	*ft_inputnew(char *node, char *path, t_type type);
+
+/**
+ * @brief Function that clears the input double linked list
+ * @param lst list to be cleared
+*/
 void	ft_inputclear(t_input **lst);
+
+/**
+ * @brief Function that adds a new node at the end of the list
+ * @param lst list to add too
+ * @param news node to be added
+*/
 void	ft_inputadd_back(t_input **lst, t_input *news);
+
+/**
+ * @brief Function that adds a new node at the front of the list
+ * @param lst lst to add too
+ * @param news node to be added
+*/
 void	ft_inputadd_front(t_input **lst, t_input *news);
 t_input	*ft_inputlast(t_input **stack);
 

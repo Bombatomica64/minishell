@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:32:21 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/21 10:00:20 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/21 10:48:44 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ void	heredoc_creat(char *limiter)
 		if (ft_strncmp((const char *)str, (const char *)limiter, ft_strlen(str) != 0))
 			heredoc_write(str, fd);
 	}
+	free(str);
 	close(fd);
 }

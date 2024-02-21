@@ -6,28 +6,26 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:27:46 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/02/21 11:15:27 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/21 17:54:16 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	quote_start(t_bool *quote, char c, char *quote_type)
+void	quote_start(t_bool *quote, char c, char *quote_type, char **tmp)
 {
-	if (*quote_type == '\0')
+	if (*quote == FALSE)
 	{
-		*quote_type = c;
 		*quote = TRUE;
-		return ;
+		*quote_type = c;
 	}
-	if (c == *quote_type)
+	else if (*quote == TRUE && *quote_type == c)
 	{
-		if (*quote == FALSE)
-			*quote = TRUE;
-		else
-			*quote = FALSE;
-		quote_type = '\0';
+		*quote = FALSE;
+		*quote_type = '\0';
 	}
+	else if (*quote == TRUE)
+		*tmp = join_char(*tmp, c);
 }
 
 void	quote_waiting(char **tmp, t_bool *quote, char *quote_type, t_type type)
@@ -39,21 +37,9 @@ void	quote_waiting(char **tmp, t_bool *quote, char *quote_type, t_type type)
 		{
 			printf("quote> ");
 		}
-		else if (type == HEREDOC)
-		{
-			printf("heredoc> ");
-		}
-		else if (type == INPUT)
+		else if (type == INPUT || type == APPEND || type == TRUNC || type == HEREDOC)
 		{
 			*tmp = ft_strjoin(*tmp, readline("\033[0;34mquote> \033[0m"));
-		}
-		else if (type == APPEND)
-		{
-			printf("append> ");
-		}
-		else if (type == TRUNC)
-		{
-			printf("trunc> ");
 		}
 		if (check_quote(*tmp, *quote_type) == TRUE)
 			*quote = FALSE;
@@ -81,13 +67,17 @@ void	quote_display(char *quote_type)
 t_bool	check_quote(char *tmp, char quote_type)
 {
 	int	i;
+	int	quote_count;
 
+	quote_count = 0;
 	i = 0;
 	while (tmp[i] != '\0')
 	{
 		if (tmp[i] == quote_type)
-			return (TRUE);
+			quote_count++;
 		i++;
 	}
+	if (quote_count % 2 == 1)
+		return (TRUE);
 	return (FALSE);
 }

@@ -36,7 +36,7 @@ void	ft_tty_exec(t_data *data, char **envp)
 			dup2(data->original_stdin, STDIN_FILENO);
 			dup2(data->original_stdout, STDOUT_FILENO);
 		}
-		terminal_input = readline("minishell> ");
+		terminal_input = readline("\033[0;32mminishell> \033[0m");
 		add_history(terminal_input);
 		if (terminal_input == NULL)
 		{

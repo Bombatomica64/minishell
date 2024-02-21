@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fd_inout.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:05:07 by marvin            #+#    #+#             */
-/*   Updated: 2024/02/21 18:09:49 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:15:28 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int	fd_in(t_data data)
 			return (open_type(data.input->node, INPUT));
 		if (data.input->type == HEREDOC)
 			heredoc_creat(data.input->node);
-		if (data.input->next->type != INPUT && data.input->next->type != HEREDOC)
+		if (data.input->next->type != INPUT
+			&& data.input->next->type != HEREDOC)
 			return (open_type(".heredoc.txt", INPUT));
 		data.input = data.input->next;
 	}

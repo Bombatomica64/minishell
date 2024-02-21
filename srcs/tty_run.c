@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/21 17:21:27 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:00:20 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ void	ft_do_it(t_data *data, char *terminal_input, int error)
 	data->fd_in = fd_in(*data);
 	data->fd_out = fd_out(*data);
 	// input_for_pipex(data, 0);
-	error = pipex(data, (int *){data->fd_in, data->fd_out});
+	int fds[2] = {data->fd_in, data->fd_out};
+	error = pipex(data, fds);
+	(void)error;
 }
 
 void	ft_tty_exec(t_data *data, char **envp)

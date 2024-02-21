@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+         #
+#    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/02/21 11:25:37 by gduranti         ###   ########.fr        #
+#    Updated: 2024/02/21 18:01:25 by lmicheli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SRCS = srcs/main.c \
 	srcs/parser.c \
 	srcs/parser_utils.c \
 	srcs/quotehandler.c \
-	srcs/heredoc.c
+	srcs/heredoc.c \
+	srcs/fd_inout.c
 
 SRC = $(PIPEX) $(UTILS) $(SRCS)
 

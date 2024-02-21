@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:32:21 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/20 16:42:41 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/21 09:52:58 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	heredoc_open_write(char *str)
 {
 	int		fd;
+	char	*line;
 
 	fd = open("heredoc.txt", O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);
 	if (fd < 0)
@@ -22,13 +23,20 @@ void	heredoc_open_write(char *str)
 		printf("Error opening file\n");
 		return (NULL);
 	}
+	while (read(fd, line, 1024) != 0);
 	ft_putendl_fd(str, fd);
 	close(fd);
 }
 
-void	heredoc_creat(char *limiter, t_data *data)
+void	heredoc_creat(char *limiter)
 {
 	char	*str;
 
-	while (ft_strcmp());
+	str = NULL;
+	while (ft_strncmp((const char *)str, (const char *)limiter, ft_strlen(str) != 0))
+	{
+		str = readline("heredoc> ");
+		if (ft_strncmp((const char *)str, (const char *)limiter, ft_strlen(str) != 0))
+			heredoc_open_write(str);
+	}
 }

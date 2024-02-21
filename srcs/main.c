@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:05:49 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/20 11:32:19 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:44:22 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,5 @@ int	main(int argc, char **argv, char **envp)
 	signal(SIGINT, ft_action);
 	signal(SIGQUIT, SIG_IGN);
 	ft_tty_exec(&data, envp);
-	ft_freenclose(&data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/21 16:29:16 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/21 17:25:06 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,13 +115,14 @@ void	ft_inputadd_front(t_input **lst, t_input *news);
 t_input	*ft_inputlast(t_input **stack);
 
 /**
- * @brief: funtion outputs a copy of a string allocated with no quoutes
- * @param: str, string to be copied
- * @param: start, start index of the string
- * @param: end, end index of the string
- * @return: a copy of the string without quotes
+ * @brief Funtion outputs a copy of a string allocated with no quoutes
+ * @param str, string to be copied
+ * @param start, start index of the string
+ * @param end, end index of the string
+ * @return a copy of the string without quotes
 */
 char	*ft_strncpy_noquote(char *str, int start, int end);
+
 char	*ft_strjoin_2free(char *old_str, char *buf);
 char	**matrix_dup(char **matrix);
 t_bool	is_not_limiter(char c);

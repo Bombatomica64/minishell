@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/20 16:22:48 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:22:41 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ typedef struct s_data
 	t_bool	input_found; // true if there is an input file, false if there isn't
 	t_pi_d	in_p; // pipex input data
 	t_pipex	pipex; // pipex data
-	t_input	*input; // array of commands and files
+	t_input	*input; // list of commands and files
 }	t_data;
 
 void	free_matrix(char **matrix);

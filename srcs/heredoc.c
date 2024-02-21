@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:32:21 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/21 12:16:45 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/21 12:22:25 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	heredoc_creat(char *limiter)
 	while (ft_strcmp((const char *)str, (const char *)limiter) != 0)
 	{
 		str = readline("heredoc> ");
-		if (ft_strncmp((const char *)str, (const char *)limiter, ft_strlen(str) != 0))
+		if (ft_strcmp((const char *)str, (const char *)limiter) != 0)
 			ft_putendl_fd(str, fd);
 		free(str);
 	}

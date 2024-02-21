@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:27:46 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/02/21 17:44:38 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/21 17:54:16 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,9 @@ void	quote_waiting(char **tmp, t_bool *quote, char *quote_type, t_type type)
 		{
 			printf("quote> ");
 		}
-		else if (type == HEREDOC)
-		{
-			printf("heredoc> ");
-		}
-		else if (type == INPUT)
+		else if (type == INPUT || type == APPEND || type == TRUNC || type == HEREDOC)
 		{
 			*tmp = ft_strjoin(*tmp, readline("\033[0;34mquote> \033[0m"));
-		}
-		else if (type == APPEND)
-		{
-			printf("append> ");
-		}
-		else if (type == TRUNC)
-		{
-			printf("trunc> ");
 		}
 		if (check_quote(*tmp, *quote_type) == TRUE)
 			*quote = FALSE;

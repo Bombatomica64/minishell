@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:50:51 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/21 17:43:41 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:05:14 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,8 @@ char	*get_name(char *str, int tmp_type)
 			i++;
 		}
 	}
-	if (tmp_type == INPUT || tmp_type == APPEND || tmp_type == TRUNC)
+	if (tmp_type == INPUT || tmp_type == APPEND || tmp_type == TRUNC || tmp_type == HEREDOC)
 	{
-		//while ((str[i] != ' ' && quote == FALSE) || str[i] != '\0')
 		while (is_not_limiter(str[i]))
 		{
 			if ((str[i] == '\'' || str[i] == '\"'))

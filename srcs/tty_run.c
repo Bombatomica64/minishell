@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/20 16:30:35 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/21 11:07:34 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_tty_exec(t_data *data, char **envp)
 			dup2(data->original_stdin, STDIN_FILENO);
 			dup2(data->original_stdout, STDOUT_FILENO);
 		}
-		terminal_input = readline("minishell> ");
+		terminal_input = readline("\033[0;32m\nminishell> \033[0m");
 		add_history(terminal_input);
 		if (terminal_input == NULL)
 		{

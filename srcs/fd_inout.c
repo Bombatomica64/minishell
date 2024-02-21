@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:05:07 by marvin            #+#    #+#             */
-/*   Updated: 2024/02/21 16:21:31 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:30:35 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	open_type(char *str, t_type type)
 	else if (type == HEREDOC)
 		heredoc_creat(str);
 	if (fd < 0)
-		ft_error("open_type", OPEN, 101);
+		ft_error("open_type", OPEN, 101, NULL);
 	return (fd);
 }
 

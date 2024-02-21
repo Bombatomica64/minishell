@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/19 17:49:18 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:30:25 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,23 @@ void	child(t_data *data, int i)
 	int		fd[2];
 
 	if (pipe(fd) == -1)
-		ft_error("child", PIPE, 132);
+		ft_error("child", PIPE, 132, data);
 	pid = fork();
 	if (pid == -1)
-		ft_error("child", FORK, 124);
+		ft_error("child", FORK, 124, data);
 	if (pid == 0)
 	{
 		close(fd[0]);
 		if (dup2(fd[1], STDOUT_FILENO) == -1)
-			ft_error("child", DUP, 13);
+			ft_error("child", DUP, 13, data);
 		if (execve(data->pipex.path[i], data->pipex.cmd[i], NULL) < 0)
-			ft_error(data->pipex.path[i], EXECVE, 126);
+			ft_error(data->pipex.path[i], EXECVE, 126, data);
 	}
 	else
 	{
 		close(fd[1]);
 		if (dup2(fd[0], STDIN_FILENO) == -1)
-			ft_error("stdin to fd[0]", DUP, 13);
+			ft_error("stdin to fd[0]", DUP, 13, data);
 		waitpid(pid, NULL, 0);
 	}
 }
@@ -45,11 +45,11 @@ void	parent(t_data *data, int i)
 
 	pid = fork();
 	if (pid == -1)
-		ft_error("parent", FORK, 124);
+		ft_error("parent", FORK, 124, data);
 	if (pid == 0)
 	{
 		if (execve(data->pipex.path[i], data->pipex.cmd[i], NULL) == -1)
-			ft_error ("parent", EXECVE, 126);
+			ft_error ("parent", EXECVE, 126, data);
 	}
 	else
 	{
@@ -64,13 +64,13 @@ void	parent(t_data *data, int i)
 int	checkfile_fd(t_data *data)
 {
 	if (data->pipex.fd_in < 0 || data->pipex.fd_out < 0)
-		ft_error("open", OPEN, 101);
+		ft_error("open", OPEN, 101, data);
 	if (data->pipex.fd_in > 2)
 		if (access(data->pipex.filein, F_OK | R_OK) == -1)
-			ft_error("input file", ACCESS, 133);
+			ft_error("input file", ACCESS, 133, data);
 	if (data->pipex.fd_out > 2)
 		if (access(data->pipex.fileout, F_OK | W_OK) == -1)
-			ft_error("output file", ACCESS, 133);
+			ft_error("output file", ACCESS, 133, data);
 	return (0);
 }
 
@@ -80,13 +80,13 @@ void	ft_execute(t_data *data)
 
 	i = 0;
 	if (dup2(data->pipex.fd_in, STDIN_FILENO) == -1)
-		ft_error("stdin to filein", DUP, 13);
+		ft_error("stdin to filein", DUP, 13, data);
 	while (data->pipex.path[i + 1] != NULL)
 	{
 		child(data, i);
 		i++;
 	}
 	if (dup2(data->pipex.fd_out, STDOUT_FILENO) == -1)
-		ft_error("stdout to fileout", DUP, 13);
+		ft_error("stdout to fileout", DUP, 13, data);
 	parent(data, i);
 }

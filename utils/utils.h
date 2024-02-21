@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/21 16:22:41 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:29:16 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,12 @@ typedef struct s_data
 	t_input	*input; // list of commands and files
 }	t_data;
 
+// free and error functions
+
 void	free_matrix(char **matrix);
-void	ft_error(const char *str, t_error error, int errnbr);
+void	ft_error(const char *str, t_error error, int errnbr, t_data *data);
 t_bool	ft_malloc_err(void *ptr, char *str);
-void	ft_freenclose(t_data *data);
+void	freenclose(t_data *data);
 
 // list functions
 

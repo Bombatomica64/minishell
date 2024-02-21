@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_funct.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:27:22 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/20 15:56:52 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/21 11:18:22 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,39 +42,39 @@ void	ft_inputclear(t_input **lst)
 	lst = NULL;
 }
 
-void	ft_inputadd_back(t_input **lst, t_input *new)
+void	ft_inputadd_back(t_input **lst, t_input *news)
 {
 	t_input	*tmp_lst;
 
-	if (!new || !lst)
+	if (!news || !lst)
 		return ;
 	if (!*lst)
-		*lst = new;
+		*lst = news;
 	else
 	{
 		tmp_lst = ft_inputlast(lst);
-		tmp_lst->next = new;
-		new->prev = tmp_lst;
+		tmp_lst->next = news;
+		news->prev = tmp_lst;
 	}
 }
 
-void	ft_inputadd_front(t_input **lst, t_input *new)
+void	ft_inputadd_front(t_input **lst, t_input *news)
 {
 	t_input	*tmp;
 
-	if (!new || !lst)
+	if (!news || !lst)
 		return ;
 	if (*lst)
 	{
 		tmp = (*lst);
-		tmp->prev = new;
-		new->next = tmp;
-		new->prev = NULL;
-		*lst = new;
+		tmp->prev = news;
+		news->next = tmp;
+		news->prev = NULL;
+		*lst = news;
 	}
 	else
 	{
-		*lst = new;
+		*lst = news;
 		(*lst)->next = NULL;
 		(*lst)->prev = NULL;
 	}

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:14:28 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/20 11:16:43 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:29:01 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ t_bool	ft_malloc_err(void *ptr, char *str)
 	return (FALSE);
 }
 
-void	ft_error(const char *str, t_error error, int errnbr)
+void	ft_error(const char *str, t_error error, int errnbr, t_data *data)
 {
 	dup2(2, 1);
 	if (error == NO_PATH)
-		ft_printf("pipex: command not found: %s\n", str);
+		ft_printf("Command not found in available path: %s\n", str);
 	else if (error == DUP)
 		ft_printf("%s failed to duplicate file descriptor\n", str);
 	else if (error == EXECVE)
-		perror("pipex: execve error");
+		perror("Error:");
 	else if (error == PIPE)
 		perror("pipex: pipe error");
 	else if (error == FORK)
@@ -39,9 +39,11 @@ void	ft_error(const char *str, t_error error, int errnbr)
 	else if (error == ACCESS)
 		perror("pipex: access error");
 	else if (error == OPEN)
-		perror("pipex: open error");
+		ft_printf("Open error in %s\n", str);
 	else
 		perror("pipex: unknown error");
+	if (data)
+		freenclose(data);
 	exit(errnbr);
 }
 // Path: utils/utils.h

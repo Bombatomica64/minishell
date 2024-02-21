@@ -41,6 +41,5 @@ int	main(int argc, char **argv, char **envp)
 	signal(SIGINT, ft_action);
 	signal(SIGQUIT, SIG_IGN);
 	ft_tty_exec(&data, envp);
-	ft_freenclose(&data);
 	return (0);
 }

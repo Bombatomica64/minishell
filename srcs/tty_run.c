@@ -3,28 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/21 12:20:42 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:10:40 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_do_it(t_data *data, char **envp, char *terminal_input, int error)
+void	ft_do_it(t_data *data, char *terminal_input, int error)
 {
-	//malloc_input(terminal_input, data);
-	// data->nb_total = ft_splut(terminal_input, &(data->input));
-	// data->fd_in = ft_fd_in(*data);
-	// data->fd_out = ft_fd_out(*data);
 	parser(terminal_input, data);
-	//input_for_pipex(data, 0);
-	//error = pipex(t_data *data, fd[2]);
-	(void) envp;
-	(void) error;
-	(void) data;
-	(void) terminal_input;
+	data->fd_in = fd_in(*data);
+	data->fd_out = fd_out(*data);
+	// input_for_pipex(data, 0);
+	int fds[2] = {data->fd_in, data->fd_out};
+	error = pipex(data, fds);
+	(void)error;
 }
 
 void	ft_tty_exec(t_data *data, char **envp)
@@ -33,8 +29,7 @@ void	ft_tty_exec(t_data *data, char **envp)
 	char	*terminal_input;
 
 	error = 0;
-	// (void) envp;
-	while (1)
+	while (TRUE)
 	{
 		if (isatty(STDIN_FILENO) == 0)
 		{
@@ -46,13 +41,15 @@ void	ft_tty_exec(t_data *data, char **envp)
 		if (terminal_input == NULL)
 		{
 			printf("EOF received, exiting\n");
+			free(terminal_input);
 			if (terminal_input)
-				free(terminal_input);
+				freenclose(data);
 			return ;
 		}
 		if (terminal_input[0] == '\0')
 			continue ;
-		ft_do_it(data, envp, terminal_input, error);
+		ft_do_it(data, terminal_input, error);
 	}
 	free(terminal_input);
+	(void)envp;
 }

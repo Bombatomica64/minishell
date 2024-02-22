@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arg_to_mtx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:42:04 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/22 16:31:03 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:09:08 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,27 @@
 
 int	ft_arg_count(char *str, char c, int i, int nbr_args)
 {
+	if ((c >= 9 && c <= 13) || c == ' ')
+		return (TRUE);
+	return (FALSE);
+}
+
+t_bool	ft_isquote(char c)
+{
+	if (c == '\"' || c == '\'')
+		return (TRUE);
+	return (FALSE);
+}
+
+int	ft_arg_count(char *str)
+{
+	int		nbr_args;
+	int		i;
+	char	c;
+
+	i = 0;
+	c = 42;
+	nbr_args = 0;
 	if (str == NULL)
 		return (0);
 	while (str[i])

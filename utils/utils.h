@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/22 10:20:07 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:23:51 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,5 +212,11 @@ t_bool	is_not_limiter(char c);
  * @param str a pointer to the string
 */
 void	skip_spaces(char **str);
+
+t_bool	ft_isspace(char c);
+t_bool	ft_isquote(char c);
+int		ft_arg_count(char *str);
+char	*ft_rowfill(char **str);
+char	**ft_splitarg(char *str);
 
 #endif

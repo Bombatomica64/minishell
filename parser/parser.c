@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:50:51 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/22 15:43:39 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:23:00 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 		}
 		if (ft_strrchr(tmp_path, '/') == NULL)
 			tmp_path = path_execve(tmp_path, data->envp);
+			if (tmp_path == NULL)
+				ft_error("path_execve in get_path", NO_PATH, 127, data);
 		else
 			*tmp = ft_strrchr(tmp_path, '/') + 1;
 	}

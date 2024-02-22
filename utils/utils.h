@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/22 18:33:48 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/22 18:36:40 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,7 +252,7 @@ t_bool	ft_isquote(char c);
 */
 void	heredoc_creat(char *limiter);
 
-// mtx functions
+//envp utils
 
 /**
  * @brief Function that returns the index of a string in a matrix
@@ -261,6 +261,9 @@ void	heredoc_creat(char *limiter);
  * @return the index of the string in the matrix or -1 if it isn't found
 */
 int		find_in_env(char **envp, char *to_find);
+char	*get_env_value(char **envp, char *to_find);
+
+// mtx functions
 int		ft_arg_count(char *str);
 char	*ft_rowfill(char **str);
 char	**ft_splitarg(char *str);

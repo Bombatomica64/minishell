@@ -3,34 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   free_matrix.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:10:53 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/21 16:28:32 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:02:54 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-void	free_matrix(char **matrix)
+void	free_matrix(char ***mtx)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	if (!matrix)
+	if (!mtx)
 		return ;
-	while (matrix[i] != NULL)
+	while ((*mtx)[i])
 	{
-		free(matrix[i]);
+		free((*mtx)[i]);
 		i++;
 	}
-	free(matrix);
+	free(*mtx);
+	mtx = NULL;
 }
 
 void	freenclose(t_data *data)
 {
 	ft_inputclear(&data->input);
-	free_matrix(data->in_p.cmds);
-	free_matrix(data->in_p.files);
+	free_matrix(&data->in_p.cmds);
+	free_matrix(&data->in_p.files);
 	free(data->input);
 }

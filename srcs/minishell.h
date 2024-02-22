@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:05:20 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/21 16:18:25 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:14:19 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ int		fd_in(t_data data);
 int		fd_out(t_data data);
 
 //quotes
-void	quote_start(t_bool *quote, char c, char *quote_type, char **tmp);
+void	quote_start(t_bool *quote, char c, char *quote_type);
 void	quote_waiting(char **tmp, t_bool *quote, char *quote_type, t_type type);
 void	quote_display(char *quote_type);
-t_bool	check_quote(char *tmp, char quote_type);
+t_bool	check_quote(char *tmp, char quote_type, t_type type, int index);
 
 void	heredoc_creat(char *limiter);
 #endif

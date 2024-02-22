@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/22 15:41:25 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:11:25 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,7 +220,7 @@ char	**matrix_dup(char **matrix);
  * @n
  * @return TRUE if the character is a limiter, FALSE if it isn't
  */
-t_bool	is_not_limiter(char c);
+t_bool	ft_islimiter(char c);
 
 /**
  * @brief Function that skips spaces in a string

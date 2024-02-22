@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:50:51 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/22 15:43:39 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:11:51 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*get_name(char *str, int tmp_type)
 	quote = FALSE;
 	quote_type = '\0';
 	skip_spaces(&str);// da fare con tutti gli spazi
-	while (is_not_limiter(str[i]))
+	while (ft_islimiter(str[i]) == FALSE)
 	{
 		if ((str[i] == '\'' || str[i] == '\"'))
 		{

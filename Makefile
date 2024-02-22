@@ -3,10 +3,9 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+         #
+#    By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/02/22 10:48:24 by lmicheli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +20,7 @@ UTILS = utils/ft_error.c \
 	utils/free_matrix.c \
 	utils/list_funct.c \
 	utils/utils.c \
+	utils/arg_to_mtx.c
 	utils/list_utils.c
 
 #	srcs/splut.c \

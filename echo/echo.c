@@ -1,37 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_matrix.c                                      :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 18:10:53 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/22 12:02:54 by gduranti         ###   ########.fr       */
+/*   Created: 2024/02/22 15:24:10 by gduranti          #+#    #+#             */
+/*   Updated: 2024/02/22 15:24:16 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
-
-void	free_matrix(char ***mtx)
+void	ft_echo(char *str, t_data *data)
 {
-	size_t	i;
+	int	i;
 
+	str += 4;
 	i = 0;
-	if (!mtx)
-		return ;
-	while ((*mtx)[i])
+	while (*str)
 	{
-		free((*mtx)[i]);
-		i++;
+		while (*str == ' ' || *str == '\t')
+			str++;
 	}
-	free(*mtx);
-	mtx = NULL;
-}
-
-void	freenclose(t_data *data)
-{
-	ft_inputclear(&data->input);
-	free_matrix(&data->in_p.cmds);
-	free_matrix(&data->in_p.files);
-	free(data->input);
 }

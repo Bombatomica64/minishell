@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/21 18:17:08 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/22 10:57:47 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	ft_do_it(t_data *data, char *terminal_input, int error)
 {
 	parser(terminal_input, data);
-	data->fd_in = fd_in(*data);
-	data->fd_out = fd_out(*data);
+	data->pipex.fd_in = fd_in(*data);
+	data->pipex.fd_out = fd_out(*data);
 	// input_for_pipex(data, 0);
 	int fds[2] = {data->fd_in, data->fd_out};
 	error = pipex(data, fds);

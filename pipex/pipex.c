@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/21 16:29:37 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:04:32 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,6 @@ int	pipex(t_data *data, int fd[2])
 	int		i;
 	int		len;
 
-	data->pipex.fd_in = fd[0];
-	data->pipex.fd_out = fd[1];
-	len = ft_matrixlen(data->in_p.cmds);
-	data->pipex.cmd = malloc(sizeof(char *) * (len + 1));
-	data->pipex.path = malloc(sizeof(char *) * (len + 1));
 	i = 0;
 	while (data->in_p.cmds[i] != NULL)
 	{

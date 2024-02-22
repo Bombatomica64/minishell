@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/22 10:20:07 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/22 11:02:56 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,21 @@ void	ft_inputadd_front(t_input **lst, t_input *news);
 */
 t_input	*ft_inputlast(t_input **stack);
 
+/**
+ * @brief Function that returns the number of nodes in the list
+ * @param input list to be checked
+ * @return the number of nodes in the list
+*/
+int		input_size(t_input *input);
+
+/**
+ * @brief Function that returns the number of commands in the list
+ * @param input list to be checked
+ * @return the number of commands in the list
+*/
+int		input_nbr_of_cmd(t_input *input);
+
+// string functions
 /**
  * @brief Funtion outputs a copy of a string allocated with no quoutes
  * @param str, string to be copied

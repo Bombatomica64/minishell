@@ -6,7 +6,7 @@
 #    By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/02/22 12:29:45 by mruggier         ###   ########.fr        #
+#    Updated: 2024/02/22 10:48:24 by lmicheli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ PIPEX = pipex/pipex.c \
 UTILS = utils/ft_error.c \
 	utils/free_matrix.c \
 	utils/list_funct.c \
-	utils/utils.c
+	utils/utils.c \
+	utils/list_utils.c
 
 #	srcs/splut.c \
 	srcs/input_pipex.c \

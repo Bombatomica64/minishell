@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:50:51 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/22 11:58:59 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:58:10 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 	int		i;
 	int		j;
 
+	tmp_path = NULL;
 	i = 0;
 	if (tmp_type == COMMAND || tmp_type == BUILT_IN)
 	{
@@ -79,12 +80,19 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 	}
 	else if (tmp_type != HEREDOC)
 	{
-		if (ft_strrchr(*tmp, '/') == NULL)
-			tmp_path = ft_newstrjoin(data->directory, *tmp);
-		else if (*tmp[0] == '/' || *tmp[0] == '~')
+		if (*tmp[0] == '/')
 			tmp_path = ft_strdup(*tmp);
+		else if (strncmp(*tmp, "./", 2) == 0)
+			tmp_path = ft_strjoin(data->directory, *tmp + 1);
+		else if (strncmp(*tmp, "../", 3) == 0) //sbagliato, fare cd prima. 
+		{
+			tmp_path = ft_strjoin(tmp_path, *tmp + 2);
+		}
 		else
-			tmp_path = ft_newstrjoin(data->directory, *tmp);
+		{
+			tmp_path = ft_strjoin("/", *tmp);
+			tmp_path = ft_strjoin(data->directory, tmp_path);
+		}
 	}
 	return (tmp_path);
 }
@@ -98,11 +106,11 @@ void	parser(char *str, t_data *data)
 	skip_spaces(&str);
 	tmp_type = ft_file_type(&str);
 	tmp = get_name(str, tmp_type);
-	//tmp_path = get_path(&tmp, tmp_type, data);
+	tmp_path = get_path(&tmp, tmp_type, data);
 	printf("str = %s\n", str);
 	printf("tmp = %s\n", tmp);
 	printf("type = %d\n", tmp_type);
-	//printf("path = %s\n", tmp_path);
+	printf("path = %s\n", tmp_path);
 	exit(EXIT_FAILURE);
 	// ft_inputadd_back(&(*data).input, ft_inputnew(tmp, tmp_path, tmp_type));
 	(void)data;

@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
+#    By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/02/21 18:01:25 by lmicheli         ###   ########.fr        #
+#    Updated: 2024/02/22 12:29:45 by mruggier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-CC = cc -Wall -Wextra -Werror -g
+CC = cc -Wall -Wextra -Werror -g -Wuninitialized
 
 PIPEX = pipex/pipex.c \
 	pipex/process.c

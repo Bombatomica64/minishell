@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:27:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/22 18:35:54 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/22 18:39:37 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,5 @@ char	*get_env_value(char **envp, char *to_find)
 	if (i == -1)
 		return (NULL);
 	value = ft_strdup(envp[i] + ft_strlen(to_find));
+	return (value);
 }

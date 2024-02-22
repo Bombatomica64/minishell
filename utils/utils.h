@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/22 18:33:10 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/22 18:33:48 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,7 +258,7 @@ void	heredoc_creat(char *limiter);
  * @brief Function that returns the index of a string in a matrix
  * @param envp matrix to be checked
  * @param to_find string to be found
- * @return the index of the string in the matrix
+ * @return the index of the string in the matrix or -1 if it isn't found
 */
 int		find_in_env(char **envp, char *to_find);
 int		ft_arg_count(char *str);

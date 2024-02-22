@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:05:20 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/22 10:46:41 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:33:33 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 # include "../pipex/pipex.h"
+# include "../parser/parser.h"
 
 //input manage
 void	ft_action(int sig);
@@ -26,21 +27,10 @@ void	fd_for_pipex(t_data *data);
 void	malloc_input_pipex(t_data *data, int i);
 void	input_for_pipex(t_data *data);
 
-//parser
-t_type	ft_file_type(char **str);
-void	parser(char *str, t_data *data);
-char	*join_char(char *str, char c);
-
 //fd_inout
 int		open_type(char *str, t_type type);
 int		fd_in(t_data data);
 int		fd_out(t_data data);
 
-//quotes
-void	quote_start(t_bool *quote, char c, char *quote_type);
-void	quote_waiting(char **tmp, t_bool *quote, char *quote_type, t_type type);
-void	quote_display(char *quote_type);
-t_bool	check_quote(char *tmp, char quote_type, t_type type, int index);
 
-void	heredoc_creat(char *limiter);
 #endif

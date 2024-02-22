@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/22 12:04:32 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:41:38 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*path_execve(char *command, char **envp)
 		possible_path = ft_strjoin(all_paths[i], tmp_path);
 		free(tmp_path);
 		if (access(possible_path, F_OK) == 0)
-			return (free_matrix(all_paths), possible_path);
+			return (free_matrix(&all_paths), possible_path);
 		else
 			free(possible_path);
 		i++;
@@ -51,9 +51,10 @@ int	ft_matrixlen(char **matrix)
 int	pipex(t_data *data, int fd[2])
 {
 	int		i;
-	int		len;
+	// int		len;
 
 	i = 0;
+	(void)fd;
 	while (data->in_p.cmds[i] != NULL)
 	{
 		data->pipex.cmd[i] = ft_split(data->in_p.cmds[i], ' ');

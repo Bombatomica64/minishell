@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/22 15:23:51 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:41:25 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ typedef struct s_data
  * @brief Function that frees a string matrix
  * @param matrix matrix to be freed
 */
-void	free_matrix(char **matrix);
+void	free_matrix(char ***matrix);
 
 /**
  * @brief Function that outputs an error message, 
@@ -233,5 +233,6 @@ t_bool	ft_isquote(char c);
 int		ft_arg_count(char *str);
 char	*ft_rowfill(char **str);
 char	**ft_splitarg(char *str);
+void	heredoc_creat(char *limiter);
 
 #endif

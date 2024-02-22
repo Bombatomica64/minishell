@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 23:05:54 by marvin            #+#    #+#             */
-/*   Updated: 2024/02/22 11:25:44 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/22 11:35:52 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,18 @@ void	input_for_pipex(t_data *data)
 			data->pipex.cmd[i] = ft_split(data->input->node, ' ');
 			data->pipex.path[i] = data->input->path;
 		}
+		else if (data->input->type == BUILT_IN)
+		{
+			data->pipex.cmd[i][0] = data->input->node;
+			data->pipex.cmd[i][1] = '\0';
+			data->pipex.path[i] = data->input->path;
+		}
+		else if (data->input->type == INPUT)
+			data->pipex.filein = ft_strdup(data->input->node);
+		else if (data->input->type == TRUNC || data->input->type == APPEND)
+			data->pipex.fileout = ft_strdup(data->input->node);
+		else if (data->input->type == HEREDOC)
+			data->pipex.filein = ft_strdup(".heredoc.txt");
 		i++;
 	}
 }

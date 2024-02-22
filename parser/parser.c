@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:50:51 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/22 15:43:39 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:03:57 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,13 +106,13 @@ void	parser(char *str, t_data *data)
 	skip_spaces(&str);
 	tmp_type = ft_file_type(&str);
 	tmp = get_name(str, tmp_type);
-	//tmp_path = get_path(&tmp, tmp_type, data);
+	tmp_path = get_path(&tmp, tmp_type, data);
 	printf("str = %s\n", str);
 	printf("tmp = %s\n", tmp);
 	printf("type = %d\n", tmp_type);
-	//printf("path = %s\n", tmp_path);
+	printf("path = %s\n", tmp_path);
+	ft_inputadd_back(&(*data).input, ft_inputnew(tmp, tmp_path, tmp_type));
 	exit(EXIT_FAILURE);
-	// ft_inputadd_back(&(*data).input, ft_inputnew(tmp, tmp_path, tmp_type));
 	(void)data;
 	(void)tmp;
 	(void)tmp_path;

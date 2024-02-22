@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arg_to_mtx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:42:04 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/22 15:42:07 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:09:08 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_bool	ft_isspace(char c)
 {
-	if ((c >= 9 && c<= 13) || c == ' ')
+	if ((c >= 9 && c <= 13) || c == ' ')
 		return (TRUE);
 	return (FALSE);
 }

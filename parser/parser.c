@@ -24,11 +24,10 @@ char	*get_name(char *str, int tmp_type)
 	quote = FALSE;
 	quote_type = '\0';
 	skip_spaces(&str);// da fare con tutti gli spazi
-	while (is_not_limiter(str[i]))
+	while (ft_islimiter(str[i]) == FALSE)
 	{
 		if ((str[i] == '\'' || str[i] == '\"'))
 		{
-			//printf("tmpprima = %s\n", tmp);
 			quote_start(&quote, str[i], &quote_type);
 			if (tmp_type == BUILT_IN || tmp_type == COMMAND)
 				tmp = join_char(tmp, str[i]);
@@ -41,9 +40,12 @@ char	*get_name(char *str, int tmp_type)
 	}
 	if (quote == TRUE)
 	{
-		quote_waiting(&tmp, &quote, &quote_type, tmp_type);
-		if (!(tmp_type == BUILT_IN || tmp_type == COMMAND))
-			tmp = ft_freesubstr(tmp, 0, ft_strlen(tmp) - 1);
+		printf("Error: quote not closed\n");
+		free(tmp);
+		return (NULL);
+		// quote_waiting(&tmp, &quote, &quote_type, tmp_type);
+		// if (!(tmp_type == BUILT_IN || tmp_type == COMMAND))
+		// 	tmp = ft_freesubstr(tmp, 0, ft_strlen(tmp) - 1);
 	}
 	return (tmp);
 }
@@ -75,6 +77,8 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 		}
 		if (ft_strrchr(tmp_path, '/') == NULL)
 			tmp_path = path_execve(tmp_path, data->envp);
+			if (tmp_path == NULL)
+				ft_error("path_execve in get_path", NO_PATH, 127, data);
 		else
 			*tmp = ft_strrchr(tmp_path, '/') + 1;
 	}
@@ -97,7 +101,7 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 	return (tmp_path);
 }
 
-void	parser(char *str, t_data *data)
+t_bool	parser(char *str, t_data *data)
 {
 	char	*tmp;
 	char	*tmp_path;
@@ -106,7 +110,11 @@ void	parser(char *str, t_data *data)
 	skip_spaces(&str);
 	tmp_type = ft_file_type(&str);
 	tmp = get_name(str, tmp_type);
-	tmp_path = get_path(&tmp, tmp_type, data);
+	if(tmp == NULL)
+	{
+		free(tmp);
+		return FALSE;
+	}
 	printf("str = %s\n", str);
 	printf("tmp = %s\n", tmp);
 	printf("type = %d\n", tmp_type);
@@ -117,5 +125,6 @@ void	parser(char *str, t_data *data)
 	(void)tmp;
 	(void)tmp_path;
 	(void)tmp_type;
+	return (TRUE);
 }
 // Path: srcs/parser.c

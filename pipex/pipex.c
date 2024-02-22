@@ -35,6 +35,7 @@ char	*path_execve(char *command, char **envp)
 			free(possible_path);
 		i++;
 	}
+	free_matrix(&all_paths);
 	return (NULL);
 }
 

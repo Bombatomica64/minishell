@@ -12,7 +12,7 @@
 
 #include "utils.h"
 
-t_bool	ft_isspace(char c)
+int	ft_arg_count(char *str, char c, int i, int nbr_args)
 {
 	if ((c >= 9 && c <= 13) || c == ' ')
 		return (TRUE);
@@ -62,14 +62,14 @@ int	ft_arg_count(char *str)
 	return (nbr_args);
 }
 
-char	*ft_rowfill(char **str)
+static char	*ft_rowgen(char **str)
 {
 	char	*row;
-	int		i;
 	char	c;
+	int		i;
 
 	i = 0;
-	skip_spaces(str);
+	c = 42;
 	if (ft_isquote((*str)[i]) == TRUE)
 	{
 		c = (*str)[i];
@@ -81,7 +81,15 @@ char	*ft_rowfill(char **str)
 			i++;
 	row = ft_calloc((i + 1), sizeof(char));
 	ft_malloc_err((void *)row, "ft_rowfill");
-	i = 0;
+	return (row);
+}
+
+char	*ft_rowfill(char **str, char c, int i)
+{
+	char	*row;
+
+	skip_spaces(str);
+	row = ft_rowgen(str);
 	if (ft_isquote(**str) == TRUE)
 	{
 		c = **str;
@@ -111,12 +119,12 @@ char	**ft_splitarg(char *str)
 	int		i;
 
 	i = 0;
-	args = ft_arg_count(str);
+	args = ft_arg_count(str, 42, 0, 0);
 	mtx = malloc(args * sizeof(char *));
 	ft_malloc_err((void *)mtx, "ft_splitarg");
 	while (i < args)
 	{
-		mtx[i] = ft_rowfill(&str);
+		mtx[i] = ft_rowfill(&str, 42, 0);
 		if (!mtx[i])
 		{
 			free_matrix(&mtx);

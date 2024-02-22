@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 23:05:54 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/22 17:33:01 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/22 17:44:08 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,3 +106,4 @@ void	input_for_pipex(t_data *data)
 	data->pipex.cmd[i] = NULL;
 	data->pipex.path[i] = NULL;
 }
+//execve("/bin/ls", ["/bin/ls", NULL], envp);

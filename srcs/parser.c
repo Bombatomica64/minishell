@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:50:51 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/21 18:05:14 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/22 10:22:12 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*get_name(char *str, int tmp_type)
 	i = 0;
 	tmp = NULL;
 	quote = FALSE;
-	quote_type = '\0';	
+	quote_type = '\0';
 	skip_spaces(&str);
 	if (tmp_type == COMMAND || tmp_type == BUILT_IN)
 	{
@@ -34,7 +34,8 @@ char	*get_name(char *str, int tmp_type)
 			i++;
 		}
 	}
-	if (tmp_type == INPUT || tmp_type == APPEND || tmp_type == TRUNC || tmp_type == HEREDOC)
+	if (tmp_type == INPUT || tmp_type == APPEND || tmp_type == TRUNC
+		|| tmp_type == HEREDOC)
 	{
 		while (is_not_limiter(str[i]))
 		{
@@ -42,7 +43,7 @@ char	*get_name(char *str, int tmp_type)
 			{
 				quote_start(&quote, str[i], &quote_type, &tmp);
 			}
-			else 
+			else
 				tmp = join_char(tmp, str[i]);
 			i++;
 		}

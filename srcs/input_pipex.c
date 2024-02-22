@@ -6,17 +6,17 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 23:05:54 by marvin            #+#    #+#             */
-/*   Updated: 2024/02/19 11:40:30 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/22 11:25:44 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	fd_for_pipex(t_data *data)
+/* void	fd_for_pipex(t_data *data)
 {
 	//data->in_p.fds = malloc(sizeof(int) * (data->nb_cmds * 2));
 	/*if (data->in_p.fds == NULL)
-		ft_error("malloc", MALLOC_ERROR);*/
+		ft_error("malloc", MALLOC_ERROR);
 	data->in_p.fds[0] = data->fd_in;
 	data->in_p.fds[1] = data->fd_out;
 }
@@ -41,11 +41,11 @@ void	malloc_input_pipex(t_data *data, int i)
 	if (data->input_found == FALSE)
 		data->nb_files++;
 	data->in_p.cmds = malloc(sizeof(char *) * (data->nb_cmds + 1));
-	/*if (data->in_p.cmds == NULL)
-		ft_error("malloc", MALLOC_ERROR);*/
+	if (data->in_p.cmds == NULL)
+		ft_error("malloc", MALLOC_ERROR);
 	data->in_p.files = malloc(sizeof(char *) * (data->nb_files + 1));
-	/*if (data->in_p.files == NULL)
-		ft_error("malloc", MALLOC_ERROR);*/
+	if (data->in_p.files == NULL)
+		ft_error("malloc", MALLOC_ERROR);
 }
 
 void	input_for_pipex(t_data *data, int i)
@@ -75,4 +75,26 @@ void	input_for_pipex(t_data *data, int i)
 	data->in_p.cmds[data->nb_cmds] = NULL;
 	data->in_p.files[data->nb_files] = NULL;
 	fd_for_pipex(data);
+}
+*/
+void	input_for_pipex(t_data *data)
+{
+	int		i;
+
+	i = 0;
+	data->pipex.cmd = malloc(sizeof(char **)
+			* (input_nbr_of_cmd(data->input) + 1));
+	ft_malloc_err(data->pipex.cmd, "data->pipex.cmd");
+	data->pipex.path = malloc(sizeof(char *)
+			* (input_size(data->input) + 1));
+	ft_malloc_err(data->pipex.path, "data->pipex.path");
+	while (data->input)
+	{
+		if (data->input->type == COMMAND)
+		{
+			data->pipex.cmd[i] = ft_split(data->input->node, ' ');
+			data->pipex.path[i] = data->input->path;
+		}
+		i++;
+	}
 }

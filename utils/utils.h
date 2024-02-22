@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/22 16:11:25 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/22 18:36:40 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,11 +228,44 @@ t_bool	ft_islimiter(char c);
 */
 void	skip_spaces(char **str);
 
+/**
+ * @brief Function that checks if a character is a space
+ * @param c character to be checked
+ * @return TRUE if the character is a space, FALSE if it isn't
+ * @note space is defined as ' ', '\t', '\n', '\v', '\f', '\r'
+*/
 t_bool	ft_isspace(char c);
+
+/**
+ * @brief Function that checks if a character is a quote
+ * @param c character to be checked
+ * @return TRUE if the character is a quote, FALSE if it isn't
+ * @note quote is defined as '"' or '\''
+*/
 t_bool	ft_isquote(char c);
+
+/**
+ * @brief adds the heredoc functionality to the program
+ * @param limiter string that will be used as a limiter
+ * @note the function will create a temp file with everything 
+ * that is written until the limiter 
+*/
+void	heredoc_creat(char *limiter);
+
+//envp utils
+
+/**
+ * @brief Function that returns the index of a string in a matrix
+ * @param envp matrix to be checked
+ * @param to_find string to be found
+ * @return the index of the string in the matrix or -1 if it isn't found
+*/
+int		find_in_env(char **envp, char *to_find);
+char	*get_env_value(char **envp, char *to_find);
+
+// mtx functions
 int		ft_arg_count(char *str);
 char	*ft_rowfill(char **str);
 char	**ft_splitarg(char *str);
-void	heredoc_creat(char *limiter);
 
 #endif

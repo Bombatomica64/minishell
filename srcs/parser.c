@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:50:51 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/22 10:22:12 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:58:10 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,35 +23,27 @@ char	*get_name(char *str, int tmp_type)
 	tmp = NULL;
 	quote = FALSE;
 	quote_type = '\0';
-	skip_spaces(&str);
-	if (tmp_type == COMMAND || tmp_type == BUILT_IN)
+	skip_spaces(&str);// da fare con tutti gli spazi
+	while (is_not_limiter(str[i]))
 	{
-		while (is_not_limiter(str[i]))
+		if ((str[i] == '\'' || str[i] == '\"'))
 		{
-			if (str[i] == '\'' || str[i] == '\"')
-				quote_start(&quote, str[i], &quote_type, &tmp);
-			tmp[i] = str[i];
-			i++;
-		}
-	}
-	if (tmp_type == INPUT || tmp_type == APPEND || tmp_type == TRUNC
-		|| tmp_type == HEREDOC)
-	{
-		while (is_not_limiter(str[i]))
-		{
-			if ((str[i] == '\'' || str[i] == '\"'))
-			{
-				quote_start(&quote, str[i], &quote_type, &tmp);
-			}
-			else
+			//printf("tmpprima = %s\n", tmp);
+			quote_start(&quote, str[i], &quote_type);
+			if (tmp_type == BUILT_IN || tmp_type == COMMAND)
 				tmp = join_char(tmp, str[i]);
-			i++;
+			else if (quote == TRUE && str[i] != quote_type)
+				tmp = join_char(tmp, str[i]);
 		}
+		else
+			tmp = join_char(tmp, str[i]);
+		i++;
 	}
 	if (quote == TRUE)
 	{
 		quote_waiting(&tmp, &quote, &quote_type, tmp_type);
-		tmp[ft_strlen(tmp) - 1] = '\0';
+		if (!(tmp_type == BUILT_IN || tmp_type == COMMAND))
+			tmp = ft_freesubstr(tmp, 0, ft_strlen(tmp) - 1);
 	}
 	return (tmp);
 }
@@ -62,6 +54,7 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 	int		i;
 	int		j;
 
+	tmp_path = NULL;
 	i = 0;
 	if (tmp_type == COMMAND || tmp_type == BUILT_IN)
 	{
@@ -87,12 +80,19 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 	}
 	else if (tmp_type != HEREDOC)
 	{
-		if (ft_strrchr(*tmp, '/') == NULL)
-			tmp_path = ft_newstrjoin(data->directory, *tmp);
-		else if (*tmp[0] == '/' || *tmp[0] == '~')
+		if (*tmp[0] == '/')
 			tmp_path = ft_strdup(*tmp);
+		else if (strncmp(*tmp, "./", 2) == 0)
+			tmp_path = ft_strjoin(data->directory, *tmp + 1);
+		else if (strncmp(*tmp, "../", 3) == 0) //sbagliato, fare cd prima. 
+		{
+			tmp_path = ft_strjoin(tmp_path, *tmp + 2);
+		}
 		else
-			tmp_path = ft_newstrjoin(data->directory, *tmp);
+		{
+			tmp_path = ft_strjoin("/", *tmp);
+			tmp_path = ft_strjoin(data->directory, tmp_path);
+		}
 	}
 	return (tmp_path);
 }
@@ -106,10 +106,12 @@ void	parser(char *str, t_data *data)
 	skip_spaces(&str);
 	tmp_type = ft_file_type(&str);
 	tmp = get_name(str, tmp_type);
+	tmp_path = get_path(&tmp, tmp_type, data);
 	printf("str = %s\n", str);
 	printf("tmp = %s\n", tmp);
 	printf("type = %d\n", tmp_type);
-	// tmp_path = get_path(&tmp, tmp_type, data);
+	printf("path = %s\n", tmp_path);
+	exit(EXIT_FAILURE);
 	// ft_inputadd_back(&(*data).input, ft_inputnew(tmp, tmp_path, tmp_type));
 	(void)data;
 	(void)tmp;

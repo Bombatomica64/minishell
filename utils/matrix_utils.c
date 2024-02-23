@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:27:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/23 10:35:46 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/23 11:04:25 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-t_bool	ft_printmtx(char **mtx)
+t_bool	print_matrix(char **mtx)
 {
 	int	i;
 
 	i = -1;
 	if (!mtx)
-		return FALSE;
+		return (FALSE);
 	while (mtx[++i])
 		ft_printf("%s", mtx[i]);
 	return (TRUE);

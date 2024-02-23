@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+         #
+#    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/02/23 11:28:57 by gduranti         ###   ########.fr        #
+#    Updated: 2024/02/23 12:06:58 by lmicheli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CC = cc -Wall -Wextra -Werror -g -Wuninitialized
 PIPEX = pipex/pipex.c \
 	pipex/process.c
 
-BUILT_IN = built_in/echo \
+BUILT_IN = built_in/echo.c \
 	built_in/cd.c \
 	built_in/unset.c
 

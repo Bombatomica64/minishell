@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:27:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/23 11:04:25 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/23 11:40:43 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,14 @@ char	*get_env_value(char **envp, char *to_find)
 		return (NULL);
 	value = ft_strdup(envp[i] + ft_strlen(to_find));
 	return (value);
+}
+
+int	ft_matrix_len(char **matrix)
+{
+	int	i;
+
+	i = 0;
+	while (matrix[i] != NULL)
+		i++;
+	return (i);
 }

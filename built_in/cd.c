@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/23 10:50:57 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/23 16:16:13 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@
 		exit(0);
 	}
 
-
+	env | grep -E '^(HOME|PWD|OLDPWD)='
 
 	mettere in tty_run.c
 */
 
-void	print_pwd(char **envp)
+void	print_pwds(char **envp)
 {
 	int	i;
 
@@ -48,6 +48,7 @@ void	ft_cd(char *str, t_data *data)
 	{
 		if (chdir(data->home) == -1)
 			perror("cd"); //TODO: change value in envp PWD e OLDPWD
+		
 	}
 	printf("%s\n", str);
 }

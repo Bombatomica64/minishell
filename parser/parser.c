@@ -3,10 +3,11 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:50:51 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/23 16:18:29 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/23 12:13:47 by mruggier         ###   ########.fr       */
+
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +91,13 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 			tmp_path = ft_strdup(*tmp);
 		else if (strncmp(*tmp, "./", 2) == 0)
 			tmp_path = ft_strjoin(data->directory, *tmp + 1);
-		else if (strncmp(*tmp, "../", 3) == 0) //sbagliato, fare cd prima. 
+		else if (strncmp(*tmp, "../", 3) == 0) //TODO: sbagliato, fare cd prima. 
 		{
 			tmp_path = ft_strjoin(tmp_path, *tmp + 2);
+		}
+		else if (strncmp(*tmp, "~/", 2) == 0) //TODO: se "~/c" non funziona perche' cancelliamo le virgolette
+		{
+			tmp_path = ft_strjoin(data->home, *tmp + 1);
 		}
 		else
 		{

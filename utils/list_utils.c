@@ -46,6 +46,7 @@ void	print_list(t_input *input)
 		printf("type: %d\n", input->type);
 		printf("path: %s\n", input->path);
 		printf("node: %s\n", input->node);
+		printf("--------------------\n");
 		input = input->next;
 	}
 }

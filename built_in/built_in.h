@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:03:32 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/23 16:16:16 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/23 16:22:05 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../utils/utils.h"
 
+//built-in functions
 t_bool	ft_echo(char **mtx);
 void	ft_cd(char *str, t_data *data);
 void	ft_env(char **envp);

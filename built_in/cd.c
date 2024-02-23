@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
 /*   Updated: 2024/02/23 18:46:45 by mruggier         ###   ########.fr       */
@@ -24,7 +24,7 @@ ciao
 	mettere in tty_run.c
 */
 
-void	print_pwd(char **envp)
+void	print_pwds(char **envp)
 {
 	int	i;
 

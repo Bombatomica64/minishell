@@ -6,7 +6,7 @@
 #    By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/02/23 11:20:14 by gduranti         ###   ########.fr        #
+#    Updated: 2024/02/23 11:28:57 by gduranti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ UTILS = utils/ft_error.c \
 	utils/list_funct.c \
 	utils/utils.c \
 	utils/str_utils.c \
+	utils/matrix_utils.c \
 	utils/arg_to_mtx.c \
 	utils/heredoc.c \
 	utils/list_utils.c
@@ -40,8 +41,6 @@ SRCS = srcs/main.c \
 	srcs/fd_inout.c
 
 SRC = $(PIPEX) $(BUILT_IN) $(UTILS) $(PARSER) $(SRCS)
-
-OBJS = $(SRC)
 
 FT_PRINTF = ft_printf
 LIB = ft_printf/libftprintf.a

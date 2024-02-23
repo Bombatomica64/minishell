@@ -6,11 +6,11 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/23 10:48:07 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/23 10:50:57 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../srcs/minishell.h"
+#include "built_in.h"
 
 /*
 	if (ft_strncmp(terminal_input, "cd", 2) == 0)

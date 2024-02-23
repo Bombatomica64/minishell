@@ -6,11 +6,11 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:14:12 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/23 10:33:11 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/23 10:51:20 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "envp.h"
+#include "built_in.h"
 
 void	ft_env(char **envp)
 {

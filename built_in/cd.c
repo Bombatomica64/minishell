@@ -6,13 +6,14 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/23 18:45:17 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:46:45 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "built_in.h"
 
 /*
+ciao
 	char *command[] = {"cd", terminal_input, NULL};
 	ft_cd(command, data);
 	exit(0);

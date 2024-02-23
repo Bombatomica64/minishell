@@ -6,12 +6,11 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:50:51 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/23 10:51:14 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/23 11:07:04 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-#include "../utils/utils.h"
 
 char	*get_name(char *str, int tmp_type)
 {

@@ -20,9 +20,10 @@ PIPEX = pipex/pipex.c \
 CD = cd/cd.c
 
 UTILS = utils/ft_error.c \
-	utils/free_matrix.c \
+	utils/close_funct.c \
 	utils/list_funct.c \
 	utils/utils.c \
+	utils/str_utils.c \
 	utils/arg_to_mtx.c \
 	utils/heredoc.c \
 	utils/list_utils.c

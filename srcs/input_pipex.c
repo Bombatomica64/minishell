@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/16 23:05:54 by marvin            #+#    #+#             */
-/*   Updated: 2024/02/22 11:35:52 by lmicheli         ###   ########.fr       */
+/*   Created: 2024/02/16 23:05:54 by lmicheli          #+#    #+#             */
+/*   Updated: 2024/02/22 17:44:08 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,15 +90,9 @@ void	input_for_pipex(t_data *data)
 	ft_malloc_err(data->pipex.path, "data->pipex.path");
 	while (data->input)
 	{
-		if (data->input->type == COMMAND)
+		if (data->input->type == COMMAND || data->input->type == BUILT_IN)
 		{
-			data->pipex.cmd[i] = ft_split(data->input->node, ' ');
-			data->pipex.path[i] = data->input->path;
-		}
-		else if (data->input->type == BUILT_IN)
-		{
-			data->pipex.cmd[i][0] = data->input->node;
-			data->pipex.cmd[i][1] = '\0';
+			data->pipex.cmd[i] = ft_splitarg(data->input->node);
 			data->pipex.path[i] = data->input->path;
 		}
 		else if (data->input->type == INPUT)
@@ -109,4 +103,7 @@ void	input_for_pipex(t_data *data)
 			data->pipex.filein = ft_strdup(".heredoc.txt");
 		i++;
 	}
+	data->pipex.cmd[i] = NULL;
+	data->pipex.path[i] = NULL;
 }
+//execve("/bin/ls", ["/bin/ls", NULL], envp);

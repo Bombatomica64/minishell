@@ -253,6 +253,7 @@ t_bool	ft_isquote(char c);
  * that is written until the limiter 
 */
 void	heredoc_creat(char *limiter);
+void	print_list(t_input *input);
 
 //envp utils
 

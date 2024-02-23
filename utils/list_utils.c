@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:47:54 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/22 11:02:09 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/23 10:44:23 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,15 @@ int	input_nbr_of_cmd(t_input *input)
 		input = input->next;
 	}
 	return (i);
+}
+
+void	print_list(t_input *input)
+{
+	while (input)
+	{
+		printf("type: %d\n", input->type);
+		printf("path: %s\n", input->path);
+		printf("node: %s\n", input->node);	
+		input = input->next;
+	}
 }

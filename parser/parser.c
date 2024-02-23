@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:50:51 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/23 11:07:04 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/23 16:18:29 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,29 +105,28 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 
 t_bool	parser(char *str, t_data *data)
 {
+	int		i;
 	char	*tmp;
 	char	*tmp_path;
-	int 	i;
 	t_type	tmp_type;
 
-	i = 0;
-	skip_spaces(&str);
-	tmp_type = ft_file_type(&str);
-	tmp = get_name(str, tmp_type);
-	if(tmp == NULL)
-	{
-		free(tmp);
-		return FALSE;
-	}
-	tmp_path = get_path(&tmp, tmp_type, data);
-	// printf("str = %s\n", str);
-	// printf("tmp = %s\n", tmp);
-	// printf("type = %d\n", tmp_type);
-	// printf("path = %s\n", tmp_path);
-	while(i < 2)
+	i = count_limiter(str);
+	while(i > 0)
 	{	
+		skip_spaces(&str);
+		tmp_type = ft_file_type(&str);
+		tmp = get_name(str, tmp_type);
+		if(tmp == NULL)
+		{
+			free(tmp);
+			printf("error\n");
+			return FALSE;
+		}
+		tmp_path = get_path(&tmp, tmp_type, data);
+		//tmp_path = NULL;
 		ft_inputadd_back(&(*data).input, ft_inputnew(tmp, tmp_path, tmp_type));
-		i++;
+		str = ft_substr(str, ft_strlen(tmp) + 1, ft_strlen(str) - ft_strlen(tmp));
+		i--;
 	}
 	print_list((*data).input);
 	exit(EXIT_FAILURE);

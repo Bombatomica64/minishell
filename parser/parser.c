@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:50:51 by mruggier          #+#    #+#             */
 /*   Updated: 2024/02/23 10:51:14 by sgarigli         ###   ########.fr       */
@@ -25,7 +25,7 @@ char	*get_name(char *str, int tmp_type)
 	quote = FALSE;
 	quote_type = '\0';
 	skip_spaces(&str);// da fare con tutti gli spazi
-	while (is_not_limiter(str[i]))
+	while (ft_islimiter(str[i]) == FALSE)
 	{
 		if ((str[i] == '\'' || str[i] == '\"'))
 		{
@@ -77,7 +77,11 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 			i++;
 		}
 		if (ft_strrchr(tmp_path, '/') == NULL)
+		{
 			tmp_path = path_execve(tmp_path, data->envp);
+			if (tmp_path == NULL)
+				ft_error("path_execve in get_path", NO_PATH, 127, data);
+		}
 		else
 			*tmp = ft_strrchr(tmp_path, '/') + 1;
 	}

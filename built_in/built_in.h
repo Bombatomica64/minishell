@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   built_in.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/22 15:24:10 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/22 15:24:16 by gduranti         ###   ########.fr       */
+/*   Created: 2024/02/23 10:03:32 by gduranti          #+#    #+#             */
+/*   Updated: 2024/02/23 10:51:27 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_echo(char *str, t_data *data)
-{
-	int	i;
+#ifndef BUILT_IN_H
+# define BUILT_IN_H
 
-	str += 4;
-	i = 0;
-	while (*str)
-	{
-		while (*str == ' ' || *str == '\t')
-			str++;
-	}
-}
+# include "../utils/utils.h"
+
+t_bool	ft_echo(char **mtx);
+void	print_pwd(char **envp);
+void	ft_cd(char *str, t_data *data);
+void	ft_env(char **envp);
+
+#endif

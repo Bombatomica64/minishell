@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:05:20 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/22 15:33:33 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/22 17:56:09 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../pipex/pipex.h"
 # include "../parser/parser.h"
+# include "../cd/cd.h"
 
 //input manage
 void	ft_action(int sig);
@@ -31,6 +32,5 @@ void	input_for_pipex(t_data *data);
 int		open_type(char *str, t_type type);
 int		fd_in(t_data data);
 int		fd_out(t_data data);
-
 
 #endif

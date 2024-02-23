@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/23 10:50:19 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/23 10:49:29 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_pipex_data
 	int		fds[2]; // 2 fd (i/o)
 }	t_pi_d;
 
+// pipex input data
 typedef struct s_pipex
 {
 	char	***cmd; // array of matrix of commands
@@ -93,6 +94,7 @@ typedef struct s_data
 	int		original_stdout; // dupped stdout
 	char	*directory; // current working directory
 	char	**envp; // current environment
+	char	*home; // home directory (~)
 	t_bool	input_found; // true if there is an input file, false if there isn't
 	t_pi_d	in_p; // pipex input data
 	t_pipex	pipex; // pipex data
@@ -220,7 +222,7 @@ char	**matrix_dup(char **matrix);
  * @n
  * @return TRUE if the character is a limiter, FALSE if it isn't
  */
-t_bool	is_not_limiter(char c);
+t_bool	ft_islimiter(char c);
 
 /**
  * @brief Function that skips spaces in a string
@@ -228,12 +230,46 @@ t_bool	is_not_limiter(char c);
 */
 void	skip_spaces(char **str);
 
+/**
+ * @brief Function that checks if a character is a space
+ * @param c character to be checked
+ * @return TRUE if the character is a space, FALSE if it isn't
+ * @note space is defined as ' ', '\t', '\n', '\v', '\f', '\r'
+*/
 t_bool	ft_isspace(char c);
+
+/**
+ * @brief Function that checks if a character is a quote
+ * @param c character to be checked
+ * @return TRUE if the character is a quote, FALSE if it isn't
+ * @note quote is defined as '"' or '\''
+*/
 t_bool	ft_isquote(char c);
-int		ft_arg_count(char *str);
-char	*ft_rowfill(char **str);
-char	**ft_splitarg(char *str);
+
+/**
+ * @brief adds the heredoc functionality to the program
+ * @param limiter string that will be used as a limiter
+ * @note the function will create a temp file with everything 
+ * that is written until the limiter 
+*/
 void	heredoc_creat(char *limiter);
 void	print_list(t_input *input);
+
+//envp utils
+
+/**
+ * @brief Function that returns the index of a string in a matrix
+ * @param envp matrix to be checked
+ * @param to_find string to be found
+ * @return the index of the string in the matrix or -1 if it isn't found
+*/
+int		find_in_env(char **envp, char *to_find);
+char	*get_env_value(char **envp, char *to_find);
+
+// mtx functions
+int		ft_arg_count(char *str, char c, int i, int nbr_args);
+char	*ft_rowfill(char **str, char c, int i);
+char	**ft_splitarg(char *str);
+t_bool	ft_printmtx(char **mtx);
 
 #endif

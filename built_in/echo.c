@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:24:10 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/23 10:42:03 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/23 11:06:23 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_bool	ft_echo(char **mtx)
 {
-	int i;
+	int		i;
 
 	if (!mtx || ft_strcmp(mtx[0], "echo") != 0)
 		return (FALSE);

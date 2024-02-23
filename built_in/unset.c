@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:14:12 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/23 15:27:35 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/23 15:48:45 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,32 @@ void	ft_env(char **envp)
 	print_matrix(envp);
 }
 
+void remove_envp_entry(char ***envp, char *entry) 
+{
+	int		j;
+	char	**new_envp;
+
+	j = 0;
+	while ((*envp)[j])
+	{
+		if (ft_strncmp(entry, (*envp)[j], ft_strlen(entry)) == 0)
+		{
+			new_envp = ft_calloc(ft_matrix_len(*envp), sizeof(char *));
+			if (!new_envp)
+				return ;
+			ft_memcpy(new_envp, *envp, j * sizeof(char *));
+			ft_memcpy(new_envp + j, *envp + j + 1,
+				(ft_matrix_len(*envp) - j) * sizeof(char *));
+			free(*envp);
+			*envp = new_envp;
+			break ;
+		}
+		j++;
+	}
+			
 t_bool	ft_unset(char **mtx, char ***envp)
 {
 	int		i;
-	int		j;
 	char	**new_envp;
 
 	if (!mtx || ft_strcmp(mtx[0], "unset") != 0)
@@ -28,22 +50,7 @@ t_bool	ft_unset(char **mtx, char ***envp)
 	i = 1;
 	while (mtx[i])
 	{
-		j = 0;
-		while ((*envp)[j])
-		{
-			if (ft_strncmp(mtx[i], (*envp)[j], ft_strlen(mtx[i])) == 0)
-			{
-				new_envp = ft_calloc(ft_matrix_len(*envp), sizeof(char *));
-				if (!new_envp)
-					return (FALSE);
-				ft_memcpy(new_envp, *envp, j * sizeof(char *));
-				ft_memcpy(new_envp + j, *envp + j + 1,
-					(ft_matrix_len(*envp) - j) * sizeof(char *));
-				free(*envp);
-				*envp = new_envp;
-				break ;
-			}
-			j++;
+
 		}
 		i++;
 	}

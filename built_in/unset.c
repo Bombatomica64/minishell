@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:14:12 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/23 15:48:45 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/23 15:49:46 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_env(char **envp)
 	print_matrix(envp);
 }
 
-void remove_envp_entry(char ***envp, char *entry) 
+void	remove_envp_entry(char ***envp, char *entry)
 {
 	int		j;
 	char	**new_envp;
@@ -39,7 +39,8 @@ void remove_envp_entry(char ***envp, char *entry)
 		}
 		j++;
 	}
-			
+}
+
 t_bool	ft_unset(char **mtx, char ***envp)
 {
 	int		i;
@@ -50,8 +51,7 @@ t_bool	ft_unset(char **mtx, char ***envp)
 	i = 1;
 	while (mtx[i])
 	{
-
-		}
+		remove_envp_entry(envp, mtx[i]);
 		i++;
 	}
 	return (TRUE);

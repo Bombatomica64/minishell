@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:05:20 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/23 11:06:31 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/23 12:37:58 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../pipex/pipex.h"
 # include "../parser/parser.h"
+# include "../built_in/built_in.h"
 
 //input manage
 void	ft_action(int sig);

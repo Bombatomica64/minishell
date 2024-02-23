@@ -3,14 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:27:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/22 18:39:37 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/23 09:54:11 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
+
+char	**matrix_dup(char **matrix)
+{
+	char	**new_matrix;
+	int		i;
+
+	if (!matrix)
+		return (NULL);
+	i = 0;
+	while (matrix[i] != NULL)
+		i++;
+	new_matrix = (char **)malloc(sizeof(char *) * (i + 1));
+	if (!new_matrix)
+		return (NULL);
+	i = 0;
+	while (matrix[i] != NULL)
+	{
+		new_matrix[i] = ft_strdup(matrix[i]);
+		i++;
+	}
+	new_matrix[i] = NULL;
+	return (new_matrix);
+}
 
 int	find_in_env(char **envp, char *to_find)
 {

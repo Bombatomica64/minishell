@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+         #
+#    By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/02/22 16:33:01 by gduranti         ###   ########.fr        #
+#    Updated: 2024/02/22 17:57:34 by mruggier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,8 @@ CC = cc -Wall -Wextra -Werror -g -Wuninitialized
 
 PIPEX = pipex/pipex.c \
 	pipex/process.c
+
+CD = cd/cd.c
 
 UTILS = utils/ft_error.c \
 	utils/close_funct.c \
@@ -35,7 +37,7 @@ SRCS = srcs/main.c \
 	srcs/tty_run.c \
 	srcs/fd_inout.c
 
-SRC = $(PIPEX) $(UTILS) $(PARSER) $(SRCS)
+SRC = $(PIPEX) $(UTILS) $(PARSER) $(SRCS) $(CD)
 
 OBJS = $(SRC)
 

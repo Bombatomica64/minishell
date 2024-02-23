@@ -76,9 +76,11 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 			i++;
 		}
 		if (ft_strrchr(tmp_path, '/') == NULL)
+		{
 			tmp_path = path_execve(tmp_path, data->envp);
 			if (tmp_path == NULL)
 				ft_error("path_execve in get_path", NO_PATH, 127, data);
+		}
 		else
 			*tmp = ft_strrchr(tmp_path, '/') + 1;
 	}

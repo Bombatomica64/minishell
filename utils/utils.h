@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
 /*   Updated: 2024/02/23 10:37:42 by gduranti         ###   ########.fr       */
@@ -93,6 +93,7 @@ typedef struct s_data
 	int		original_stdout; // dupped stdout
 	char	*directory; // current working directory
 	char	**envp; // current environment
+	char	*home; // home directory (~)
 	t_bool	input_found; // true if there is an input file, false if there isn't
 	t_pi_d	in_p; // pipex input data
 	t_pipex	pipex; // pipex data

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/22 18:36:40 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/23 10:37:42 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,8 +264,9 @@ int		find_in_env(char **envp, char *to_find);
 char	*get_env_value(char **envp, char *to_find);
 
 // mtx functions
-int		ft_arg_count(char *str);
-char	*ft_rowfill(char **str);
+int		ft_arg_count(char *str, char c, int i, int nbr_args);
+char	*ft_rowfill(char **str, char c, int i);
 char	**ft_splitarg(char *str);
+t_bool	ft_printmtx(char **mtx);
 
 #endif

@@ -6,21 +6,39 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:14:12 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/23 12:26:05 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/23 16:05:18 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "built_in.h"
 
-void	ft_env(char **envp)
+void	remove_envp_entry(char ***envp, char *entry)
 {
-	print_matrix(envp);
+	int		j;
+	char	**new_envp;
+
+	j = 0;
+	while ((*envp)[j])
+	{
+		if (ft_strncmp(entry, (*envp)[j], ft_strlen(entry)) == 0)
+		{
+			new_envp = ft_calloc(ft_matrix_len(*envp), sizeof(char *));
+			if (!new_envp)
+				return ;
+			ft_memcpy(new_envp, *envp, j * sizeof(char *));
+			ft_memcpy(new_envp + j, *envp + j + 1,
+				(ft_matrix_len(*envp) - j) * sizeof(char *));
+			free(*envp);
+			*envp = new_envp;
+			break ;
+		}
+		j++;
+	}
 }
 
 t_bool	ft_unset(char **mtx, char ***envp)
 {
 	int		i;
-	int		j;
 	char	**new_envp;
 
 	if (!mtx || ft_strcmp(mtx[0], "unset") != 0)
@@ -28,29 +46,23 @@ t_bool	ft_unset(char **mtx, char ***envp)
 	i = 1;
 	while (mtx[i])
 	{
-		j = 0;
-		while ((*envp)[j])
-		{
-			if (ft_strncmp(mtx[i], (*envp)[j], ft_strlen(mtx[i])) == 0)
-			{
-				new_envp = ft_calloc(ft_matrix_len(*envp), sizeof(char *));
-				if (!new_envp)
-					return (FALSE);
-				ft_memcpy(new_envp, *envp, j * sizeof(char *));
-				ft_memcpy(new_envp + j, *envp + j + 1,
-					(ft_matrix_len(*envp) - j) * sizeof(char *));
-				free(*envp);
-				*envp = new_envp;
-				break ;
-			}
-			j++;
-		}
+		remove_envp_entry(envp, mtx[i]);
 		i++;
 	}
 	return (TRUE);
 }
 
 t_bool	export(char ***envp, char *str)
+{
+	if (!str)
+		return (FALSE);
+	if (find_in_env(*envp, str) != -1)
+		return (add_to_env(envp, str));
+	else
+		return (update_env(envp, str));
+}
+
+t_bool	add_to_env(char ***envp, char *str)
 {
 	int		i;
 	char	**new_envp;
@@ -67,5 +79,17 @@ t_bool	export(char ***envp, char *str)
 		return (FALSE);
 	free(*envp);
 	*envp = new_envp;
+	return (TRUE);
+}
+
+t_bool	update_env(char ***envp, char *str)
+{
+	int		i;
+
+	i = find_in_env(*envp, str);
+	free((*envp)[i]);
+	(*envp)[i] = ft_strdup(str);
+	if (!(*envp)[i])
+		return (FALSE);
 	return (TRUE);
 }

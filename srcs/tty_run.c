@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/23 12:34:04 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/23 12:17:29 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,6 @@
 
 void	ft_do_it(t_data *data, char *terminal_input, int error)
 {
-	if (ft_strncmp(terminal_input, "cd", 2) == 0)
-	{
-		ft_cd(terminal_input, data);
-		exit(0);
-	}
-
-	
 	if (parser(terminal_input, data) == FALSE)
 		return ;
 	data->pipex.fd_in = fd_in(*data);
@@ -44,11 +37,11 @@ void	ft_tty_exec(t_data *data, char **envp)
 			dup2(data->original_stdin, STDIN_FILENO);
 			dup2(data->original_stdout, STDOUT_FILENO);
 		}
-		terminal_input = readline("\033[0;32mminishell> \033[0m");
+		terminal_input = readline("\033[0;94mminishell> \033[0m");
 		add_history(terminal_input);
 		if (terminal_input == NULL)
 		{
-			printf("EOF received, exiting\n");
+			ft_printf("EOF received, exiting\n");
 			free(terminal_input);
 			if (terminal_input)
 				freenclose(data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:28:06 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/22 18:40:09 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/23 12:17:19 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,7 @@ void	ft_action(int sig)
 {
 	if (sig == SIGINT)
 	{
-		printf("\033[0;32m\nminishell> \033[0m");
-		// printf("\n");
-		// rl_on_new_line();
-		// rl_replace_line("", 0);
-		// rl_redisplay();
+		printf("\033[0;94m\nminishell> \033[0m");
 	}
 }
 

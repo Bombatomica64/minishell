@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/22 15:31:10 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/23 16:13:40 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ t_type	ft_file_type(char **str)
 		}
 		else
 			return (TRUNC);
+	}
+	else if (**str == '|')
+	{
+		(*str)++;
+		return (COMMAND);
 	}
 	return (COMMAND);
 }
@@ -66,4 +71,21 @@ char	*join_char(char *str, char c)
 	tmp[i + 1] = '\0';
 	free(str);
 	return (tmp);
+}
+
+// non conta bene "<<" e ">>"
+int	count_limiter(char *str)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		if (ft_islimiter(str[i]) == TRUE)
+			count++;
+		i++;
+	}
+	return (count);
 }

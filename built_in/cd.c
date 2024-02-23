@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/23 16:16:13 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:26:20 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,10 @@ void	print_pwds(char **envp)
 	}
 }
 
-char *
-
 void	ft_cd(char *str, t_data *data) //TODO: change value in envp PWD e OLDPWD
 {
 	int	i;
-	
+
 	(void)str;
 	print_pwd(data->envp);
 	str += 2;
@@ -51,7 +49,7 @@ void	ft_cd(char *str, t_data *data) //TODO: change value in envp PWD e OLDPWD
 	if (*str == '\0')
 	{
 		if (chdir(data->home) == -1)
-			perror("cd"); 
+			perror("cd");
 		i = find_in_env(data->envp, "PWD");
 		free(data->envp[i]);
 		data->envp[i] = ft_strjoin("PWD=", data->home);

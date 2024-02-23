@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/23 12:17:29 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:40:46 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,33 +24,54 @@ void	ft_do_it(t_data *data, char *terminal_input, int error)
 	(void)error;
 }
 
+void	process_input(t_data *data, int error)
+{
+	char	*terminal_input;
+
+	if (isatty(STDIN_FILENO) == 0)
+	{
+		dup2(data->original_stdin, STDIN_FILENO);
+		dup2(data->original_stdout, STDOUT_FILENO);
+	}
+	terminal_input = readline("\033[0;94mminishell> \033[0m");
+	add_history(terminal_input);
+	if (terminal_input == NULL)
+	{
+		ft_printf("EOF received, exiting\n");
+		free(terminal_input);
+		if (terminal_input)
+			freenclose(data);
+		return ;
+	}
+	if (terminal_input[0] == '\0')
+		return ;
+	ft_do_it(data, terminal_input, error);
+}
+
 void	ft_tty_exec(t_data *data, char **envp)
 {
 	int		error;
-	char	*terminal_input;
+	int		status;
+	int		fd[2];
+	pid_t	pid;
 
 	error = 0;
 	while (TRUE)
 	{
-		if (isatty(STDIN_FILENO) == 0)
+		if (pipe(fd) == -1)
+			ft_error("pipe", PIPE, 132, data);
+		pid = fork();
+		if (pid == -1)
+			ft_error("fork", FORK, 124, data);
+		if (pid == 0)
+			process_input(data, error);
+		else
 		{
-			dup2(data->original_stdin, STDIN_FILENO);
-			dup2(data->original_stdout, STDOUT_FILENO);
+			close(fd[1]);
+			waitpid(pid, &status, 0);
+			if (WIFEXITED(status))
+				data->error_codes = WEXITSTATUS(status);
+			close(fd[0]);
 		}
-		terminal_input = readline("\033[0;94mminishell> \033[0m");
-		add_history(terminal_input);
-		if (terminal_input == NULL)
-		{
-			ft_printf("EOF received, exiting\n");
-			free(terminal_input);
-			if (terminal_input)
-				freenclose(data);
-			return ;
-		}
-		if (terminal_input[0] == '\0')
-			continue ;
-		ft_do_it(data, terminal_input, error);
 	}
-	free(terminal_input);
-	(void)envp;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/22 15:41:25 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/23 10:50:19 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,5 +234,6 @@ int		ft_arg_count(char *str);
 char	*ft_rowfill(char **str);
 char	**ft_splitarg(char *str);
 void	heredoc_creat(char *limiter);
+void	print_list(t_input *input);
 
 #endif

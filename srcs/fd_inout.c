@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fd_inout.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:05:07 by marvin            #+#    #+#             */
-/*   Updated: 2024/02/21 18:15:28 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/26 12:18:59 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	open_type(char *str, t_type type)
 	else if (type == INPUT)
 		fd = open(str, O_RDONLY);
 	else if (type == HEREDOC)
-		heredoc_creat(str);
+		fd = heredoc_creat(str);
 	if (fd < 0)
 		ft_error("open_type", OPEN, 101, NULL);
 	return (fd);

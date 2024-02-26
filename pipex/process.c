@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/21 16:30:25 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/26 12:01:00 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	child(t_data *data, int i)
+/* void	child(t_data *data, int i)
 {
 	pid_t	pid;
 	int		fd[2];
@@ -90,3 +90,4 @@ void	ft_execute(t_data *data)
 		ft_error("stdout to fileout", DUP, 13, data);
 	parent(data, i);
 }
+ */

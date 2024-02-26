@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/23 12:04:53 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/26 12:00:39 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,9 @@ int	ft_matrixlen(char **matrix)
 int	pipex(t_data *data, int fd[2])
 {
 	(void)fd;
-	checkfile_fd(data);
-	ft_execute(data);
+	(void)data;
+	// checkfile_fd(data);
+	// ft_execute(data);
 	return (0);
 }
 

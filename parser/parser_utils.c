@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/26 10:28:19 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/26 10:45:22 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,6 @@ int	count_limiter(char *str)
 			count++;
 		i++;
 	}
+	printf("count = %d\n", count);
 	return (count);
 }

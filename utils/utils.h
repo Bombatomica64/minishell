@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/26 15:41:54 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/26 15:42:47 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,10 +171,12 @@ void	ft_inputadd_front(t_input **lst, t_input *news);
 
 /**
  * @brief Function that returns the last node of the list
- * @param stack list to be checked
+ * @param lst list to be checked
  * @return A pointer to the last node of the list
 */
-t_input	*ft_inputlast(t_input **stack);
+t_input	*ft_inputlast(t_input **lst);
+
+t_input	*ft_inputfirst(t_input **lst);
 
 /**
  * @brief Function that returns the number of nodes in the list

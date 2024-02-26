@@ -12,13 +12,17 @@
 
 #include "utils.h"
 
-/* void	heredoc_creat(char *limiter)
+
+/*int	heredoc_creat(char *limiter, t_data *data)
+  void	heredoc_creat(char *limiter)
 {
 	char	*str;
+	char	*name;
 	int		fd;
 
 	str = NULL;
-	fd = open(".heredoc.txt", O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
+	name = ft_strjoin(data->home, "/.heredoc.txt");
+	fd = open(name, O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
 	if (fd < 0)
 		ft_error("heredoc_creat", OPEN, 101, NULL);
 	while (ft_strcmp((const char *)str, (const char *)limiter) != 0)
@@ -29,6 +33,7 @@
 		free(str);
 	}
 	close(fd);
+
 } */
 
 int	heredoc_creat(char *limiter)

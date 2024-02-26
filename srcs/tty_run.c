@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/23 18:40:46 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/26 10:37:47 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ void	process_input(t_data *data, int error)
 	if (terminal_input == NULL)
 	{
 		ft_printf("EOF received, exiting\n");
-		free(terminal_input);
-		if (terminal_input)
-			freenclose(data);
-		return ;
+		// free(terminal_input);
+		// if (terminal_input)
+		// 	freenclose(data);
+		exit (1024);
 	}
 	if (terminal_input[0] == '\0')
 		return ;
@@ -55,6 +55,7 @@ void	ft_tty_exec(t_data *data, char **envp)
 	int		fd[2];
 	pid_t	pid;
 
+	(void)envp;
 	error = 0;
 	while (TRUE)
 	{
@@ -71,6 +72,8 @@ void	ft_tty_exec(t_data *data, char **envp)
 			waitpid(pid, &status, 0);
 			if (WIFEXITED(status))
 				data->error_codes = WEXITSTATUS(status);
+			if (data->error_codes == 0)
+				exit (EXIT_SUCCESS);
 			close(fd[0]);
 		}
 	}

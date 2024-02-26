@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/23 16:13:40 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/26 10:28:19 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	count_limiter(char *str)
 	int	count;
 
 	i = 0;
-	count = 0;
+	count = 1;
 	while (str[i])
 	{
 		if (ft_islimiter(str[i]) == TRUE)

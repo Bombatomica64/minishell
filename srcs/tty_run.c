@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/26 17:26:35 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/26 18:33:45 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	ft_do_it(t_data *data, char *terminal_input)
 		comm = input_exec(data);
 		if (comm.cmd)
 			data->error_codes += pipex(&comm, data);
+		data->input = data->input->next;
 	}
 }
 
@@ -43,7 +44,6 @@ void	process_input(t_data *data)
 		free(terminal_input);
 		if (terminal_input)
 			free_close(data, 0);
-		exit (1024);
 	}
 	if (terminal_input[0] == '\0')
 		return ;

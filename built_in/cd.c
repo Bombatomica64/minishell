@@ -3,21 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/23 17:26:20 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:17:07 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "built_in.h"
 
 /*
-ciao
-	char *command[] = {"cd", terminal_input, NULL};
-	ft_cd(command, data);
-	exit(0);
+	char **mtx;
+	
+	mtx = ft_split(terminal_input, ' ');
 
+	char *command[] = {mtx[0], mtx[1], NULL};
+	ft_cd(command, data);
+	return ;
 
 	env | grep -E '^(HOME|PWD|OLDPWD)='
 
@@ -38,94 +40,87 @@ void	print_pwds(char **envp)
 	}
 }
 
-char *ft_remove_chars(char **str, char *to_remove, int i)
+char	*ft_remove_chars(char *str, char *to_remove, int i)
 {
-	int	j;
-	int char_path;
-	char *tmp;
+	int		j;
+	int		char_path;
+	char	*tmp;
 
 	j = 0;
 	tmp = malloc(sizeof(char) * i + 1);
 	while (j < i)
 	{
-		tmp[j] = (*str)[j];
+		tmp[j] = str[j];
 		j++;
 	}
 	tmp[j] = '\0';
+	printf("\033[0;32mtmp: %s\033[0m\n", tmp);
 	if (ft_strcmp(to_remove, "../") == 0)
 	{
 		char_path = 2;
-		while ((*str)[j - char_path] != '/')
+		while (str[j - char_path] != '/')
 			char_path++;
 		tmp[j - char_path + 1] = '\0';
 	}
-	tmp = ft_strjoin(tmp, *str + i + ft_strlen(to_remove));
-	free(*str);
+	tmp = ft_strjoin(tmp, str + i + ft_strlen(to_remove));
+	free(str);
 	return (tmp);
 }
 
-
-void	ft_cd(char **mtx, t_data *data) //TODO: change  OLDPWD
+void	refactor_path(char **str, t_data *data, int i)
 {
-	int		i;
-	char	*str;
-	
-	str = NULL;
-	if (mtx[1] == NULL)
+	if (**str == '~')
+		*str = ft_strjoin(data->home, ++(*str));
+	else if (**str != '/')
 	{
-		if (chdir(data->home) == -1)
-			perror("cd");
-		i = find_in_env(data->envp, "PWD");
-		free(data->envp[i]);
-		data->envp[i] = ft_strjoin("PWD=", data->home);
-		//print_pwd(data->envp);
-		return ;
+		*str = ft_strjoin("/", *str);
+		*str = ft_strjoin(get_env_value(data->envp, "PWD="), *str);
 	}
-	str = ft_strdup(mtx[1]);
-	//print_pwd(data->envp);
-	//TODO: if (cd - spazio fino a \0 vai OLDPWD)
-	
-	if (*str == '~')
-	{
-		str++;
-		str = ft_strjoin(data->home, str);
-	}
-	else if (*str != '/')
-	{
-		str = ft_strjoin("/", str);
-		str = ft_strjoin(get_env_value(data->envp, "PWD="), str);
-	}
-
 	i = 0;
-	while (str[i] != '\0')
+	while ((*str)[i] != '\0')
 	{
-		if (strncmp(str + i, "./", 2) == 0)
+		if (strncmp(*str + i, "./", 2) == 0)
 		{
-			str = ft_remove_chars(&str, "./", i);
+			*str = ft_remove_chars(*str, "./", i);
 			i = 0;
 		}
-		else if (strncmp(str + i, "../", 3) == 0)
+		else if (strncmp(*str + i, "../", 3) == 0
+			|| strncmp(*str + i, "..", 2) == 0)
 		{
-			str = ft_remove_chars(&str, "../", i);
+			*str = ft_remove_chars(*str, "../", i);
 			i = 0;
 		}
 		i++;
 	}
+	if ((*str)[ft_strlen(*str) - 1] == '/')
+		(*str)[ft_strlen(*str) - 1] = '\0';
+}
 
+void	ft_cd(char **mtx, t_data *data) //TODO: virgolette ""
+{
+	int		i;
+	char	*str;
+	char	*change_oldpwd;
+
+	change_oldpwd = ft_strjoin("OLDPWD=", getcwd(NULL, 0));
+	if (mtx[1] == NULL)
+		str = ft_strdup(data->home);
+	else if (ft_strcmp(mtx[1], "-") == 0)
+	{
+		str = get_env_value(data->envp, "OLDPWD=");
+		ft_printf("%s\n", str);
+	}
+	else
+	{
+		str = ft_strdup(mtx[1]);
+		refactor_path(&str, data, 0);
+	}
 	if (chdir(str) == -1)
-			perror("cd"); 
+		perror("cd");
 	i = find_in_env(data->envp, "PWD");
 	free(data->envp[i]);
 	data->envp[i] = ft_strjoin("PWD=", str);
-	
-
-
-
-
-
-
-
-
-	
-	printf("%s\n", str);
+	i = find_in_env(data->envp, "OLDPWD");
+	free(data->envp[i]);
+	data->envp[i] = change_oldpwd;
 }

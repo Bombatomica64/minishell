@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_in.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:03:32 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/23 16:22:05 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:20:20 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 
 //built-in functions
 t_bool	ft_echo(char **mtx);
-void	ft_cd(char *str, t_data *data);
+void	print_pwd(char **envp);
+void	ft_cd(char **str, t_data *data);
 void	ft_env(char **envp);
 
 // unset & helper functions

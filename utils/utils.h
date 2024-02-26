@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/23 11:40:41 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:40:38 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ typedef struct s_data
 	int		fd_out; // output file descriptor
 	int		original_stdin; // dupped stdin
 	int		original_stdout; // dupped stdout
+	int		error_codes; // sum of the error codes
 	char	*directory; // current working directory
 	char	**envp; // current environment
 	char	*home; // home directory (~)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_matrix.c                                      :+:      :+:    :+:   */
+/*   close_funct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:10:53 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/22 12:02:54 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/26 10:05:57 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	free_matrix(char ***mtx)
 void	freenclose(t_data *data)
 {
 	ft_inputclear(&data->input);
-	free_matrix(&data->in_p.cmds);
-	free_matrix(&data->in_p.files);
+	//print_matrix + dup2(fd[0], STDOUT_FILENO);
 	free(data->input);
 }

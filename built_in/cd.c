@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/23 18:46:45 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:26:20 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	ft_cd(char **mtx, t_data *data) //TODO: change  OLDPWD
 	if (mtx[1] == NULL)
 	{
 		if (chdir(data->home) == -1)
-			perror("cd"); 
+			perror("cd");
 		i = find_in_env(data->envp, "PWD");
 		free(data->envp[i]);
 		data->envp[i] = ft_strjoin("PWD=", data->home);

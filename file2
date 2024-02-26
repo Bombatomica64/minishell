@@ -1,1 +1,16 @@
-ect
+total 1756
+drwxr-xr-x 2 lmicheli 2023_florence    4096 Feb 23 17:08 built_in
+-rw-r--r-- 1 lmicheli 2023_florence       4 Feb 23 12:09 ~c
+-rw-r--r-- 1 lmicheli 2023_florence     124 Feb 23 17:38 file1
+-rw-r--r-- 1 lmicheli 2023_florence       0 Feb 23 17:38 file2
+-rw-r--r-- 1 lmicheli 2023_florence       3 Feb 22 10:33 file3
+-rw-r--r-- 1 lmicheli 2023_florence       0 Feb 19 10:02 file4
+drwxr-xr-x 2 lmicheli 2023_florence    4096 Feb 23 12:15 ft_printf
+-rw-r--r-- 1 lmicheli 2023_florence    2066 Feb 23 12:06 Makefile
+-rwxr-xr-x 1 lmicheli 2023_florence  179680 Feb 23 12:16 minishell
+drwxr-xr-x 2 lmicheli 2023_florence    4096 Feb 23 16:25 parser
+drwxr-xr-x 2 lmicheli 2023_florence    4096 Feb 23 12:31 pipex
+-rw-r--r-- 1 lmicheli 2023_florence      96 Feb 19 11:59 README.md
+drwxr-xr-x 2 lmicheli 2023_florence    4096 Feb 23 17:08 srcs
+-rw-r--r-- 1 lmicheli 2023_florence 1568461 Feb  6 18:07 subject.pdf
+drwxr-xr-x 2 lmicheli 2023_florence    4096 Feb 23 16:25 utils

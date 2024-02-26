@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   input_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/26 15:40:52 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:41:06 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void is_input(char **name, int *fd, t_input *input)
+static void	is_input(char **name, int *fd, t_input *input)
 {
 	if (input->type == INPUT)
 	{
@@ -26,7 +26,7 @@ static void is_input(char **name, int *fd, t_input *input)
 	}
 }
 
-static void is_output(char **name, int *fd, t_input *input)
+static void	is_output(char **name, int *fd, t_input *input)
 {
 	if (input->type == TRUNC || input->type == APPEND)
 	{
@@ -49,7 +49,8 @@ t_pipex	input_exec(t_data *data)
 		{
 			comm.cmd = ft_splitarg(data->input->node);
 			comm.path = data->input->path;
-			if (data->input->next && (data->input->next->type == COMMAND || data->input->next->type == BUILT_IN))
+			if (data->input->next && (data->input->next->type == COMMAND
+					|| data->input->next->type == BUILT_IN))
 			{
 				if (pipe(data->fd) == -1)
 					ft_error("input_exec", PIPE, 132, data);

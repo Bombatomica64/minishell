@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/26 17:15:56 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:19:36 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,9 +121,9 @@ t_bool	ft_malloc_err(void *ptr, char *str);
  * @param data, data to be freed
  * @return void
 */
-void	free_close(t_data *data);
+void	free_close(t_data *data, int status);
 
-int		free_return(t_data *data);
+int		free_return(t_data *data, int status);
 
 // list functions
 

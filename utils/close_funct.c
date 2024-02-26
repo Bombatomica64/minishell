@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:10:53 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/26 16:48:01 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:23:34 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	free_matrix(char ***mtx)
 	mtx = NULL;
 }
 
-int	free_return(t_data *data)
+int	free_return(t_data *data, int status)
 {
 	ft_inputclear(&data->input);
 	free_matrix(&data->pipex.cmd);
@@ -36,13 +36,13 @@ int	free_return(t_data *data)
 	free(data->pipex.filein);
 	free(data->pipex.fileout);
 	// free(data->pipex.connector);
-	return (0);
+	return (status);
 }
 
-void	free_close(t_data *data)
+void	free_close(t_data *data, int status)
 {
-	freenreturn(data);
+	free_return(data, status);
 	free_matrix(&data->envp);
 	free(data->home);
-	exit (EXIT_SUCCESS);
+	exit (status);
 }

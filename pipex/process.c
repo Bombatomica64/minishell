@@ -6,38 +6,11 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/21 16:30:25 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/26 12:23:24 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-void	child(t_data *data, int i)
-{
-	pid_t	pid;
-	int		fd[2];
-
-	if (pipe(fd) == -1)
-		ft_error("child", PIPE, 132, data);
-	pid = fork();
-	if (pid == -1)
-		ft_error("child", FORK, 124, data);
-	if (pid == 0)
-	{
-		close(fd[0]);
-		if (dup2(fd[1], STDOUT_FILENO) == -1)
-			ft_error("child", DUP, 13, data);
-		if (execve(data->pipex.path[i], data->pipex.cmd[i], NULL) < 0)
-			ft_error(data->pipex.path[i], EXECVE, 126, data);
-	}
-	else
-	{
-		close(fd[1]);
-		if (dup2(fd[0], STDIN_FILENO) == -1)
-			ft_error("stdin to fd[0]", DUP, 13, data);
-		waitpid(pid, NULL, 0);
-	}
-}
 
 void	parent(t_data *data, int i)
 {

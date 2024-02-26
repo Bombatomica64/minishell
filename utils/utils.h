@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/26 10:45:21 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/26 15:42:47 by gduranti         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
@@ -75,12 +75,13 @@ typedef struct s_pipex_data
 // pipex input data
 typedef struct s_pipex
 {
-	char	***cmd; // array of matrix of commands
-	char	**path; // array of paths
+	char	**cmd; // command in matrix status
+	char	*path; // command path
 	char	*filein; // input file name
 	char	*fileout; // output file name
 	int		fd_in; // input file descriptor
-	int		fd_out;// output file descriptor
+	int		fd_out; // output file descriptor
+	char	*connector; // the connector to the next command (NULL, |, &&, ||)
 }				t_pipex;
 
 typedef struct s_data
@@ -170,10 +171,12 @@ void	ft_inputadd_front(t_input **lst, t_input *news);
 
 /**
  * @brief Function that returns the last node of the list
- * @param stack list to be checked
+ * @param lst list to be checked
  * @return A pointer to the last node of the list
 */
-t_input	*ft_inputlast(t_input **stack);
+t_input	*ft_inputlast(t_input **lst);
+
+t_input	*ft_inputfirst(t_input **lst);
 
 /**
  * @brief Function that returns the number of nodes in the list
@@ -251,10 +254,9 @@ t_bool	ft_isquote(char c);
 /**
  * @brief adds the heredoc functionality to the program
  * @param limiter string that will be used as a limiter
- * @note the function will create a temp file with everything 
- * that is written until the limiter 
+ * @return fd with the file descriptor of the pipe fd[0]
 */
-void	heredoc_creat(char *limiter);
+int		heredoc_creat(char *limiter);
 void	print_list(t_input *input);
 
 //envp utils

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/26 16:17:23 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:15:03 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,15 @@ void	process_input(t_data *data, int error)
 	if (terminal_input == NULL)
 	{
 		ft_printf("EOF received, exiting\n");
-		// free(terminal_input);
-		// if (terminal_input)
-		// 	freenclose(data);
+		free(terminal_input);
+		if (terminal_input)
+			freenclose(data);
 		exit (1024);
 	}
 	if (terminal_input[0] == '\0')
 		return ;
 	ft_do_it(data, terminal_input, error);
+	free(terminal_input);
 }
 
 void	ft_tty_exec(t_data *data, char **envp)
@@ -59,22 +60,6 @@ void	ft_tty_exec(t_data *data, char **envp)
 	error = 0;
 	while (TRUE)
 	{
-		if (pipe(fd) == -1)
-			ft_error("pipe", PIPE, 132, data);
-		pid = fork();
-		if (pid == -1)
-			ft_error("fork", FORK, 124, data);
-		if (pid == 0)
-			process_input(data, error);
-		else
-		{
-			close(fd[1]);
-			waitpid(pid, &status, 0);
-			if (WIFEXITED(status))
-				data->error_codes = WEXITSTATUS(status);
-			if (data->error_codes == 0)
-				exit (EXIT_SUCCESS);
-			close(fd[0]);
-		}
+		process_input(data, error);
 	}
 }

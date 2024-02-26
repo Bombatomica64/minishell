@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
+#    By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/02/23 12:06:58 by lmicheli         ###   ########.fr        #
+#    Updated: 2024/02/26 15:30:14 by gduranti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ PARSER = parser/parser.c \
 SRCS = srcs/main.c \
 	srcs/input_init.c \
 	srcs/tty_run.c \
-	srcs/fd_inout.c
+	srcs/fd_inout.c \
+	srcs/input_exec.c
 
 SRC = $(PIPEX) $(BUILT_IN) $(UTILS) $(PARSER) $(SRCS)
 

@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:27:22 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/21 11:18:22 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/26 15:26:46 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,14 @@ void	ft_inputadd_front(t_input **lst, t_input *news)
 	}
 }
 
-t_input	*ft_inputlast(t_input **stack)
+t_input	*ft_inputlast(t_input **lst)
 {
-	t_input	*lst;
+	t_input	*tmp;
 
-	lst = *stack;
-	if (!lst)
+	tmp = *lst;
+	if (!tmp)
 		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
+	while (tmp->next)
+		tmp = tmp->next;
+	return (tmp);
 }

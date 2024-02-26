@@ -254,10 +254,9 @@ t_bool	ft_isquote(char c);
 /**
  * @brief adds the heredoc functionality to the program
  * @param limiter string that will be used as a limiter
- * @note the function will create a temp file with everything 
- * that is written until the limiter 
+ * @return fd with the file descriptor of the pipe fd[0]
 */
-int	heredoc_creat(char *limiter, t_data *data);
+int		heredoc_creat(char *limiter);
 void	print_list(t_input *input);
 
 //envp utils

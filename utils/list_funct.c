@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:27:22 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/26 15:26:46 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:14:14 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	ft_inputclear(t_input **lst)
 		return ;
 	while (*lst)
 	{
+		free((*lst)->node);
+		free((*lst)->path);
 		tofree_lst = *lst;
 		*lst = (*lst)->next;
 		free(tofree_lst);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/26 10:37:47 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:15:23 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	process_input(t_data *data, int error)
 	if (terminal_input == NULL)
 	{
 		ft_printf("EOF received, exiting\n");
-		// free(terminal_input);
-		// if (terminal_input)
-		// 	freenclose(data);
+		free(terminal_input);
+		if (terminal_input)
+			freenclose(data);
 		exit (1024);
 	}
 	if (terminal_input[0] == '\0')

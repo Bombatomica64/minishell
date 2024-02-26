@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:05:20 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/23 12:37:58 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/26 15:29:44 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@ void	input_for_pipex(t_data *data);
 int		open_type(char *str, t_type type);
 int		fd_in(t_data data);
 int		fd_out(t_data data);
+
+t_pipex	input_exec(t_data *data);
 
 #endif

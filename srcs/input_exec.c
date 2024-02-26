@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/26 15:28:52 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/26 15:40:52 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void is_input(char **name, int *fd, t_input *input)
 	else if (input->type == HEREDOC)
 	{
 		*name = "heredoc";
-		*fd = open_type(input->node, HEREDOC);
+		*fd = heredoc_creat(input->node);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/26 17:14:57 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:16:55 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	process_input(t_data *data, int error)
 		ft_printf("EOF received, exiting\n");
 		free(terminal_input);
 		if (terminal_input)
-			freenclose(data);
+			free_close(data);
 		exit (1024);
 	}
 	if (terminal_input[0] == '\0')

@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   close_funct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:10:53 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/26 10:44:45 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:26:54 by gduranti         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "utils.h"
 
@@ -28,22 +28,21 @@ void	free_matrix(char ***mtx)
 	mtx = NULL;
 }
 
-void	pass_envp(char **envp, int fd)
+int	freenreturn(t_data *data)
 {
-	size_t	i;
-
-	i = 0;
-	dup2(fd, STDOUT_FILENO);
-	while (envp[i])
-	{
-		ft_printf("%s\n", envp[i]);
-		i++;
-	}
+	ft_inputclear(&data->input);
+	free_matrix(data->pipex.cmd);
+	free(data->pipex.path);
+	free(data->pipex.filein);
+	free(data->pipex.fileout);
+	// free(data->pipex.connector);
+	return (0);
 }
 
 void	freenclose(t_data *data)
 {
-	ft_inputclear(&data->input);
-	pass_envp(data->envp, data->fd[1]);
-	free(data->input);
+	freenreturn(data);
+	free_matrix(&data->envp);
+	free(data->home);
+	exit (EXIT_SUCCESS);
 }

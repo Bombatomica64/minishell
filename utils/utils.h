@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/26 15:42:47 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:28:29 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,6 @@ typedef struct s_input
 	struct s_input	*next; // next node
 }	t_input;
 
-typedef struct s_pipex_data
-{
-	char	**cmds; //name
-	char	**files; //name
-	int		fds[2]; // 2 fd (i/o)
-}	t_pi_d;
-
 // pipex input data
 typedef struct s_pipex
 {
@@ -95,11 +88,9 @@ typedef struct s_data
 	int		original_stdout; // dupped stdout
 	int		error_codes; // sum of the error codes
 	int		fd[2]; // pipe
-	char	*directory; // current working directory
 	char	**envp; // current environment
 	char	*home; // home directory (~)
 	t_bool	input_found; // true if there is an input file, false if there isn't
-	t_pi_d	in_p; // pipex input data
 	t_pipex	pipex; // pipex data
 	t_input	*input; // list of commands and files
 }	t_data;
@@ -137,6 +128,8 @@ t_bool	ft_malloc_err(void *ptr, char *str);
  * @return void
 */
 void	freenclose(t_data *data);
+
+int	freenreturn(t_data *data);
 
 // list functions
 

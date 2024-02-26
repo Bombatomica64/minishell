@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close_funct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:10:53 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/26 16:26:54 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:23:34 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,21 @@ void	free_matrix(char ***mtx)
 	mtx = NULL;
 }
 
-int	freenreturn(t_data *data)
+int	free_return(t_data *data, int status)
 {
 	ft_inputclear(&data->input);
-	free_matrix(data->pipex.cmd);
+	free_matrix(&data->pipex.cmd);
 	free(data->pipex.path);
 	free(data->pipex.filein);
 	free(data->pipex.fileout);
 	// free(data->pipex.connector);
-	return (0);
+	return (status);
 }
 
-void	freenclose(t_data *data)
+void	free_close(t_data *data, int status)
 {
-	freenreturn(data);
+	free_return(data, status);
 	free_matrix(&data->envp);
 	free(data->home);
-	exit (EXIT_SUCCESS);
+	exit (status);
 }

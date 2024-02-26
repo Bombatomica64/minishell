@@ -6,25 +6,27 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/26 16:15:03 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:26:35 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_do_it(t_data *data, char *terminal_input, int error)
+void	ft_do_it(t_data *data, char *terminal_input)
 {
+	t_pipex	comm;
+
 	if (parser(terminal_input, data) == FALSE)
 		return ;
-	data->pipex.fd_in = fd_in(*data);
-	data->pipex.fd_out = fd_out(*data);
-	// input_for_pipex(data, 0);
-	int fds[2] = {data->fd_in, data->fd_out};
-	error = pipex(data, fds);
-	(void)error;
+	while (data->input)
+	{
+		comm = input_exec(data);
+		if (comm.cmd)
+			data->error_codes += pipex(&comm, data);
+	}
 }
 
-void	process_input(t_data *data, int error)
+void	process_input(t_data *data)
 {
 	char	*terminal_input;
 
@@ -40,26 +42,20 @@ void	process_input(t_data *data, int error)
 		ft_printf("EOF received, exiting\n");
 		free(terminal_input);
 		if (terminal_input)
-			freenclose(data);
+			free_close(data, 0);
 		exit (1024);
 	}
 	if (terminal_input[0] == '\0')
 		return ;
-	ft_do_it(data, terminal_input, error);
+	ft_do_it(data, terminal_input);
 	free(terminal_input);
+	(void)free_return(data, 0);
 }
 
-void	ft_tty_exec(t_data *data, char **envp)
+void	ft_tty_exec(t_data *data)
 {
-	int		error;
-	int		status;
-	int		fd[2];
-	pid_t	pid;
-
-	(void)envp;
-	error = 0;
 	while (TRUE)
 	{
-		process_input(data, error);
+		process_input(data);
 	}
 }

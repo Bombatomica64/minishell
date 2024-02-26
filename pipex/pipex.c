@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/26 16:05:03 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:11:10 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,23 @@ char	*path_execve(char *command, char **envp)
 	return (NULL);
 }
 
-void	child(t_pipex *pipex, t_data *data, int fd[2])
+void	child(t_pipex *pipex, t_data *data)
 {
-	close(fd[0]);
-	if (dup2(fd[1], STDOUT_FILENO) == -1)
-		ft_error("child", DUP, 13, data);
+	if (pipex->fd_in != STDIN_FILENO)
+	{
+		if (dup2(pipex->fd_in, STDIN_FILENO) == -1)
+			ft_error("child", DUP, 13, data);
+	}
+	if (pipex->fd_out != STDOUT_FILENO)
+	{
+		if (dup2(pipex->fd_out, STDOUT_FILENO) == -1)
+			ft_error("child", DUP, 13, data);
+	}
 	if (execve(pipex->path, pipex->cmd, data->envp) < 0)
 		ft_error(pipex->cmd[0], EXECVE, 126, data);
 }
 
-int	pipex(t_pipex *pipex, int fd[2], t_data *data)
+int	pipex(t_pipex *pipex, t_data *data)
 {
 	pid_t	pid;
 	int		status;
@@ -57,7 +64,7 @@ int	pipex(t_pipex *pipex, int fd[2], t_data *data)
 	if (pid == -1)
 		ft_error("executor", FORK, 124, NULL);
 	if (pid == 0)
-		child(pipex, data, fd);
+		child(pipex, data);
 	else
 	{
 		waitpid(pid, &status, 0);

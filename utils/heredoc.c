@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:32:21 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/22 15:33:09 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/26 15:42:37 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-void	heredoc_creat(char *limiter)
+/* void	heredoc_creat(char *limiter)
 {
 	char	*str;
 	int		fd;
@@ -29,4 +29,22 @@ void	heredoc_creat(char *limiter)
 		free(str);
 	}
 	close(fd);
+} */
+
+int	heredoc_creat(char *limiter)
+{
+	char	*str;
+	int		fd[2];
+
+	if (pipe(fd) < 0)
+		ft_error("heredoc_creat", PIPE, 132, NULL);
+	str = readline("heredoc> ");
+	while (ft_strcmp((const char *)str, (const char *)limiter) != 0)
+	{
+		ft_putendl_fd(str, fd[1]);
+		free(str);
+		str = readline("heredoc> ");
+	}
+	close(fd[1]);
+	return (fd[0]);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/23 12:04:53 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/26 15:32:16 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,31 @@ char	*path_execve(char *command, char **envp)
 	return (NULL);
 }
 
-int	ft_matrixlen(char **matrix)
+void	child(t_pipex *pipex, t_data *data, int fd[2])
 {
-	int	i;
-
-	i = 0;
-	while (matrix[i] != NULL)
-		i++;
-	return (i);
+	close(fd[0]);
+	if (dup2(fd[1], STDOUT_FILENO) == -1)
+		ft_error("child", DUP, 13, NULL);
+	if (execve(pipex->path, pipex->cmd, data->envp) < 0)
+		ft_error(pipex->cmd[0], EXECVE, 126, data);
 }
 
-int	pipex(t_data *data, int fd[2])
+int	pipex(t_pipex *pipex, int fd[2], t_data *data)
 {
-	(void)fd;
-	checkfile_fd(data);
-	ft_execute(data);
+	pid_t	pid;
+	int		status;
+
+	pid = fork();
+	if (pid == -1)
+		ft_error("executor", FORK, 124, NULL);
+	if (pid == 0)
+		child(pipex, data, fd);
+	else
+	{
+		waitpid(pid, &status, 0);
+		if (WIFEXITED(status))
+			return (WEXITSTATUS(status));
+	}
 	return (0);
 }
 

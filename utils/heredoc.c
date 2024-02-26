@@ -6,12 +6,11 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:32:21 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/26 15:42:37 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/26 15:45:51 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-
 
 /*int	heredoc_creat(char *limiter, t_data *data)
   void	heredoc_creat(char *limiter)

@@ -13,34 +13,43 @@
 
 #include "parser.h"
 
-char	*get_name(char *str, int tmp_type)
+char	*get_name(char *str, int tmp_type, t_bool *quote)
 {
-	int		i;
-	t_bool	quote;
+	int		i ;
 	char	quote_type;
 	char	*tmp;
 
 	i = 0;
 	tmp = NULL;
-	quote = FALSE;
 	quote_type = '\0';
-	skip_spaces(&str);// da fare con tutti gli spazi
-	while (ft_islimiter(str[i]) == FALSE)
+	skip_spaces(&str);
+	while (str[i] != 0)
 	{
+		printf("str[%d] = %c\n",i, str[i]);
 		if ((str[i] == '\'' || str[i] == '\"'))
 		{
-			quote_start(&quote, str[i], &quote_type);
-			if (tmp_type == BUILT_IN || tmp_type == COMMAND)
+			quote_start(quote, str[i], &quote_type);
+			if (tmp_type == BUILT_IN || tmp_type == COMMAND || (*quote == TRUE && str[i] != quote_type))
 				tmp = join_char(tmp, str[i]);
-			else if (quote == TRUE && str[i] != quote_type)
-				tmp = join_char(tmp, str[i]);
-		}
+			i++;
+		}	
 		else
+		{
 			tmp = join_char(tmp, str[i]);
-		i++;
+			i++;
+		}
+		if (ft_islimiter(str[i]) == TRUE && *quote == FALSE)
+		{
+			printf("break\n");
+			break;
+		}
 	}
-	if (quote == TRUE)
+	printf("fuori\n");
+	// if (ft_islimiter(str[i]) == TRUE && *quote == FALSE)
+	// 	i++;
+	if (*quote == TRUE)
 	{
+		printf("str = %s\n",str);
 		printf("Error: quote not closed\n");
 		free(tmp);
 		return (NULL);
@@ -48,6 +57,7 @@ char	*get_name(char *str, int tmp_type)
 		// if (!(tmp_type == BUILT_IN || tmp_type == COMMAND))
 		// 	tmp = ft_freesubstr(tmp, 0, ft_strlen(tmp) - 1);
 	}
+	printf("substr = %s\n",str);
 	return (tmp);
 }
 
@@ -114,17 +124,19 @@ t_bool	parser(char *str, t_data *data)
 	char	*tmp;
 	char	*tmp_path;
 	t_type	tmp_type;
+	t_bool	quote;
 
+	quote = FALSE;
 	i = count_limiter(str);
 	while(i > 0)
 	{	
 		skip_spaces(&str);
 		tmp_type = ft_file_type(&str);
-		tmp = get_name(str, tmp_type);
-		if(tmp == NULL)
+		tmp = get_name(str, tmp_type, &quote);
+		if(quote == TRUE)
 		{
 			free(tmp);
-			printf("error\n");
+			printf("quote error\n");
 			return FALSE;
 		}
 		//tmp_path = get_path(&tmp, tmp_type, data);

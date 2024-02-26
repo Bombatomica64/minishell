@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/26 12:00:39 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:05:03 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	child(t_pipex *pipex, t_data *data, int fd[2])
 {
 	close(fd[0]);
 	if (dup2(fd[1], STDOUT_FILENO) == -1)
-		ft_error("child", DUP, 13, NULL);
+		ft_error("child", DUP, 13, data);
 	if (execve(pipex->path, pipex->cmd, data->envp) < 0)
 		ft_error(pipex->cmd[0], EXECVE, 126, data);
 }

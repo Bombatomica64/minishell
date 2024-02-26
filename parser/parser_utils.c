@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/26 10:45:22 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/26 12:45:07 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,38 @@ char	*join_char(char *str, char c)
 	return (tmp);
 }
 
-// non conta bene "<<" e ">>"
 int	count_limiter(char *str)
 {
 	int	i;
 	int	count;
+	t_bool	quote;
+	char	quote_type;
 
 	i = 0;
-	count = 1;
+	quote = FALSE;
+	count = 0;
+	quote_type = '\0';
+	skip_spaces(&str);
+	if((str[i] == '<' && str[i + 1] == '<') || (str[i] == '>' && str[i + 1] == '>'))
+	{
+		i += 2;
+		count++;
+	}
+	if (ft_islimiter(str[i]) == TRUE)
+	{
+		i++;
+		count++;
+	}
 	while (str[i])
 	{
-		if (ft_islimiter(str[i]) == TRUE)
+		if (str[i] == '\'' || str[i] == '\"')
+			quote_start(&quote, str[i], &quote_type);
+		if(((str[i] == '<' && str[i + 1] == '<') || (str[i] == '>' && str[i + 1] == '>')) && quote == FALSE)
+		{
+			i += 2;
+			count++;
+		}
+		if (ft_islimiter(str[i]) == TRUE && (quote == FALSE))
 			count++;
 		i++;
 	}

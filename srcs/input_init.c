@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:28:06 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/26 11:59:17 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:29:45 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,6 @@ t_data	ft_data_init(char **envp)
 	data.nb_cmds = 0;
 	data.nb_files = 0;
 	data.input_found = FALSE;
-	data.in_p.cmds = NULL;
-	data.in_p.files = NULL;
-	data.in_p.fds[0] = 0;
-	data.in_p.fds[1] = 0;
 	data.fd_in = 0;
 	data.fd_out = 0;
 	data.input = NULL;
@@ -57,6 +53,22 @@ t_data	ft_data_init(char **envp)
 	data.fd[0] = STDIN_FILENO;
 	data.envp = matrix_dup(envp);
 	data.home = get_env_value(data.envp, "HOME=");
-	data.directory = getcwd(NULL, 0);
 	return (data);
+}
+
+void	ft_data_reinit(t_data *data)
+{
+	if (!data)
+		return ;
+	data->original_stdin = dup(STDIN_FILENO);
+	data->original_stdout = dup(STDOUT_FILENO);
+	data->nb_total = 0;
+	data->nb_cmds = 0;
+	data->nb_files = 0;
+	data->input_found = FALSE;
+	data->fd_in = 0;
+	data->fd_out = 0;
+	data->input = NULL;
+	data->fd[1] = STDOUT_FILENO;
+	data->fd[0] = STDIN_FILENO;
 }

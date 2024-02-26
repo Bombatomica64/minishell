@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:05:20 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/26 15:29:44 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:29:58 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 void	ft_action(int sig);
 void	malloc_input(char *str, t_data *data);
 t_data	ft_data_init(char **envp);
+void	ft_data_reinit(t_data *data);
 void	ft_tty_exec(t_data *data, char **envp);
 
 int		ft_splut(char *str, t_input **input);

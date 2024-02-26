@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/23 18:40:38 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/26 10:45:21 by lmicheli         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef UTILS_H
 # define UTILS_H
@@ -93,6 +93,7 @@ typedef struct s_data
 	int		original_stdin; // dupped stdin
 	int		original_stdout; // dupped stdout
 	int		error_codes; // sum of the error codes
+	int		fd[2]; // pipe
 	char	*directory; // current working directory
 	char	**envp; // current environment
 	char	*home; // home directory (~)

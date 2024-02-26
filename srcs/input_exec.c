@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/26 16:41:06 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:23:47 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	is_input(char **name, int *fd, t_input *input)
 {
 	if (input->type == INPUT)
 	{
-		*name = data->input->node;
+		*name = input->node;
 		*fd = open_type(input->path, INPUT);
 	}
 	else if (input->type == HEREDOC)

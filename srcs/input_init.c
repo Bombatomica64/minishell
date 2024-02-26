@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:28:06 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/26 16:29:45 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:24:49 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_action(int sig)
 	}
 }
 
-void	malloc_input(char *str, t_data *data)
+void	malloc_input(char *str)
 {
 	int		i;
 	int		nb;
@@ -33,7 +33,6 @@ void	malloc_input(char *str, t_data *data)
 			nb++;
 		i++;
 	}
-	data->nb_total = nb;
 }
 
 t_data	ft_data_init(char **envp)
@@ -42,12 +41,6 @@ t_data	ft_data_init(char **envp)
 
 	data.original_stdin = dup(STDIN_FILENO);
 	data.original_stdout = dup(STDOUT_FILENO);
-	data.nb_total = 0;
-	data.nb_cmds = 0;
-	data.nb_files = 0;
-	data.input_found = FALSE;
-	data.fd_in = 0;
-	data.fd_out = 0;
 	data.input = NULL;
 	data.fd[1] = STDOUT_FILENO;
 	data.fd[0] = STDIN_FILENO;
@@ -62,12 +55,6 @@ void	ft_data_reinit(t_data *data)
 		return ;
 	data->original_stdin = dup(STDIN_FILENO);
 	data->original_stdout = dup(STDOUT_FILENO);
-	data->nb_total = 0;
-	data->nb_cmds = 0;
-	data->nb_files = 0;
-	data->input_found = FALSE;
-	data->fd_in = 0;
-	data->fd_out = 0;
 	data->input = NULL;
 	data->fd[1] = STDOUT_FILENO;
 	data->fd[0] = STDIN_FILENO;

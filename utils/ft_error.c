@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:14:28 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/21 16:29:01 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:22:10 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	ft_error(const char *str, t_error error, int errnbr, t_data *data)
 	else
 		perror("pipex: unknown error");
 	if (data)
-		freenclose(data);
-	exit(errnbr);
+		free_close(data, errnbr);
 }
 // Path: utils/utils.h

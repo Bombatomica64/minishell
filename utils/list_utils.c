@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:47:54 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/23 16:16:35 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/26 15:27:56 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
+
+t_input	*ft_inputfirst(t_input **lst)
+{
+	t_input	*tmp;
+
+	tmp = *lst;
+	if (!tmp)
+		return (NULL);
+	while (tmp->prev)
+		tmp = tmp->prev;
+	return (tmp);
+}
 
 int	input_size(t_input *input)
 {

@@ -62,14 +62,14 @@ clean:
 fclean: clean
 	@make fclean -C $(FT_PRINTF)
 	@rm -f $(NAME)
-	@echo "FCleaned "$(NAME)" and fclean libft successfully!"
+	@echo "Fcleaned "$(NAME)" and fclean libft successfully!"
 	
 re: fclean all
 
 replay:
 	@rm -f $(NAME)
 	@$(CC) $(SRC) $(LIB) -o $(NAME) -lreadline
-	@echo "ReCompiled "$(NAME)" successfully!"
+	@echo "\033[35mRe-compiled "$(NAME)" successfully!\033[0m"
 
 
 parrot: replay

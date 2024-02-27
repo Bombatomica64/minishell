@@ -128,29 +128,28 @@ t_bool	parser(char *str, t_data *data)
 
 	quote = FALSE;
 	i = count_limiter(str);
-	while(i > 0)
-	{	
+	while (i > 0)
+	{
 		skip_spaces(&str);
 		tmp_type = ft_file_type(&str);
 		tmp = get_name(str, tmp_type, &quote);
-		if(quote == TRUE)
+		if (quote == TRUE)
 		{
 			free(tmp);
 			printf("quote error\n");
-			return FALSE;
+			return (FALSE);
 		}
-		//tmp_path = get_path(&tmp, tmp_type, data);
-		tmp_path = NULL;
+		tmp_path = get_path(&tmp, tmp_type, data);
 		ft_inputadd_back(&(*data).input, ft_inputnew(tmp, tmp_path, tmp_type));
 		str = ft_substr(str, ft_strlen(tmp) + 1, ft_strlen(str) - ft_strlen(tmp));
 		i--;
 	}
 	print_list((*data).input);
-	exit(EXIT_FAILURE);
-	(void)data;
-	(void)tmp;
-	(void)tmp_path;
-	(void)tmp_type;
+	// exit(EXIT_FAILURE);
+	// (void)data;
+	// (void)tmp;
+	// (void)tmp_path;
+	// (void)tmp_type;
 	return (TRUE);
 }
 // Path: srcs/parser.c

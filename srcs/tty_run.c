@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/26 17:26:35 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/27 09:54:37 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	ft_do_it(t_data *data, char *terminal_input)
 		comm = input_exec(data);
 		if (comm.cmd)
 			data->error_codes += pipex(&comm, data);
+		data->input = data->input->next;
 	}
 }
 
@@ -37,13 +38,13 @@ void	process_input(t_data *data)
 	}
 	terminal_input = readline("\033[0;94mminishell> \033[0m");
 	add_history(terminal_input);
-	if (terminal_input == NULL)
+	if (terminal_input == NULL || ft_strcmp(terminal_input, "exit") == 0)
 	{
 		ft_printf("EOF received, exiting\n");
 		free(terminal_input);
+		rl_clear_history();
 		if (terminal_input)
 			free_close(data, 0);
-		exit (1024);
 	}
 	if (terminal_input[0] == '\0')
 		return ;

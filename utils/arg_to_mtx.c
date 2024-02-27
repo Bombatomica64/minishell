@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arg_to_mtx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:42:04 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/22 16:38:37 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/26 18:31:18 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ char	**ft_splitarg(char *str)
 
 	i = 0;
 	args = ft_arg_count(str, 42, 0, 0);
-	mtx = malloc(args * sizeof(char *));
+	mtx = malloc((args + 1) * sizeof(char *));
 	ft_malloc_err((void *)mtx, "ft_splitarg");
 	while (i < args)
 	{

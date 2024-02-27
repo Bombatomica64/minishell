@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/27 10:34:12 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/27 11:03:22 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,9 @@ int	count_limiter(char *str)
 	count = 1;
 	quote_type = '\0';
 	skip_spaces(&str);
-	if (str[i] && ((str[i] == '<' && str[i + 1] == '<') || (str[i] == '>' && str[i + 1] == '>')))
+	if (!str)
+		return (ERROR);
+	if ((str[i] == '<' && str[i + 1] == '<') || (str[i] == '>' && str[i + 1] == '>'))
 	{
 		i += 2;
 		count++;

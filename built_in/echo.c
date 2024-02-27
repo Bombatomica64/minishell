@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:24:10 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/27 11:12:54 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/27 11:23:41 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_env(char **envp)
 	print_matrix(envp);
 }
 
-void	ft_pwd(char **envp)
+void	ft_pwd(void)
 {
 	ft_printf("%s\n", getcwd(NULL, 0));
 }

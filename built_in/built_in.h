@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_in.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:03:32 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/23 18:20:20 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/27 16:12:16 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,21 @@
 
 //built-in functions
 t_bool	ft_echo(char **mtx);
-void	print_pwd(char **envp);
-void	ft_cd(char **str, t_data *data);
+t_bool	ft_cd(char **str, t_data *data);
 void	ft_env(char **envp);
-
-// unset & helper functions
+void	ft_pwd(void);
+t_bool	ft_export(char ***envp, char **cmd);
 t_bool	ft_unset(char **mtx, char ***envp);
+
+// unset helper functions
 void	remove_envp_entry(char ***envp, char *entry);
 
-// export & helper functions
-
-t_bool	ft_export(char ***envp, char *str);
+// export  helper functions
 t_bool	add_to_env(char ***envp, char *str);
 t_bool	update_env(char ***envp, char *str);
 
 // debug functions
+void	print_pwd(char **envp);
 void	print_pwds(char **envp);
 
 #endif

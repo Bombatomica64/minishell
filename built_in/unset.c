@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:14:12 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/26 10:20:23 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/27 16:15:11 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ void	remove_envp_entry(char ***envp, char *entry)
 t_bool	ft_unset(char **mtx, char ***envp)
 {
 	int		i;
-	char	**new_envp;
 
-	(void)new_envp;
 	if (!mtx || ft_strcmp(mtx[0], "unset") != 0)
 		return (FALSE);
 	i = 1;
@@ -53,14 +51,14 @@ t_bool	ft_unset(char **mtx, char ***envp)
 	return (TRUE);
 }
 
-t_bool	export(char ***envp, char *str)
+t_bool	ft_export(char ***envp, char **cmd)
 {
-	if (!str)
+	if (!cmd)
 		return (FALSE);
-	if (find_in_env(*envp, str) != -1)
-		return (add_to_env(envp, str));
+	if (find_in_env(*envp, cmd[1]) != -1)
+		return (add_to_env(envp, cmd[1]));
 	else
-		return (update_env(envp, str));
+		return (update_env(envp, cmd[1]));
 }
 
 t_bool	add_to_env(char ***envp, char *str)

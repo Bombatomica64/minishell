@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/27 11:17:06 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/27 11:45:27 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,9 @@ void	ft_do_it(t_data *data, char *terminal_input)
 		return ;
 	while (data->input)
 	{
-		comm = input_exec(&data, &i);
+		comm = input_exec(&data);
 		if (comm->cmd)
 			data->error_codes += pipex(comm, data);
-		// while (data->input && i--)
-		// 	data->input = data->input->next;
 	}
 }
 

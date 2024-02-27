@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/26 12:10:45 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/27 10:33:11 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ t_bool	ft_isquote(char c)
 
 void	skip_spaces(char **str)
 {
+	if (!str || !*str)
+		return ;
 	while (**str && ft_isspace(**str) == TRUE)
 		(*str)++;
 }

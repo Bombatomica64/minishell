@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:27:46 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/02/26 12:35:01 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/27 12:30:00 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,16 @@ t_bool	check_quote(char *tmp, char quote_type, t_type type, int index)
 	}
 	if (quote_count % 2 == 0)
 		return (TRUE);
+	return (FALSE);
+}
+
+t_bool	quote_error(char *tmp, t_bool *quote)
+{
+	if (*quote == TRUE)
+	{
+		perror("Error: quote not closed\n");
+		free(tmp);
+		return (TRUE);
+	}
 	return (FALSE);
 }

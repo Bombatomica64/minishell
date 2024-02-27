@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/27 10:26:05 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/27 11:12:41 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,6 +237,8 @@ t_bool	ft_isspace(char c);
  * @note quote is defined as '"' or '\''
 */
 t_bool	ft_isquote(char c);
+
+t_bool	ft_isbuiltin(char *str);
 
 /**
  * @brief adds the heredoc functionality to the program

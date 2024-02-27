@@ -3,48 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/27 11:38:56 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/27 16:24:37 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-char	*get_name(char *str, int tmp_type, t_bool *quote)
+char	*get_name(char *str, int tmp_type, t_bool *quote, char **envp) 
 {
-	int		i ;
 	char	quote_type;
 	char	*tmp;
 
-	i = 0;
 	tmp = NULL;
 	quote_type = '\0';
 	skip_spaces(&str);
-	while (str[i] != 0)
+	while (*str != 0)
 	{
-		if ((str[i] == '\'' || str[i] == '\"'))
+		if(quote_type != '\'' && *str == '$')
+			expand_variables(&str, envp, &tmp, &quote);
+		if (ft_isquote(*str))
 		{
-			quote_start(quote, str[i], &quote_type);
-			if (tmp_type == BUILT_IN || tmp_type == COMMAND || (*quote == TRUE && str[i] != quote_type))
-				tmp = join_char(tmp, str[i]);
-			i++;
+			quote_start(quote, *str, &quote_type);
+			if (tmp_type == BUILT_IN || tmp_type == COMMAND || (*quote == TRUE && *str != quote_type))
+				tmp = join_char(tmp, *str);
+			(*str)++;
 		}
 		else
 		{
-			tmp = join_char(tmp, str[i]);
-			i++;
+			tmp = join_char(tmp, *str);
+			(*str)++;
 		}
-		if (ft_islimiter(str[i]) == TRUE && *quote == FALSE)
+		if (ft_islimiter(*str) == TRUE && *quote == FALSE)
 			break ;
 	}
-	if (*quote == TRUE)
-	{
-		printf("Error: quote not closed\n");
-		free(tmp);
+	if (quote_error(tmp, quote) == TRUE)
 		return (NULL);
-	}
 	return (tmp);
 }
 
@@ -122,7 +118,7 @@ t_bool	parser(char *str, t_data *data)
 	{
 		skip_spaces(&str);
 		tmp_type = ft_file_type(&str);
-		tmp = get_name(str, tmp_type, &quote);
+		tmp = get_name(str, tmp_type, &quote, data->envp);
 		if (quote == TRUE)
 		{
 			free(tmp);

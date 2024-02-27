@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/26 16:17:07 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/27 16:05:18 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,21 @@ void	refactor_path(char **str, t_data *data, int i)
 		(*str)[ft_strlen(*str) - 1] = '\0';
 }
 
-void	ft_cd(char **mtx, t_data *data) //TODO: virgolette ""
+t_bool	ft_change_env(char **str, char *oldpwd, t_data *data)
+{
+	int	i;
+
+	i = find_in_env(data->envp, "PWD");
+	free(data->envp[i]);
+	data->envp[i] = ft_strjoin("PWD=", *str);
+	i = find_in_env(data->envp, "OLDPWD");
+	free(data->envp[i]);
+	data->envp[i] = *oldpwd;
+	free(*str);
+	return (TRUE);
+}
+
+t_bool	ft_cd(char **mtx, t_data *data)
 {
 	int		i;
 	char	*str;
@@ -116,11 +130,11 @@ void	ft_cd(char **mtx, t_data *data) //TODO: virgolette ""
 		refactor_path(&str, data, 0);
 	}
 	if (chdir(str) == -1)
+	{
 		perror("cd");
-	i = find_in_env(data->envp, "PWD");
-	free(data->envp[i]);
-	data->envp[i] = ft_strjoin("PWD=", str);
-	i = find_in_env(data->envp, "OLDPWD");
-	free(data->envp[i]);
-	data->envp[i] = change_oldpwd;
+		free(change_oldpwd);
+		free(str);
+		return (FALSE);
+	}
+	return (ft_change_env(&str, change_oldpwd, &data));
 }

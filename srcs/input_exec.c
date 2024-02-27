@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/27 11:18:51 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/27 11:49:04 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,23 @@ static t_bool	ft_iscmd(t_input *input)
 	return (FALSE);
 }
 
-t_pipex	*input_exec(t_data **data, int *i)
+static t_pipex *basic_set(t_data **data)
 {
 	t_pipex	*comm;
 
 	comm = malloc(sizeof(t_pipex));
+	if (!comm)
+		return (NULL);
 	comm->fd_in = (*data)->fd[0];
 	comm->fd_out = (*data)->fd[1];
-	(void)i;
+	return (comm);
+}
+
+t_pipex	*input_exec(t_data **data)
+{
+	t_pipex	*comm;
+
+	comm = basic_set(data);
 	while ((*data)->input)
 	{
 		is_input(&comm->filein, &comm->fd_in, (*data)->input);

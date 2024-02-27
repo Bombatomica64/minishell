@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/27 16:24:37 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/27 16:41:19 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,30 @@
 
 char	*get_name(char *str, int tmp_type, t_bool *quote, char **envp) 
 {
+	int		i ;
 	char	quote_type;
 	char	*tmp;
 
+	i = 0;
+	(void)envp;
 	tmp = NULL;
 	quote_type = '\0';
 	skip_spaces(&str);
-	while (*str != 0)
+	while (str[i] != 0)
 	{
-		if(quote_type != '\'' && *str == '$')
-			expand_variables(&str, envp, &tmp, &quote);
-		if (ft_isquote(*str))
+		if (ft_isquote(str[i]))
 		{
-			quote_start(quote, *str, &quote_type);
-			if (tmp_type == BUILT_IN || tmp_type == COMMAND || (*quote == TRUE && *str != quote_type))
-				tmp = join_char(tmp, *str);
-			(*str)++;
+			quote_start(quote, str[i], &quote_type);
+			if (tmp_type == BUILT_IN || tmp_type == COMMAND || (*quote == TRUE && str[i] != quote_type))
+				tmp = join_char(tmp, str[i]);
+			i++;
 		}
 		else
 		{
-			tmp = join_char(tmp, *str);
-			(*str)++;
+			tmp = join_char(tmp, str[i]);
+			i++;
 		}
-		if (ft_islimiter(*str) == TRUE && *quote == FALSE)
+		if (ft_islimiter(str[i]) == TRUE && *quote == FALSE)
 			break ;
 	}
 	if (quote_error(tmp, quote) == TRUE)

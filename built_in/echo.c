@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:24:10 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/27 12:03:37 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/27 12:05:48 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_bool	ft_echo(char **mtx)
 	if (ft_strcmp(mtx[i], "-n") == TRUE)
 		i++;
 	print_matrix_echo(&mtx[i]);
-	if (ft_strcmp(mtx[i], "-n") == TRUE)
+	if (ft_strcmp(mtx[1], "-n") == TRUE)
 		ft_printf("\n");
 	return (TRUE);
 }

@@ -25,7 +25,6 @@ char	*get_name(char *str, int tmp_type, t_bool *quote)
 	skip_spaces(&str);
 	while (str[i] != 0)
 	{
-		printf("str[%d] = %c\n",i, str[i]);
 		if ((str[i] == '\'' || str[i] == '\"'))
 		{
 			quote_start(quote, str[i], &quote_type);
@@ -39,25 +38,14 @@ char	*get_name(char *str, int tmp_type, t_bool *quote)
 			i++;
 		}
 		if (ft_islimiter(str[i]) == TRUE && *quote == FALSE)
-		{
-			printf("break\n");
 			break;
-		}
 	}
-	printf("fuori\n");
-	// if (ft_islimiter(str[i]) == TRUE && *quote == FALSE)
-	// 	i++;
 	if (*quote == TRUE)
 	{
-		printf("str = %s\n",str);
 		printf("Error: quote not closed\n");
 		free(tmp);
 		return (NULL);
-		// quote_waiting(&tmp, &quote, &quote_type, tmp_type);
-		// if (!(tmp_type == BUILT_IN || tmp_type == COMMAND))
-		// 	tmp = ft_freesubstr(tmp, 0, ft_strlen(tmp) - 1);
 	}
-	printf("substr = %s\n",str);
 	return (tmp);
 }
 
@@ -128,6 +116,8 @@ t_bool	parser(char *str, t_data *data)
 
 	quote = FALSE;
 	i = count_limiter(str);
+	if (i == ERROR)
+		return (FALSE);
 	while (i > 0)
 	{
 		skip_spaces(&str);
@@ -141,15 +131,10 @@ t_bool	parser(char *str, t_data *data)
 		}
 		tmp_path = get_path(&tmp, tmp_type, data);
 		ft_inputadd_back(&(*data).input, ft_inputnew(tmp, tmp_path, tmp_type));
-		str = ft_substr(str, ft_strlen(tmp) + 1, ft_strlen(str) - ft_strlen(tmp));
+		str = ft_freesubstr(str, ft_strlen(tmp) + 1, ft_strlen(str) - ft_strlen(tmp));
 		i--;
 	}
 	print_list((*data).input);
-	// exit(EXIT_FAILURE);
-	// (void)data;
-	// (void)tmp;
-	// (void)tmp_path;
-	// (void)tmp_type;
 	return (TRUE);
 }
 // Path: srcs/parser.c

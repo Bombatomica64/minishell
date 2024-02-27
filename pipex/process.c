@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/27 12:10:57 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/27 15:16:28 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	do_builtin(char **cmd, t_data *data)
 	if (ft_strcmp(cmd[0], "echo") == TRUE)
 		ret = ft_echo(cmd);
 	else if (ft_strcmp(cmd[0], "cd") == TRUE)
-		ret = ft_cd(cmd, data); //TODO marco
+		ret = ft_cd(cmd, data);
 	else if (ft_strcmp(cmd[0], "pwd") == TRUE)
 		ret = ft_pwd();
 	else if (ft_strcmp(cmd[0], "export") == TRUE)

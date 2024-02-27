@@ -25,7 +25,6 @@ char	*get_name(char *str, int tmp_type, t_bool *quote)
 	skip_spaces(&str);
 	while (str[i] != 0)
 	{
-		printf("str[%d] = %c\n",i, str[i]);
 		if ((str[i] == '\'' || str[i] == '\"'))
 		{
 			quote_start(quote, str[i], &quote_type);
@@ -40,11 +39,9 @@ char	*get_name(char *str, int tmp_type, t_bool *quote)
 		}
 		if (ft_islimiter(str[i]) == TRUE && *quote == FALSE)
 		{
-			printf("break\n");
 			break;
 		}
 	}
-	printf("fuori\n");
 	// if (ft_islimiter(str[i]) == TRUE && *quote == FALSE)
 	// 	i++;
 	if (*quote == TRUE)
@@ -57,7 +54,6 @@ char	*get_name(char *str, int tmp_type, t_bool *quote)
 		// if (!(tmp_type == BUILT_IN || tmp_type == COMMAND))
 		// 	tmp = ft_freesubstr(tmp, 0, ft_strlen(tmp) - 1);
 	}
-	printf("substr = %s\n",str);
 	return (tmp);
 }
 

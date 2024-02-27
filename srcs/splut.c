@@ -3,20 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   splut.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 10:47:08 by marvin            #+#    #+#             */
-/*   Updated: 2024/02/22 11:42:05 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/27 10:32:19 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	skip_spaces(char **str)
-{
-	while (**str == ' ' && **str != '\0')
-		(*str)++;
-}
 
 void	get_file_name(char **str, int x, t_input *input)
 {

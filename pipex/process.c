@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/27 15:16:28 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/27 15:47:51 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,23 @@ void	do_builtin(char **cmd, t_data *data)
 {
 	t_bool	ret;
 
+	ret = TRUE;
 	if (ft_strcmp(cmd[0], "echo") == TRUE)
 		ret = ft_echo(cmd);
 	else if (ft_strcmp(cmd[0], "cd") == TRUE)
 		ret = ft_cd(cmd, data);
 	else if (ft_strcmp(cmd[0], "pwd") == TRUE)
-		ret = ft_pwd();
+		ft_pwd();
 	else if (ft_strcmp(cmd[0], "export") == TRUE)
 		ret = ft_export(&data->envp, cmd);
 	else if (ft_strcmp(cmd[0], "unset") == TRUE)
 		ret = ft_unset(cmd, &data->envp);
 	else if (ft_strcmp(cmd[0], "env") == TRUE)
-		ret = ft_env(data->envp);
+		ft_env(data->envp);
 	else if (ft_strcmp(cmd[0], "exit") == TRUE)
 		ret = ft_exit(cmd, data);
 	if (ret == FALSE)
-		ft_error(cmd[0], BUILT_IN, 1, data);
+		ft_error(cmd[0], BUILTIN, 1, data);
 	else
 		free_close(data, 0);
 }

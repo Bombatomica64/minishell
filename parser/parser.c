@@ -38,7 +38,6 @@ char	*get_name(char *str, int tmp_type, t_bool *quote)
 			i++;
 		}
 		if (ft_islimiter(str[i]) == TRUE && *quote == FALSE)
-		{
 			break;
     }
 	// if (ft_islimiter(str[i]) == TRUE && *quote == FALSE)

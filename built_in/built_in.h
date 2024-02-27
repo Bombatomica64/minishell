@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:03:32 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/27 15:57:44 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/27 16:12:16 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 //built-in functions
 t_bool	ft_echo(char **mtx);
-void	ft_cd(char **str, t_data *data);
+t_bool	ft_cd(char **str, t_data *data);
 void	ft_env(char **envp);
 void	ft_pwd(void);
 t_bool	ft_export(char ***envp, char **cmd);

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/27 15:17:40 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/27 16:14:23 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,16 +105,15 @@ t_bool	ft_change_env(char **str, char *oldpwd, t_data *data)
 	data->envp[i] = ft_strjoin("PWD=", *str);
 	i = find_in_env(data->envp, "OLDPWD");
 	free(data->envp[i]);
-	data->envp[i] = *oldpwd;
+	data->envp[i] = oldpwd;
 	free(*str);
 	return (TRUE);
 }
 
 t_bool	ft_cd(char **mtx, t_data *data)
 {
-	int		i;
-	char	*str;
 	char	*change_oldpwd;
+	char	*str;
 
 	change_oldpwd = ft_strjoin("OLDPWD=", getcwd(NULL, 0));
 	if (mtx[1] == NULL)
@@ -136,5 +135,5 @@ t_bool	ft_cd(char **mtx, t_data *data)
 		free(str);
 		return (FALSE);
 	}
-	return (ft_change_env(&str, change_oldpwd, &data));
+	return (ft_change_env(&str, change_oldpwd, data));
 }

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/27 09:51:11 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/27 09:54:37 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	process_input(t_data *data)
 	}
 	terminal_input = readline("\033[0;94mminishell> \033[0m");
 	add_history(terminal_input);
-	if (terminal_input == NULL)
+	if (terminal_input == NULL || ft_strcmp(terminal_input, "exit") == 0)
 	{
 		ft_printf("EOF received, exiting\n");
 		free(terminal_input);

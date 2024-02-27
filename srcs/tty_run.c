@@ -25,8 +25,8 @@ void	ft_do_it(t_data *data, char *terminal_input)
 		comm = input_exec(&data, &i);
 		if (comm->cmd)
 			data->error_codes += pipex(comm, data);
-		while (data->input && i--)
-			data->input = data->input->next;
+		// while (data->input && i--)
+		// 	data->input = data->input->next;
 	}
 }
 
@@ -49,7 +49,6 @@ void	process_input(t_data *data)
 		free_close(data, 0);
 	}
 	ft_do_it(data, terminal_input);
-	free(terminal_input);
 	(void)free_return(data, 0);
 }
 

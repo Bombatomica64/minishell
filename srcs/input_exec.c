@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/27 11:02:41 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/27 11:18:51 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ t_pipex	*input_exec(t_data **data, int *i)
 	comm = malloc(sizeof(t_pipex));
 	comm->fd_in = (*data)->fd[0];
 	comm->fd_out = (*data)->fd[1];
+	(void)i;
 	while ((*data)->input)
 	{
 		is_input(&comm->filein, &comm->fd_in, (*data)->input);
@@ -66,11 +67,10 @@ t_pipex	*input_exec(t_data **data, int *i)
 				comm->fd_out = (*data)->fd[1];
 				printf("pipe usata\n%s\n", (*data)->input->node);
 			}
-			*i += 1;
+			(*data)->input = (*data)->input->next;
 			return (comm);
 		}
 		(*data)->input = (*data)->input->next;
-		*i += 1;
 	}
 	return (comm);
 }

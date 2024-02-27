@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:24:10 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/23 16:46:48 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/27 11:12:54 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ void	ft_env(char **envp)
 
 void	ft_pwd(char **envp)
 {
-	ft_printf("%s\n", get_env_value(envp, "PWD"));
+	ft_printf("%s\n", getcwd(NULL, 0));
 }

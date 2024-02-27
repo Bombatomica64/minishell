@@ -12,19 +12,20 @@
 
 #include "parser.h"
 
-char	*get_name(char *str, int tmp_type, t_bool *quote)
+char	*get_name(char *str, int tmp_type, t_bool *quote, char **envp) 
 {
 	int		i ;
 	char	quote_type;
 	char	*tmp;
 
 	i = 0;
+	(void)envp;
 	tmp = NULL;
 	quote_type = '\0';
 	skip_spaces(&str);
 	while (str[i] != 0)
 	{
-		if ((str[i] == '\'' || str[i] == '\"'))
+		if (ft_isquote(str[i]))
 		{
 			quote_start(quote, str[i], &quote_type);
 			if (tmp_type == BUILT_IN || tmp_type == COMMAND || (*quote == TRUE && str[i] != quote_type))
@@ -39,12 +40,8 @@ char	*get_name(char *str, int tmp_type, t_bool *quote)
 		if (ft_islimiter(str[i]) == TRUE && *quote == FALSE)
 			break ;
 	}
-	if (*quote == TRUE)
-	{
-		printf("Error: quote not closed\n");
-		free(tmp);
+	if (quote_error(tmp, quote) == TRUE)
 		return (NULL);
-	}
 	return (tmp);
 }
 
@@ -106,7 +103,7 @@ t_bool	parser(char *str, t_data *data)
 	{
 		skip_spaces(&str);
 		tmp_type = ft_file_type(&str);
-		tmp = get_name(str, tmp_type, &quote);
+		tmp = get_name(str, tmp_type, &quote, data->envp);
 		if (quote == TRUE)
 		{
 			free(tmp);

@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/27 11:19:31 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/27 16:27:39 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,4 +106,14 @@ int	count_limiter(char *str)
 	}
 	printf("count = %d\n", count);
 	return (count);
+}
+
+t_bool	expand_variables(char **str, char **envp, char **tmp, t_bool **quote)
+{
+	if(*tmp == NULL)
+		*tmp = ft_strdup("");
+	(void) quote;
+	(void) envp;
+	(void) str;
+	return (FALSE);
 }

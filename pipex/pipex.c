@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/27 11:41:15 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/27 16:31:27 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ void	child(t_pipex *pipex, t_data *data)
 			ft_error("child", DUP, 13, data);
 	}
 	if (ft_isbuiltin(pipex->cmd[0]) == TRUE)
+	{
+		ft_printf("quiwe\n");
 		do_builtin(pipex->cmd, data);
+	}
 	else if (execve(pipex->path, pipex->cmd, data->envp) < 0)
 		ft_error(pipex->cmd[0], EXECVE, 126, data);
 }

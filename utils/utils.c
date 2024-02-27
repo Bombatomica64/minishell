@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/27 11:12:23 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/27 16:30:48 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ t_bool	ft_isbuiltin(char *str)
 	if (ft_strcmp(str, "echo") || ft_strcmp(str, "cd") || ft_strcmp(str, "pwd")
 		|| ft_strcmp(str, "export") || ft_strcmp(str, "unset")
 		|| ft_strcmp(str, "env") || ft_strcmp(str, "exit"))
-		return (TRUE);
-	return (FALSE);
+		return (FALSE);
+	return (TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/27 11:01:56 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/27 11:21:06 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	ft_do_it(t_data *data, char *terminal_input)
 		comm = input_exec(&data, &i);
 		if (comm->cmd)
 			data->error_codes += pipex(comm, data);
-		while (data->input && i--)
-			data->input = data->input->next;
+		// while (data->input && i--)
+		// 	data->input = data->input->next;
 	}
 }
 
@@ -50,7 +50,6 @@ void	process_input(t_data *data)
 			free_close(data, 0);
 	}
 	ft_do_it(data, terminal_input);
-	free(terminal_input);
 	(void)free_return(data, 0);
 }
 

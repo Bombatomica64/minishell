@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/27 12:02:14 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/27 12:08:37 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,26 @@
 
 void	do_builtin(char **cmd, t_data *data)
 {
+	t_bool	ret;
+
 	if (ft_strcmp(cmd[0], "echo") == TRUE)
-		ft_echo(cmd);
+		ret = ft_echo(cmd);
 	else if (ft_strcmp(cmd[0], "cd") == TRUE)
-		ft_cd(cmd, data); //TODO marco
+		ret = ft_cd(cmd, data); //TODO marco
 	else if (ft_strcmp(cmd[0], "pwd") == TRUE)
-		ft_pwd();
+		ret = ft_pwd();
 	else if (ft_strcmp(cmd[0], "export") == TRUE)
-		ft_export(&data->envp, cmd);
+		ret = ft_export(&data->envp, cmd);
 	else if (ft_strcmp(cmd[0], "unset") == TRUE)
-		ft_unset(cmd, &data->envp);
+		ret = ft_unset(cmd, &data->envp);
 	else if (ft_strcmp(cmd[0], "env") == TRUE)
-		ft_env(data->envp);
+		ret = ft_env(data->envp);
 	else if (ft_strcmp(cmd[0], "exit") == TRUE)
-		ft_exit(cmd, data);
+		ret = ft_exit(cmd, data);
+	if (ret == FALSE)
+		ft_error(cmd[0], BUILT_IN, 1, data);
+	else
+		exit(0);
 }
 /* void	child(t_data *data, int i)
 {

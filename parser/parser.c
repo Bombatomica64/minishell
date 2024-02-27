@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/27 16:41:19 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/27 17:25:52 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ char	*get_name(char *str, int tmp_type, t_bool *quote, char **envp)
 	}
 	if (quote_error(tmp, quote) == TRUE)
 		return (NULL);
+	expand_variables(&tmp, envp);
 	return (tmp);
 }
 
@@ -72,7 +73,6 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 		}
 		if (ft_strrchr(tmp_path, '/') == NULL)
 		{
-			printf("%s\n", get_env_value(data->envp, "PATH="));
 			tmp_path = path_execve(tmp_path, data->envp);
 			if (tmp_path == NULL)
 				ft_error("path_execve in get_path", NO_PATH, 127, data);

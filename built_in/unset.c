@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:14:12 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/26 10:20:23 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/27 11:48:42 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ void	remove_envp_entry(char ***envp, char *entry)
 t_bool	ft_unset(char **mtx, char ***envp)
 {
 	int		i;
-	char	**new_envp;
 
-	(void)new_envp;
 	if (!mtx || ft_strcmp(mtx[0], "unset") != 0)
 		return (FALSE);
 	i = 1;

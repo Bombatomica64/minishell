@@ -3,14 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/26 12:01:00 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/27 12:08:37 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+void	do_builtin(char **cmd, t_data *data)
+{
+	t_bool	ret;
+
+	if (ft_strcmp(cmd[0], "echo") == TRUE)
+		ret = ft_echo(cmd);
+	else if (ft_strcmp(cmd[0], "cd") == TRUE)
+		ret = ft_cd(cmd, data); //TODO marco
+	else if (ft_strcmp(cmd[0], "pwd") == TRUE)
+		ret = ft_pwd();
+	else if (ft_strcmp(cmd[0], "export") == TRUE)
+		ret = ft_export(&data->envp, cmd);
+	else if (ft_strcmp(cmd[0], "unset") == TRUE)
+		ret = ft_unset(cmd, &data->envp);
+	else if (ft_strcmp(cmd[0], "env") == TRUE)
+		ret = ft_env(data->envp);
+	else if (ft_strcmp(cmd[0], "exit") == TRUE)
+		ret = ft_exit(cmd, data);
+	if (ret == FALSE)
+		ft_error(cmd[0], BUILT_IN, 1, data);
+	else
+		exit(0);
+}
 /* void	child(t_data *data, int i)
 {
 	pid_t	pid;

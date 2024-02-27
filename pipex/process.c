@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/27 15:51:53 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/27 15:53:11 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	do_builtin(char **cmd, t_data *data)
 	else if (ft_strcmp(cmd[0], "env") == TRUE)
 		ft_env(data->envp);
 	else if (ft_strcmp(cmd[0], "exit") == TRUE)
-		ret = ft_exit(cmd, data);
+		ft_exit(cmd, data);
 	if (ret == FALSE)
 		ft_error(cmd[0], BUILTIN, 1, data);
 	else

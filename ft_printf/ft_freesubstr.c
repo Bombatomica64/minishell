@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:38:35 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/02/27 15:36:19 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/27 16:58:20 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ char	*ft_freesubstr(char *s, unsigned int start, size_t len)
 	char	*new_string;
 
 	i = 0;
-	if (!s)
-		s = ft_calloc(1,1);
+	if (!s || len == 0 || start >= ft_strlen(s))
+		return (NULL);
 	len_src = ft_strlen(s);
 	if (start + len > len_src && start < len_src)
 		len = len_src - start;

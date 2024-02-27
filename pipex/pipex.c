@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/27 16:31:27 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/27 17:00:43 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	child(t_pipex *pipex, t_data *data)
 	}
 	if (ft_isbuiltin(pipex->cmd[0]) == TRUE)
 	{
-		ft_printf("quiwe\n");
+		ft_printf("qui we\n");
 		do_builtin(pipex->cmd, data);
 	}
 	else if (execve(pipex->path, pipex->cmd, data->envp) < 0)

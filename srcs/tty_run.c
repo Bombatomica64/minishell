@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/27 11:45:27 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/27 15:46:15 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 void	ft_do_it(t_data *data, char *terminal_input)
 {
 	t_pipex	*comm;
-	int		i;
 
-	i = 0;
 	if (parser(terminal_input, data) == FALSE)
 		return ;
 	while (data->input)

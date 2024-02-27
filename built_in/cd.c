@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/26 16:17:07 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/27 15:17:40 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	refactor_path(char **str, t_data *data, int i)
 		(*str)[ft_strlen(*str) - 1] = '\0';
 }
 
-void	ft_cd(char **mtx, t_data *data) //TODO: virgolette ""
+void	ft_cd(char **mtx, t_data *data)
 {
 	int		i;
 	char	*str;

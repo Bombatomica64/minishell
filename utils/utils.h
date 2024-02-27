@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/27 12:08:33 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/27 15:36:45 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef enum e_error
 	FORK,
 	ACCESS,
 	OPEN,
-	BUILT_IN
+	BUILTIN
 }	t_error;
 
 typedef enum e_type

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:52:32 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/26 17:13:12 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/27 15:47:04 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 # define PIPEX_H
 
 # include "../utils/utils.h"
+# include "../built_in/built_in.h"
 
 char	*path_execve(char *command, char **envp);
 void	child(t_pipex *pipex, t_data *data);
 void	parent(t_data *data, int i);
 int		checkfile_fd(t_data *data);
 void	ft_execute(t_data *data);
+void	do_builtin(char **cmd, t_data *data);
 
 /**
  * @brief This function will execute 2 commands between a SINGLE pipe

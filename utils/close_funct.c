@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:10:53 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/26 18:37:30 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/27 09:51:00 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,5 @@ void	free_close(t_data *data, int status)
 	free_return(data, status);
 	free_matrix(&data->envp);
 	free(data->home);
-	rl_clear_history();
 	exit (status);
 }

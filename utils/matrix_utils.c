@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:27:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/23 12:25:15 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/27 12:03:45 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_bool	print_matrix(char **mtx)
 	if (!mtx)
 		return (FALSE);
 	while (mtx[++i])
-		ft_printf("%s", mtx[i]);
+		ft_printf("%s\n", mtx[i]);
 	return (TRUE);
 }
 

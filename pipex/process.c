@@ -6,11 +6,18 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/27 15:47:51 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/27 15:51:53 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+void	ft_exit(char **cmd, t_data *data)
+{
+	(void)cmd;
+	(void)data;
+	ft_printf("ciaone\n");
+}
 
 void	do_builtin(char **cmd, t_data *data)
 {

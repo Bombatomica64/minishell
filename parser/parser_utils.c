@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/27 11:03:22 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/27 11:19:31 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,15 +88,9 @@ int	count_limiter(char *str)
 	if (!str)
 		return (ERROR);
 	if ((str[i] == '<' && str[i + 1] == '<') || (str[i] == '>' && str[i + 1] == '>'))
-	{
 		i += 2;
-		count++;
-	}
 	if (ft_islimiter(str[i]) == TRUE)
-	{
 		i++;
-		count++;
-	}
 	while (str[i])
 	{
 		if (str[i] == '\'' || str[i] == '\"')

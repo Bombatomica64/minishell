@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/27 11:01:56 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/27 11:17:06 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ void	process_input(t_data *data)
 		ft_printf("EOF received, exiting\n");
 		free(terminal_input);
 		rl_clear_history();
-		if (terminal_input)
-			free_close(data, 0);
+		free_close(data, 0);
 	}
 	ft_do_it(data, terminal_input);
 	free(terminal_input);

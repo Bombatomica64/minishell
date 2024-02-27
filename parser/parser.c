@@ -131,7 +131,8 @@ t_bool	parser(char *str, t_data *data)
 			printf("quote error\n");
 			return (FALSE);
 		}
-		tmp_path = get_path(&tmp, tmp_type, data);
+		//tmp_path = get_path(&tmp, tmp_type, data);
+		tmp_path = NULL;
 		ft_inputadd_back(&(*data).input, ft_inputnew(tmp, tmp_path, tmp_type));
 		str = ft_freesubstr(str, ft_strlen(tmp) + 1, ft_strlen(str) - ft_strlen(tmp));
 		i--;

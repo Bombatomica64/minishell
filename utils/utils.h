@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/27 15:36:45 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/27 18:30:14 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,5 +266,6 @@ char	*ft_rowfill(char **str, char c, int i);
 char	**ft_splitarg(char *str);
 t_bool	print_matrix(char **mtx);
 int		ft_matrix_len(char **matrix);
+char	*ft_strndup(char *str, int i);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/27 17:04:56 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/27 17:06:04 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static t_pipex	*basic_set(t_data **data)
 	if (!comm)
 		return (NULL);
 	comm->fd_in = dup((*data)->fd[0]);
-	comm->fd_out = (*data)->fd[1];
+	comm->fd_out = dup((*data)->fd[1]);
 	return (comm);
 }
 

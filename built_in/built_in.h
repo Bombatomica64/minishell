@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_in.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:03:32 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/27 16:12:16 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/27 17:20:03 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,9 @@ t_bool	update_env(char ***envp, char *str);
 // debug functions
 void	print_pwd(char **envp);
 void	print_pwds(char **envp);
+
+// take a file and output absolute path
+char	*refactor_path(char *str, t_data *data, int i);
+char	*ft_remove_chars(char *str, char *to_remove, int i);
 
 #endif

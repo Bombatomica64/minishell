@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/27 12:08:37 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/27 12:10:57 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	do_builtin(char **cmd, t_data *data)
 	if (ret == FALSE)
 		ft_error(cmd[0], BUILT_IN, 1, data);
 	else
-		exit(0);
+		free_close(data, 0);
 }
 /* void	child(t_data *data, int i)
 {

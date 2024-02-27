@@ -3,11 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/19 16:50:51 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/23 12:13:47 by mruggier         ###   ########.fr       */
-
+/*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
+/*   Updated: 2024/02/27 11:11:21 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +30,15 @@ char	*get_name(char *str, int tmp_type, t_bool *quote)
 			if (tmp_type == BUILT_IN || tmp_type == COMMAND || (*quote == TRUE && str[i] != quote_type))
 				tmp = join_char(tmp, str[i]);
 			i++;
-		}	
+		}
 		else
 		{
 			tmp = join_char(tmp, str[i]);
 			i++;
 		}
 		if (ft_islimiter(str[i]) == TRUE && *quote == FALSE)
-		{
-			break;
-    }
-	// if (ft_islimiter(str[i]) == TRUE && *quote == FALSE)
-	// 	i++;
+			break ;
+	}
 	if (*quote == TRUE)
 	{
 		printf("Error: quote not closed\n");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/27 17:30:01 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/28 13:03:25 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	*refactor_path(char *str, t_data *data, int i) //TODO: cd "~/ecc" o < "~", 
 	else if (*str != '/')
 	{
 		str = ft_strjoin("/", str);
-		str = ft_strjoin(get_env_value(data->envp, "PWD="), str);
+		str = ft_strjoin(get_env_value(data->envp, "PWD"), str);
 	}
 	while ((str)[i] != '\0')
 	{

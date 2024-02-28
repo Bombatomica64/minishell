@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:32:21 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/28 11:53:09 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/28 12:52:28 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,10 @@ int	heredoc_creat(char *limiter)
 		str = readline("heredoc> ");
 		while (ft_strcmp(str, limiter) != 0)
 		{
-			write(2, str, ft_strlen(str));
 			ft_putendl_fd_free(&str, fd[1]);
 			str = readline("heredoc> ");
 		}
 		close(fd[1]);
-		write(2, "ciao", 4);
 		exit(0);
 	}
 	else

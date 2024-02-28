@@ -81,23 +81,8 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 	}
 	else if (tmp_type != HEREDOC)
 	{
-		if (*tmp[0] == '/')
-			tmp_path = ft_strdup(*tmp);
-		else if (strncmp(*tmp, "./", 2) == 0)
-			tmp_path = ft_strjoin(getcwd(NULL, 0), *tmp + 1);
-		else if (strncmp(*tmp, "../", 3) == 0) //TODO: sbagliato, fare cd prima. 
-		{
-			tmp_path = ft_strjoin(tmp_path, *tmp + 2);
-		}
-		else if (strncmp(*tmp, "~/", 2) == 0) //TODO: se "~/c" non funziona perche' cancelliamo le virgolette
-		{
-			tmp_path = ft_strjoin(data->home, *tmp + 1);
-		}
-		else
-		{
-			tmp_path = ft_strjoin("/", *tmp);
-			tmp_path = ft_strjoin(getcwd(NULL, 0), tmp_path);
-		}
+		tmp_path = refactor_path(*tmp, data, 0);
+		printf("tmp_path: %s\n", tmp_path);
 	}
 	return (tmp_path);
 }

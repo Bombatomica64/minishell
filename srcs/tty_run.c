@@ -18,11 +18,16 @@ void	ft_do_it(t_data *data, char *terminal_input)
 
 	if (parser(terminal_input, data) == FALSE)
 		return ;
-	while (data->input)
+	while (data->input && data->input->next)
 	{
 		comm = input_exec(&data);
 		if (comm->cmd)
-			data->error_codes = pipex(comm, data);
+
+		{
+			data->error_codes += pipex(comm, data);
+			free_matrix(&comm->cmd);
+			free(comm);
+		}
 	}
 }
 
@@ -41,13 +46,13 @@ void	process_input(t_data *data)
 		ft_printf("EOF received, exiting\n");
 		free(terminal_input);
 		rl_clear_history();
-		free_close(data, 0);
+		free_close(&data, 0);
 	}
 	add_history(terminal_input);
 	if (*terminal_input == '\0')
 		return ;
 	ft_do_it(data, terminal_input);
-	(void)free_return(data, 0);
+	(void)free_return(&data, 0);
 }
 
 void	ft_tty_exec(t_data *data)

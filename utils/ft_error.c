@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:14:28 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 10:41:17 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/28 12:13:09 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_error(const char *str, t_error error, int errnbr, t_data *data)
 	else
 		perror("pipex: unknown error");
 	if (data)
-		free_close(data, errnbr);
+		free_close(&data, errnbr);
 }
 // Path: utils/utils.h
 //std :: cout << "ft_error.c" << std :: endl;

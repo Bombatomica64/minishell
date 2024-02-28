@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:47:54 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/26 15:27:56 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/28 11:36:14 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	print_list(t_input *input)
 {
 	while (input)
 	{
+		printf("--------------------\n");
 		printf("type: %d\n", input->type);
 		printf("path: %s\n", input->path);
 		printf("node: %s\n", input->node);

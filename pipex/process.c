@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 12:13:03 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/28 16:45:52 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@ void	ft_exit(char **cmd, t_data *data)
 	(void)cmd;
 	(void)data;
 	ft_printf("ciaone\n");
+}
+
+t_bool	ft_isthesameas(char *s1, char *s2)
+{
+	if (ft_strcmp(s1, s2) == 0)
+		return (TRUE);
+	return (FALSE);
 }
 
 void	do_builtin(char **cmd, t_data *data)

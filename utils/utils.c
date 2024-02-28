@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 16:46:46 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/28 16:47:14 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ t_bool	ft_isbuiltin(char *str)
 {
 	if (!str)
 		return (ERROR);
-	if (ft_strncmp(str, "cd ", 3) == 0
-		|| ft_strncmp(str, "env ", 4) == 0
-		|| ft_strncmp(str, "pwd ", 4) == 0
-		|| ft_strncmp(str, "echo ", 5) == 0
-		|| ft_strncmp(str, "exit ", 5) == 0
-		|| ft_strncmp(str, "unset ", 6) == 0
-		|| ft_strncmp(str, "export ", 7) == 0)
+	if (ft_strcmp(str, "cd") == 0
+		|| ft_strcmp(str, "env") == 0
+		|| ft_strcmp(str, "pwd") == 0
+		|| ft_strcmp(str, "echo") == 0
+		|| ft_strcmp(str, "exit") == 0
+		|| ft_strcmp(str, "unset") == 0
+		|| ft_strcmp(str, "export") == 0)
 		return (TRUE);
 	return (FALSE);
 }

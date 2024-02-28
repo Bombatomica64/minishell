@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by lmicheli          #+#    #+#             */
 /*   Updated: 2024/02/28 15:36:24 by sgarigli         ###   ########.fr       */
@@ -37,10 +37,7 @@ t_type	ft_file_type(char **str)
 			return (TRUNC);
 	}
 	else if (**str == '|')
-	{
 		(*str)++;
-		return (COMMAND);
-	}
 	return (COMMAND);
 }
 
@@ -73,7 +70,8 @@ char	*join_char(char *str, char c)
 	return (tmp);
 }
 //da fixare il caso < file1 grep e
-int	count_limiter(char *str) 
+
+int	count_limiter(char *str)
 {
 	int		i;
 	int		count;

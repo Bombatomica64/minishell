@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 12:42:06 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/28 15:50:45 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ typedef struct s_data
 	int		fd[2]; // pipe
 	char	**envp; // current environment
 	char	*home; // home directory (~)
-	t_pipex	*pipex; // pipex data
 	t_input	*input; // list of commands and files
 }	t_data;
 
@@ -105,9 +104,9 @@ void	free_matrix(char ***matrix);
  * @param error, type of error
  * @param errnbr, exit error number
  * @param data, data to be freed
- * @return void
+ * @return int the error number
 */
-void	ft_error(const char *str, t_error error, int errnbr, t_data *data);
+int	ft_error(const char *str, t_error error, int errnbr, t_data *data);
 
 /**
  * @brief Function that checks if a malloc has failed

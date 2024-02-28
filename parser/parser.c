@@ -76,7 +76,10 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 		{
 			tmp_path = path_execve(tmp_path, data->envp);
 			if (tmp_path == NULL)
-				ft_error("path_execve in get_path", NO_PATH, 127, data);
+			{
+				free(tmp_path);
+				return (ft_error(*tmp, NO_PATH, 127, data), NULL);
+			}
 		}
 		else if (tmp_type != BUILT_IN)
 			*tmp = ft_strrchr(tmp_path, '/') + 1;
@@ -122,3 +125,4 @@ t_bool	parser(char *str, t_data *data)
 	return (TRUE);
 }
 // Path: srcs/parser.c
+//ptr[32, | , 3 ,4]

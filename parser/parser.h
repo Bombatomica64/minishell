@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:29:56 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/28 11:33:49 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/28 15:31:06 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 # define PARSER_H
 
 # include "../pipex/pipex.h"
+
+typedef struct s_parser
+{
+	char	*tmp;
+	char	*tmp_path;
+	t_type	tmp_type;
+}	t_parser;
+
 
 //parser
 t_type	ft_file_type(char **str);

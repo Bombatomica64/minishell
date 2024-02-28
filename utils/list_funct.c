@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:27:22 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/28 11:58:03 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/28 12:17:31 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_inputclear(t_input **lst)
 
 	if (!lst || !*lst)
 		return ;
+	*lst = ft_inputfirst(lst);
 	while (*lst)
 	{
 		free((*lst)->node);
@@ -86,9 +87,9 @@ t_input	*ft_inputlast(t_input **lst)
 {
 	t_input	*tmp;
 
-	tmp = *lst;
-	if (!tmp)
+	if (!lst || !*lst)
 		return (NULL);
+	tmp = *lst;
 	while (tmp->next)
 		tmp = tmp->next;
 	return (tmp);

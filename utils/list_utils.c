@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:47:54 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/26 15:27:56 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/28 12:05:02 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ t_input	*ft_inputfirst(t_input **lst)
 {
 	t_input	*tmp;
 
-	tmp = *lst;
-	if (!tmp)
+	if (!lst || !*lst)
 		return (NULL);
+	tmp = *lst;
 	while (tmp->prev)
 		tmp = tmp->prev;
 	return (tmp);

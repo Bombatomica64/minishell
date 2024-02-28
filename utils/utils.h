@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/27 18:30:14 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/28 12:11:48 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,9 @@ t_bool	ft_malloc_err(void *ptr, char *str);
  * @param data, data to be freed
  * @return void
 */
-void	free_close(t_data *data, int status);
+void	free_close(t_data **data, int status);
 
-int		free_return(t_data *data, int status);
+int		free_return(t_data **data, int status);
 
 // list functions
 

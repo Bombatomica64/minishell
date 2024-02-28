@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 15:36:09 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/28 16:46:46 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,25 @@ t_bool	ft_isquote(char c)
 	return (FALSE);
 }
 
+int	skip_spaces2(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return 0;
+	while (str[i] && ft_isspace(str[i]) == TRUE)
+		i++;
+	printf("offset = %d\n", i);
+	return i;
+}
+
 void	skip_spaces(char **str)
 {
-	if (!str || !*str)
+	if (!*str || !**str)
 		return ;
 	while (**str && ft_isspace(**str) == TRUE)
-		(*str)++;
+		(**str)++;
 }
 
 t_bool	ft_isbuiltin(char *str)

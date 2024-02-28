@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/28 10:02:11 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/28 12:20:08 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	is_input(char **name, int *fd, t_input *input)
 {
 	if (input->type == INPUT)
 	{
-		*name = input->node;
+		*name = ft_strdup(input->node);
 		*fd = open_type(input->path, INPUT);
 	}
 	else if (input->type == HEREDOC)
@@ -30,7 +30,7 @@ static void	is_output(char **name, int *fd, t_input *input)
 {
 	if (input->type == TRUNC || input->type == APPEND)
 	{
-		*name = input->node;
+		*name = ft_strdup(input->node);
 		*fd = open_type(input->path, input->type);
 	}
 }
@@ -79,6 +79,8 @@ t_pipex	*input_exec(t_data **data)
 			(*data)->input = (*data)->input->next;
 			return (comm);
 		}
+		if ((*data)->input->next == NULL)
+			return (comm);
 		(*data)->input = (*data)->input->next;
 	}
 	return (comm);

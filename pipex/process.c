@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 10:45:19 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/28 12:13:03 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	do_builtin(char **cmd, t_data *data)
 	if (ret == FALSE)
 		ft_error(cmd[0], BUILTIN, 1, data);
 	else
-		free_close(data, 0);
+		free_close(&data, 0);
 }
 /* void	child(t_data *data, int i)
 {

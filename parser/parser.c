@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 12:48:26 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/28 13:02:33 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 	}
 	else if (tmp_type != HEREDOC)
 	{
+		printf("we tmp: %s\n", *tmp);
 		tmp_path = refactor_path(*tmp, data, 0);
-		printf("tmp_path: %s\n", tmp_path);
 	}
 	return (tmp_path);
 }

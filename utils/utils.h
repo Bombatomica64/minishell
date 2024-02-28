@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 16:41:42 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/28 17:40:51 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -285,7 +285,7 @@ char	*get_env_value(char **envp, char *to_find);
 
 // mtx functions
 int		ft_arg_count(char *str, char c, int i, int nbr_args);
-char	*ft_rowfill(char **str, char c, int i);
+char	*ft_rowfill(char *str, char c, int i, int *j);
 char	**ft_splitarg(char *str);
 t_bool	print_matrix(char **mtx);
 int		ft_matrix_len(char **matrix);

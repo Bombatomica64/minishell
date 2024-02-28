@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/27 18:41:41 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/28 10:29:56 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,26 +57,27 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 	{
 		while ((*tmp)[i] != ' ' && (*tmp)[i] != '\0')
 		{
-			if ((*tmp)[i] == '\'' || (*tmp)[i] == '\"')
+			if (ft_isquote((*tmp)[i]) == TRUE)
 			{
 				i++;
 				j = i;
 				while ((*tmp)[j] != '\'' && (*tmp)[j] != '\"')
 					j++;
-				tmp_path = ft_strjoin_2free(tmp_path, ft_strncpy_noquote(*tmp, i, j));
+				tmp_path = ft_strjoin_2free(tmp_path,
+						ft_strncpy_noquote(*tmp, i, j));
 				i = j;
 			}
 			else
 				tmp_path = join_char(tmp_path, (*tmp)[i]);
 			i++;
 		}
-		if (ft_strrchr(tmp_path, '/') == NULL && tmp_type != BUILT_IN)
+		if (ft_strchr(tmp_path, '/') == NULL && tmp_type != BUILT_IN)
 		{
 			tmp_path = path_execve(tmp_path, data->envp);
 			if (tmp_path == NULL)
 				ft_error("path_execve in get_path", NO_PATH, 127, data);
 		}
-		else
+		else if (tmp_type != BUILT_IN)
 			*tmp = ft_strrchr(tmp_path, '/') + 1;
 	}
 	else if (tmp_type != HEREDOC)
@@ -105,7 +106,7 @@ t_bool	parser(char *str, t_data *data)
 		tmp_type = ft_file_type(&str);
 		tmp = get_name(str, tmp_type, &quote, data->envp);
 		printf("tmp: %s\n", tmp);
-		if (ft_isbuiltin(tmp) == FALSE)
+		if (ft_isbuiltin(tmp) == TRUE)
 			tmp_type = BUILT_IN;
 		tmp_path = get_path(&tmp, tmp_type, data);
 		//tmp_path = NULL;

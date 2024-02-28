@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:28:06 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/28 10:59:44 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/28 15:35:27 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ t_data	ft_data_init(char **envp)
 
 	data.original_stdin = dup(STDIN_FILENO);
 	data.original_stdout = dup(STDOUT_FILENO);
-	data.pipex = NULL;
 	data.input = NULL;
 	data.fd[1] = STDOUT_FILENO;
 	data.fd[0] = STDIN_FILENO;
@@ -57,7 +56,6 @@ void	ft_data_reinit(t_data *data)
 	data->original_stdin = dup(STDIN_FILENO);
 	data->original_stdout = dup(STDOUT_FILENO);
 	data->input = NULL;
-	data->pipex = NULL;
 	data->fd[1] = STDOUT_FILENO;
 	data->fd[0] = STDIN_FILENO;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 16:28:51 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/28 16:07:34 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ t_bool	parser(char *str, t_data *data)
 	i = count_limiter(str);
 	if (i == ERROR)
 		return (FALSE);
-		
 	while (i > 0)
 	{
 		skip_spaces(&str);
@@ -112,7 +111,6 @@ t_bool	parser(char *str, t_data *data)
 		if (ft_isbuiltin(parser.tmp) == TRUE)
 			parser.tmp_type = BUILT_IN;
 		parser.tmp_path = get_path(&parser.tmp, parser.tmp_type, data);
-		//tmp_path = NULL;
 		ft_inputadd_back(&(*data).input, ft_inputnew(parser.tmp, parser.tmp_path, parser.tmp_type));
 		if (str != NULL && parser.tmp != NULL)
 			str = ft_freesubstr(str, ft_strlen(parser.tmp) + 1, ft_strlen(str) - ft_strlen(parser.tmp));

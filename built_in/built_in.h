@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_in.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:03:32 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/27 17:20:03 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/28 18:27:36 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,84 @@
 # include "../utils/utils.h"
 
 //built-in functions
+/**
+ * @brief echo builtin function
+ * @param matrix with echo + arguments
+ * @return TRUE if success, FALSE if error
+ * @note it will only accept -n as a flag
+*/
 t_bool	ft_echo(char **mtx);
+
+/**
+ * @brief cd builtin function
+ * @param str matrix with cd + arguments
+ * @param data struct with envp
+ * @return TRUE if success, FALSE if error
+*/
 t_bool	ft_cd(char **str, t_data *data);
+
+/**
+ * @brief env builtin function
+ * @param envp matrix with env + arguments
+ * @note the environment variables are stored in data->envp
+*/
 void	ft_env(char **envp);
+
+/**
+ * @brief pwd builtin function
+ * @note print the current working directory
+*/
 void	ft_pwd(void);
+
+/**
+ * @brief export builtin function
+ * @param envp pointer to the environment variables
+ * @param cmd matrix with export + arguments
+ * @return TRUE if success, FALSE if error
+*/
 t_bool	ft_export(char ***envp, char **cmd);
+
+/**
+ * @brief unset builtin function
+ * @param mtx matrix with unset + arguments
+ * @param envp pointer to the environment variables
+ * @return TRUE if success, FALSE if error
+*/
 t_bool	ft_unset(char **mtx, char ***envp);
 
 // unset helper functions
+/**
+ * @brief remove an entry from the environment variables
+ * @param envp pointer to the environment variables
+ * @param entry entry to remove
+*/
 void	remove_envp_entry(char ***envp, char *entry);
 
 // export  helper functions
+
+/**
+ * @brief add a new entry to the environment variables
+ * @param envp pointer to the environment variables
+ * @param str entry to add
+ * @return TRUE if success, FALSE if error
+*/
 t_bool	add_to_env(char ***envp, char *str);
+
+/**
+ * @brief update an entry in the environment variables
+ * @param envp pointer to the environment variables
+ * @param str entry to update
+ * @return TRUE if success, FALSE if error
+*/
 t_bool	update_env(char ***envp, char *str);
 
 // debug functions
-void	print_pwd(char **envp);
+
+/**
+ * @brief print the environment variables
+ * @param envp matrix with the environment variables
+ * @note used for debugging 
+*/
 void	print_pwds(char **envp);
 
 // take a file and output absolute path

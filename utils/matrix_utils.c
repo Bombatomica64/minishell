@@ -70,6 +70,7 @@ char	*get_env_value(char **envp, char *to_find)
 	char	*value;
 
 	i = find_in_env(envp, to_find);
+	printf("i = %d\n", i);
 	if (i == -1)
 		return (NULL);
 	value = ft_strdup(envp[i] + ft_strlen(to_find) + 1);

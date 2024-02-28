@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 12:29:19 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/28 12:48:29 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ char	*get_name(char *str, int tmp_type, t_bool *quote, char **envp)
 		if (ft_islimiter(str[i]) == TRUE && *quote == FALSE)
 			break ;
 	}
-	if (quote_error(tmp, quote) == TRUE)
-		return (NULL);
+	// if (quote_error(tmp, quote) == TRUE)
+	// 	return (NULL);
 	expand_variables(&tmp, envp, quote, quote_type);
 	return (tmp);
 }
@@ -119,7 +119,7 @@ t_bool	parser(char *str, t_data *data)
 		free(tmp);
 		free(tmp_path);
 	}
-	// print_list((*data).input);
+	print_list((*data).input);
 	free(str);
 	return (TRUE);
 }

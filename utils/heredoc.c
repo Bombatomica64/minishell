@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:32:21 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/28 11:26:37 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/28 11:44:12 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,21 @@ int	heredoc_creat(char *limiter)
 	int		fd[2];
 	pid_t	pid;
 
+	printf("limiter: |%s|\n", limiter);
 	if (pipe(fd) < 0)
 		ft_error("heredoc_creat", PIPE, 132, NULL);
 	pid = fork();
-	if (pid < 0)
-		ft_error("heredoc_creat", FORK, 124, NULL);
 	if (pid == 0)
 	{
 		str = readline("heredoc> ");
-		while (ft_strcmp((const char *)str, (const char *)limiter) != 0)
+		while (ft_strcmp(str, limiter, ft_strlen(limiter)) != 0)
 		{
+			write(2, str, ft_strlen(str));
 			ft_putendl_fd_free(&str, fd[1]);
 			str = readline("heredoc> ");
 		}
 		close(fd[1]);
+		write(2, "ciao", 4);
 		exit(0);
 	}
 	else
@@ -70,4 +71,5 @@ int	heredoc_creat(char *limiter)
 		waitpid(pid, NULL, 0);
 		close(fd[1]);
 	}
+	return (0);
 }

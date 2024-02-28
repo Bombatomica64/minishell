@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/28 12:47:42 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/28 16:32:11 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	child(t_pipex *pipex, t_data *data)
 		if (dup2(pipex->fd_out, STDOUT_FILENO) == -1)
 			ft_error("child", DUP, 13, data);
 	}
-	if (ft_isbuiltin(ft_strjoin(pipex->cmd[0], " ")) == TRUE)
+	if (ft_isbuiltin(pipex->cmd[0]) == TRUE)
 	{
 		ft_printf("qui we\n");
 		do_builtin(pipex->cmd, data);

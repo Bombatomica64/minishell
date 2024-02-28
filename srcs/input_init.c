@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:28:06 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/28 15:35:27 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/28 15:56:01 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ void	ft_data_reinit(t_data *data)
 {
 	if (!data)
 		return ;
-	data->original_stdin = dup(STDIN_FILENO);
-	data->original_stdout = dup(STDOUT_FILENO);
 	data->input = NULL;
 	data->fd[1] = STDOUT_FILENO;
 	data->fd[0] = STDIN_FILENO;
+	dup2(data->original_stdin, STDIN_FILENO);
+	dup2(data->original_stdout, STDOUT_FILENO);
 }

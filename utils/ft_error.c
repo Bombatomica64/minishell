@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:14:28 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 12:13:09 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/28 15:47:15 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,10 @@ t_bool	ft_malloc_err(void *ptr, char *str)
 	return (FALSE);
 }
 
-void	ft_error(const char *str, t_error error, int errnbr, t_data *data)
+int	ft_error(const char *str, t_error error, int errnbr, t_data *data)
 {
-	dup2(2, 1);
 	if (error == NO_PATH)
-		ft_printf("Command not found in available path: %s\n", str);
+		perror("Command not found in available paths");
 	else if (error == DUP)
 		ft_printf("%s failed to duplicate file descriptor\n", str);
 	else if (error == EXECVE)
@@ -41,9 +40,11 @@ void	ft_error(const char *str, t_error error, int errnbr, t_data *data)
 	else if (error == OPEN)
 		ft_printf("Open error in %s\n", str);
 	else
-		perror("pipex: unknown error");
-	if (data)
+		perror("unknown error");
+	if (data && (error == EXECVE || error == DUP))
 		free_close(&data, errnbr);
+	else
+		return (free_return(&data, errnbr));
 }
 // Path: utils/utils.h
 //std :: cout << "ft_error.c" << std :: endl;

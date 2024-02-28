@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 13:02:33 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/28 15:49:16 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 		{
 			tmp_path = path_execve(tmp_path, data->envp);
 			if (tmp_path == NULL)
-				ft_error("path_execve in get_path", NO_PATH, 127, data);
+				return (ft_error("get_path", NO_PATH, 127, data), NULL);
 		}
 		else if (tmp_type != BUILT_IN)
 			*tmp = ft_strrchr(tmp_path, '/') + 1;
@@ -110,7 +110,6 @@ t_bool	parser(char *str, t_data *data)
 		if (ft_isbuiltin(tmp) == TRUE)
 			tmp_type = BUILT_IN;
 		tmp_path = get_path(&tmp, tmp_type, data);
-		//tmp_path = NULL;
 		ft_inputadd_back(&(*data).input, ft_inputnew(tmp, tmp_path, tmp_type));
 		if (str != NULL && tmp != NULL)
 			str = ft_freesubstr(str, ft_strlen(tmp) + 1, ft_strlen(str) - ft_strlen(tmp));
@@ -123,3 +122,4 @@ t_bool	parser(char *str, t_data *data)
 	return (TRUE);
 }
 // Path: srcs/parser.c
+//ptr[32, | , 3 ,4]

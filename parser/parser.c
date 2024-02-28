@@ -40,8 +40,8 @@ char	*get_name(char *str, int tmp_type, t_bool *quote, char **envp)
 		if (ft_islimiter(str[i]) == TRUE && *quote == FALSE)
 			break ;
 	}
-	if (quote_error(tmp, quote) == TRUE)
-		return (NULL);
+	// if (quote_error(tmp, quote) == TRUE)
+	// 	return (NULL);
 	expand_variables(&tmp, envp, quote, quote_type);
 	return (tmp);
 }

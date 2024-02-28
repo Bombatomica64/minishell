@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:27:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 11:15:24 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/28 17:47:21 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ char	*get_env_value(char **envp, char *to_find)
 	char	*value;
 
 	i = find_in_env(envp, to_find);
-	printf("i = %d\n", i);
 	if (i == -1)
 		return (NULL);
 	value = ft_strdup(envp[i] + ft_strlen(to_find) + 1);

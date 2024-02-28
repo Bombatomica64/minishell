@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 16:49:35 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/28 17:46:58 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 t_type	ft_file_type(char *str, int *j)
 {
-	printf("j = %d\n", *j);
 	if (str[*j] == '<')
 	{
 		(*j)++;

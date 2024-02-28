@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 17:21:32 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/28 18:06:46 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*get_name(char *str, int tmp_type, t_bool *quote, char **envp)
 	(void)envp;
 	tmp = NULL;
 	quote_type = '\0';
-	skip_spaces(&str);
+	i = skip_spaces2(str);
 	while (str[i] != 0)
 	{
 		if (ft_isquote(str[i]))

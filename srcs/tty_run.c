@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/28 15:36:55 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/28 16:27:07 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void	ft_do_it(t_data *data, char *terminal_input)
 {
 	t_pipex	*comm;
-
+	
 	if (parser(terminal_input, data) == FALSE)
 		return ;
-	while (data->input && data->input->next)
+	while (data->input)
 	{
 		comm = input_exec(&data);
 		if (comm->cmd)
@@ -27,6 +27,8 @@ void	ft_do_it(t_data *data, char *terminal_input)
 			free_matrix(&comm->cmd);
 			free(comm);
 		}
+		if (data->input->next == NULL)
+			return ;
 	}
 }
 

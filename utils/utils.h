@@ -285,7 +285,7 @@ char	*get_env_value(char **envp, char *to_find);
 
 // mtx functions
 int		ft_arg_count(char *str, char c, int i, int nbr_args);
-char	*ft_rowfill(char **str, char c, int i);
+char	*ft_rowfill(char *str, char c, int i, int *j);
 char	**ft_splitarg(char *str);
 t_bool	print_matrix(char **mtx);
 int		ft_matrix_len(char **matrix);

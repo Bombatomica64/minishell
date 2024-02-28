@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 16:47:14 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/28 16:59:12 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,10 @@ int	skip_spaces2(char *str)
 
 	i = 0;
 	if (!str)
-		return 0;
+		return (0);
 	while (str[i] && ft_isspace(str[i]) == TRUE)
 		i++;
-	printf("offset = %d\n", i);
-	return i;
+	return (i);
 }
 
 void	skip_spaces(char **str)

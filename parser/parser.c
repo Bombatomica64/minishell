@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 12:00:04 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/28 12:29:19 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,29 @@ char	*get_name(char *str, int tmp_type, t_bool *quote, char **envp)
 	char	*tmp;
 
 	i = 0;
+	(void)envp;
 	tmp = NULL;
 	quote_type = '\0';
-	(void)tmp_type;
-	(void)quote;
-	(void)quote_type;
 	skip_spaces(&str);
 	while (str[i] != 0)
 	{
-		tmp = join_char(tmp, str[i]);
-		i++;
-		if (ft_islimiter(str[i]) == TRUE || ft_isspace(str[i]) == TRUE)
+		if (ft_isquote(str[i]))
+		{
+			quote_start(quote, str[i], &quote_type);
+			if (tmp_type == BUILT_IN || tmp_type == COMMAND || (*quote == TRUE && str[i] != quote_type))
+				tmp = join_char(tmp, str[i]);
+			i++;
+		}
+		else
+		{
+			tmp = join_char(tmp, str[i]);
+			i++;
+		}
+		if (ft_islimiter(str[i]) == TRUE && *quote == FALSE)
 			break ;
 	}
-	// if (quote_error(tmp, quote) == TRUE)
-	// 	return (NULL);
+	if (quote_error(tmp, quote) == TRUE)
+		return (NULL);
 	expand_variables(&tmp, envp, quote, quote_type);
 	return (tmp);
 }
@@ -98,11 +106,13 @@ t_bool	parser(char *str, t_data *data)
 		skip_spaces(&str);
 		tmp_type = ft_file_type(&str);
 		tmp = get_name(str, tmp_type, &quote, data->envp);
+		printf("tmp: %s\n", tmp);
 		if (ft_isbuiltin(tmp) == TRUE)
 			tmp_type = BUILT_IN;
 		tmp_path = get_path(&tmp, tmp_type, data);
 		//tmp_path = NULL;
 		ft_inputadd_back(&(*data).input, ft_inputnew(tmp, tmp_path, tmp_type));
+		printf("str: %s\n", str);
 		if (str != NULL && tmp != NULL)
 			str = ft_freesubstr(str, ft_strlen(tmp) + 1, ft_strlen(str) - ft_strlen(tmp));
 		i--;

@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:08:47 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/28 11:43:17 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/28 11:57:21 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,25 @@ int	ft_strlen_noquote(char *str)
 		i++;
 	}
 	return (count);
+}
+
+char	*ft_strncpy(char *str, int start, int end)
+{
+	char	*dst;
+	int		i;
+
+	if (!str)
+		return (NULL);
+	dst = (char *)malloc(sizeof(char) * (end - start + 1));
+	if (!dst)
+		return (NULL);
+	i = 0;
+	while (start < end)
+	{
+		dst[i] = str[start];
+		i++;
+		start++;
+	}
+	dst[i] = '\0';
+	return (dst);
 }

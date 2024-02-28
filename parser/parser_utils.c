@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 11:42:15 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/28 11:58:46 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,23 +118,26 @@ t_bool	expand_variables(char **tmp, char **envp, t_bool *quote, char quote_type)
 	char	*new;
 	char	*tmp2;
 
+	(void)quote;
+	(void)quote_type;
 	i = 0;
 	while ((*tmp)[i])
 	{
-		if (ft_isquote((*tmp)[i]) == TRUE)
-			quote_start(quote, (*tmp)[i], &quote_type);
-		printf("quote = %d\n", *quote);
-		if ((*tmp)[i] == '$' && (*tmp)[i + 1] != '\0' && quote_type != '\'')
+		// if (ft_isquote((*tmp)[i]) == TRUE)
+		// 	quote_start(quote, (*tmp)[i], &quote_type);
+		// printf("quote = %d\n", *quote);
+		// if ((*tmp)[i] == '$' && (*tmp)[i + 1] != '\0' && quote_type != '\'')
+		if ((*tmp)[i] == '$' && (*tmp)[i + 1] != '\0')
 		{
 			j = i + 1;
 			while ((*tmp)[j] && ft_isspace((*tmp)[j]) == FALSE)
 				j++;
-			var = ft_strncpy_noquote(*tmp, i + 1, ft_strlen_noquote(*tmp));
+			var = ft_strncpy(*tmp, i + 1, ft_strlen(*tmp));
 			value = get_env_value(envp, var);
 			free(var);
 			if (value)
 			{
-				tmp2 = ft_strncpy_noquote(*tmp, 0, i);
+				tmp2 = ft_strncpy(*tmp, 0, i);
 				new = ft_strjoin_2free(tmp2, value);
 				free(*tmp);
 				*tmp = new;

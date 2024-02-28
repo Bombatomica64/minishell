@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:32:21 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/26 15:45:51 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/28 11:26:37 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,40 @@
 	close(fd);
 
 } */
+static void	ft_putendl_fd_free(char **s, int fd)
+{
+	if (fd < 0)
+		return ;
+	write(fd, *s, ft_strlen(*s));
+	write(fd, "\n", 1);
+	free(*s);
+}
 
 int	heredoc_creat(char *limiter)
 {
 	char	*str;
 	int		fd[2];
+	pid_t	pid;
 
 	if (pipe(fd) < 0)
 		ft_error("heredoc_creat", PIPE, 132, NULL);
-	str = readline("heredoc> ");
-	while (ft_strcmp((const char *)str, (const char *)limiter) != 0)
+	pid = fork();
+	if (pid < 0)
+		ft_error("heredoc_creat", FORK, 124, NULL);
+	if (pid == 0)
 	{
-		ft_putendl_fd(str, fd[1]);
-		free(str);
 		str = readline("heredoc> ");
+		while (ft_strcmp((const char *)str, (const char *)limiter) != 0)
+		{
+			ft_putendl_fd_free(&str, fd[1]);
+			str = readline("heredoc> ");
+		}
+		close(fd[1]);
+		exit(0);
 	}
-	close(fd[1]);
-	return (fd[0]);
+	else
+	{
+		waitpid(pid, NULL, 0);
+		close(fd[1]);
+	}
 }

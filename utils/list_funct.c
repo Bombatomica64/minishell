@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:27:22 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/26 16:14:14 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/28 11:58:03 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ t_input	*ft_inputnew(char *node, char *path, t_type type)
 	my_list = (t_input *)malloc(sizeof(t_input));
 	if (!my_list)
 		return (NULL);
-	my_list->node = node;
+	my_list->node = ft_strdup(node);
 	my_list->type = type;
-	my_list->path = path;
+	my_list->path = ft_strdup(path);
 	my_list->next = NULL;
 	my_list->prev = NULL;
 	return (my_list);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/27 17:24:19 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/28 11:53:27 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ void	ft_do_it(t_data *data, char *terminal_input)
 	{
 		comm = input_exec(&data);
 		if (comm->cmd)
+		{
 			data->error_codes += pipex(comm, data);
+			free_matrix(&comm->cmd);
+			free(comm);
+		}
 	}
 }
 

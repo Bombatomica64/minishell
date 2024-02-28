@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 12:32:57 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/28 12:48:29 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ t_bool	parser(char *str, t_data *data)
 		free(tmp);
 		free(tmp_path);
 	}
-	// print_list((*data).input);
+	print_list((*data).input);
 	free(str);
 	return (TRUE);
 }

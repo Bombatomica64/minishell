@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 17:40:51 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/28 17:00:14 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	free_matrix(char ***matrix);
  * @param data, data to be freed
  * @return int the error number
 */
-int	ft_error(const char *str, t_error error, int errnbr, t_data *data);
+int		ft_error(const char *str, t_error error, int errnbr, t_data *data);
 
 /**
  * @brief Function that checks if a malloc has failed

@@ -6,7 +6,7 @@
 #    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/02/28 10:51:49 by lmicheli         ###   ########.fr        #
+#    Updated: 2024/02/28 17:20:14 by lmicheli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ UTILS = utils/ft_error.c \
 	utils/matrix_utils.c \
 	utils/arg_to_mtx.c \
 	utils/heredoc.c \
-	utils/list_utils.c
+	utils/list_utils.c \
+	utils/space_utils.c
 
 PARSER = parser/parser.c \
 	parser/parser_utils.c \

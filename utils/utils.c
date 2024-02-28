@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 17:43:37 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/28 17:05:46 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,38 +19,11 @@ t_bool	ft_islimiter(char c)
 	return (FALSE);
 }
 
-t_bool	ft_isspace(char c)
-{
-	if ((c >= 9 && c <= 13) || c == ' ')
-		return (TRUE);
-	return (FALSE);
-}
-
 t_bool	ft_isquote(char c)
 {
 	if (c == '\"' || c == '\'')
 		return (TRUE);
 	return (FALSE);
-}
-
-int	skip_spaces2(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (!str)
-		return 0;
-	while (str[i] && ft_isspace(str[i]) == TRUE)
-		i++;
-	return i;
-}
-
-void	skip_spaces(char **str)
-{
-	if (!*str || !**str)
-		return ;
-	while (**str && ft_isspace(**str) == TRUE)
-		(**str)++;
 }
 
 t_bool	ft_isbuiltin(char *str)

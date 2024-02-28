@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:08:47 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/28 12:42:01 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/28 16:59:54 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ char	*ft_strndup(char *str, int i)
 	dst[j] = '\0';
 	return (dst);
 }
+
 int	ft_strlen_noquote(char *str)
 {
 	int	i;

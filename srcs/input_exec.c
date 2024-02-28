@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/28 12:20:08 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/28 16:25:54 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ t_pipex	*input_exec(t_data **data)
 				comm->fd_out = dup((*data)->fd[1]);
 				printf("pipe usata\n%s\n", (*data)->input->node);
 			}
-			(*data)->input = (*data)->input->next;
+			if ((*data)->input->next != NULL)
+				(*data)->input = (*data)->input->next;
 			return (comm);
 		}
 		if ((*data)->input->next == NULL)

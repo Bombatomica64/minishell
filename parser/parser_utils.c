@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/27 16:27:39 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/28 11:58:46 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ char	*join_char(char *str, char c)
 	free(str);
 	return (tmp);
 }
-
-int	count_limiter(char *str)
+//da fixare il caso < file1 grep e
+int	count_limiter(char *str) 
 {
 	int		i;
 	int		count;
@@ -108,12 +108,43 @@ int	count_limiter(char *str)
 	return (count);
 }
 
-t_bool	expand_variables(char **str, char **envp, char **tmp, t_bool **quote)
+// implementare la logica delle quote
+t_bool	expand_variables(char **tmp, char **envp, t_bool *quote, char quote_type)
 {
-	if(*tmp == NULL)
-		*tmp = ft_strdup("");
-	(void) quote;
-	(void) envp;
-	(void) str;
-	return (FALSE);
+	int		i;
+	int		j;
+	char	*var;
+	char	*value;
+	char	*new;
+	char	*tmp2;
+
+	(void)quote;
+	(void)quote_type;
+	i = 0;
+	while ((*tmp)[i])
+	{
+		// if (ft_isquote((*tmp)[i]) == TRUE)
+		// 	quote_start(quote, (*tmp)[i], &quote_type);
+		// printf("quote = %d\n", *quote);
+		// if ((*tmp)[i] == '$' && (*tmp)[i + 1] != '\0' && quote_type != '\'')
+		if ((*tmp)[i] == '$' && (*tmp)[i + 1] != '\0')
+		{
+			j = i + 1;
+			while ((*tmp)[j] && ft_isspace((*tmp)[j]) == FALSE)
+				j++;
+			var = ft_strncpy(*tmp, i + 1, ft_strlen(*tmp));
+			value = get_env_value(envp, var);
+			free(var);
+			if (value)
+			{
+				tmp2 = ft_strncpy(*tmp, 0, i);
+				new = ft_strjoin_2free(tmp2, value);
+				free(*tmp);
+				*tmp = new;
+				i += ft_strlen(value);
+			}
+		}
+		i++;
+	}
+	return (TRUE);
 }

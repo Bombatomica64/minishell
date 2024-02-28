@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 12:11:48 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/28 11:58:31 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,6 +200,18 @@ char	*ft_strncpy_noquote(char *str, int start, int end);
  * @note both strings will be freed
  * @note the new string will be allocated
  */
+
+int		ft_strlen_noquote(char *str);
+
+/**
+ * @brief Function that mimics the behaviour of strjoin but frees both strings
+ * @param old_str string to join to , will be freed
+ * @param buf string that will be joined, will be freed 
+ * @return a new string with the joined strings
+ * @note both strings will be freed
+ * @note the new string will be allocated
+ */
+
 char	*ft_strjoin_2free(char *old_str, char *buf);
 
 /**
@@ -207,6 +219,15 @@ char	*ft_strjoin_2free(char *old_str, char *buf);
  * @param matrix matrix to be copied
  * @return a copy of the matrix
  */
+
+char	*ft_strncpy(char *str, int start, int end);
+
+/**
+ * @brief Function that allocates a copy of a matrix and returns it
+ * @param matrix matrix to be copied
+ * @return a copy of the matrix
+ */
+
 char	**matrix_dup(char **matrix);
 
 /**

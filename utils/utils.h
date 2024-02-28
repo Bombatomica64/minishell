@@ -122,9 +122,9 @@ t_bool	ft_malloc_err(void *ptr, char *str);
  * @param data, data to be freed
  * @return void
 */
-void	free_close(t_data *data, int status);
+void	free_close(t_data **data, int status);
 
-int		free_return(t_data *data, int status);
+int		free_return(t_data **data, int status);
 
 // list functions
 

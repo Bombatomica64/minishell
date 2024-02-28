@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
 /*   Updated: 2024/02/28 12:29:19 by sgarigli         ###   ########.fr       */
@@ -116,8 +116,11 @@ t_bool	parser(char *str, t_data *data)
 		if (str != NULL && tmp != NULL)
 			str = ft_freesubstr(str, ft_strlen(tmp) + 1, ft_strlen(str) - ft_strlen(tmp));
 		i--;
+		free(tmp);
+		free(tmp_path);
 	}
-	print_list((*data).input);
+	// print_list((*data).input);
+	free(str);
 	return (TRUE);
 }
 // Path: srcs/parser.c

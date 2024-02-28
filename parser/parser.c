@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 16:07:34 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/28 16:51:08 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,7 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 			*tmp = ft_strrchr(tmp_path, '/') + 1;
 	}
 	else if (tmp_type != HEREDOC)
-	{
-		printf("we tmp: %s\n", *tmp);
 		tmp_path = refactor_path(*tmp, data, 0);
-	}
 	return (tmp_path);
 }
 
@@ -97,6 +94,7 @@ t_bool	parser(char *str, t_data *data)
 	int			i;
 	t_parser	parser;
 	t_bool		quote;
+	int			offset;
 
 	quote = FALSE;
 	i = count_limiter(str);
@@ -104,9 +102,9 @@ t_bool	parser(char *str, t_data *data)
 		return (FALSE);
 	while (i > 0)
 	{
-		skip_spaces(&str);
-		parser.tmp_type = ft_file_type(&str);
-		parser.tmp = get_name(str, parser.tmp_type, &quote, data->envp);
+		offset = skip_spaces2(str);
+		parser.tmp_type = ft_file_type(str, &offset);
+		parser.tmp = get_name(str + offset, parser.tmp_type, &quote, data->envp);
 		parser.tmp = ft_freestrtrim(parser.tmp, " ");
 		if (ft_isbuiltin(parser.tmp) == TRUE)
 			parser.tmp_type = BUILT_IN;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 15:50:45 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/28 16:41:42 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,11 +237,13 @@ char	**matrix_dup(char **matrix);
  */
 t_bool	ft_islimiter(char c);
 
+
+void	skip_spaces(char **str);
 /**
  * @brief Function that skips spaces in a string
  * @param str a pointer to the string
 */
-void	skip_spaces(char **str);
+int		skip_spaces2(char *str);
 
 /**
  * @brief Function that checks if a character is a space
@@ -249,6 +251,7 @@ void	skip_spaces(char **str);
  * @return TRUE if the character is a space, FALSE if it isn't
  * @note space is defined as ' ', '\t', '\n', '\v', '\f', '\r'
 */
+
 t_bool	ft_isspace(char c);
 
 /**

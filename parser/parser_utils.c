@@ -3,41 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 15:36:24 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/28 16:49:35 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-t_type	ft_file_type(char **str)
+t_type	ft_file_type(char *str, int *j)
 {
-	if (**str == '<')
+	printf("j = %d\n", *j);
+	if (str[*j] == '<')
 	{
-		(*str)++;
-		if (**str == '<')
+		(*j)++;
+		if (str[*j] == '<')
 		{
-			(*str)++;
+			(*j)++;
 			return (HEREDOC);
 		}
 		else
 			return (INPUT);
 	}
-	else if (**str == '>')
+	else if (str[*j] == '>')
 	{
-		(*str)++;
-		if (**str == '>')
+		(*j)++;
+		if (str[*j] == '>')
 		{
-			(*str)++;
+			(*j)++;
 			return (APPEND);
 		}
 		else
 			return (TRUNC);
 	}
-	else if (**str == '|')
-		(*str)++;
+	else if (str[*j] == '|')
+		(*j)++;
 	return (COMMAND);
 }
 
@@ -82,7 +83,7 @@ int	count_limiter(char *str)
 	quote = FALSE;
 	count = 1;
 	quote_type = '\0';
-	skip_spaces(&str);
+	i = skip_spaces2(str);
 	if (!str)
 		return (ERROR);
 	if ((str[i] == '<' && str[i + 1] == '<') || (str[i] == '>' && str[i + 1] == '>'))

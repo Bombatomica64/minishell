@@ -33,12 +33,25 @@ t_bool	ft_isquote(char c)
 	return (FALSE);
 }
 
+int	skip_spaces2(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return 0;
+	while (str[i] && ft_isspace(str[i]) == TRUE)
+		i++;
+	printf("offset = %d\n", i);
+	return i;
+}
+
 void	skip_spaces(char **str)
 {
-	if (!str || !*str)
+	if (!*str || !**str)
 		return ;
 	while (**str && ft_isspace(**str) == TRUE)
-		(*str)++;
+		(**str)++;
 }
 
 t_bool	ft_isbuiltin(char *str)

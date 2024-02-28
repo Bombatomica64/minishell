@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:29:56 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/28 15:31:06 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/28 16:38:08 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_parser
 
 
 //parser
-t_type	ft_file_type(char **str);
+t_type	ft_file_type(char *str, int *offset);
 t_bool	parser(char *str, t_data *data);
 char	*join_char(char *str, char c);
 int		count_limiter(char *str);

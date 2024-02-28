@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 15:21:21 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/28 15:55:27 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ char	*join_char(char *str, char c)
 	return (tmp);
 }
 //da fixare il caso < file1 grep e
-int	count_limiter(char *str) 
+
+int	count_limiter(char *str)
 {
 	int		i;
 	int		count;

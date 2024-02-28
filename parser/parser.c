@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 15:49:16 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/28 15:53:54 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,10 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 		{
 			tmp_path = path_execve(tmp_path, data->envp);
 			if (tmp_path == NULL)
-				return (ft_error("get_path", NO_PATH, 127, data), NULL);
+			{
+				free(tmp_path);
+				return (ft_error(*tmp, NO_PATH, 127, data), NULL);
+			}
 		}
 		else if (tmp_type != BUILT_IN)
 			*tmp = ft_strrchr(tmp_path, '/') + 1;

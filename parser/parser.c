@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 12:08:06 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/28 12:29:56 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,29 @@ char	*get_name(char *str, int tmp_type, t_bool *quote, char **envp)
 	char	*tmp;
 
 	i = 0;
+	(void)envp;
 	tmp = NULL;
 	quote_type = '\0';
-	(void)tmp_type;
-	(void)quote;
-	(void)quote_type;
 	skip_spaces(&str);
 	while (str[i] != 0)
 	{
-		tmp = join_char(tmp, str[i]);
-		i++;
-		if (ft_islimiter(str[i]) == TRUE || ft_isspace(str[i]) == TRUE)
+		if (ft_isquote(str[i]))
+		{
+			quote_start(quote, str[i], &quote_type);
+			if (tmp_type == BUILT_IN || tmp_type == COMMAND || (*quote == TRUE && str[i] != quote_type))
+				tmp = join_char(tmp, str[i]);
+			i++;
+		}
+		else
+		{
+			tmp = join_char(tmp, str[i]);
+			i++;
+		}
+		if (ft_islimiter(str[i]) == TRUE && *quote == FALSE)
 			break ;
 	}
-	// if (quote_error(tmp, quote) == TRUE)
-	// 	return (NULL);
-	expand_variables(&tmp, envp, quote, quote_type);
+	if (quote_error(tmp, quote) == TRUE)
+		return (NULL);
 	return (tmp);
 }
 

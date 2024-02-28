@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/27 16:30:48 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/28 10:33:40 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,13 @@ t_bool	ft_isbuiltin(char *str)
 {
 	if (!str)
 		return (ERROR);
-	if (ft_strcmp(str, "echo") || ft_strcmp(str, "cd") || ft_strcmp(str, "pwd")
-		|| ft_strcmp(str, "export") || ft_strcmp(str, "unset")
-		|| ft_strcmp(str, "env") || ft_strcmp(str, "exit"))
-		return (FALSE);
-	return (TRUE);
+	if (ft_strncmp(str, "cd ", 3) == 0
+		|| ft_strncmp(str, "env ", 4) == 0
+		|| ft_strncmp(str, "pwd ", 4) == 0
+		|| ft_strncmp(str, "echo ", 5) == 0
+		|| ft_strncmp(str, "exit ", 5) == 0
+		|| ft_strncmp(str, "unset ", 6) == 0
+		|| ft_strncmp(str, "export ", 7) == 0)
+		return (TRUE);
+	return (FALSE);
 }

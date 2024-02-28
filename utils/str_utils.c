@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:08:47 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/27 11:01:00 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/27 18:23:11 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,22 @@ char	*ft_strjoin_2free(char *old_str, char *buf)
 	free(old_str);
 	free(buf);
 	return (res);
+}
+
+char	*ft_strndup(char *str, int i)
+{
+	char	*dst;
+	int		j;
+
+	dst = (char *)malloc(sizeof(char) * (i + 1));
+	if (!dst)
+		return (NULL);
+	j = 0;
+	while (j < i)
+	{
+		dst[j] = str[j];
+		j++;
+	}
+	dst[j] = '\0';
+	return (dst);
 }

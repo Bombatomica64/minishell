@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/27 11:49:04 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/28 10:02:11 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,15 @@ static t_bool	ft_iscmd(t_input *input)
 	return (FALSE);
 }
 
-static t_pipex *basic_set(t_data **data)
+static t_pipex	*basic_set(t_data **data)
 {
 	t_pipex	*comm;
 
 	comm = malloc(sizeof(t_pipex));
 	if (!comm)
 		return (NULL);
-	comm->fd_in = (*data)->fd[0];
-	comm->fd_out = (*data)->fd[1];
+	comm->fd_in = dup((*data)->fd[0]);
+	comm->fd_out = STDOUT_FILENO;
 	return (comm);
 }
 
@@ -73,7 +73,7 @@ t_pipex	*input_exec(t_data **data)
 			{
 				if (pipe((*data)->fd) == -1)
 					ft_error("input_exec", PIPE, 132, (*data));
-				comm->fd_out = (*data)->fd[1];
+				comm->fd_out = dup((*data)->fd[1]);
 				printf("pipe usata\n%s\n", (*data)->input->node);
 			}
 			(*data)->input = (*data)->input->next;

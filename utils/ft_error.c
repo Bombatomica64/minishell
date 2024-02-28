@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:14:28 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/26 17:22:10 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/28 10:41:17 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_error(const char *str, t_error error, int errnbr, t_data *data)
 	else if (error == DUP)
 		ft_printf("%s failed to duplicate file descriptor\n", str);
 	else if (error == EXECVE)
-		perror("Error:");
+		perror("Error execve");
 	else if (error == PIPE)
 		perror("pipex: pipe error");
 	else if (error == FORK)
@@ -46,3 +46,4 @@ void	ft_error(const char *str, t_error error, int errnbr, t_data *data)
 		free_close(data, errnbr);
 }
 // Path: utils/utils.h
+//std :: cout << "ft_error.c" << std :: endl;

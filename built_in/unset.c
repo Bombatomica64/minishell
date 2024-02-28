@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:14:12 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/27 16:15:11 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/27 18:30:42 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,19 @@ t_bool	ft_unset(char **mtx, char ***envp)
 
 t_bool	ft_export(char ***envp, char **cmd)
 {
+	char	*tmp;
+	int		i;
+
 	if (!cmd)
 		return (FALSE);
-	if (find_in_env(*envp, cmd[1]) != -1)
-		return (add_to_env(envp, cmd[1]));
+	i = 0;
+	while (cmd[1][i] != '=' && cmd[1][i] != '\0')
+		i++;
+	tmp = ft_strndup(cmd[1], i);
+	if (find_in_env(*envp, tmp) != -1)
+		return (add_to_env(envp, tmp));
 	else
-		return (update_env(envp, cmd[1]));
+		return (update_env(envp, tmp));
 }
 
 t_bool	add_to_env(char ***envp, char *str)

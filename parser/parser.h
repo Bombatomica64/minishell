@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:29:56 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/27 17:02:10 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/28 11:33:49 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_type	ft_file_type(char **str);
 t_bool	parser(char *str, t_data *data);
 char	*join_char(char *str, char c);
 int		count_limiter(char *str);
-t_bool	expand_variables(char **str, char **envp);
+t_bool	expand_variables(char **str, char **envp, t_bool *quote, char quote_type);
 t_bool	quote_error(char *tmp, t_bool *quote);
 
 //quotes

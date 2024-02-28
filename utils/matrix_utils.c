@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:27:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/27 17:31:30 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/28 11:19:48 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ int	find_in_env(char **envp, char *to_find)
 	len = ft_strlen(to_find);
 	while (envp[i] != NULL)
 	{
-		if (ft_strncmp(envp[i], to_find, len) == 0)
+		if (ft_strncmp(envp[i], to_find, len) == 0
+			&& (envp[i][len] == '=' || envp[i][len] == '\0'))
 			return (i);
 		i++;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_freesubstr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:38:35 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/02/28 12:44:57 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/28 15:34:55 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ char	*ft_freesubstr(char *s, unsigned int start, size_t len)
 		i++;
 	}
 	new_string[len] = '\0';
-	// free(s);
+	free(s);
 	return (new_string);
 }

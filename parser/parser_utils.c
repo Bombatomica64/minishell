@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 12:29:58 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/28 12:49:02 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,6 @@ t_bool	expand_variables(char **tmp, char **envp, t_bool *quote, char quote_type)
 	{
 		if (ft_isquote((*tmp)[i]) == TRUE)
 			quote_start(quote, (*tmp)[i], &quote_type);
-		printf("quote = %d\n", *quote);
 		if ((*tmp)[i] == '$' && (*tmp)[i + 1] != '\0' && quote_type != '\'')
 		{
 			j = i + 1;

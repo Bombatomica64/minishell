@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 18:21:56 by lmicheli          #+#    #+#             */
-/*   Updated: 2023/10/26 15:59:09 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/28 12:42:13 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,36 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return (NULL);
 	new_string[0] = '\0';
 	ft_strlcat(new_string, s1 + start, (len - start - end + 1));
+	return (new_string);
+}
+
+char	*ft_freestrtrim(char *s1, char *set)
+{
+	int		start;
+	int		end;
+	int		len;
+	char	*new_string;
+
+	if (*s1 == '\0')
+		return (ft_strdup(""));
+	len = ft_strlen(s1);
+	start = 0;
+	while (start < len && ft_strchr(set, s1[start]) != NULL)
+		start++;
+	if (all_to_trim(start, len, s1) != NULL)
+	{
+		new_string = all_to_trim(start, len, s1);
+		return (new_string);
+	}
+	end = 0;
+	while (end < len && ft_strchr(set, s1[len - end - 1]) != NULL)
+		end++;
+	new_string = (char *)malloc((len - start - end + 1) * sizeof(char));
+	if (new_string == NULL)
+		return (NULL);
+	new_string[0] = '\0';
+	ft_strlcat(new_string, s1 + start, (len - start - end + 1));
+	free(s1);
 	return (new_string);
 }
 /*

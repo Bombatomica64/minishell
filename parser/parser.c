@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/27 17:25:56 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/27 18:41:41 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 				tmp_path = join_char(tmp_path, (*tmp)[i]);
 			i++;
 		}
-		if (ft_strrchr(tmp_path, '/') == NULL)
+		if (ft_strrchr(tmp_path, '/') == NULL && tmp_type != BUILT_IN)
 		{
 			tmp_path = path_execve(tmp_path, data->envp);
 			if (tmp_path == NULL)
@@ -104,15 +104,13 @@ t_bool	parser(char *str, t_data *data)
 		skip_spaces(&str);
 		tmp_type = ft_file_type(&str);
 		tmp = get_name(str, tmp_type, &quote, data->envp);
-		if (quote == TRUE)
-		{
-			free(tmp);
-			printf("quote error\n");
-			return (FALSE);
-		}
+		printf("tmp: %s\n", tmp);
+		if (ft_isbuiltin(tmp) == FALSE)
+			tmp_type = BUILT_IN;
 		tmp_path = get_path(&tmp, tmp_type, data);
 		//tmp_path = NULL;
 		ft_inputadd_back(&(*data).input, ft_inputnew(tmp, tmp_path, tmp_type));
+		printf("str: %s\n", str);
 		str = ft_freesubstr(str, ft_strlen(tmp) + 1, ft_strlen(str) - ft_strlen(tmp));
 		i--;
 	}

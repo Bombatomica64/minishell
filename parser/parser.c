@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 11:32:41 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/28 12:11:38 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*get_name(char *str, int tmp_type, t_bool *quote, char **envp)
 			tmp = join_char(tmp, str[i]);
 			i++;
 		}
-		if (ft_islimiter(str[i]) == TRUE && *quote == FALSE)
+		if ((ft_islimiter(str[i]) || ft_isalpha(str[i])))
 			break ;
 	}
 	if (quote_error(tmp, quote) == TRUE)

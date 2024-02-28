@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:24:10 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/27 12:05:48 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/28 10:47:10 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ t_bool	ft_echo(char **mtx)
 	if (!mtx || ft_strcmp(mtx[0], "echo") != 0)
 		return (FALSE);
 	i = 1;
-	if (ft_strcmp(mtx[i], "-n") == TRUE)
+	if (ft_strcmp(mtx[i], "-n") == 0)
 		i++;
 	print_matrix_echo(&mtx[i]);
-	if (ft_strcmp(mtx[1], "-n") == TRUE)
+	if (ft_strcmp(mtx[1], "-n") != 0)
 		ft_printf("\n");
 	return (TRUE);
 }

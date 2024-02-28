@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 12:29:19 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/28 12:48:26 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,20 +106,19 @@ t_bool	parser(char *str, t_data *data)
 		skip_spaces(&str);
 		tmp_type = ft_file_type(&str);
 		tmp = get_name(str, tmp_type, &quote, data->envp);
-		printf("tmp: %s\n", tmp);
+		tmp = ft_freestrtrim(tmp, " ");
 		if (ft_isbuiltin(tmp) == TRUE)
 			tmp_type = BUILT_IN;
 		tmp_path = get_path(&tmp, tmp_type, data);
 		//tmp_path = NULL;
 		ft_inputadd_back(&(*data).input, ft_inputnew(tmp, tmp_path, tmp_type));
-		printf("str: %s\n", str);
 		if (str != NULL && tmp != NULL)
 			str = ft_freesubstr(str, ft_strlen(tmp) + 1, ft_strlen(str) - ft_strlen(tmp));
 		i--;
 		free(tmp);
 		free(tmp_path);
 	}
-	// print_list((*data).input);
+	print_list((*data).input);
 	free(str);
 	return (TRUE);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
+#    By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/02/28 17:20:14 by lmicheli         ###   ########.fr        #
+#    Updated: 2024/02/29 13:03:41 by gduranti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,8 +71,12 @@ replay:
 	@rm -f $(NAME)
 	@$(CC) $(SRC) $(LIB) -o $(NAME) -lreadline
 	@echo "\033[35mRe-compiled "$(NAME)" successfully!\033[0m"
+	@./$(NAME)
 
-val: replay
+val:
+	@rm -f $(NAME)
+	@$(CC) $(SRC) $(LIB) -o $(NAME) -lreadline
+	@echo "\033[35mAre you ready for debugging?\033[0m 😈"
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=ignore_readline.supp -s ./$(NAME)
 
 parrot: replay

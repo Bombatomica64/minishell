@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arg_to_mtx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:42:04 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/29 11:12:39 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/29 16:40:43 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,27 +67,32 @@ char	*ft_rowfill(char *str, char c, int i, int *j)
 {
 	char	*row;
 
-	*j = skip_spaces2(str);
-	row = ft_rowgen(str + (*j));
+	*j += skip_spaces2(str);
+	row = ft_rowgen(&str[*j]);
+	if (!row)
+		return (NULL);
 	if (ft_isquote(str[*j]) == TRUE)
 	{
 		c = str[*j];
 		(*j)++;
 		while (str[*j] && str[*j] != c)
-		{
-			row[i++] = str[*j];
+		{	
+			row[i] = str[*j];
+			i++;
 			(*j)++;
 		}
-		(*j)++;
 	}
 	else
 	{
 		while (str[*j] && ft_isspace(str[*j]) == FALSE)
-		{
-			row[i++] = str[*j];
+		{	
+			row[i] = str[*j];
+			i++;
 			(*j)++;
 		}
 	}
+	(*j)++;
+	printf("row = %s\n", row);
 	return (row);
 }
 
@@ -103,9 +108,9 @@ char	**ft_splitarg(char *str)
 	args = ft_arg_count(str, 42, 0, 0);
 	mtx = malloc((args + 1) * sizeof(char *));
 	ft_malloc_err((void *)mtx, "ft_splitarg");
-	while (i < args && str[j])
+	while (i < args)
 	{
-		mtx[i] = ft_rowfill(&str[j], 42, 0, &j);
+		mtx[i] = ft_rowfill(str, 42, 0, &j);
 		if (!mtx[i])
 		{
 			free_matrix(&mtx);

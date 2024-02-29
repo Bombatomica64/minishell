@@ -38,11 +38,12 @@ char	*path_execve(char *command, char **envp)
 		possible_path = ft_strjoin(all_paths[i], tmp_path);
 		free(tmp_path);
 		if (access(possible_path, F_OK) == 0)
-			return (free_matrix(&all_paths), possible_path);
+			return (free_matrix(&all_paths), free(command), possible_path);
 		else
 			free(possible_path);
 		i++;
 	}
+	free(command);
 	free_matrix(&all_paths);
 	return (NULL);
 }

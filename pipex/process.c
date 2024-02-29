@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 16:45:52 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/29 12:31:48 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	do_builtin(char **cmd, t_data *data)
 	ret = TRUE;
 	if (ft_strcmp(cmd[0], "echo") == 0)
 		ret = ft_echo(cmd);
-	else if (ft_strcmp(cmd[0], "cd") == 0)
-		ret = ft_cd(cmd, data);
 	else if (ft_strcmp(cmd[0], "pwd") == 0)
 		ft_pwd();
 	else if (ft_strcmp(cmd[0], "export") == 0)
@@ -46,9 +44,11 @@ void	do_builtin(char **cmd, t_data *data)
 	else if (ft_strcmp(cmd[0], "exit") == 0)
 		ft_exit(cmd, data);
 	if (ret == FALSE)
-		ft_error(cmd[0], BUILTIN, 1, data);
-	else
+		ft_builtin_error(cmd[0]);
+	free_matrix(&cmd);
+	if (ret == TRUE)
 		free_close(&data, 0);
+	free_close(&data, 1);
 }
 /* void	child(t_data *data, int i)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:14:28 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 15:52:29 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/29 12:20:53 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,13 @@ int	ft_error(const char *str, t_error error, int errnbr, t_data *data)
 	if (data && (error == EXECVE || error == DUP))
 		free_close(&data, errnbr);
 	return (free_return(&data, errnbr));
+}
+
+void	ft_builtin_error(char *com)
+{
+	dup2(2, 1);
+	ft_printf("%s", com);
+	perror(" ");
 }
 // Path: utils/utils.h
 //std :: cout << "ft_error.c" << std :: endl;

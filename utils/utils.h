@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/29 11:26:39 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/29 12:20:49 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -380,5 +380,7 @@ int		ft_matrix_len(char **matrix);
 char	*ft_strndup(char *str, int len);
 
 char	*ft_strjoin_2(char *old_str, char *buf);
+
+void	ft_builtin_error(char *com);
 
 #endif

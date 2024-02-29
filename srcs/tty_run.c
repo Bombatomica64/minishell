@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/29 10:23:57 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/29 10:32:58 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,19 @@
 
 void	ft_do_it(t_data *data, char *terminal_input)
 {
-	t_pipex	*comm;
+	t_pipex	comm;
+	char	**cmd;
 
 	if (parser(terminal_input, data) == FALSE)
 		return ;
 	while (data->input)
 	{
-		comm = input_exec(&data);
-		if (comm->cmd)
+		comm = input_exec(&data, &cmd);
+		if (cmd)
 		{
-			data->error_codes += pipex(comm, data);
-			free_matrix(&comm->cmd);
-			free(comm);
+			comm.cmd = cmd;
+			data->error_codes += pipex(&comm, data);
+			free_matrix(&cmd);
 		}
 		if (data->input->next == NULL)
 			return ;

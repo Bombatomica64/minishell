@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/29 11:31:15 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/29 12:36:13 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*ft_remove_chars(char *str, char *to_remove, int i)
 		j++;
 	}
 	tmp[j] = '\0';
-	if (ft_strcmp(to_remove, "../") == 0)
+	if (ft_strcmp(to_remove, "../") == 0 || (ft_strcmp(to_remove, "..") == 0))
 	{
 		char_path = 2;
 		while (str[j - char_path] != '/')
@@ -66,7 +66,7 @@ char	*ft_remove_chars(char *str, char *to_remove, int i)
 	return (tmp);
 }
 
-char	*refactor_path(char *str, t_data *data, int i) //TODO: cd "~/ecc" o < "~", tra virgolette è un path relativo e ~ è il nome
+char	*refactor_path(char *str, t_data *data, int i)
 {
 	if (*str == '~')
 		str = ft_strjoin(data->home, ++(str));
@@ -75,26 +75,22 @@ char	*refactor_path(char *str, t_data *data, int i) //TODO: cd "~/ecc" o < "~", 
 		str = ft_strjoin_2("/", str);
 		str = ft_strjoin_2(data->pwd, str);
 	}
-	while ((str)[i] != '\0')
+	while (str[i] != '\0')
 	{
-		if (strncmp(str + i, "./", 2) == 0)
+		if (strncmp(str + i, "./", 2) == 0 || strncmp(str + i, "../", 3) == 0
+			|| strncmp(str + i, "..", 2) == 0)
 		{
-			str = ft_remove_chars(str, "./", i);
-			i = 0;
-		}
-		else if (strncmp(str + i, "../", 3) == 0)
-		{
-			str = ft_remove_chars(str, "../", i);
-			i = 0;
-		}
-		else if (strncmp(str + i, "..", 2) == 0)
-		{
-			str = ft_remove_chars(str, "..", i);
+			if (strncmp(str + i, "./", 2) == 0)
+				str = ft_remove_chars(str, "./", i);
+			else if (strncmp(str + i, "../", 3) == 0)
+				str = ft_remove_chars(str, "../", i);
+			else if (strncmp(str + i, "..", 2) == 0)
+				str = ft_remove_chars(str, "..", i);
 			i = 0;
 		}
 		i++;
 	}
-	if (str[ft_strlen(str) - 1] == '/')
+	while (str[ft_strlen(str) - 1] == '/' || str[ft_strlen(str) - 1] == '.')
 		str[ft_strlen(str) - 1] = '\0';
 	return (str);
 }
@@ -107,7 +103,6 @@ t_bool	ft_change_env(char **str, char *oldpwd, t_data *data)
 	free(data->envp[i]);
 	data->envp[i] = ft_strjoin("PWD=", *str);
 	data->pwd = data->envp[i] + 4;
-	// printf("data->envp[i]:%s\n", data->envp[i]);
 	i = find_in_env(data->envp, "OLDPWD");
 	free(data->envp[i]);
 	data->envp[i] = oldpwd;
@@ -115,13 +110,11 @@ t_bool	ft_change_env(char **str, char *oldpwd, t_data *data)
 	return (TRUE);
 }
 
-t_bool	ft_cd(char **mtx, t_data *data) //cd . punto singolo
+t_bool	ft_cd(char **mtx, t_data *data) //TODO: cd "~/ecc" o < "~", tra virgolette è un path relativo e ~ è il nome
 {
 	char	*change_oldpwd;
 	char	*str;
 
-	printf("mtx[1]:%s\n", mtx[1]);
-	printf("getcwd:%s\n", getcwd(NULL, 0));
 	change_oldpwd = ft_strjoin("OLDPWD=", getcwd(NULL, 0));
 	if (mtx[1] == NULL)
 		str = ft_strdup(data->home);
@@ -134,7 +127,6 @@ t_bool	ft_cd(char **mtx, t_data *data) //cd . punto singolo
 		str = ft_strdup(mtx[1]);
 		str = refactor_path(str, data, 0);
 	}
-	printf("str before chdir:%s\n", str);
 	if (chdir(str) == -1)
 	{
 		perror("cd");
@@ -142,9 +134,6 @@ t_bool	ft_cd(char **mtx, t_data *data) //cd . punto singolo
 		free(str);
 		return (FALSE);
 	}
-	// printf("oldpwd:%s\n", change_oldpwd);
 	ft_change_env(&str, change_oldpwd, data);
-	// print_pwds(data->envp);
-	printf("getcwd:%s\n", getcwd(NULL, 0));
 	return (TRUE);
 }

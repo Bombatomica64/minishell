@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:52:13 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/29 16:43:03 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/29 17:20:02 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,34 @@ t_bool	lexer_error(char *error, t_data *data)
 	else
 		waitpid(pid, &data->error_codes, 0);
 	return (FALSE);
+}
+
+void	quote_check(char *line)
+{
+	int		i;
+	int		in_quote;
+	char	quote;
+
+	i = 0;
+	quote = 0;
+	while (line[i])
+	{
+		if (line[i] == '\'' || line[i] == '\"')
+		{
+			if (quote == 0)
+				quote = line[i];
+			else if (quote == line[i])
+				quote = 0;
+		}
+		i++;
+	}
+	if (quote != 0)
+	{
+		while (quote != 0)
+		{
+			
+		}
+	}
 }
 
 t_bool	pipe_check(char *line)
@@ -50,4 +78,5 @@ t_bool	lexer(char *line, t_data *data)
 
 	if (pipe_check(line) == FALSE)
 		return (lexer_error("Syntax error near unexpected token '|'\n", data));
+	quote_check(line);
 }

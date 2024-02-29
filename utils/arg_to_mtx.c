@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arg_to_mtx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:42:04 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/28 17:46:46 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/28 17:52:42 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static char	*ft_rowgen(char *str )
 char	*ft_rowfill(char *str, char c, int i, int *j)
 {
 	char	*row;
-	
+
 	*j = skip_spaces2(str);
 	row = ft_rowgen(str + (*j));
 	if (ft_isquote(str[*j]) == TRUE)

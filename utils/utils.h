@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 18:23:58 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/29 10:14:14 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,13 @@ t_bool	ft_malloc_err(void *ptr, char *str);
 */
 void	free_close(t_data **data, int status);
 
+/**
+ * @brief Function that frees the data and returns the error number
+ * @param data, data to be freed
+ * @param status, error number
+ * @return int the error number
+ * @note this will free everything except envp 
+*/
 int		free_return(t_data **data, int status);
 
 // list functions
@@ -164,6 +171,11 @@ void	ft_inputadd_front(t_input **lst, t_input *news);
 */
 t_input	*ft_inputlast(t_input **lst);
 
+/**
+ * @brief Function that returns the first node of the list
+ * @param lst list to be checked
+ * @return A pointer to the first node of the list
+*/
 t_input	*ft_inputfirst(t_input **lst);
 
 /**
@@ -238,11 +250,20 @@ char	**matrix_dup(char **matrix);
  */
 t_bool	ft_islimiter(char c);
 
-
-void	skip_spaces(char **str);
 /**
  * @brief Function that skips spaces in a string
  * @param str a pointer to the string
+ * @note space is defined as ' ', '\t', '\n', '\v', '\f', '\r'
+ * @note the string will be modified
+*/
+void	skip_spaces(char **str);
+
+/**
+ * @brief Function that checks how many spaces to skip are in a string
+ * @param str a pointer to the string
+ * @return the number of spaces to skip
+ * @note space is defined as ' ', '\', '\n', '\v', '\f', '\r'
+ * @note the string will NOT be modified
 */
 int		skip_spaces2(char *str);
 
@@ -263,6 +284,11 @@ t_bool	ft_isspace(char c);
 */
 t_bool	ft_isquote(char c);
 
+/**
+ * @brief Function that checks the command name is a builtin
+ * @param str string to be checked
+ * @return TRUE if the command is a builtin, FALSE if it isn't
+*/
 t_bool	ft_isbuiltin(char *str);
 
 /**
@@ -271,6 +297,16 @@ t_bool	ft_isbuiltin(char *str);
  * @return fd with the file descriptor of the pipe fd[0]
 */
 int		heredoc_creat(char *limiter);
+
+/**
+ * @brief Function that prints the list of commands and files
+ * @param input list to be printed
+ * @example --------------------
+ * @example type: 2
+ * @example node: ls
+ * @example path: /bin/ls
+ * @example --------------------
+*/
 void	print_list(t_input *input);
 
 //envp utils
@@ -282,14 +318,65 @@ void	print_list(t_input *input);
  * @return the index of the string in the matrix or -1 if it isn't found
 */
 int		find_in_env(char **envp, char *to_find);
+
+/**
+ * @brief Function that searches for a string in a matrix and returns the value
+ * @param envp matrix to be checked
+ * @param to_find string to be found
+ * @return a copy of the string in the matrix or NULL if it isn't found
+*/
 char	*get_env_value(char **envp, char *to_find);
 
 // mtx functions
+
+/**
+ * @brief Function that returns the number of arguments in a command string
+ * @param str string to be checked
+ * @param c character used as a check for quotes
+ * @param i index of the string
+ * @param nbr_args number of arguments
+ * @return the number of arguments in the string
+*/
 int		ft_arg_count(char *str, char c, int i, int nbr_args);
+
+/**
+ * @brief Function that allocates a new string with the argument
+ * @param str string to be checked
+ * @param c character used as a check for quotes
+ * @param i index of the new string
+ * @param j index of the old string
+ * @return a new string with the length of the argument
+*/
 char	*ft_rowfill(char *str, char c, int i, int *j);
+
+/**
+ * @brief Function that creates the matrix of a command and arguments
+ * @param str string to be splitted
+ * @return the matrix with command and arguments
+*/
 char	**ft_splitarg(char *str);
+
+/**
+ * @brief Function that prints a matrix
+ * @param mtx matrix to be printed
+ * @return TRUE if the matrix is printed, FALSE if it isn't
+*/
 t_bool	print_matrix(char **mtx);
+
+/**
+ * @brief Function that returns the length of a matrix
+ * @param matrix matrix to be checked
+ * @return the length of the matrix
+*/
 int		ft_matrix_len(char **matrix);
-char	*ft_strndup(char *str, int i);
+
+/**
+ * @brief Function that copies a string until len and allocates it
+ * @param str string to be copied
+ * @param len length of the string to be copied
+ * @return a copy of the string until len
+ * @note the new string will be allocated
+*/
+char	*ft_strndup(char *str, int len);
 
 #endif

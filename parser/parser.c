@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/29 10:19:47 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/29 10:57:19 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,15 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 	return (tmp_path);
 }
 
+char	*free_strdup(char *str, char **freestr)
+{
+	char	*tmp;
+
+	tmp = ft_strdup(str);
+	free(*freestr);
+	return (tmp);
+}
+
 t_bool	parser(char *str, t_data *data)
 {
 	int			i;
@@ -97,12 +106,13 @@ t_bool	parser(char *str, t_data *data)
 	int			offset;
 
 	quote = FALSE;
+	offset = 0;
 	i = count_limiter(str);
 	if (i == ERROR)
 		return (FALSE);
 	while (i > 0)
 	{
-		offset = skip_spaces2(str);
+		offset += skip_spaces2(str);
 		parser.tmp_type = ft_file_type(str, &offset);
 		parser.tmp = get_name(str + offset,
 				parser.tmp_type, &quote, data->envp);
@@ -113,8 +123,7 @@ t_bool	parser(char *str, t_data *data)
 		ft_inputadd_back(&(*data).input, ft_inputnew(parser.tmp,
 				parser.tmp_path, parser.tmp_type));
 		if (str != NULL && parser.tmp != NULL)
-			str = ft_freesubstr(str, ft_strlen(parser.tmp) + 1,
-					ft_strlen(str) - ft_strlen(parser.tmp));
+			str = free_strdup(str + offset + ft_strlen(parser.tmp), &str);
 		i--;
 		free(parser.tmp);
 		free(parser.tmp_path);

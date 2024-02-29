@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/29 10:14:14 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/29 11:26:39 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -378,5 +378,7 @@ int		ft_matrix_len(char **matrix);
  * @note the new string will be allocated
 */
 char	*ft_strndup(char *str, int len);
+
+char	*ft_strjoin_2(char *old_str, char *buf);
 
 #endif

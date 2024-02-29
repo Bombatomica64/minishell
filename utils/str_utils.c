@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:08:47 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/28 16:59:54 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/29 11:30:10 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,35 @@ char	*ft_strjoin_2free(char *old_str, char *buf)
 		res[i++] = buf[j++];
 	res[ft_strlen(old_str) + ft_strlen(buf)] = '\0';
 	free(old_str);
+	free(buf);
+	return (res);
+}
+
+char	*ft_strjoin_2(char *old_str, char *buf)
+{
+	char	*res;
+	size_t	i;
+	size_t	j;
+
+	if (!old_str)
+	{
+		old_str = (char *)malloc(1 * sizeof(char));
+		if (!old_str || !buf)
+			return (NULL);
+		old_str[0] = '\0';
+	}
+	res = malloc(sizeof(char) * (ft_strlen(old_str) + ft_strlen(buf) + 1));
+	if (!res)
+		return (0);
+	i = -1;
+	j = 0;
+	if (old_str)
+		while (old_str[++i] != '\0')
+			res[i] = old_str[i];
+	while (buf[j] != '\0')
+		res[i++] = buf[j++];
+	res[ft_strlen(old_str) + ft_strlen(buf)] = '\0';
+	printf("buf = |%p|\n", buf);
 	free(buf);
 	return (res);
 }

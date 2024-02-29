@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/29 10:57:19 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/29 11:40:54 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,9 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 				i = j;
 			}
 			else
+			{
 				tmp_path = join_char(tmp_path, (*tmp)[i]);
+			}
 			i++;
 		}
 		if (ft_strchr(tmp_path, '/') == NULL && tmp_type != BUILT_IN)

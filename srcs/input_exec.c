@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/29 10:31:50 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/29 11:05:50 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static t_pipex	basic_set(t_data **data)
 	return (comm);
 }
 
-t_pipex	input_exec(t_data **data, char ***cmd)
+t_pipex	input_exec(t_data **data)
 {
 	t_pipex	comm;
 
@@ -59,7 +59,7 @@ t_pipex	input_exec(t_data **data, char ***cmd)
 		is_inout(&comm, (*data)->input);
 		if (ft_iscmd((*data)->input) == TRUE)
 		{
-			*cmd = ft_splitarg((*data)->input->node);
+			comm.cmd = ft_splitarg((*data)->input->node);
 			comm.path = (*data)->input->path;
 			if ((*data)->input->next && ft_iscmd((*data)->input->next) == TRUE)
 			{

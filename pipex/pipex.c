@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/28 17:48:10 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/29 11:38:50 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ char	*path_execve(char *command, char **envp)
 		possible_path = ft_strjoin(all_paths[i], tmp_path);
 		free(tmp_path);
 		if (access(possible_path, F_OK) == 0)
-			return (free_matrix(&all_paths), possible_path);
+			return (free_matrix(&all_paths), free(command), possible_path);
 		else
 			free(possible_path);
 		i++;
 	}
+	free(command);
 	free_matrix(&all_paths);
 	return (NULL);
 }

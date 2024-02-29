@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:05:20 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/29 10:32:32 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/29 11:05:08 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ int		open_type(char *str, t_type type);
 int		fd_in(t_data data);
 int		fd_out(t_data data);
 
-t_pipex	input_exec(t_data **data, char ***cmd);
+t_pipex	input_exec(t_data **data);
 
 #endif

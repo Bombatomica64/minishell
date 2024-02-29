@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/29 12:36:13 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/29 12:49:14 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*ft_remove_chars(char *str, char *to_remove, int i)
 			char_path++;
 		tmp[j - char_path + 1] = '\0';
 	}
-	tmp = ft_strjoin(tmp, str + i + ft_strlen(to_remove));
+	tmp = ft_newstrjoin(tmp, str + i + ft_strlen(to_remove));
 	free(str);
 	return (tmp);
 }
@@ -102,7 +102,11 @@ t_bool	ft_change_env(char **str, char *oldpwd, t_data *data)
 	i = find_in_env(data->envp, "PWD");
 	free(data->envp[i]);
 	data->envp[i] = ft_strjoin("PWD=", *str);
-	data->pwd = data->envp[i] + 4;
+	
+	free(data->pwd);
+	data->pwd = ft_strdup(data->envp[i] + 4);
+
+	
 	i = find_in_env(data->envp, "OLDPWD");
 	free(data->envp[i]);
 	data->envp[i] = oldpwd;
@@ -115,7 +119,7 @@ t_bool	ft_cd(char **mtx, t_data *data) //TODO: cd "~/ecc" o < "~", tra virgolett
 	char	*change_oldpwd;
 	char	*str;
 
-	change_oldpwd = ft_strjoin("OLDPWD=", getcwd(NULL, 0));
+	change_oldpwd = ft_strjoin_2("OLDPWD=", getcwd(NULL, 0));
 	if (mtx[1] == NULL)
 		str = ft_strdup(data->home);
 	else if (ft_strcmp(mtx[1], "-") == 0)

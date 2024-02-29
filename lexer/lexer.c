@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:52:13 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/29 16:36:18 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/29 16:43:03 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ t_bool	pipe_check(char *line)
 	i = ft_strlen(line) - 1;
 	while (i >= 0 && ft_isspace(line[i]))
 		i--;
+	if (line[i] == '|')
+		return (FALSE);
 	return (TRUE);
 }
 

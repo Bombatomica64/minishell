@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 18:34:06 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/29 10:19:47 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,14 +104,17 @@ t_bool	parser(char *str, t_data *data)
 	{
 		offset = skip_spaces2(str);
 		parser.tmp_type = ft_file_type(str, &offset);
-		parser.tmp = get_name(str + offset, parser.tmp_type, &quote, data->envp);
+		parser.tmp = get_name(str + offset,
+				parser.tmp_type, &quote, data->envp);
 		parser.tmp = ft_freestrtrim(parser.tmp, " ");
 		if (ft_isbuiltin(parser.tmp) == TRUE)
 			parser.tmp_type = BUILT_IN;
 		parser.tmp_path = get_path(&parser.tmp, parser.tmp_type, data);
-		ft_inputadd_back(&(*data).input, ft_inputnew(parser.tmp, parser.tmp_path, parser.tmp_type));
+		ft_inputadd_back(&(*data).input, ft_inputnew(parser.tmp,
+				parser.tmp_path, parser.tmp_type));
 		if (str != NULL && parser.tmp != NULL)
-			str = ft_freesubstr(str, ft_strlen(parser.tmp) + 1, ft_strlen(str) - ft_strlen(parser.tmp));
+			str = ft_freesubstr(str, ft_strlen(parser.tmp) + 1,
+					ft_strlen(str) - ft_strlen(parser.tmp));
 		i--;
 		free(parser.tmp);
 		free(parser.tmp_path);

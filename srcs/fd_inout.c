@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:05:07 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/28 12:58:52 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:27:48 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ int	open_type(char *str, t_type type)
 int	fd_in(t_data data)
 {
 	while (data.input != NULL && (data.input->type != INPUT
-			|| data.input->type != HEREDOC))
+			&& data.input->type != HEREDOC))
 		data.input = data.input->next;
 	while (data.input != NULL && (data.input->type == INPUT
-			|| data.input->type == HEREDOC))
+			&& data.input->type == HEREDOC))
 	{
 		if (data.input->type == INPUT && data.input->next->type != INPUT
 			&& data.input->next->type != HEREDOC)

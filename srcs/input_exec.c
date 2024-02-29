@@ -6,31 +6,34 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/29 11:05:50 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:37:16 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	is_inout(t_pipex *comm, t_input *input)
+void	is_inout(t_pipex *comm, t_input *input)
 {
 	if (input->type == INPUT)
 	{
-		// (*comm)->filein = ft_strdup(input->node);
 		comm->fd_in = open_type(input->path, INPUT);
 	}
 	else if (input->type == HEREDOC)
 	{
-		// comm->filein = "heredoc";
 		comm->fd_in = heredoc_creat(input->node);
 	}
 	else if (input->type == TRUNC || input->type == APPEND)
 	{
-		// comm->fileout = ft_strdup(input->node);
 		comm->fd_out = open_type(input->path, input->type);
 	}
 }
 
+/**
+ * Checks if the given input is a command.
+ *
+ * @param input The input to check.
+ * @return True if the input is a command, false otherwise.
+ */
 static t_bool	ft_iscmd(t_input *input)
 {
 	if (!input)

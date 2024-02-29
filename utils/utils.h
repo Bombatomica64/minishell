@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/29 16:42:40 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/29 16:46:53 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -303,7 +303,7 @@ int		heredoc_creat(char *limiter);
  * Example:
  * @code
  * --------------------
- * 		type: 2
+ *		type: 2
  * 		node: ls
  * 	path: /bin/ls
  * --------------------

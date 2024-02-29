@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/29 16:46:53 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:30:20 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,7 @@
 # include "../ft_printf/libft.h"
 # include "../ft_printf/ft_printf.h"
 # include "../ft_printf/get_next_line_bonus.h"
-
-typedef enum e_bool
-{
-	FALSE, // 0
-	TRUE, // 1
-	ERROR = -1
-}	t_bool;
+# include "../lexer/lexer.h"
 
 typedef enum e_error
 {

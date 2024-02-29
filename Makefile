@@ -6,7 +6,7 @@
 #    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/02/29 13:07:31 by lmicheli         ###   ########.fr        #
+#    Updated: 2024/02/29 18:21:42 by lmicheli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,9 @@ UTILS = utils/ft_error.c \
 	utils/list_utils.c \
 	utils/space_utils.c
 
+LEXER = lexer/lexer.c \
+		lexer/quote.c
+
 PARSER = parser/parser.c \
 	parser/parser_utils.c \
 	parser/quotehandler.c
@@ -42,7 +45,7 @@ SRCS = srcs/main.c \
 	srcs/fd_inout.c \
 	srcs/input_exec.c
 
-SRC = $(PIPEX) $(BUILT_IN) $(UTILS) $(PARSER) $(SRCS)
+SRC = $(PIPEX) $(BUILT_IN) $(UTILS) $(PARSER) $(SRCS) $(LEXER)
 
 FT_PRINTF = ft_printf
 LIB = ft_printf/libftprintf.a

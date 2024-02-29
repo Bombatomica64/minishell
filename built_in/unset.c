@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:14:12 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/29 12:23:24 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/02/29 12:38:27 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_bool	ft_unset(char **mtx, char ***envp)
 		return (FALSE);
 	i = 1;
 	if (find_in_env(*envp, mtx[i]) == -1)
-        return (FALSE);
+		return (FALSE);
 	while (mtx[i])
 	{
 		remove_envp_entry(envp, mtx[i]);

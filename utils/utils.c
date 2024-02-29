@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 18:34:14 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/02/29 10:13:10 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,8 @@ t_bool	ft_isbuiltin(char *cmd)
 	if (!cmd)
 		return (ERROR);
 	while (cmd[i])
-	{
-		if ((ft_isspace(cmd[i])))
-			break;
-		i++;
-	}
+		if ((ft_isspace(cmd[i++])))
+			break ;
 	str = ft_strndup(cmd, i);
 	if (ft_strcmp(str, "cd") == 0
 		|| ft_strcmp(str, "env") == 0
@@ -48,6 +45,7 @@ t_bool	ft_isbuiltin(char *cmd)
 		|| ft_strcmp(str, "exit") == 0
 		|| ft_strcmp(str, "unset") == 0
 		|| ft_strcmp(str, "export") == 0)
-		return (TRUE);
+		return (free(str), TRUE);
+	free(str);
 	return (FALSE);
 }

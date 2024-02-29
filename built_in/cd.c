@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/28 13:03:25 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/29 11:04:17 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	*refactor_path(char *str, t_data *data, int i) //TODO: cd "~/ecc" o < "~", 
 	else if (*str != '/')
 	{
 		str = ft_strjoin("/", str);
-		str = ft_strjoin(get_env_value(data->envp, "PWD"), str);
+		str = ft_strjoin(data->pwd, str);
 	}
 	while ((str)[i] != '\0')
 	{
@@ -82,10 +82,14 @@ char	*refactor_path(char *str, t_data *data, int i) //TODO: cd "~/ecc" o < "~", 
 			str = ft_remove_chars(str, "./", i);
 			i = 0;
 		}
-		else if (strncmp(str + i, "../", 3) == 0
-			|| strncmp(str + i, "..", 2) == 0)
+		else if (strncmp(str + i, "../", 3) == 0)
 		{
 			str = ft_remove_chars(str, "../", i);
+			i = 0;
+		}
+		else if (strncmp(str + i, "..", 2) == 0)
+		{
+			str = ft_remove_chars(str, "..", i);
 			i = 0;
 		}
 		i++;
@@ -102,6 +106,8 @@ t_bool	ft_change_env(char **str, char *oldpwd, t_data *data)
 	i = find_in_env(data->envp, "PWD");
 	free(data->envp[i]);
 	data->envp[i] = ft_strjoin("PWD=", *str);
+	data->pwd = data->envp[i] + 4;
+	// printf("data->envp[i]:%s\n", data->envp[i]);
 	i = find_in_env(data->envp, "OLDPWD");
 	free(data->envp[i]);
 	data->envp[i] = oldpwd;
@@ -109,24 +115,26 @@ t_bool	ft_change_env(char **str, char *oldpwd, t_data *data)
 	return (TRUE);
 }
 
-t_bool	ft_cd(char **mtx, t_data *data)
+t_bool	ft_cd(char **mtx, t_data *data) //cd . punto singolo
 {
 	char	*change_oldpwd;
 	char	*str;
 
+	printf("mtx[1]:%s\n", mtx[1]);
+	printf("getcwd:%s\n", getcwd(NULL, 0));
 	change_oldpwd = ft_strjoin("OLDPWD=", getcwd(NULL, 0));
 	if (mtx[1] == NULL)
 		str = ft_strdup(data->home);
 	else if (ft_strcmp(mtx[1], "-") == 0)
 	{
-		str = get_env_value(data->envp, "OLDPWD=");
-		ft_printf("%s\n", str);
+		str = get_env_value(data->envp, "OLDPWD");
 	}
 	else
 	{
 		str = ft_strdup(mtx[1]);
 		str = refactor_path(str, data, 0);
 	}
+	printf("str before chdir:%s\n", str);
 	if (chdir(str) == -1)
 	{
 		perror("cd");
@@ -134,5 +142,9 @@ t_bool	ft_cd(char **mtx, t_data *data)
 		free(str);
 		return (FALSE);
 	}
-	return (ft_change_env(&str, change_oldpwd, data));
+	// printf("oldpwd:%s\n", change_oldpwd);
+	ft_change_env(&str, change_oldpwd, data);
+	// print_pwds(data->envp);
+	printf("getcwd:%s\n", getcwd(NULL, 0));
+	return (TRUE);
 }

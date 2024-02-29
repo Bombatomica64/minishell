@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:44:04 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/29 18:26:50 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:40:37 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ char	*read_quotes(char *c)
 	return (tmp);
 }
 
-void	quote_check(char *line)
+void	quote_check(char ***line)
 {
 	int		i;
 	int		in_quote;
@@ -106,13 +106,13 @@ void	quote_check(char *line)
 
 	i = 0;
 	quote = 0;
-	while (line[i])
+	while ((*line)[i])
 	{
-		if (line[i] == '\'' || line[i] == '\"')
+		if ((*line)[i] == '\'' || (*line)[i] == '\"')
 		{
 			if (quote == 0)
-				quote = line[i];
-			else if (quote == line[i])
+				quote = (*line)[i];
+			else if (quote == (*line)[i])
 				quote = 0;
 		}
 		i++;
@@ -125,11 +125,11 @@ void	quote_check(char *line)
 			if (find_first(buff, quote) != -1)
 				in_quote = TRUE;
 			else
-				buff = ft_strjoin_2free(line, buff);
+				buff = ft_strjoin_2free(*line, buff);
 		}
 		if (in_quote == TRUE)
 		{
-			line = strjoin_n_free1(line, buff,
+			*line = strjoin_n_free1(*line, buff,
 					find_first(buff, quote));
 			if (check_for_open_quote(&buff[find_first(buff, quote) + 1],
 					&quote) == TRUE)

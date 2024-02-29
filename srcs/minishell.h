@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:05:20 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/29 18:28:59 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:34:02 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../parser/parser.h"
 # include "../built_in/built_in.h"
 # include "../lexer/lexer.h"
+# pragma once
 
 //input manage
 void	ft_action(int sig);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/01 16:32:22 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/01 18:22:51 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ char	*path_execve(char *command, char **envp)
 
 void	child(t_pipex *pipex, t_data *data)
 {
-	close(data->fd[0]);
+	if (data->in_pipe == TRUE)
+		close(data->fd[data->last_pipe - 1][0]);
 	if (pipex->fd_in != STDIN_FILENO)
 	{
 		if (dup2(pipex->fd_in, STDIN_FILENO) == -1)
@@ -83,9 +84,8 @@ int	pipex(t_pipex *pipex, t_data *data)
 	else
 	{
 		waitpid(pid, &status, 0);
-		close(data->fd[1]);
-		if (dup2(data->fd[0], STDIN_FILENO) == -1)
-			ft_error("parent", DUP, 13, data);
+		if (data->in_pipe == TRUE)
+			close(data->fd[data->last_pipe - 1][1]);
 		if (WIFEXITED(status))
 			return (WEXITSTATUS(status));
 	}

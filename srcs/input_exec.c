@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/01 16:27:48 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/01 18:18:27 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,29 @@ static t_pipex	basic_set(t_data **data)
 	return (comm);
 }
 
+void	do_pipes(t_data **data, t_pipex *comm)
+{
+	if ((*data)->in_pipe == FALSE)
+	{
+		pipe((*data)->fd[(*data)->last_pipe]);
+		comm->fd_out = dup((*data)->fd[(*data)->last_pipe][1]);
+		(*data)->in_pipe = TRUE;
+	}
+	else if ((*data)->in_pipe == TRUE
+		&& (*data)->last_pipe <= (*data)->pipe_nbr - 2)
+	{
+		comm->fd_in = (*data)->fd[(*data)->last_pipe][0];
+		pipe((*data)->fd[(*data)->last_pipe + 1]);
+		comm->fd_out = (*data)->fd[(*data)->last_pipe + 1][1];
+	}
+	else
+	{
+		comm->fd_in = (*data)->fd[(*data)->last_pipe][0];
+		(*data)->in_pipe = FALSE;
+	}
+	(*data)->last_pipe++;
+}
+
 t_pipex	input_exec(t_data **data)
 {
 	t_pipex	comm;
@@ -53,12 +76,9 @@ t_pipex	input_exec(t_data **data)
 		{
 			comm.cmd = ft_splitarg((*data)->input->node);
 			comm.path = (*data)->input->path;
-			if ((*data)->input->next && ft_iscmd((*data)->input->next) == TRUE)
-			{
-				if (pipe((*data)->fd) == -1)
-					ft_error("input_exec", PIPE, 132, (*data));
-				comm.fd_out = dup((*data)->fd[1]);
-			}
+			if (((*data)->input->next && ft_iscmd((*data)->input->next) == TRUE)
+				|| (*data)->in_pipe == TRUE)
+				do_pipes(data, &comm);
 			if ((*data)->input->next != NULL)
 				(*data)->input = (*data)->input->next;
 			return (comm);

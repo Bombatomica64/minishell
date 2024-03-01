@@ -50,8 +50,7 @@ void	process_input(t_data *data)
 		dup2(data->original_stdout, STDOUT_FILENO);
 	}
 	terminal_input = readline("\033[0;94mminishell> \033[0m");
-	// lexer(&terminal_input, data);
-	// exit(0);
+	lexer(&terminal_input, data);
 	if (terminal_input == NULL || ft_strcmp(terminal_input, "exit") == 0)
 	{
 		ft_printf("EOF received, exiting\n");

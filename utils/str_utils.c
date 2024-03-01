@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:08:47 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/29 11:30:10 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/01 11:29:35 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ char	*ft_strjoin_2(char *old_str, char *buf)
 	while (buf[j] != '\0')
 		res[i++] = buf[j++];
 	res[ft_strlen(old_str) + ft_strlen(buf)] = '\0';
-	printf("buf = |%p|\n", buf);
 	free(buf);
 	return (res);
 }

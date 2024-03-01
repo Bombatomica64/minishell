@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/01 12:47:58 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/01 17:24:07 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,35 @@
 
 	mettere in tty_run.c
 */
+
+char	*ft_tilde(char *str, t_data *data)
+{
+	char	*user;
+	char	*tmp;
+
+	user = get_env_value(data->envp, "USER");
+	if (str[1] == '\0' || str[1] == '/')
+		tmp = ft_strjoin(data->home, str + 1);
+	else if (str[1] == '+' && (str[2] == '\0' || str[2] == '/'))
+	{
+		tmp = ft_strdup(data->pwd);
+		if (str[2] == '/')
+			tmp = ft_newstrjoin(tmp, str + 2);
+	}
+	else if (str[1] == '-' && (str[2] == '\0' || str[2] == '/'))
+	{
+		tmp = get_env_value(data->envp, "OLDPWD");
+		if (str[2] == '/')
+			tmp = ft_newstrjoin(tmp, str + 2);
+	}
+	else if (ft_strnstr(str, user, ft_strlen(str)) != NULL)
+		tmp = ft_strjoin(data->home, str + ft_strlen(user) + 1);
+	else
+		tmp = ft_strjoin("/nfs/homes/", str + 1);
+	free(str);
+	free(user);
+	return (tmp);
+}
 
 void	print_pwds(char **envp)
 {
@@ -69,7 +98,7 @@ char	*ft_remove_chars(char *str, char *to_remove, int i)
 char	*refactor_path(char *str, t_data *data, int i)
 {
 	if (*str == '~')
-		str = ft_strjoin(data->home, ++(str));
+		str = ft_tilde(str, data);
 	else if (*str != '/')
 	{
 		str = ft_strjoin_2("/", str);
@@ -102,11 +131,8 @@ t_bool	ft_change_env(char **str, char *oldpwd, t_data *data)
 	i = find_in_env(data->envp, "PWD");
 	free(data->envp[i]);
 	data->envp[i] = ft_strjoin("PWD=", *str);
-	
 	free(data->pwd);
 	data->pwd = ft_strdup(data->envp[i] + 4);
-
-	
 	i = find_in_env(data->envp, "OLDPWD");
 	free(data->envp[i]);
 	data->envp[i] = oldpwd;

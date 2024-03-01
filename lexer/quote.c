@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:44:04 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/01 10:57:01 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/01 17:11:53 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,33 @@ void	uselss_quotes(char **buff, char *quote)
 	tmp2 = ft_strjoin(*buff, tmp);
 	free(*buff);
 	*buff = tmp2;
-	ft_printf("find_first: %d\n", find_first(tmp, *quote));
 	if (find_first(tmp, *quote) != -1)
 		uselss_quotes(buff, quote);
-	else
-		free(tmp);
+	free(tmp);
+	free(tmp2);
 }
 
 char	*strjoin_n_free1(char *line, char *buff, int index)
 {
-	int		line_len;
+	int		i;
 	int		new_str_len;
 	char	*new_str;
 
-	line_len = ft_strlen(line);
-	new_str_len = line_len + index;
+	i = 0;
+	new_str_len = ft_strlen(line) + index;
 	new_str = malloc(ft_strlen(line) + index + 1);
 	if (new_str)
 	{
-		if (line)
-			strcpy(new_str, line);
-		strncpy(new_str + line_len, buff, index);
+		while (line[i])
+		{
+			new_str[i] = line[i];
+			i++;
+		}
+		while (i < new_str_len)
+		{
+			new_str[i] = buff[i - ft_strlen(line)];
+			i++;
+		}
 		new_str[new_str_len] = '\0';
 	}
 	free(line);
@@ -75,7 +81,7 @@ int	find_first(char *str, char c)
 	return (-1);
 }
 
-t_bool	check_for_open_quote(char *line)
+t_bool	open_quote_check(char *line, char *new_quote)
 
 {
 	int		i;
@@ -95,7 +101,10 @@ t_bool	check_for_open_quote(char *line)
 		i++;
 	}
 	if (quote != 0)
+	{
+		*new_quote = quote;
 		return (TRUE);
+	}
 	return (FALSE);
 }
 
@@ -114,12 +123,39 @@ char	*read_quotes(char *c)
 	return (tmp);
 }
 
+void	handle_quote(char **line, char quote)
+{
+	int		in_quote;
+	char	*buff;
+
+	while (quote != 0)
+	{
+		buff = read_quotes(&quote);
+		if (find_first(buff, quote) != -1)
+		{
+			in_quote = FALSE;
+			break ;
+		}
+		else
+			*line = ft_strjoin_2free(*line, buff);
+	}
+	if (in_quote == FALSE)
+	{
+		*line = strjoin_n_free1(*line, buff,
+				find_first(buff, quote) + 1);
+		if ((int)ft_strlen(buff) > find_first(buff, quote)
+			&& open_quote_check(&buff[find_first(buff, quote) + 1],
+				&quote) == TRUE)
+			uselss_quotes(&buff, &quote);
+		else
+			free(buff);
+	}
+}
+
 void	quote_check(char **line)
 {
 	int		i;
-	int		in_quote;
 	char	quote;
-	char	*buff;
 
 	i = 0;
 	quote = 0;
@@ -136,27 +172,6 @@ void	quote_check(char **line)
 	}
 	if (quote != 0)
 	{
-		while (quote != 0)
-		{
-			buff = read_quotes(&quote);
-			if (find_first(buff, quote) != -1)
-			{
-				in_quote = FALSE;
-				break ;
-			}
-			else
-				*line = ft_strjoin_2free(*line, buff);
-		}
-		if (in_quote == FALSE)
-		{
-			*line = strjoin_n_free1(*line, buff,
-					find_first(buff, quote) + 1);
-			printf("line: %s\n", *line);
-			if ((int)ft_strlen(buff) > find_first(buff, quote)
-				&& check_for_open_quote(&buff[find_first(buff, quote) + 1]) == TRUE)
-				uselss_quotes(&buff, &quote);
-			else
-				free(buff);
-		}
+		handle_quote(line, quote);
 	}
 }

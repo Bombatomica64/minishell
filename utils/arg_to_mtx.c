@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   arg_to_mtx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:42:04 by gduranti          #+#    #+#             */
 /*   Updated: 2024/03/01 16:16:48 by gduranti         ###   ########.fr       */

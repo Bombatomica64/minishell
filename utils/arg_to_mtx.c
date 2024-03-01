@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:42:04 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/29 16:40:43 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/01 10:27:38 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_arg_count(char *str, char c, int i, int nbr_args)
 	return (nbr_args);
 }
 
-static char	*ft_rowgen(char *str )
+static char	*ft_rowgen(char *str)
 {
 	char	*row;
 	char	c;
@@ -52,6 +52,7 @@ static char	*ft_rowgen(char *str )
 	if (ft_isquote(str[i]) == TRUE)
 	{
 		c = str[i];
+		i++;
 		while (str[i] && str[i] != c)
 			i++;
 	}
@@ -59,7 +60,8 @@ static char	*ft_rowgen(char *str )
 		while (str[i] && ft_isspace(str[i]) == FALSE)
 			i++;
 	row = ft_calloc((i + 1), sizeof(char));
-	ft_malloc_err((void *)row, "ft_rowfill");
+	if (ft_malloc_err((void *)row, "ft_rowfill") == TRUE)
+		return (NULL);
 	return (row);
 }
 
@@ -76,20 +78,12 @@ char	*ft_rowfill(char *str, char c, int i, int *j)
 		c = str[*j];
 		(*j)++;
 		while (str[*j] && str[*j] != c)
-		{	
-			row[i] = str[*j];
-			i++;
-			(*j)++;
-		}
+			row[i++] = str[(*j)++];
 	}
 	else
 	{
 		while (str[*j] && ft_isspace(str[*j]) == FALSE)
-		{	
-			row[i] = str[*j];
-			i++;
-			(*j)++;
-		}
+			row[i++] = str[(*j)++];
 	}
 	(*j)++;
 	printf("row = %s\n", row);

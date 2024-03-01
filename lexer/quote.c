@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:44:04 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/01 10:57:01 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/01 16:34:49 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	find_first(char *str, char c)
 	return (-1);
 }
 
-t_bool	check_for_open_quote(char *line)
+t_bool	open_quote_check(char *line)
 
 {
 	int		i;
@@ -153,7 +153,7 @@ void	quote_check(char **line)
 					find_first(buff, quote) + 1);
 			printf("line: %s\n", *line);
 			if ((int)ft_strlen(buff) > find_first(buff, quote)
-				&& check_for_open_quote(&buff[find_first(buff, quote) + 1]) == TRUE)
+				&& open_quote_check(&buff[find_first(buff, quote) + 1]) == TRUE)
 				uselss_quotes(&buff, &quote);
 			else
 				free(buff);

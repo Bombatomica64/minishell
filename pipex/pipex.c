@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/02/29 12:07:27 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/01 16:16:21 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ char	*path_execve(char *command, char **envp)
 
 void	child(t_pipex *pipex, t_data *data)
 {
+	close(data->fd[1]);
 	if (pipex->fd_in != STDIN_FILENO)
 	{
 		if (dup2(pipex->fd_in, STDIN_FILENO) == -1)

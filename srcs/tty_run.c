@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/29 18:37:26 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/01 16:10:35 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_do_it(t_data *data, char *terminal_input)
 
 	if (parser(terminal_input, data) == FALSE)
 		return ;
-	while (data->input)
+	while (data->input && data->input->next)
 	{
 		comm = input_exec(&data);
 		if (comm.cmd)
@@ -26,8 +26,15 @@ void	ft_do_it(t_data *data, char *terminal_input)
 			data->error_codes += pipex(&comm, data);
 			free_matrix(&comm.cmd);
 		}
-		if (data->input->next == NULL)
-			return ;
+	}
+	if (data->input)
+	{
+		comm = input_exec(&data);
+		if (comm.cmd)
+		{
+			data->error_codes += pipex(&comm, data);
+			free_matrix(&comm.cmd);
+		}
 	}
 }
 
@@ -42,7 +49,7 @@ void	process_input(t_data *data)
 	}
 	terminal_input = readline("\033[0;94mminishell> \033[0m");
 	lexer(&terminal_input, data);
-	exit(0);
+	// exit(0);
 	if (terminal_input == NULL || ft_strcmp(terminal_input, "exit") == 0)
 	{
 		ft_printf("EOF received, exiting\n");

@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/29 16:22:07 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/01 16:09:21 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,13 @@
 void	is_inout(t_pipex *comm, t_input *input)
 {
 	if (input->type == INPUT)
-	{
 		comm->fd_in = open_type(input->path, INPUT);
-	}
 	else if (input->type == HEREDOC)
-	{
 		comm->fd_in = heredoc_creat(input->node);
-	}
 	else if (input->type == TRUNC || input->type == APPEND)
-	{
 		comm->fd_out = open_type(input->path, input->type);
-	}
 }
 
-/**
- * Checks if the given input is a command.
- *
- * @param input The input to check.
- * @return True if the input is a command, false otherwise.
- */
 static t_bool	ft_iscmd(t_input *input)
 {
 	if (!input)
@@ -48,7 +36,7 @@ static t_pipex	basic_set(t_data **data)
 	t_pipex	comm;
 
 	comm.fd_in = dup((*data)->fd[0]);
-	comm.fd_out = dup(STDOUT_FILENO);
+	comm.fd_out = dup((*data)->original_stdout);
 	return (comm);
 }
 
@@ -56,6 +44,7 @@ t_pipex	input_exec(t_data **data)
 {
 	t_pipex	comm;
 
+	printf("ciao bro\n");
 	comm = basic_set(data);
 	while ((*data)->input)
 	{

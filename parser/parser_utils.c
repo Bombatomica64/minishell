@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/29 11:40:14 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/29 17:25:00 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	count_limiter(char *str)
 	return (count);
 }
 
-t_bool	expand_variables(char **tmp, char **envp, t_bool *quote, char quote_type)
+t_bool	expand_variables(char **tmp, t_data *data, t_bool *quote, char quote_type)
 {
 	int		i;
 	int		j;
@@ -122,19 +122,28 @@ t_bool	expand_variables(char **tmp, char **envp, t_bool *quote, char quote_type)
 			quote_start(quote, (*tmp)[i], &quote_type);
 		if ((*tmp)[i] == '$' && (*tmp)[i + 1] != '\0' && quote_type != '\'')
 		{
+			if ((*tmp)[i + 1] && (*tmp)[i + 1] == '?')
+			{
+				value = ft_itoa(data->error_codes);
+				tmp2 = ft_strncpy_noquote(*tmp, 0, i);
+				i += ft_strlen(value);
+				new = ft_strjoin_2free(tmp2, value);
+				free(*tmp);
+				*tmp = new;
+			}
 			j = i + 1;
 			while ((*tmp)[j] && ft_isspace((*tmp)[j]) == FALSE)
 				j++;
 			var = ft_strncpy_noquote(*tmp, i + 1, ft_strlen_noquote(*tmp));
-			value = get_env_value(envp, var);
+			value = get_env_value(data->envp, var);
 			free(var);
 			if (value)
 			{
 				tmp2 = ft_strncpy_noquote(*tmp, 0, i);
+				i += ft_strlen(value);
 				new = ft_strjoin_2free(tmp2, value);
 				free(*tmp);
 				*tmp = new;
-				i += ft_strlen(value);
 			}
 		}
 		i++;

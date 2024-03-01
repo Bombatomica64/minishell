@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:24:10 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/29 16:05:06 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/01 11:30:50 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,9 @@ void	ft_env(char **envp)
 
 void	ft_pwd(void)
 {
-	ft_printf("%s\n", getcwd(NULL, 0));
+	char	*pwd;
+
+	pwd = getcwd(NULL, 0);
+	ft_printf("%s\n", pwd);
+	free(pwd);
 }

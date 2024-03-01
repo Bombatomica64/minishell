@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/01 16:10:35 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/01 16:29:15 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	ft_do_it(t_data *data, char *terminal_input)
 			free_matrix(&comm.cmd);
 		}
 	}
+	close(data->fd[0]);
+	close(data->fd[1]);
 }
 
 void	process_input(t_data *data)
@@ -48,7 +50,7 @@ void	process_input(t_data *data)
 		dup2(data->original_stdout, STDOUT_FILENO);
 	}
 	terminal_input = readline("\033[0;94mminishell> \033[0m");
-	lexer(&terminal_input, data);
+	// lexer(&terminal_input, data);
 	// exit(0);
 	if (terminal_input == NULL || ft_strcmp(terminal_input, "exit") == 0)
 	{

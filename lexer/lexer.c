@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:52:13 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/01 15:15:25 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/01 15:35:49 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,21 @@ int	pipe_count(char *line, t_data *data)
 {
 	int		i;
 	int		pipe_count;
+	char	quote;
 
 	i = 0;
 	pipe_count = 0;
+	quote = 0;
 	while (line[i])
 	{
-		if (line[i] == '|')
+		if (line[i] == '\'' || line[i] == '"')
+		{
+			if (quote == 0)
+				quote = line[i];
+			else if (quote == line[i])
+				quote = 0;
+		}
+		if (line[i] == '|' && quote == 0)
 			pipe_count++;
 		i++;
 	}

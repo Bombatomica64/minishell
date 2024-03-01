@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:48:37 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 12:44:05 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/01 10:30:10 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
@@ -23,6 +22,13 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }		t_list;
+
+typedef enum e_bool
+{
+	FALSE, // 0
+	TRUE, // 1
+	ERROR = -1
+}	t_bool;
 
 int			ft_isalpha(int c);
 int			ft_isalnum(int c);

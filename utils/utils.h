@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/29 12:20:49 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/01 10:33:42 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
+# include <stddef.h>
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -24,16 +25,10 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <errno.h>
-# include "../ft_printf/libft.h"
+// # include "../ft_printf/libft.h"
 # include "../ft_printf/ft_printf.h"
 # include "../ft_printf/get_next_line_bonus.h"
-
-typedef enum e_bool
-{
-	FALSE, // 0
-	TRUE, // 1
-	ERROR = -1
-}	t_bool;
+//# pragma once
 
 typedef enum e_error
 {
@@ -253,8 +248,8 @@ t_bool	ft_islimiter(char c);
 /**
  * @brief Function that skips spaces in a string
  * @param str a pointer to the string
- * @note space is defined as ' ', '\t', '\n', '\v', '\f', '\r'
- * @note the string will be modified
+ * @note space is defined as : " " \\t \\n \\v \\f \\r
+ * @note The string WILL be modified
 */
 void	skip_spaces(char **str);
 
@@ -262,8 +257,8 @@ void	skip_spaces(char **str);
  * @brief Function that checks how many spaces to skip are in a string
  * @param str a pointer to the string
  * @return the number of spaces to skip
- * @note space is defined as ' ', '\', '\n', '\v', '\f', '\r'
- * @note the string will NOT be modified
+ * @note space is defined as : " " \\t \\n \\v \\f \\r
+ * @note The string will NOT be modified
 */
 int		skip_spaces2(char *str);
 
@@ -271,16 +266,15 @@ int		skip_spaces2(char *str);
  * @brief Function that checks if a character is a space
  * @param c character to be checked
  * @return TRUE if the character is a space, FALSE if it isn't
- * @note space is defined as ' ', '\t', '\n', '\v', '\f', '\r'
+ * @note space is defined as : " " \\t \\n \\v \\f \\r
 */
-
 t_bool	ft_isspace(char c);
 
 /**
  * @brief Function that checks if a character is a quote
  * @param c character to be checked
  * @return TRUE if the character is a quote, FALSE if it isn't
- * @note quote is defined as '"' or '\''
+ * @note quote is defined as " or '\''
 */
 t_bool	ft_isquote(char c);
 
@@ -301,14 +295,16 @@ int		heredoc_creat(char *limiter);
 /**
  * @brief Function that prints the list of commands and files
  * @param input list to be printed
- * @example --------------------
- * @example type: 2
- * @example node: ls
- * @example path: /bin/ls
- * @example --------------------
+ * Example:
+ * @code
+ * --------------------
+ *		type: 2
+ * 		node: ls
+ * 	path: /bin/ls
+ * --------------------
+ * @endcode
 */
 void	print_list(t_input *input);
-
 //envp utils
 
 /**

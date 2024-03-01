@@ -3,23 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/27 11:11:17 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/02/29 16:41:30 by sgarigli         ###   ########.fr       */
+/*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
+/*   Updated: 2024/03/01 10:34:02 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-char	*get_name(char *str, int tmp_type, t_bool *quote, char **envp) 
+char	*get_name(char *str, int tmp_type, t_bool *quote, t_data *data)
 {
 	int		i ;
 	char	quote_type;
 	char	*tmp;
 
 	i = 0;
-	(void)envp;
 	tmp = NULL;
 	quote_type = '\0';
 	i = skip_spaces2(str);
@@ -42,7 +41,7 @@ char	*get_name(char *str, int tmp_type, t_bool *quote, char **envp)
 	}
 	// if (quote_error(tmp, quote) == TRUE)
 	// 	return (NULL);
-	expand_variables(&tmp, envp, quote, quote_type);
+	expand_variables(&tmp, data, quote, quote_type);
 	return (tmp);
 }
 
@@ -117,7 +116,7 @@ t_bool	parser(char *str, t_data *data)
 		offset += skip_spaces2(str);
 		parser.tmp_type = ft_file_type(str, &offset);
 		parser.tmp = get_name(str + offset,
-				parser.tmp_type, &quote, data->envp);
+				parser.tmp_type, &quote, data);
 		parser.tmp = ft_freestrtrim(parser.tmp, " ");
 		if (ft_isbuiltin(parser.tmp) == TRUE)
 			parser.tmp_type = BUILT_IN;

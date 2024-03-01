@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:52:13 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/01 10:28:46 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/01 11:58:35 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,18 @@ t_bool	pipe_check(char *line)
 		i--;
 	if (line[i] == '|')
 		return (FALSE);
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == '|')
+		{
+			i++;
+			i = skip_spaces2(&line[i]);
+			if (line[i] == '|')
+				return (FALSE);
+		}
+		i++;
+	}
 	return (TRUE);
 }
 
@@ -48,6 +60,7 @@ t_bool	lexer(char **line, t_data *data)
 {
 	if (pipe_check(*line) == FALSE)
 		return (lexer_error("Syntax error near unexpected token '|'\n", data));
+	pipe_count(*line, data);
 	quote_check(line);
 	return (TRUE);
 }

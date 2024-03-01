@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/01 10:33:42 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/01 11:57:49 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,9 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <errno.h>
-// # include "../ft_printf/libft.h"
 # include "../ft_printf/ft_printf.h"
 # include "../ft_printf/get_next_line_bonus.h"
-//# pragma once
+# pragma once
 
 typedef enum e_error
 {
@@ -79,6 +78,7 @@ typedef struct s_data
 	int		original_stdout; // dupped stdout
 	int		error_codes; // sum of the error codes
 	int		fd[2]; // pipe
+	int		pipe_nbr; // number of pipes
 	char	**envp; // current environment
 	char	*home; // home directory (~)
 	char	*pwd; // current directory

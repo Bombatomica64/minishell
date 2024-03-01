@@ -81,7 +81,7 @@ val:
 	@rm -f $(NAME)
 	@$(CC) $(SRC) $(LIB) -o $(NAME) -lreadline
 	@echo "\033[35mAre you ready for debugging?\033[0m 😈"
-	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=ignore_readline.supp -s ./$(NAME)
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=ignore_readline.supp -s --track-fds=yes ./$(NAME)
 
 parrot: replay
 	@timeout 3s curl parrot.live || true

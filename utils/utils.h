@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/01 16:31:39 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/01 18:01:59 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,9 @@ typedef struct s_data
 	int		original_stdin; // dupped stdin
 	int		original_stdout; // dupped stdout
 	int		error_codes; // sum of the error codes
-	int		fd[2]; // pipe
-	t_bool	in_pipe;
+	int		**fd; // pipe
+	int		last_pipe; // last pipe
+	t_bool	in_pipe; // if the command is in a pipe
 	int		pipe_nbr; // number of pipes
 	char	**envp; // current environment
 	char	*home; // home directory (~)

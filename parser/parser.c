@@ -6,14 +6,13 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/29 18:24:14 by lmicheli         ###   ########.fr       */
->>>>>>>>> Temporary merge branch 2
+/*   Updated: 2024/03/01 10:34:02 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-char	*get_name(char *str, int tmp_type, t_bool *quote, t_data *data) 
+char	*get_name(char *str, int tmp_type, t_bool *quote, t_data *data)
 {
 	int		i ;
 	char	quote_type;

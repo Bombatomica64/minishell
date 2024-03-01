@@ -6,13 +6,14 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/29 18:36:19 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/01 10:33:42 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
+# include <stddef.h>
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -24,10 +25,10 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <errno.h>
-# include "../ft_printf/libft.h"
+// # include "../ft_printf/libft.h"
 # include "../ft_printf/ft_printf.h"
 # include "../ft_printf/get_next_line_bonus.h"
-# pragma once
+//# pragma once
 
 typedef enum e_error
 {

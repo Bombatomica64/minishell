@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:29:56 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/29 18:33:57 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/01 10:31:41 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PARSER_H
 
 # include "../pipex/pipex.h"
-# pragma once
+//# pragma once
 
 typedef struct s_parser
 {

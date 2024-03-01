@@ -6,11 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:05:07 by gduranti          #+#    #+#             */
-<<<<<<<<< Temporary merge branch 1
-/*   Updated: 2024/02/29 15:42:06 by mruggier         ###   ########.fr       */
-=========
-/*   Updated: 2024/02/29 18:23:02 by lmicheli         ###   ########.fr       */
->>>>>>>>> Temporary merge branch 2
+/*   Updated: 2024/03/01 10:34:16 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

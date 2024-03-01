@@ -6,14 +6,13 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:48:37 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/29 18:30:26 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/01 10:30:10 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:52:13 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/29 18:37:20 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/01 10:28:46 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_bool	pipe_check(char *line)
 
 t_bool	lexer(char **line, t_data *data)
 {
-	if (pipe_check(line) == FALSE)
+	if (pipe_check(*line) == FALSE)
 		return (lexer_error("Syntax error near unexpected token '|'\n", data));
 	quote_check(line);
 	return (TRUE);

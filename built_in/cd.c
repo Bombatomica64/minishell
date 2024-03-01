@@ -6,26 +6,24 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/01 17:24:07 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/01 18:44:14 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "built_in.h"
+/*void	print_pwds(char **envp)
+{
+	int	i;
 
-/*
-	char **mtx;
-	
-	mtx = ft_split(terminal_input, ' ');
-
-	char *command[] = {mtx[0], mtx[1], NULL};
-	ft_cd(command, data);
-	return ;
-
-	env | grep -E '^(HOME|PWD|OLDPWD)='
-
-	mettere in tty_run.c
-*/
-
+	i = 0;
+	while (envp[i] != NULL)
+	{
+		if ((ft_strncmp(envp[i], "PWD=", 4) == 0)
+			|| (ft_strncmp(envp[i], "OLDPWD=", 7) == 0))
+			printf("%s\n", envp[i]);
+		i++;
+	}
+}*/
 char	*ft_tilde(char *str, t_data *data)
 {
 	char	*user;
@@ -55,19 +53,6 @@ char	*ft_tilde(char *str, t_data *data)
 	return (tmp);
 }
 
-void	print_pwds(char **envp)
-{
-	int	i;
-
-	i = 0;
-	while (envp[i] != NULL)
-	{
-		if ((ft_strncmp(envp[i], "PWD=", 4) == 0)
-			|| (ft_strncmp(envp[i], "OLDPWD=", 7) == 0))
-			printf("%s\n", envp[i]);
-		i++;
-	}
-}
 
 char	*ft_remove_chars(char *str, char *to_remove, int i)
 {
@@ -167,15 +152,3 @@ t_bool	ft_cd(char **mtx, t_data *data) //TODO: cd "~/ecc" o < "~", tra virgolett
 	ft_change_env(&str, change_oldpwd, data);
 	return (TRUE);
 }
-
-
-/*
-~mruggier porta a /nfs/homes/mruggier/ 
-~lmicheli da permission denied
-
-cd ~- = a cd -
-cd ~+ = a cd .
-cd ~3 richiede un altro comando (pushd)
-
-
-*/

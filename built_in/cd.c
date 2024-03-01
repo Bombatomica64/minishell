@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/01 11:30:30 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/01 12:47:58 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,3 +141,15 @@ t_bool	ft_cd(char **mtx, t_data *data) //TODO: cd "~/ecc" o < "~", tra virgolett
 	ft_change_env(&str, change_oldpwd, data);
 	return (TRUE);
 }
+
+
+/*
+~mruggier porta a /nfs/homes/mruggier/ 
+~lmicheli da permission denied
+
+cd ~- = a cd -
+cd ~+ = a cd .
+cd ~3 richiede un altro comando (pushd)
+
+
+*/

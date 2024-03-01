@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/01 16:39:24 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/01 17:24:07 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,18 @@ char	*ft_tilde(char *str, t_data *data)
 	user = get_env_value(data->envp, "USER");
 	if (str[1] == '\0' || str[1] == '/')
 		tmp = ft_strjoin(data->home, str + 1);
-	else if (str[1] == '+')
+	else if (str[1] == '+' && (str[2] == '\0' || str[2] == '/'))
+	{
 		tmp = ft_strdup(data->pwd);
-	else if (str[1] == '-')
+		if (str[2] == '/')
+			tmp = ft_newstrjoin(tmp, str + 2);
+	}
+	else if (str[1] == '-' && (str[2] == '\0' || str[2] == '/'))
+	{
 		tmp = get_env_value(data->envp, "OLDPWD");
+		if (str[2] == '/')
+			tmp = ft_newstrjoin(tmp, str + 2);
+	}
 	else if (ft_strnstr(str, user, ft_strlen(str)) != NULL)
 		tmp = ft_strjoin(data->home, str + ft_strlen(user) + 1);
 	else
@@ -123,11 +131,8 @@ t_bool	ft_change_env(char **str, char *oldpwd, t_data *data)
 	i = find_in_env(data->envp, "PWD");
 	free(data->envp[i]);
 	data->envp[i] = ft_strjoin("PWD=", *str);
-	
 	free(data->pwd);
 	data->pwd = ft_strdup(data->envp[i] + 4);
-
-	
 	i = find_in_env(data->envp, "OLDPWD");
 	free(data->envp[i]);
 	data->envp[i] = oldpwd;
@@ -154,7 +159,6 @@ t_bool	ft_cd(char **mtx, t_data *data) //TODO: cd "~/ecc" o < "~", tra virgolett
 	}
 	if (chdir(str) == -1)
 	{
-		printf("str = |%s|\n", str);
 		perror("cd");
 		free(change_oldpwd);
 		free(str);

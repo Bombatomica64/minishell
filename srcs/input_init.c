@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:28:06 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/28 18:27:17 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/01 18:27:24 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@ t_data	ft_data_init(char **envp)
 	data.original_stdin = dup(STDIN_FILENO);
 	data.original_stdout = dup(STDOUT_FILENO);
 	data.input = NULL;
-	data.fd[1] = STDOUT_FILENO;
-	data.fd[0] = STDIN_FILENO;
+	data.in_pipe = FALSE;
+	// data.fd[1] = STDOUT_FILENO;
+	// data.fd[0] = STDIN_FILENO;
 	data.envp = matrix_dup(envp);
 	data.home = get_env_value(data.envp, "HOME");
 	data.pwd = get_env_value(data.envp, "PWD");
@@ -55,8 +56,8 @@ void	ft_data_reinit(t_data *data)
 	if (!data)
 		return ;
 	data->input = NULL;
-	data->fd[1] = STDOUT_FILENO;
-	data->fd[0] = STDIN_FILENO;
+	// data->fd[1] = STDOUT_FILENO;
+	// data->fd[0] = STDIN_FILENO;
 	dup2(data->original_stdin, STDIN_FILENO);
 	dup2(data->original_stdout, STDOUT_FILENO);
 }

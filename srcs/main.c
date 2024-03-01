@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:05:49 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 11:17:18 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/01 18:33:40 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int argc, char **argv, char **envp)
 	{
 		dup2(2, 1);
 		ft_printf("minishell: too many arguments\n");
-		return (1);
+		exit (1);
 	}
 	(void) argv;
 	data = ft_data_init(envp);

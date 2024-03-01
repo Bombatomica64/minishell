@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/01 16:29:15 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/01 18:24:09 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ void	ft_do_it(t_data *data, char *terminal_input)
 			free_matrix(&comm.cmd);
 		}
 	}
-	close(data->fd[0]);
-	close(data->fd[1]);
 }
 
 void	process_input(t_data *data)
@@ -51,6 +49,7 @@ void	process_input(t_data *data)
 	}
 	terminal_input = readline("\033[0;94mminishell> \033[0m");
 	lexer(&terminal_input, data);
+	fd_malloc(data);
 	if (terminal_input == NULL || ft_strcmp(terminal_input, "exit") == 0)
 	{
 		ft_printf("EOF received, exiting\n");
@@ -63,6 +62,21 @@ void	process_input(t_data *data)
 		return ;
 	ft_do_it(data, terminal_input);
 	(void)free_return(&data, 0);
+}
+
+void	fd_malloc(t_data *data)
+{
+	int		i;
+
+	i = 0;
+	if (data->pipe_nbr == 0)
+		return ;
+	data->fd = malloc((sizeof(int *)) * data->pipe_nbr);
+	while (i < data->pipe_nbr)
+	{
+		data->fd[i] = malloc((sizeof(int)) * 2);
+		i++;
+	}
 }
 
 void	ft_tty_exec(t_data *data)

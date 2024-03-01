@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/01 11:27:03 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/01 11:28:18 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	process_input(t_data *data)
 		dup2(data->original_stdout, STDOUT_FILENO);
 	}
 	terminal_input = readline("\033[0;94mminishell> \033[0m");
-	lexer(&terminal_input, data);
+	//lexer(&terminal_input, data);
 	//exit(0);
 	if (terminal_input == NULL || ft_strcmp(terminal_input, "exit") == 0)
 	{

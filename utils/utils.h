@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/04 12:50:26 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:15:58 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,7 +295,8 @@ int		heredoc_creat(char *limiter);
 
 /**
  * Removes leading and trailing characters specified in
- * the 'set' parameter from the string 's1'.
+ * #include "str_utils2.h"
+the 'set' parameter from the string 's1'.
  * Additionally, frees the memory allocated for 's1'.
  *
  * @param s1 The string to be trimmed and freed.
@@ -388,6 +389,15 @@ int		ft_matrix_len(char **matrix);
 */
 char	*ft_strndup(char *str, int len);
 
+/**
+ * Concatenates two strings and returns the result.
+ * If the first string is NULL, it is treated as an empty string.
+ * If either string is NULL, the function returns NULL.
+ *
+ * @param old_str The first string to concatenate.
+ * @param buf The second string to concatenate.
+ * @return The concatenated string, or NULL if an error occurred.
+ */
 char	*ft_strjoin_2(char *old_str, char *buf);
 
 void	ft_builtin_error(char *com);

@@ -52,7 +52,7 @@ Mkfile.old
 dkms.conf
 
 # JSON files
-*.json
+#*.json
 
 #temp files
 .nfs*

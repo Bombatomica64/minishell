@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/01 18:01:59 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/04 12:50:26 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,7 +209,6 @@ char	*ft_strncpy_noquote(char *str, int start, int end);
  * @note both strings will be freed
  * @note the new string will be allocated
  */
-
 int		ft_strlen_noquote(char *str);
 
 /**
@@ -295,6 +294,17 @@ t_bool	ft_isbuiltin(char *str);
 int		heredoc_creat(char *limiter);
 
 /**
+ * Removes leading and trailing characters specified in
+ * the 'set' parameter from the string 's1'.
+ * Additionally, frees the memory allocated for 's1'.
+ *
+ * @param s1 The string to be trimmed and freed.
+ * @param set The set of characters to be removed from the string.
+ * @return A pointer to the trimmed string, or NULL if memory allocation fails.
+ */
+char	*ft_strtrimfree(char *s1, char *set);
+
+/**
  * @brief Function that prints the list of commands and files
  * @param input list to be printed
  * Example:
@@ -307,6 +317,7 @@ int		heredoc_creat(char *limiter);
  * @endcode
 */
 void	print_list(t_input *input);
+
 //envp utils
 
 /**

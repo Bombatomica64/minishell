@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close_funct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:10:53 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/29 12:41:29 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/04 12:17:12 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,27 @@ void	free_matrix(char ***mtx)
 	*mtx = NULL;
 }
 
+void	free_array_matrix(int **matrix, int size)
+{
+	int	i;
+
+	i = 0;
+	if (!matrix)
+		return ;
+	while (i < size)
+	{
+		// close(matrix[i][0]);
+		// close(matrix[i][1]);
+		free(matrix[i]);
+		i++;
+	}
+	free(matrix);
+}
+
 int	free_return(t_data **data, int status)
 {
 	ft_inputclear(&(*data)->input);
+	free_array_matrix((*data)->fd, (*data)->pipe_nbr);
 	return (status);
 }
 

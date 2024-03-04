@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/04 12:43:02 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/04 12:47:47 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ t_bool	parser(char *str, t_data *data)
 		parser.tmp_type = ft_file_type(str, &offset);
 		parser.tmp = get_name(str + offset,
 				parser.tmp_type, &quote, data);
-		parser.tmp = ft_freestrtrim(parser.tmp, " ");
+		parser.tmp = ft_strtrimfree(parser.tmp, " \t\r\n\v\f");
 		printf("parser.tmp = %s\n", parser.tmp);
 		if (ft_isbuiltin(parser.tmp) == TRUE)
 			parser.tmp_type = BUILT_IN;

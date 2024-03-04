@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:52:13 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/01 15:35:49 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/04 10:58:45 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,11 @@ t_bool	pipe_check(char *line)
 {
 	int		i;
 
-	i = 0;
 	i = skip_spaces2(line);
 	if (line[i] && line[i] == '|')
 		return (FALSE);
 	i = ft_strlen(line) - 1;
-	while (i >= 0 && ft_isspace(line[i]))
+	while (i > 0 && ft_isspace(line[i]))
 		i--;
 	if (line[i] == '|')
 		return (FALSE);
@@ -73,7 +72,7 @@ t_bool	pipe_check(char *line)
 		if (line[i] == '|')
 		{
 			i++;
-			i = skip_spaces2(&line[i]);
+			i += skip_spaces2(&line[i]);
 			if (line[i] == '|')
 				return (FALSE);
 		}
@@ -84,6 +83,8 @@ t_bool	pipe_check(char *line)
 
 t_bool	lexer(char **line, t_data *data)
 {
+	if (ft_strlen(*line) == 0)
+		return (TRUE);
 	if (pipe_check(*line) == FALSE)
 		return (lexer_error("Syntax error near unexpected token '|'\n", data));
 	pipe_count(*line, data);

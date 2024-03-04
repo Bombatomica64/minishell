@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/04 15:15:58 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/04 17:19:37 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ typedef struct s_data
  * @param matrix matrix to be freed
 */
 void	free_matrix(char ***matrix);
+
+void	free_array_matrix(int **matrix, int size);
 
 /**
  * @brief Function that outputs an error message, 

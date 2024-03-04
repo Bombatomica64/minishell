@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/01 18:24:09 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/04 17:21:43 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	process_input(t_data *data)
 	terminal_input = readline("\033[0;94mminishell> \033[0m");
 	lexer(&terminal_input, data);
 	fd_malloc(data);
+	printf("data->pipe_nbr: %d\n", data->pipe_nbr);
 	if (terminal_input == NULL || ft_strcmp(terminal_input, "exit") == 0)
 	{
 		ft_printf("EOF received, exiting\n");

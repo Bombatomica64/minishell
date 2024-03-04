@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:10:53 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/04 12:17:12 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/04 17:28:59 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,10 @@ void	free_array_matrix(int **matrix, int size)
 	int	i;
 
 	i = 0;
-	if (!matrix)
+	if (size == 0)
 		return ;
 	while (i < size)
 	{
-		// close(matrix[i][0]);
-		// close(matrix[i][1]);
 		free(matrix[i]);
 		i++;
 	}

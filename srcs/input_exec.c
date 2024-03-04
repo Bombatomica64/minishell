@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/01 18:18:27 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/04 10:47:17 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	do_pipes(t_data **data, t_pipex *comm)
 		(*data)->in_pipe = TRUE;
 	}
 	else if ((*data)->in_pipe == TRUE
-		&& (*data)->last_pipe <= (*data)->pipe_nbr - 2)
+		&& (*data)->last_pipe <= (*data)->pipe_nbr - 1)
 	{
 		comm->fd_in = (*data)->fd[(*data)->last_pipe][0];
 		pipe((*data)->fd[(*data)->last_pipe + 1]);
@@ -58,7 +58,7 @@ void	do_pipes(t_data **data, t_pipex *comm)
 	}
 	else
 	{
-		comm->fd_in = (*data)->fd[(*data)->last_pipe][0];
+		comm->fd_in = (*data)->fd[(*data)->last_pipe - 1][0];
 		(*data)->in_pipe = FALSE;
 	}
 	(*data)->last_pipe++;

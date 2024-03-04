@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:05:49 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/01 18:33:40 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/04 10:25:16 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int	main(int argc, char **argv, char **envp)
 		ft_printf("minishell: too many arguments\n");
 		exit (1);
 	}
-	(void) argv;
+	(void)argv;
+	printf("getpid: %d\n", getpid());
 	data = ft_data_init(envp);
 	signal(SIGINT, ft_action);
 	signal(SIGQUIT, SIG_IGN);

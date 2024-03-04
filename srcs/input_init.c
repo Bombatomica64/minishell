@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:28:06 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/04 10:44:50 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:33:16 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ t_data	ft_data_init(char **envp)
 	data.last_pipe = 0;
 	data.input = NULL;
 	data.in_pipe = FALSE;
+	data.fd = NULL;
+	data.pipe_nbr = 0;
 	data.envp = matrix_dup(envp);
 	data.home = get_env_value(data.envp, "HOME");
 	data.pwd = get_env_value(data.envp, "PWD");

@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:14:28 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/29 12:20:53 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:39:28 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_error(const char *str, t_error error, int errnbr, t_data *data)
 	else if (error == DUP)
 		ft_printf("%s failed to duplicate file descriptor\n", str);
 	else if (error == EXECVE)
-		perror("Error execve");
+		perror("Command not found");
 	else if (error == PIPE)
 		perror("pipex: pipe error");
 	else if (error == FORK)

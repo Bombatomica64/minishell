@@ -6,12 +6,11 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:45:24 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/04 12:50:15 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:11:34 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-#include "str_utils2.h"
 
 static unsigned int	ft_isinset(char c, char *set)
 {

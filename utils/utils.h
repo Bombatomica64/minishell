@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/05 11:30:47 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/05 16:10:45 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -423,5 +423,10 @@ char	*ft_strndup(char *str, int len);
 char	*ft_strjoin_2(char *old_str, char *buf);
 
 void	ft_builtin_error(char *com);
+
+//math utils
+
+int		ft_max(int a, int b);
+int		ft_min(int a, int b);
 
 #endif

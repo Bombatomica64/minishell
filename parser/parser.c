@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/04 16:16:51 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/05 15:54:38 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ char	*get_name(char *str, int tmp_type, t_bool *quote, t_data *data)
 	}
 	// if (quote_error(tmp, quote) == TRUE)
 	// return (NULL);
-	tmp = expand_variables(tmp, data, *quote, quote_type);
+	// tmp = expand_variables(tmp, data, *quote, quote_type);
+	(void)data;
 	return (tmp);
 }
 

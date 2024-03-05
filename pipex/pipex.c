@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/05 11:13:53 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/05 15:41:29 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*path_execve(char *command, char **envp)
 
 void	child(t_pipex *pipex, t_data *data)
 {
-	if (data->last_pipe == 0)
+	if (data->last_pipe == 0 && data->in_pipe == TRUE)
 		close(data->fd[data->last_pipe][0]);
 	printf("cmd[0]: %s\n", pipex->cmd[0]);
 	if (pipex->fd_in != STDIN_FILENO)
@@ -94,8 +94,8 @@ int	pipex(t_pipex *pipex, t_data *data)
 		printf("last_pipe: %d\n", data->last_pipe);
 		if (data->last_pipe > 0)
 			close(data->fd[data->last_pipe - 1][0]);
-		if (data->last_pipe <= data->pipe_nbr)
-			close(data->fd[data->last_pipe - 1][1]);
+		// if (data->last_pipe <= data->pipe_nbr)
+			// close(data->fd[data->last_pipe - 1][1]);
 		if (WIFEXITED(status))
 			return (WEXITSTATUS(status));
 	}

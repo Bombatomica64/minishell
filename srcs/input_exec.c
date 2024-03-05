@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/05 11:12:24 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/05 12:18:25 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	do_pipes(t_data **data, t_pipex *comm)
 	}
 	else
 	{
-		comm->fd_in = (*data)->fd[(*data)->last_pipe][0];
+		comm->fd_in = (*data)->fd[(*data)->last_pipe - 1][0];
 		(*data)->in_pipe = FALSE;
 	}
 }

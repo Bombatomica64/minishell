@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:29:56 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/04 10:51:31 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/05 15:13:50 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ typedef struct s_parser
 	char	*tmp_path;
 	t_type	tmp_type;
 }	t_parser;
+
+typedef	struct s_quote
+{
+	t_bool	open;
+	char 	type;
+}	t_quote;
 
 //parser
 t_type	ft_file_type(char *str, int *offset);

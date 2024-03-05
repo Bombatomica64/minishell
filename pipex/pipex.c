@@ -49,7 +49,7 @@ char	*path_execve(char *command, char **envp)
 
 void	child(t_pipex *pipex, t_data *data)
 {
-	if (data->last_pipe == 0 && data->in_pipe == TRUE)
+	if (data->in_pipe == TRUE && data->last_pipe == 0)
 		close(data->fd[data->last_pipe][0]);
 	printf("cmd[0]: %s\n", pipex->cmd[0]);
 	if (dup2(pipex->fd_in, STDIN_FILENO) == -1)
@@ -86,7 +86,7 @@ int	pipex(t_pipex *pipex, t_data *data)
 		wait(&status);
 		printf("status: %d\n", status);
 		printf("last_pipe: %d\n", data->last_pipe);
-		if (data->last_pipe > 0)
+		if (data->in_pipe == TRUE && data->last_pipe > 0)
 			close(data->fd[data->last_pipe - 1][0]);
 		// if (data->last_pipe <= data->pipe_nbr)
 			// close(data->fd[data->last_pipe - 1][1]);

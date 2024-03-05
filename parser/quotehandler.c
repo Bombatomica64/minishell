@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:27:46 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/02/27 12:30:00 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/05 11:52:48 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	quote_start(t_bool *quote, char c, char *quote_type)
 {
+	
 	if (*quote == FALSE)
 	{
 		*quote = TRUE;

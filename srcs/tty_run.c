@@ -27,7 +27,8 @@ void	ft_do_it(t_data *data, char *terminal_input)
 			free_matrix(&comm.cmd);
 		}
 	}
-	if (data->input)
+	if (data->input
+		&& (data->input->type == COMMAND || data->input->type == BUILT_IN))
 	{
 		comm = input_exec(&data);
 		if (comm.cmd)
@@ -51,6 +52,7 @@ void	process_input(t_data *data)
 	lexer(&terminal_input, data);
 	printf("terminal_input: %s\n", terminal_input);
 	fd_malloc(data);
+	printf("data->pipe_nbr: %d\n", data->pipe_nbr);
 	if (terminal_input == NULL || ft_strcmp(terminal_input, "exit") == 0)
 	{
 		ft_printf("EOF received, exiting\n");

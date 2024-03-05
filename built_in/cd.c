@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/01 18:44:14 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/05 10:32:14 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,11 @@ char	*ft_remove_chars(char *str, char *to_remove, int i)
 	return (tmp);
 }
 
-char	*refactor_path(char *str, t_data *data, int i)
+char	*refactor_path(char *tmp, t_data *data, int i)
 {
+	char	*str;
+
+	str = ft_strdup(tmp);
 	if (*str == '~')
 		str = ft_tilde(str, data);
 	else if (*str != '/')

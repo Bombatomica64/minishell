@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/04 15:14:45 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/04 16:16:51 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,7 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 				i = j;
 			}
 			else
-			{
 				tmp_path = join_char(tmp_path, (*tmp)[i]);
-			}
 			i++;
 		}
 		if (ft_strchr(tmp_path, '/') == NULL && tmp_type != BUILT_IN)
@@ -82,7 +80,7 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 				return (ft_error(*tmp, NO_PATH, 127, data), NULL);
 			}
 		}
-		else if (tmp_type != BUILT_IN)
+		else if (tmp_type != BUILT_IN && find_first(tmp_path, '/') != -1)
 			*tmp = ft_strrchr(tmp_path, '/') + 1;
 	}
 	else if (tmp_type != HEREDOC)
@@ -117,10 +115,12 @@ t_bool	parser(char *str, t_data *data)
 		parser.tmp_type = ft_file_type(str, &offset);
 		parser.tmp = get_name(str + offset,
 				parser.tmp_type, &quote, data);
-		parser.tmp = ft_freestrtrim(parser.tmp, " ");
+		parser.tmp = ft_strtrimfree(parser.tmp, " \t\r\n\v\f");
+		printf("parser.tmp = %s\n", parser.tmp);
 		if (ft_isbuiltin(parser.tmp) == TRUE)
 			parser.tmp_type = BUILT_IN;
 		parser.tmp_path = get_path(&parser.tmp, parser.tmp_type, data);
+		printf("dopo parser.tmp = %s\n", parser.tmp);
 		ft_inputadd_back(&(*data).input, ft_inputnew(parser.tmp,
 				parser.tmp_path, parser.tmp_type));
 		if (str != NULL && parser.tmp != NULL)

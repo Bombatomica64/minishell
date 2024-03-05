@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+         #
+#    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/03/01 18:44:57 by mruggier         ###   ########.fr        #
+#    Updated: 2024/03/04 15:10:54 by lmicheli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ UTILS = utils/ft_error.c \
 	utils/list_funct.c \
 	utils/utils.c \
 	utils/str_utils.c \
+	utils/str_utils2.c \
 	utils/matrix_utils.c \
 	utils/arg_to_mtx.c \
 	utils/heredoc.c \
@@ -81,7 +82,7 @@ val:
 	@rm -f $(NAME)
 	@$(CC) $(SRC) $(LIB) -o $(NAME) -lreadline
 	@echo "\033[35mAre you ready for debugging?\033[0m 😈"
-	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=ignore_readline.supp -s --track-fds=yes ./$(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=ignore_readline.supp -s ./$(NAME)
 
 parrot: replay
 	@timeout 3s curl parrot.live || true

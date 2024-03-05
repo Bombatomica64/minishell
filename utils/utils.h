@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/01 18:01:59 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/04 17:19:37 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ typedef struct s_data
  * @param matrix matrix to be freed
 */
 void	free_matrix(char ***matrix);
+
+void	free_array_matrix(int **matrix, int size);
 
 /**
  * @brief Function that outputs an error message, 
@@ -209,7 +211,6 @@ char	*ft_strncpy_noquote(char *str, int start, int end);
  * @note both strings will be freed
  * @note the new string will be allocated
  */
-
 int		ft_strlen_noquote(char *str);
 
 /**
@@ -295,6 +296,18 @@ t_bool	ft_isbuiltin(char *str);
 int		heredoc_creat(char *limiter);
 
 /**
+ * Removes leading and trailing characters specified in
+ * #include "str_utils2.h"
+the 'set' parameter from the string 's1'.
+ * Additionally, frees the memory allocated for 's1'.
+ *
+ * @param s1 The string to be trimmed and freed.
+ * @param set The set of characters to be removed from the string.
+ * @return A pointer to the trimmed string, or NULL if memory allocation fails.
+ */
+char	*ft_strtrimfree(char *s1, char *set);
+
+/**
  * @brief Function that prints the list of commands and files
  * @param input list to be printed
  * Example:
@@ -307,6 +320,7 @@ int		heredoc_creat(char *limiter);
  * @endcode
 */
 void	print_list(t_input *input);
+
 //envp utils
 
 /**
@@ -377,6 +391,15 @@ int		ft_matrix_len(char **matrix);
 */
 char	*ft_strndup(char *str, int len);
 
+/**
+ * Concatenates two strings and returns the result.
+ * If the first string is NULL, it is treated as an empty string.
+ * If either string is NULL, the function returns NULL.
+ *
+ * @param old_str The first string to concatenate.
+ * @param buf The second string to concatenate.
+ * @return The concatenated string, or NULL if an error occurred.
+ */
 char	*ft_strjoin_2(char *old_str, char *buf);
 
 void	ft_builtin_error(char *com);

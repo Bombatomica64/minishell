@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/01 18:18:27 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/05 10:46:47 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,18 @@ void	do_pipes(t_data **data, t_pipex *comm)
 		(*data)->in_pipe = TRUE;
 	}
 	else if ((*data)->in_pipe == TRUE
-		&& (*data)->last_pipe <= (*data)->pipe_nbr - 2)
+		&& (*data)->last_pipe < (*data)->pipe_nbr - 1)
 	{
 		comm->fd_in = (*data)->fd[(*data)->last_pipe][0];
 		pipe((*data)->fd[(*data)->last_pipe + 1]);
 		comm->fd_out = (*data)->fd[(*data)->last_pipe + 1][1];
+		(*data)->last_pipe++;
 	}
 	else
 	{
 		comm->fd_in = (*data)->fd[(*data)->last_pipe][0];
 		(*data)->in_pipe = FALSE;
 	}
-	(*data)->last_pipe++;
 }
 
 t_pipex	input_exec(t_data **data)
@@ -79,9 +79,12 @@ t_pipex	input_exec(t_data **data)
 			if (((*data)->input->next && ft_iscmd((*data)->input->next) == TRUE)
 				|| (*data)->in_pipe == TRUE)
 				do_pipes(data, &comm);
-			if ((*data)->input->next != NULL)
+			if ((*data)->input->next && ((*data)->input->next->type == COMMAND
+					|| (*data)->input->next->type == BUILT_IN))
+			{
 				(*data)->input = (*data)->input->next;
-			return (comm);
+				return (comm);
+			}
 		}
 		if ((*data)->input->next == NULL)
 			return (comm);

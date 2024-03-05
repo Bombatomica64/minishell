@@ -14,7 +14,8 @@
 # define PARSER_H
 
 # include "../pipex/pipex.h"
-//# pragma once
+# include "../lexer/lexer.h"
+# pragma once
 
 typedef struct s_parser
 {

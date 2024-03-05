@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/04 17:19:37 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/05 11:30:47 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,6 +202,26 @@ int		input_nbr_of_cmd(t_input *input);
 char	*ft_strncpy_noquote(char *str, int start, int end);
 
 // string functions
+
+/**
+ * Finds the index of the first occurrence of a character in a string.
+ *
+ * @param str The string to search in.
+ * @param c The character to find.
+ * @return The index of the first occurrence 
+ * of the character, or -1 if not found.
+ */
+int		find_first(char *str, char c);
+
+/**
+ * Concatenates two strings and frees the first string.
+ *
+ * @param line The first string to be concatenated.
+ * @param buff The second string to be concatenated.
+ * @param index The index at which to stop concatenating.
+ * @return The concatenated string, or NULL if memory allocation fails.
+ */
+char	*strjoin_n_free1(char *line, char *buff, int index);
 
 /**
  * @brief Function that mimics the behaviour of strjoin but frees both strings

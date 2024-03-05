@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/05 15:54:09 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/05 18:26:49 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,8 @@ int	count_limiter(char *str)
 }
 char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
 {
-	char	*tofind;
+	static char	*tofind = NULL;
 
-	tofind = NULL;
 	if (tmp[*i + 1] == '\0')
 	{
 		str = join_char(str, tmp[*i]);

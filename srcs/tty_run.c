@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/05 15:13:35 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/05 17:18:50 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	process_input(t_data *data)
 	if (*terminal_input == '\0')
 		return ;
 	ft_do_it(data, terminal_input);
+	printf("data->error_codes: %d\n", data->error_codes);
 	(void)free_return(&data, 0);
 }
 

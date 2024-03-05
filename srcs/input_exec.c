@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/04 18:09:26 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/05 10:46:47 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,12 @@ t_pipex	input_exec(t_data **data)
 			if (((*data)->input->next && ft_iscmd((*data)->input->next) == TRUE)
 				|| (*data)->in_pipe == TRUE)
 				do_pipes(data, &comm);
-			if ((*data)->input->next != NULL)
+			if ((*data)->input->next && ((*data)->input->next->type == COMMAND
+					|| (*data)->input->next->type == BUILT_IN))
+			{
 				(*data)->input = (*data)->input->next;
-			return (comm);
+				return (comm);
+			}
 		}
 		if ((*data)->input->next == NULL)
 			return (comm);

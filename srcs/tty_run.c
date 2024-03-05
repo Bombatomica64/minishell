@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/04 17:21:43 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/05 10:46:17 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	ft_do_it(t_data *data, char *terminal_input)
 			free_matrix(&comm.cmd);
 		}
 	}
-	if (data->input)
+	if (data->input
+		&& (data->input->type == COMMAND || data->input->type == BUILT_IN))
 	{
 		comm = input_exec(&data);
 		if (comm.cmd)

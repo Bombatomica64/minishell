@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/04 18:12:08 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/05 11:34:48 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ int	pipex(t_pipex *pipex, t_data *data)
 	status = 0;
 	if (is_cd(pipex->cmd[0]) == TRUE)
 		return (ft_cd(pipex->cmd, data));
+	if (is_exit(pipex->cmd[0]) == TRUE)
+		return (ft_exit(pipex->cmd, data));
 	pid = fork();
 	if (pid == -1)
 		ft_error("executor", FORK, 124, NULL);

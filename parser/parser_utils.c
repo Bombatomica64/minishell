@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/05 17:27:37 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/05 15:54:09 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,10 +150,7 @@ char	*expand_variables(char *tmp, t_data *data, t_bool quote, char quote_type)
 			str = join_char(str, tmp[i]);
 		}
 		else if (tmp[i] == '$' && quote_type != '\'')
-		{
-			printf("str = %s\n", str);
 			str = expand_dollar(str, tmp, &i, data);
-		}
 		else
 			str = join_char(str, tmp[i]);
 		i++;

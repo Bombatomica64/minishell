@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/04 17:19:37 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/05 16:35:06 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,9 @@ typedef struct s_data
 	int		error_codes; // sum of the error codes
 	int		**fd; // pipe
 	int		last_pipe; // last pipe
-	t_bool	in_pipe; // if the command is in a pipe
+	int		cmd_nbr; // number of commands
 	int		pipe_nbr; // number of pipes
+	t_bool	in_pipe; // if the command is in a pipe
 	char	**envp; // current environment
 	char	*home; // home directory (~)
 	char	*pwd; // current directory
@@ -202,6 +203,26 @@ int		input_nbr_of_cmd(t_input *input);
 char	*ft_strncpy_noquote(char *str, int start, int end);
 
 // string functions
+
+/**
+ * Finds the index of the first occurrence of a character in a string.
+ *
+ * @param str The string to search in.
+ * @param c The character to find.
+ * @return The index of the first occurrence 
+ * of the character, or -1 if not found.
+ */
+int		find_first(char *str, char c);
+
+/**
+ * Concatenates two strings and frees the first string.
+ *
+ * @param line The first string to be concatenated.
+ * @param buff The second string to be concatenated.
+ * @param index The index at which to stop concatenating.
+ * @return The concatenated string, or NULL if memory allocation fails.
+ */
+char	*strjoin_n_free1(char *line, char *buff, int index);
 
 /**
  * @brief Function that mimics the behaviour of strjoin but frees both strings
@@ -344,12 +365,11 @@ char	*get_env_value(char **envp, char *to_find);
 /**
  * @brief Function that returns the number of arguments in a command string
  * @param str string to be checked
- * @param c character used as a check for quotes
  * @param i index of the string
  * @param nbr_args number of arguments
  * @return the number of arguments in the string
 */
-int		ft_arg_count(char *str, char c, int i, int nbr_args);
+int		ft_arg_count(char *str, int i, int nbr_args);
 
 /**
  * @brief Function that allocates a new string with the argument
@@ -359,7 +379,7 @@ int		ft_arg_count(char *str, char c, int i, int nbr_args);
  * @param j index of the old string
  * @return a new string with the length of the argument
 */
-char	*ft_rowfill(char *str, char c, int i, int *j);
+char	*ft_rowfill(char *str, int *j, int i);
 
 /**
  * @brief Function that creates the matrix of a command and arguments
@@ -403,5 +423,10 @@ char	*ft_strndup(char *str, int len);
 char	*ft_strjoin_2(char *old_str, char *buf);
 
 void	ft_builtin_error(char *com);
+
+//math utils
+
+int		ft_max(int a, int b);
+int		ft_min(int a, int b);
 
 #endif

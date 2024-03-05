@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
+#    By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/03/04 15:10:54 by lmicheli         ###   ########.fr        #
+#    Updated: 2024/03/05 16:16:27 by gduranti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ PIPEX = pipex/pipex.c \
 
 BUILT_IN = built_in/echo.c \
 	built_in/cd.c \
-	built_in/unset.c
+	built_in/unset.c \
+	built_in/ft_exit.c
 
 UTILS = utils/ft_error.c \
 	utils/close_funct.c \
@@ -31,7 +32,8 @@ UTILS = utils/ft_error.c \
 	utils/arg_to_mtx.c \
 	utils/heredoc.c \
 	utils/list_utils.c \
-	utils/space_utils.c
+	utils/space_utils.c \
+	utils/math_utils.c
 
 LEXER = lexer/lexer.c \
 		lexer/quote.c
@@ -82,7 +84,7 @@ val:
 	@rm -f $(NAME)
 	@$(CC) $(SRC) $(LIB) -o $(NAME) -lreadline
 	@echo "\033[35mAre you ready for debugging?\033[0m 😈"
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=ignore_readline.supp -s ./$(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=ignore_readline.supp -s --track-fds=yes ./$(NAME)
 
 parrot: replay
 	@timeout 3s curl parrot.live || true

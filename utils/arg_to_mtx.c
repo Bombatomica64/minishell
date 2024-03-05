@@ -3,40 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   arg_to_mtx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:42:04 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/01 16:16:48 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/05 16:58:33 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "../parser/parser.h"
 
-int	ft_arg_count(char *str, char c, int i, int nbr_args)
+int	ft_arg_count(char *str, int i, int nbr_args)
 {
-	if (str == NULL)
-		return (0);
+	t_quote	quote;
+
+	quote.open = FALSE;
+	quote.type = 0;
 	while (str[i])
 	{
-		if (ft_isquote(str[i]) == TRUE)
-			c = str[i];
-		if (ft_isspace(str[i]) == FALSE && ft_isquote(c) == FALSE)
-		{
+		if (ft_isspace(str[i]) == FALSE)
 			nbr_args++;
-			while (str[i] && ft_isspace(str[i]) == FALSE)
-				i++;
-			i--;
-		}
-		else if (ft_isquote(c) == TRUE)
+		if (ft_isquote(str[i]))
 		{
+			quote_start(&quote.open, str[i], &quote.type);
 			i++;
-			if (str[i] != c)
-				nbr_args++;
-			while (str[i] && str[i] != c)
-				i++;
-			c = 42;
 		}
-		i++;
+		while (str[i] && (quote.open == TRUE || ft_isspace(str[i]) == FALSE))
+		{
+			quote_start(&quote.open, str[i], &quote.type);
+			i++;
+		}
+		if (str[i])
+			i++;
 	}
 	return (nbr_args);
 }
@@ -44,48 +41,53 @@ int	ft_arg_count(char *str, char c, int i, int nbr_args)
 static char	*ft_rowgen(char *str)
 {
 	char	*row;
-	char	c;
+	t_quote	quote;
 	int		i;
 
 	i = 0;
-	c = 42;
-	if (ft_isquote(str[i]) == TRUE)
+	quote.open = FALSE;
+	quote.type = 0;
+	while (str[i])
 	{
-		c = str[i];
+		if (ft_isquote(str[i]))
+		{
+			quote_start(&quote.open, str[i], &quote.type);
+			i++;
+		}
+		if (!str[i] || (ft_isspace(str[i]) == TRUE && quote.open == FALSE))
+			break ;
 		i++;
-		while (str[i] && str[i] != c)
-			i++;
 	}
-	else
-		while (str[i] && ft_isspace(str[i]) == FALSE)
-			i++;
 	row = ft_calloc((i + 1), sizeof(char));
-	if (ft_malloc_err((void *)row, "ft_rowfill") == TRUE)
+	if (!row)
 		return (NULL);
 	return (row);
 }
 
-char	*ft_rowfill(char *str, char c, int i, int *j)
+char	*ft_rowfill(char *str, int *j, int i)
 {
 	char	*row;
+	t_quote	quote;
 
-	*j += skip_spaces2(str);
+	quote.open = FALSE;
+	quote.type = 0;
+	*j += skip_spaces2(&str[*j]);
 	row = ft_rowgen(&str[*j]);
 	if (!row)
 		return (NULL);
-	if (ft_isquote(str[*j]) == TRUE)
+	while (str[*j])
 	{
-		c = str[*j];
+		if (ft_isquote(str[*j]))
+		{
+			quote_start(&quote.open, str[*j], &quote.type);
+			(*j)++;
+		}
+		if (!str[(*j)] || (ft_isspace(str[*j]) == TRUE && quote.open == FALSE))
+			break ;
+		row[i] = str[*j];
 		(*j)++;
-		while (str[*j] && str[*j] != c)
-			row[i++] = str[(*j)++];
+		i++;
 	}
-	else
-	{
-		while (str[*j] && ft_isspace(str[*j]) == FALSE)
-			row[i++] = str[(*j)++];
-	}
-	(*j)++;
 	return (row);
 }
 
@@ -98,12 +100,12 @@ char	**ft_splitarg(char *str)
 
 	j = 0;
 	i = 0;
-	args = ft_arg_count(str, 42, 0, 0);
+	args = ft_arg_count(str, 0, 0);
 	mtx = malloc((args + 1) * sizeof(char *));
 	ft_malloc_err((void *)mtx, "ft_splitarg");
 	while (i < args)
 	{
-		mtx[i] = ft_rowfill(str, 42, 0, &j);
+		mtx[i] = ft_rowfill(str, &j, 0);
 		if (!mtx[i])
 		{
 			free_matrix(&mtx);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:24:10 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/01 11:30:50 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/05 12:30:39 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ t_bool	ft_echo(char **mtx)
 	if (ft_strcmp(mtx[i], "-n") == 0)
 		i++;
 	while (mtx[i])
+	{
 		ft_printf("%s", mtx[i++]);
+		if (mtx[i])
+			ft_printf(" ");
+	}
 	if (ft_strcmp(mtx[1], "-n") != 0)
 		ft_printf("\n");
 	return (TRUE);

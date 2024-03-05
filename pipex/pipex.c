@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/04 18:12:08 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/05 17:27:19 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ char	*path_execve(char *command, char **envp)
 
 void	child(t_pipex *pipex, t_data *data)
 {
-	if (data->in_pipe == TRUE)
-		close(data->fd[data->last_pipe][0]);
+	if (data->in_pipe == TRUE && data->cmd_nbr < data->pipe_nbr)
+		close(data->fd[ft_max(data->cmd_nbr - 1, 0)][0]);
 	if (pipex->fd_in != STDIN_FILENO)
 	{
 		if (dup2(pipex->fd_in, STDIN_FILENO) == -1)
-			ft_error("child", DUP, 13, data);
+			ft_error("child_stdin", DUP, 13, data);
 	}
 	if (pipex->fd_out != STDOUT_FILENO)
 	{
@@ -63,8 +63,6 @@ void	child(t_pipex *pipex, t_data *data)
 	}
 	if (ft_isbuiltin(pipex->cmd[0]) == TRUE)
 		do_builtin(pipex->cmd, data);
-	if (data->in_pipe == TRUE && data->last_pipe > 0)
-		close(data->fd[data->last_pipe][1]);
 	if (execve(pipex->path, pipex->cmd, data->envp) < 0)
 	{
 		free_array_matrix(data->fd, data->pipe_nbr);
@@ -81,6 +79,8 @@ int	pipex(t_pipex *pipex, t_data *data)
 	status = 0;
 	if (is_cd(pipex->cmd[0]) == TRUE)
 		return (ft_cd(pipex->cmd, data));
+	if (is_exit(pipex->cmd[0]) == TRUE)
+		return (ft_exit(pipex->cmd, data));
 	pid = fork();
 	if (pid == -1)
 		ft_error("executor", FORK, 124, NULL);
@@ -90,11 +90,14 @@ int	pipex(t_pipex *pipex, t_data *data)
 	{
 		wait(&status);
 		printf("status: %d\n", status);
-		// waitpid(pid, &status, 0);
-		/* if (data->in_pipe == TRUE)
-			close(data->fd[data->last_pipe - 1][1]);
-		if (data->in_pipe == TRUE && data->last_pipe > 1)
-			close(data->fd[data->last_pipe - 2][0]); */
+		printf("last_pipe: %d\n", data->last_pipe);
+		if (data->in_pipe == TRUE && data->cmd_nbr < data->pipe_nbr)
+			close(data->fd[ft_max(data->cmd_nbr - 1, 0)][1]);
+		if (data->cmd_nbr < data->pipe_nbr)
+			if (dup2(data->fd[ft_max(data->cmd_nbr - 1, 0)][0], STDIN_FILENO) == -1)
+				perror("sesso dup2");
+		if (data->cmd_nbr == data->pipe_nbr && data->pipe_nbr > 1)
+			close(data->fd[data->pipe_nbr - 1][0]);
 		if (WIFEXITED(status))
 			return (WEXITSTATUS(status));
 	}

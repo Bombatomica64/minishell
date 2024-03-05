@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:27:46 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/05 15:13:23 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/05 11:52:48 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	quote_start(t_bool *quote, char c, char *quote_type)
 {
-	if (ft_isquote(c))
+	if (*quote == FALSE)
 	{
 		if (*quote == FALSE)
 		{

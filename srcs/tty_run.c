@@ -64,6 +64,7 @@ void	process_input(t_data *data)
 	if (*terminal_input == '\0')
 		return ;
 	ft_do_it(data, terminal_input);
+	printf("data->error_codes: %d\n", data->error_codes);
 	(void)free_return(&data, 0);
 }
 

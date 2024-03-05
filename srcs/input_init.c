@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:28:06 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/04 17:51:53 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/05 17:18:47 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,12 @@ t_data	ft_data_init(char **envp)
 
 	data.original_stdin = dup(STDIN_FILENO);
 	data.original_stdout = dup(STDOUT_FILENO);
+	data.error_codes = 0;
 	data.last_pipe = 0;
 	data.input = NULL;
 	data.in_pipe = FALSE;
 	data.fd = NULL;
+	data.cmd_nbr = 0;
 	data.pipe_nbr = 0;
 	data.envp = matrix_dup(envp);
 	data.home = get_env_value(data.envp, "HOME");
@@ -57,6 +59,7 @@ void	ft_data_reinit(t_data *data)
 	if (!data)
 		return ;
 	data->envp = FALSE;
+	data->cmd_nbr = 0;
 	data->last_pipe = 0;
 	data->pipe_nbr = 0;
 	data->input = NULL;

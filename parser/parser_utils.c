@@ -102,8 +102,36 @@ int	count_limiter(char *str)
 			count++;
 		i++;
 	}
-	printf("count = %d\n", count);
 	return (count);
+}
+char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
+{
+	char	*tofind;
+
+	tofind = NULL;
+	if (tmp[*i + 1] == '\0')
+	{
+		str = join_char(str, tmp[*i]);
+		return (str);
+	}
+	else if (tmp[*i + 1] == '$' || tmp[*i + 1] == '?' || tmp[*i + 1] == '!')
+	{
+		(*i) = (*i) + 1;
+		return (str);
+	}else
+	{
+		(*i)++;
+		while (ft_isalnum(tmp[*i]) || tmp[*i] == '_')
+		{
+			tofind = join_char(tofind, tmp[*i]);
+			(*i)++;
+		}
+		if(find_in_env(data->envp, tofind) != -1)
+			str = ft_strjoin_2free(str, get_env_value(data->envp, tofind));
+	}
+	(*i)--;
+	free(tofind);
+	return (str);
 }
 
 // non worka senza le quote
@@ -111,53 +139,23 @@ char	*expand_variables(char *tmp, t_data *data, t_bool quote, char quote_type)
 {
 	size_t		i;
 	char		*str;
-	char		*tofind;
 
 	i = 0;
 	str = NULL;
-	tofind = NULL;
-	(void)data;
 	while ((tmp)[i] && (i < ft_strlen(tmp)))
 	{
 		if (tmp[i] == '\'' || tmp[i] == '\"')
 		{
 			quote_start(&quote, tmp[i], &quote_type);
 			str = join_char(str, tmp[i]);
-			i++;
 		}
-		if (tmp[i] == '$' && quote_type != '\'')
-		{
-			i++;
-			while (tmp[i] && (ft_isspace(tmp[i]) == FALSE) && quote_type != '\'')
-			{
-				if(tmp[i] == '\'' || tmp[i] == '\"')
-					quote_start(&quote, tmp[i], &quote_type);			
-				if (quote == TRUE && ft_isquote(tmp[i]) == TRUE)
-					tofind = join_char(tofind, tmp[i]);
-				else if (quote == FALSE && ft_isquote(tmp[i]) == TRUE)
-				{
-					if (find_in_env(data->envp, tofind) != -1)
-					{
-						str = ft_strjoin_2free(str, get_env_value(data->envp, tofind));
-						str = join_char(str, tmp[i]);
-						free(tofind);
-					}
-					else
-					{
-						str = join_char(str, '$');
-						str = ft_strjoin_2free(str, tofind);
-						str = join_char(str, tmp[i]);
-						free(tofind);
-					}
-				}
-				else	
-					tofind = join_char(tofind, tmp[i]);
-				i++;
-			}
-		}
+		else if (tmp[i] == '$' && quote_type != '\'')
+			str = expand_dollar(str, tmp, &i, data);
 		else
 			str = join_char(str, tmp[i]);
 		i++;
 	}
+	free(tmp);
 	return (str);
 }
+

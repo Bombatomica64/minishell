@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/05 12:20:26 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/05 15:41:29 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ int	pipex(t_pipex *pipex, t_data *data)
 	status = 0;
 	if (is_cd(pipex->cmd[0]) == TRUE)
 		return (ft_cd(pipex->cmd, data));
+	if (is_exit(pipex->cmd[0]) == TRUE)
+		return (ft_exit(pipex->cmd, data));
 	pid = fork();
 	if (pid == -1)
 		ft_error("executor", FORK, 124, NULL);
@@ -92,8 +94,8 @@ int	pipex(t_pipex *pipex, t_data *data)
 		printf("last_pipe: %d\n", data->last_pipe);
 		if (data->in_pipe == TRUE && data->last_pipe > 0)
 			close(data->fd[data->last_pipe - 1][0]);
-		if (data->in_pipe == TRUE && data->last_pipe <= data->pipe_nbr)
-			close(data->fd[data->last_pipe - 1][1]);
+		// if (data->last_pipe <= data->pipe_nbr)
+			// close(data->fd[data->last_pipe - 1][1]);
 		if (WIFEXITED(status))
 			return (WEXITSTATUS(status));
 	}

@@ -6,18 +6,11 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/29 12:31:48 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/05 11:22:44 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-void	ft_exit(char **cmd, t_data *data)
-{
-	(void)cmd;
-	(void)data;
-	ft_printf("ciaone\n");
-}
 
 t_bool	ft_isthesameas(char *s1, char *s2)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:29:56 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/01 10:31:41 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/04 10:51:31 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ t_type	ft_file_type(char *str, int *offset);
 t_bool	parser(char *str, t_data *data);
 char	*join_char(char *str, char c);
 int		count_limiter(char *str);
-t_bool	expand_variables(char **str, t_data *data,
-			t_bool *quote, char quote_type);
+char	*expand_variables(char *str, t_data *data,
+			t_bool quote, char quote_type);
 t_bool	quote_error(char *tmp, t_bool *quote);
 
 //quotes

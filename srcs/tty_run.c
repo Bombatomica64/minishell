@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/05 10:46:17 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/05 11:43:34 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	process_input(t_data *data)
 	}
 	terminal_input = readline("\033[0;94mminishell> \033[0m");
 	lexer(&terminal_input, data);
+	printf("terminal_input: %s\n", terminal_input);
 	fd_malloc(data);
 	printf("data->pipe_nbr: %d\n", data->pipe_nbr);
 	if (terminal_input == NULL || ft_strcmp(terminal_input, "exit") == 0)
@@ -62,7 +63,7 @@ void	process_input(t_data *data)
 	add_history(terminal_input);
 	if (*terminal_input == '\0')
 		return ;
-	ft_do_it(data, terminal_input);
+	ft_do_it(data,  terminal_input);
 	(void)free_return(&data, 0);
 }
 

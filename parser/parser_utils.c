@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/29 17:25:00 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/05 11:28:13 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,47 +106,57 @@ int	count_limiter(char *str)
 	return (count);
 }
 
-t_bool	expand_variables(char **tmp, t_data *data, t_bool *quote, char quote_type)
+// non worka senza le quote
+char	*expand_variables(char *tmp, t_data *data, t_bool quote, char quote_type)
 {
-	int		i;
-	int		j;
-	char	*var;
-	char	*value;
-	char	*new;
-	char	*tmp2;
+	size_t		i;
+	char		*str;
+	char		*tofind;
 
 	i = 0;
-	while ((*tmp)[i])
+	str = NULL;
+	tofind = NULL;
+	(void)data;
+	while ((tmp)[i] && (i < ft_strlen(tmp)))
 	{
-		if (ft_isquote((*tmp)[i]) == TRUE)
-			quote_start(quote, (*tmp)[i], &quote_type);
-		if ((*tmp)[i] == '$' && (*tmp)[i + 1] != '\0' && quote_type != '\'')
+		if (tmp[i] == '\'' || tmp[i] == '\"')
 		{
-			if ((*tmp)[i + 1] && (*tmp)[i + 1] == '?')
+			quote_start(&quote, tmp[i], &quote_type);
+			str = join_char(str, tmp[i]);
+			i++;
+		}
+		if (tmp[i] == '$' && quote_type != '\'')
+		{
+			i++;
+			while (tmp[i] && (ft_isspace(tmp[i]) == FALSE) && quote_type != '\'')
 			{
-				value = ft_itoa(data->error_codes);
-				tmp2 = ft_strncpy_noquote(*tmp, 0, i);
-				i += ft_strlen(value);
-				new = ft_strjoin_2free(tmp2, value);
-				free(*tmp);
-				*tmp = new;
-			}
-			j = i + 1;
-			while ((*tmp)[j] && ft_isspace((*tmp)[j]) == FALSE)
-				j++;
-			var = ft_strncpy_noquote(*tmp, i + 1, ft_strlen_noquote(*tmp));
-			value = get_env_value(data->envp, var);
-			free(var);
-			if (value)
-			{
-				tmp2 = ft_strncpy_noquote(*tmp, 0, i);
-				i += ft_strlen(value);
-				new = ft_strjoin_2free(tmp2, value);
-				free(*tmp);
-				*tmp = new;
+				if(tmp[i] == '\'' || tmp[i] == '\"')
+					quote_start(&quote, tmp[i], &quote_type);			
+				if (quote == TRUE && ft_isquote(tmp[i]) == TRUE)
+					tofind = join_char(tofind, tmp[i]);
+				else if (quote == FALSE && ft_isquote(tmp[i]) == TRUE)
+				{
+					if (find_in_env(data->envp, tofind) != -1)
+					{
+						str = ft_strjoin_2free(str, get_env_value(data->envp, tofind));
+						str = join_char(str, tmp[i]);
+						free(tofind);
+					}else
+					{
+						str = join_char(str, '$');
+						str = ft_strjoin_2free(str, tofind);
+						str = join_char(str, tmp[i]);
+						free(tofind);
+					}
+				}
+				else	
+					tofind = join_char(tofind, tmp[i]);
+				i++;
 			}
 		}
+		else
+			str = join_char(str, tmp[i]);
 		i++;
 	}
-	return (TRUE);
+	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/05 10:46:47 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/05 11:12:24 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	do_pipes(t_data **data, t_pipex *comm)
 		pipe((*data)->fd[(*data)->last_pipe]);
 		comm->fd_out = dup((*data)->fd[(*data)->last_pipe][1]);
 		(*data)->in_pipe = TRUE;
+		(*data)->last_pipe++;
 	}
 	else if ((*data)->in_pipe == TRUE
 		&& (*data)->last_pipe < (*data)->pipe_nbr - 1)

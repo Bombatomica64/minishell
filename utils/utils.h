@@ -423,4 +423,9 @@ char	*ft_strjoin_2(char *old_str, char *buf);
 
 void	ft_builtin_error(char *com);
 
+//math utils
+
+int		ft_max(int a, int b);
+int		ft_min(int a, int b);
+
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/05 15:41:29 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/05 16:07:09 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,10 @@ void	child(t_pipex *pipex, t_data *data)
 	if (data->in_pipe == TRUE && data->last_pipe == 0)
 		close(data->fd[data->last_pipe][0]);
 	printf("cmd[0]: %s\n", pipex->cmd[0]);
-	if (pipex->fd_in != STDIN_FILENO)
-	{
-		if (dup2(pipex->fd_in, STDIN_FILENO) == -1)
-			ft_error("child_stdin", DUP, 13, data);
-	}
-	if (pipex->fd_out != STDOUT_FILENO)
-	{
-		if (dup2(pipex->fd_out, STDOUT_FILENO) == -1)
-			ft_error("child", DUP, 13, data);
-	}
+	if (dup2(pipex->fd_in, STDIN_FILENO) == -1)
+		ft_error("child_stdin", DUP, 13, data);
+	if (dup2(pipex->fd_out, STDOUT_FILENO) == -1)
+		ft_error("child", DUP, 13, data);
 	if (ft_isbuiltin(pipex->cmd[0]) == TRUE)
 		do_builtin(pipex->cmd, data);
 	if (execve(pipex->path, pipex->cmd, data->envp) < 0)

@@ -6,7 +6,7 @@
 #    By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/03/05 11:31:41 by gduranti         ###   ########.fr        #
+#    Updated: 2024/03/05 16:16:27 by gduranti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ UTILS = utils/ft_error.c \
 	utils/arg_to_mtx.c \
 	utils/heredoc.c \
 	utils/list_utils.c \
-	utils/space_utils.c
+	utils/space_utils.c \
+	utils/math_utils.c
 
 LEXER = lexer/lexer.c \
 		lexer/quote.c

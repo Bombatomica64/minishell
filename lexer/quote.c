@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:44:04 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/05 11:28:56 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/05 11:31:52 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ void	quote_check(char **line)
 	}
 	if (quote != 0)
 	{
+		printf("quote: %c\n", quote);
 		handle_quote(line, quote);
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/05 11:30:47 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/05 16:03:27 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -364,12 +364,11 @@ char	*get_env_value(char **envp, char *to_find);
 /**
  * @brief Function that returns the number of arguments in a command string
  * @param str string to be checked
- * @param c character used as a check for quotes
  * @param i index of the string
  * @param nbr_args number of arguments
  * @return the number of arguments in the string
 */
-int		ft_arg_count(char *str, char c, int i, int nbr_args);
+int		ft_arg_count(char *str, int i, int nbr_args);
 
 /**
  * @brief Function that allocates a new string with the argument
@@ -379,7 +378,7 @@ int		ft_arg_count(char *str, char c, int i, int nbr_args);
  * @param j index of the old string
  * @return a new string with the length of the argument
 */
-char	*ft_rowfill(char *str, char c, int i, int *j);
+char	*ft_rowfill(char *str, int *j, int i);
 
 /**
  * @brief Function that creates the matrix of a command and arguments

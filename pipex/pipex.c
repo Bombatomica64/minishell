@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/05 17:27:19 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/05 17:55:15 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ int	pipex(t_pipex *pipex, t_data *data)
 	{
 		wait(&status);
 		printf("status: %d\n", status);
-		printf("last_pipe: %d\n", data->last_pipe);
 		if (data->in_pipe == TRUE && data->cmd_nbr < data->pipe_nbr)
 			close(data->fd[ft_max(data->cmd_nbr - 1, 0)][1]);
 		if (data->cmd_nbr < data->pipe_nbr)

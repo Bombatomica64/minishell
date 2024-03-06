@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expande_variables_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:40:43 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/06 11:24:47 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/06 12:24:03 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

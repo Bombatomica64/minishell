@@ -96,4 +96,9 @@ parrot: replay
 	@timeout 3s curl parrot.live || true
 	@clear
 
+train:
+	@sl
+	@./minishell
+	@sl
+	
 .PHONY: all clean fclean re replay

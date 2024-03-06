@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/06 11:40:30 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/06 12:21:19 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,8 @@ char	*get_name(char *str, int tmp_type, t_bool *quote, t_data *data)
 		if (ft_islimiter(str[i]) == TRUE && *quote == FALSE)
 			break ;
 	}
-	// if (quote_error(tmp, quote) == TRUE)
-	// return (NULL);
-	tmp = expand_name(tmp, data, *quote, quote_type);
+	if (tmp_type != HEREDOC)
+		tmp = expand_name(tmp, data, *quote, quote_type);
 	(void)data;
 	return (tmp);
 }

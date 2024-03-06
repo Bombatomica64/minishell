@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:32:21 by gduranti          #+#    #+#             */
-/*   Updated: 2024/02/28 12:52:28 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/06 12:25:56 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "../parser/parser.h"
 
 /*int	heredoc_creat(char *limiter, t_data *data)
   void	heredoc_creat(char *limiter)
@@ -43,23 +43,25 @@ static void	ft_putendl_fd_free(char **s, int fd)
 	free(*s);
 }
 
-int	heredoc_creat(char *limiter)
+int	heredoc_creat(char *limiter, t_data *data)
 {
 	char	*str;
 	int		fd[2];
 	pid_t	pid;
-
+	
 	printf("limiter: |%s|\n", limiter);
 	if (pipe(fd) < 0)
 		ft_error("heredoc_creat", PIPE, 132, NULL);
 	pid = fork();
 	if (pid == 0)
 	{
-		str = readline("heredoc> ");
-		while (ft_strcmp(str, limiter) != 0)
+		while (TRUE)
 		{
-			ft_putendl_fd_free(&str, fd[1]);
 			str = readline("heredoc> ");
+			if (ft_strcmp(str, limiter) == 0)
+				break ;
+			str = expand_name(str, data, FALSE, '\0');
+			ft_putendl_fd_free(&str, fd[1]);
 		}
 		close(fd[1]);
 		exit(0);

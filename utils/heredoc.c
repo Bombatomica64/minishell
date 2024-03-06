@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:32:21 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/06 12:45:33 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/06 12:57:32 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ int	heredoc_creat(char *limiter, t_data *data)
 	pid = fork();
 	if (pid == 0)
 	{
+		close(fd[0]);
 		while (TRUE)
 		{
-      close(fd[0]);
 			str = readline("heredoc> ");
 			if (ft_strcmp(str, limiter) == 0)
 				break ;

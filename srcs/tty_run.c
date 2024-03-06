@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/06 10:18:07 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/06 11:30:01 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	process_input(t_data *data)
 	if (*terminal_input == '\0')
 		return ;
 	ft_do_it(data, terminal_input);
-	printf("data->error_codes: %d\n", data->error_codes);
 	(void)free_return(&data, 0);
 }
 

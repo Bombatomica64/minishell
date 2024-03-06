@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/05 17:47:57 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/06 11:40:04 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	do_pipes(t_data **data, t_pipex *comm)
 	if ((*data)->in_pipe == FALSE)
 	{
 		pipe((*data)->fd[(*data)->cmd_nbr]);
-		printf("command: %d\n", (*data)->cmd_nbr);
 		comm->fd_out = ((*data)->fd[(*data)->last_pipe][1]);
 		(*data)->in_pipe = TRUE;
 	}
@@ -55,19 +54,15 @@ void	do_pipes(t_data **data, t_pipex *comm)
 		&& (*data)->cmd_nbr < (*data)->pipe_nbr - 1)
 	{
 		comm->fd_in = (*data)->fd[(*data)->last_pipe][0];
-		printf("(%d) pipe\n", (*data)->cmd_nbr + 1);
 		pipe((*data)->fd[(*data)->cmd_nbr + 1]);
 		comm->fd_out = (*data)->fd[(*data)->last_pipe + 1][1];
 		(*data)->cmd_nbr++;
-		printf("command: %d\n", (*data)->cmd_nbr);
 	}
 	else
 	{
 		(*data)->cmd_nbr++;
 		comm->fd_in = (*data)->fd[(*data)->cmd_nbr - 1][0];
 		(*data)->in_pipe = FALSE;
-		printf("command: %d\n", (*data)->cmd_nbr);
-
 	}
 }
 

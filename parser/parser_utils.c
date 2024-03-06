@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/05 15:54:09 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/06 11:13:32 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ int	count_limiter(char *str)
 	}
 	return (count);
 }
+
 char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
 {
 	char	*tofind;
@@ -116,9 +117,10 @@ char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
 	}
 	else if (tmp[*i + 1] == '$' || tmp[*i + 1] == '?' || tmp[*i + 1] == '!')
 	{
-		(*i) = (*i) + 1;
+		(*i) += 1;
 		return (str);
-	}else
+	}
+	else
 	{
 		(*i)++;
 		while (ft_isalnum(tmp[*i]) || tmp[*i] == '_')
@@ -126,7 +128,7 @@ char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
 			tofind = join_char(tofind, tmp[*i]);
 			(*i)++;
 		}
-		if(find_in_env(data->envp, tofind) != -1)
+		if (find_in_env(data->envp, tofind) != -1)
 			str = ft_strjoin_2free(str, get_env_value(data->envp, tofind));
 	}
 	(*i)--;
@@ -134,7 +136,6 @@ char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
 	return (str);
 }
 
-// non worka senza le quote
 char	*expand_variables(char *tmp, t_data *data, t_bool quote, char quote_type)
 {
 	size_t		i;
@@ -158,4 +159,3 @@ char	*expand_variables(char *tmp, t_data *data, t_bool quote, char quote_type)
 	free(tmp);
 	return (str);
 }
-

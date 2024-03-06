@@ -6,7 +6,7 @@
 #    By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/03/06 10:49:01 by sgarigli         ###   ########.fr        #
+#    Updated: 2024/03/06 16:02:46 by sgarigli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,4 +91,9 @@ parrot: replay
 	@timeout 3s curl parrot.live || true
 	@clear
 
+train:
+	@sl
+	@./minishell
+	@sl
+	
 .PHONY: all clean fclean re replay

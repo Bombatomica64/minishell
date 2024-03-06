@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:40:43 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/06 10:52:47 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/06 12:24:03 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,10 @@ char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
 
 	tofind = NULL;
 	if (tmp[*i + 1] == '\0')
-	{
-		str = join_char(str, tmp[*i]);
-		return (str);
-	}
+		return (join_char(str, tmp[*i]));
 	else if (tmp[*i + 1] == '$' || tmp[*i + 1] == '!')
-	{
-		(*i)++;
-		return (str);
-	}else if (tmp[*i + 1] == '?')
+		return ((*i)++, str);
+	else if (tmp[*i + 1] == '?')
 	{
 		(*i)++;
 		str = ft_strjoin_2free(str, ft_itoa(data->error_codes));
@@ -36,19 +31,13 @@ char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
 	{
 		(*i)++;
 		while (ft_isalnum(tmp[*i]) || tmp[*i] == '_')
-		{
-			tofind = join_char(tofind, tmp[*i]);
-			(*i)++;
-		}
-		if(find_in_env(data->envp, tofind) != -1)
+			tofind = join_char(tofind, tmp[(*i)++]);
+		if (find_in_env(data->envp, tofind) != -1)
 			str = ft_strjoin_2free(str, get_env_value(data->envp, tofind));
 	}
-	(*i)--;
-	free(tofind);
-	return (str);
+	return (free(tofind), (*i)--, str);
 }
 
-// non worka senza le quote
 char	*expand_name(char *tmp, t_data *data, t_bool quote, char quote_type)
 {
 	size_t		i;

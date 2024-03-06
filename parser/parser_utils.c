@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/06 11:13:32 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/06 12:02:46 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ int	count_limiter(char *str)
 	i = skip_spaces2(str);
 	if (!str)
 		return (ERROR);
-	if ((str[i] == '<' && str[i + 1] == '<') || (str[i] == '>' && str[i + 1] == '>'))
+	if ((str[i] == '<' && str[i + 1] == '<')
+		|| (str[i] == '>' && str[i + 1] == '>'))
 		i += 2;
 	if (ft_islimiter(str[i]) == TRUE)
 		i++;
@@ -93,7 +94,8 @@ int	count_limiter(char *str)
 	{
 		if (str[i] == '\'' || str[i] == '\"')
 			quote_start(&quote, str[i], &quote_type);
-		if(((str[i] == '<' && str[i + 1] == '<') || (str[i] == '>' && str[i + 1] == '>')) && quote == FALSE)
+		if (((str[i] == '<' && str[i + 1] == '<')
+				|| (str[i] == '>' && str[i + 1] == '>')) && quote == FALSE)
 		{
 			i += 2;
 			count++;

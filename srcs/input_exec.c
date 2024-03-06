@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   input_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/05 17:47:57 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/06 12:05:00 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	is_inout(t_pipex *comm, t_input *input)
+void	is_inout(t_pipex *comm, t_input *input, t_data *data)
 {
 	if (input->type == INPUT)
 		comm->fd_in = open_type(input->path, INPUT);
 	else if (input->type == HEREDOC)
-		comm->fd_in = heredoc_creat(input->node);
+		comm->fd_in = heredoc_creat(input->node, data);
 	else if (input->type == TRUNC || input->type == APPEND)
 		comm->fd_out = open_type(input->path, input->type);
 }
@@ -47,7 +47,6 @@ void	do_pipes(t_data **data, t_pipex *comm)
 	if ((*data)->in_pipe == FALSE)
 	{
 		pipe((*data)->fd[(*data)->cmd_nbr]);
-		printf("command: %d\n", (*data)->cmd_nbr);
 		comm->fd_out = ((*data)->fd[(*data)->last_pipe][1]);
 		(*data)->in_pipe = TRUE;
 	}
@@ -55,19 +54,15 @@ void	do_pipes(t_data **data, t_pipex *comm)
 		&& (*data)->cmd_nbr < (*data)->pipe_nbr - 1)
 	{
 		comm->fd_in = (*data)->fd[(*data)->last_pipe][0];
-		printf("(%d) pipe\n", (*data)->cmd_nbr + 1);
 		pipe((*data)->fd[(*data)->cmd_nbr + 1]);
 		comm->fd_out = (*data)->fd[(*data)->last_pipe + 1][1];
 		(*data)->cmd_nbr++;
-		printf("command: %d\n", (*data)->cmd_nbr);
 	}
 	else
 	{
 		(*data)->cmd_nbr++;
 		comm->fd_in = (*data)->fd[(*data)->cmd_nbr - 1][0];
 		(*data)->in_pipe = FALSE;
-		printf("command: %d\n", (*data)->cmd_nbr);
-
 	}
 }
 
@@ -78,7 +73,7 @@ t_pipex	input_exec(t_data **data)
 	comm = basic_set(data);
 	while ((*data)->input)
 	{
-		is_inout(&comm, (*data)->input);
+		is_inout(&comm, (*data)->input , *data);
 		if (ft_iscmd((*data)->input) == TRUE)
 		{
 			comm.cmd = ft_splitarg((*data)->input->node);

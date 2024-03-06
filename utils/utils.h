@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/05 16:35:06 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/06 12:06:06 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -312,9 +312,10 @@ t_bool	ft_isbuiltin(char *str);
 /**
  * @brief adds the heredoc functionality to the program
  * @param limiter string that will be used as a limiter
+ * @param data data envp to be passed to the function
  * @return fd with the file descriptor of the pipe fd[0]
 */
-int		heredoc_creat(char *limiter);
+int		heredoc_creat(char *limiter, t_data *data);
 
 /**
  * Removes leading and trailing characters specified in

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fd_inout.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:05:07 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/01 10:34:16 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/06 12:09:59 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	open_type(char *str, t_type type)
 	return (fd);
 }
 
-int	fd_in(t_data data)
+/* int	fd_in(t_data data)
 {
 	while (data.input != NULL && (data.input->type != INPUT
 			&& data.input->type != HEREDOC))
@@ -47,7 +47,7 @@ int	fd_in(t_data data)
 		data.input = data.input->next;
 	}
 	return (STDIN_FILENO);
-}
+} */
 
 int	fd_out(t_data data)
 {

@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   input_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/06 11:40:04 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/06 12:05:00 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	is_inout(t_pipex *comm, t_input *input)
+void	is_inout(t_pipex *comm, t_input *input, t_data *data)
 {
 	if (input->type == INPUT)
 		comm->fd_in = open_type(input->path, INPUT);
 	else if (input->type == HEREDOC)
-		comm->fd_in = heredoc_creat(input->node);
+		comm->fd_in = heredoc_creat(input->node, data);
 	else if (input->type == TRUNC || input->type == APPEND)
 		comm->fd_out = open_type(input->path, input->type);
 }
@@ -73,7 +73,7 @@ t_pipex	input_exec(t_data **data)
 	comm = basic_set(data);
 	while ((*data)->input)
 	{
-		is_inout(&comm, (*data)->input);
+		is_inout(&comm, (*data)->input , *data);
 		if (ft_iscmd((*data)->input) == TRUE)
 		{
 			comm.cmd = ft_splitarg((*data)->input->node);

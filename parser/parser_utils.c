@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/06 10:40:41 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/06 11:13:32 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,3 @@ int	count_limiter(char *str)
 	}
 	return (count);
 }
-
-

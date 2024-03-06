@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/06 10:44:47 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/06 11:40:30 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,7 @@ t_bool	parser(char *str, t_data *data)
 		parser.tmp_path = get_path(&parser.tmp, parser.tmp_type, data);
 		ft_inputadd_back(&(*data).input, ft_inputnew(parser.tmp,
 				parser.tmp_path, parser.tmp_type));
-		if (str != NULL && parser.tmp != NULL)
-			str = free_strdup(str + offset + ft_strlen(parser.tmp), &str);
+		str = free_strdup(str + offset + ft_strlen(parser.tmp), &str);
 		i--;
 		free(parser.tmp);
 		free(parser.tmp_path);

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:46:56 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/11 17:01:50 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:27:58 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,5 @@ t_bool	bonus_checker(char *line, t_data *data)
 						data, line[i + 2]));
 		}
 	}
+	return (TRUE);
 }

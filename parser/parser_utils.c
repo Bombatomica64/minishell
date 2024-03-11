@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/05 15:54:09 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/06 12:02:46 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ int	count_limiter(char *str)
 	i = skip_spaces2(str);
 	if (!str)
 		return (ERROR);
-	if ((str[i] == '<' && str[i + 1] == '<') || (str[i] == '>' && str[i + 1] == '>'))
+	if ((str[i] == '<' && str[i + 1] == '<')
+		|| (str[i] == '>' && str[i + 1] == '>'))
 		i += 2;
 	if (ft_islimiter(str[i]) == TRUE)
 		i++;
@@ -93,7 +94,8 @@ int	count_limiter(char *str)
 	{
 		if (str[i] == '\'' || str[i] == '\"')
 			quote_start(&quote, str[i], &quote_type);
-		if(((str[i] == '<' && str[i + 1] == '<') || (str[i] == '>' && str[i + 1] == '>')) && quote == FALSE)
+		if (((str[i] == '<' && str[i + 1] == '<')
+				|| (str[i] == '>' && str[i + 1] == '>')) && quote == FALSE)
 		{
 			i += 2;
 			count++;
@@ -102,62 +104,5 @@ int	count_limiter(char *str)
 			count++;
 		i++;
 	}
-	printf("count = %d\n", count);
 	return (count);
-}
-
-// non worka senza le quote
-char	*expand_variables(char *tmp, t_data *data, t_bool quote, char quote_type)
-{
-	size_t		i;
-	char		*str;
-	char		*tofind;
-
-	i = 0;
-	str = NULL;
-	tofind = NULL;
-	(void)data;
-	while ((tmp)[i] && (i < ft_strlen(tmp)))
-	{
-		if (tmp[i] == '\'' || tmp[i] == '\"')
-		{
-			quote_start(&quote, tmp[i], &quote_type);
-			str = join_char(str, tmp[i]);
-			i++;
-		}
-		if (tmp[i] == '$' && quote_type != '\'')
-		{
-			i++;
-			while (tmp[i] && (ft_isspace(tmp[i]) == FALSE) && quote_type != '\'')
-			{
-				if(tmp[i] == '\'' || tmp[i] == '\"')
-					quote_start(&quote, tmp[i], &quote_type);			
-				if (quote == TRUE && ft_isquote(tmp[i]) == TRUE)
-					tofind = join_char(tofind, tmp[i]);
-				else if (quote == FALSE && ft_isquote(tmp[i]) == TRUE)
-				{
-					if (find_in_env(data->envp, tofind) != -1)
-					{
-						str = ft_strjoin_2free(str, get_env_value(data->envp, tofind));
-						str = join_char(str, tmp[i]);
-						free(tofind);
-					}
-					else
-					{
-						str = join_char(str, '$');
-						str = ft_strjoin_2free(str, tofind);
-						str = join_char(str, tmp[i]);
-						free(tofind);
-					}
-				}
-				else	
-					tofind = join_char(tofind, tmp[i]);
-				i++;
-			}
-		}
-		else
-			str = join_char(str, tmp[i]);
-		i++;
-	}
-	return (str);
 }

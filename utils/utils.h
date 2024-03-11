@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/05 16:03:27 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/11 10:44:44 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,15 @@ typedef struct s_pipex
 	char	*connector; // the connector to the next command (NULL, |, &&, ||)
 }				t_pipex;
 
+typedef struct s_bonus
+{
+	int				index;
+	int				type;
+	t_bool			outcome;
+	char			*str;
+	struct s_bonus	*next;
+}	t_bonus;
+
 typedef struct s_data
 {
 	int		original_stdin; // dupped stdin
@@ -79,8 +88,9 @@ typedef struct s_data
 	int		error_codes; // sum of the error codes
 	int		**fd; // pipe
 	int		last_pipe; // last pipe
-	t_bool	in_pipe; // if the command is in a pipe
+	int		cmd_nbr; // number of commands
 	int		pipe_nbr; // number of pipes
+	t_bool	in_pipe; // if the command is in a pipe
 	char	**envp; // current environment
 	char	*home; // home directory (~)
 	char	*pwd; // current directory
@@ -95,6 +105,11 @@ typedef struct s_data
 */
 void	free_matrix(char ***matrix);
 
+/**
+ * @brief Function that frees an integer matrix
+ * @param matrix matrix to be freed
+ * @param size size of the matrix
+*/
 void	free_array_matrix(int **matrix, int size);
 
 /**
@@ -311,9 +326,10 @@ t_bool	ft_isbuiltin(char *str);
 /**
  * @brief adds the heredoc functionality to the program
  * @param limiter string that will be used as a limiter
+ * @param data data envp to be passed to the function
  * @return fd with the file descriptor of the pipe fd[0]
 */
-int		heredoc_creat(char *limiter);
+int		heredoc_creat(char *limiter, t_data *data);
 
 /**
  * Removes leading and trailing characters specified in

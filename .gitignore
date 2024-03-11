@@ -53,6 +53,7 @@ dkms.conf
 
 # JSON files
 #*.json
+settings.json
 
 #temp files
 .nfs*

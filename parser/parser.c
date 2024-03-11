@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/05 15:54:38 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/06 12:21:19 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,8 @@ char	*get_name(char *str, int tmp_type, t_bool *quote, t_data *data)
 		if (ft_islimiter(str[i]) == TRUE && *quote == FALSE)
 			break ;
 	}
-	// if (quote_error(tmp, quote) == TRUE)
-	// return (NULL);
-	// tmp = expand_variables(tmp, data, *quote, quote_type);
+	if (tmp_type != HEREDOC)
+		tmp = expand_name(tmp, data, *quote, quote_type);
 	(void)data;
 	return (tmp);
 }
@@ -117,15 +116,12 @@ t_bool	parser(char *str, t_data *data)
 		parser.tmp = get_name(str + offset,
 				parser.tmp_type, &quote, data);
 		parser.tmp = ft_strtrimfree(parser.tmp, " \t\r\n\v\f");
-		printf("parser.tmp = %s\n", parser.tmp);
 		if (ft_isbuiltin(parser.tmp) == TRUE)
 			parser.tmp_type = BUILT_IN;
 		parser.tmp_path = get_path(&parser.tmp, parser.tmp_type, data);
-		printf("dopo parser.tmp = %s\n", parser.tmp);
 		ft_inputadd_back(&(*data).input, ft_inputnew(parser.tmp,
 				parser.tmp_path, parser.tmp_type));
-		if (str != NULL && parser.tmp != NULL)
-			str = free_strdup(str + offset + ft_strlen(parser.tmp), &str);
+		str = free_strdup(str + offset + ft_strlen(parser.tmp), &str);
 		i--;
 		free(parser.tmp);
 		free(parser.tmp_path);

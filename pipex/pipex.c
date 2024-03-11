@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/11 10:04:59 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/11 10:56:10 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	child(t_pipex *pipex, t_data *data)
 	if (data->in_pipe == TRUE && data->cmd_nbr == 0)
 		close(data->fd[0][0]);
 	else if (data->in_pipe == TRUE
-		&& data->cmd_nbr > 0 && data->cmd_nbr < data->pipe_nbr - 1)
+		&& data->cmd_nbr > 0 && data->cmd_nbr < data->pipe_nbr)
 		close(data->fd[data->cmd_nbr][0]);
 	if (pipex->fd_in != STDIN_FILENO)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/11 12:46:44 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/11 15:51:35 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,22 @@ void	do_pipes(t_data **data, t_pipex *comm)
 	if ((*data)->in_pipe == FALSE)
 	{
 		pipe((*data)->fd[(*data)->cmd_nbr]);
-		comm->fd_out = ((*data)->fd[(*data)->last_pipe][1]);
+		comm->fd_out = ((*data)->fd[0][1]);
 		(*data)->in_pipe = TRUE;
 	}
-	else if ((*data)->in_pipe == TRUE
-		&& (*data)->cmd_nbr < (*data)->pipe_nbr - 1)
+	else if ((*data)->cmd_nbr < (*data)->pipe_nbr - 1)
 	{
-		comm->fd_in = (*data)->fd[(*data)->last_pipe][0];
+		comm->fd_in = (*data)->fd[(*data)->cmd_nbr][0];
 		pipe((*data)->fd[(*data)->cmd_nbr + 1]);
-		comm->fd_out = (*data)->fd[(*data)->last_pipe + 1][1];
+		comm->fd_out = (*data)->fd[(*data)->cmd_nbr + 1][1];
 		(*data)->cmd_nbr++;
 	}
 	else
 	{
 		fprintf(stderr,"cmd nbr:%d\n", (*data)->cmd_nbr);
-		for (int i = 0; i <= (*data)->cmd_nbr; i++)
+		for (int i = 0; i < (*data)->pipe_nbr; i++)
 		{
-			for (int j = 0; j < (*data)->pipe_nbr; j++)
+			for (int j = 0; j < 2; j++)
 				printf ("fd[%d][%d]: %d\n", i, j, (*data)->fd[i][j]);
 		}
 		comm->fd_in = (*data)->fd[(*data)->cmd_nbr][0];

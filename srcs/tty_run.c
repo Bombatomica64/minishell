@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/11 10:39:01 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/11 11:10:58 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ void	process_input(t_data *data)
 	add_history(terminal_input);
 	if (*terminal_input == '\0')
 		return ;
-	while (terminal_input)
-	{
-		ft_do_it(data, ft_substr(terminal_input);
+	// while (terminal_input)
+	// {
+		ft_do_it(data, terminal_input);
 		free_return(&data, 0);
-	}
+	// }
 }
 
 void	fd_malloc(t_data *data)

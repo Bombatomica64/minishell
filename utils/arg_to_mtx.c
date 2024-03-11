@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:42:04 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/05 16:42:56 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/11 10:59:39 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,15 @@ char	*ft_rowfill(char *str, int *j, int i)
 		if (ft_isquote(str[*j]))
 		{
 			quote_start(&quote.open, str[*j], &quote.type);
-			if (str[*j] == quote.type || !quote.type)
+			while (ft_isquote(str[*j]) && ((quote.open == TRUE && str[*j] == quote.type) || quote.open == FALSE))
+			{
 				(*j)++;
+				quote_start(&quote.open, str[*j], &quote.type);
+			}
 		}
 		if (!str[*j] || (ft_isspace(str[*j]) == TRUE && quote.open == FALSE))
 			break ;
-		row[i] = str[*j];
-		(*j)++;
-		i++;
+		row[i++] = str[*j++];
 	}
 	return (row);
 }

@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/11 12:12:50 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:15:13 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,15 @@ typedef struct s_pipex
 	char	*connector; // the connector to the next command (NULL, |, &&, ||)
 }				t_pipex;
 
+typedef struct s_bonus
+{
+	int				index;
+	int				type;
+	t_bool			outcome;
+	char			*str;
+	struct s_bonus	*next;
+}	t_bonus;
+
 typedef struct s_data
 {
 	int		original_stdin; // dupped stdin
@@ -96,6 +105,11 @@ typedef struct s_data
 */
 void	free_matrix(char ***matrix);
 
+/**
+ * @brief Function that frees an integer matrix
+ * @param matrix matrix to be freed
+ * @param size size of the matrix
+*/
 void	free_array_matrix(int **matrix, int size);
 
 /**

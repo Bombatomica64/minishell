@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:52:13 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/11 12:20:31 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:34:32 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ t_bool	lexer_error(char *error, t_data *data, char c)
 		ft_printf("%s", error);
 		printf("%c\n", c);
 		data->error_codes = 2;
+		exit(2);
 	}
 	else
 		waitpid(pid, &data->error_codes, 0);
@@ -90,6 +91,9 @@ t_bool	lexer(char **line, t_data *data)
 		return (lexer_error("Syntax error near unexpected token: ", data, '|'));
 	pipe_count(*line, data);
 	quote_check(line);
-	// bonus_checker(*line, data);
+	if (bonus_checker(*line, data) == FALSE)
+		return (FALSE);
+	if (redir_check(*line, data) == FALSE)
+		return (FALSE);
 	return (TRUE);
 }

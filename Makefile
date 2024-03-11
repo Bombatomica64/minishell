@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+         #
+#    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/03/11 12:15:05 by sgarigli         ###   ########.fr        #
+#    Updated: 2024/03/11 17:04:28 by lmicheli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ UTILS = utils/ft_error.c \
 	utils/math_utils.c
 
 LEXER = lexer/lexer.c \
-		lexer/quote.c
+		lexer/quote.c \
+		lexer/redir.c
 
 PARSER = parser/parser.c \
 	parser/parser_utils.c \

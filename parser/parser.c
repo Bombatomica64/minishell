@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/06 12:21:19 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:11:12 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*get_name(char *str, int tmp_type, t_bool *quote, t_data *data)
 	return (tmp);
 }
 
-char	*get_path(char **tmp, t_type tmp_type, t_data *data)
+char	*get_path(char **tmp, t_type tmp_type, t_data *data, int *offset)
 {
 	char	*tmp_path;
 	int		i;
@@ -81,7 +81,7 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data)
 			}
 		}
 		else if (tmp_type != BUILT_IN && find_first(tmp_path, '/') != -1)
-			*tmp = ft_strrchr(tmp_path, '/') + 1;
+			*tmp = free_strrchr(*tmp, '/', &offset) + 1;
 	}
 	else if (tmp_type != HEREDOC)
 		tmp_path = refactor_path(*tmp, data, 0);
@@ -118,7 +118,7 @@ t_bool	parser(char *str, t_data *data)
 		parser.tmp = ft_strtrimfree(parser.tmp, " \t\r\n\v\f");
 		if (ft_isbuiltin(parser.tmp) == TRUE)
 			parser.tmp_type = BUILT_IN;
-		parser.tmp_path = get_path(&parser.tmp, parser.tmp_type, data);
+		parser.tmp_path = get_path(&parser.tmp, parser.tmp_type, data, &offset);
 		ft_inputadd_back(&(*data).input, ft_inputnew(parser.tmp,
 				parser.tmp_path, parser.tmp_type));
 		str = free_strdup(str + offset + ft_strlen(parser.tmp), &str);

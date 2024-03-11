@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/11 12:51:41 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:15:13 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -443,6 +443,10 @@ char	*ft_strndup(char *str, int len);
  * @return The concatenated string, or NULL if an error occurred.
  */
 char	*ft_strjoin_2(char *old_str, char *buf);
+
+char	*free_strrchr(char *str, char c, int **offset);
+
+char	*join_char(char *str, char c);
 
 void	ft_builtin_error(char *com);
 

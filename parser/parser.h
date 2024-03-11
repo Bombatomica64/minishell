@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:29:56 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/11 11:26:46 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:01:46 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ typedef struct s_parser
 //parser
 t_type	ft_file_type(char *str, int *offset);
 t_bool	parser(char *str, t_data *data);
-char	*join_char(char *str, char c);
 int		count_limiter(char *str);
 t_bool	quote_error(char *tmp, t_bool *quote);
 

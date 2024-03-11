@@ -6,7 +6,7 @@
 #    By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/03/11 09:16:24 by sgarigli         ###   ########.fr        #
+#    Updated: 2024/03/11 11:23:52 by sgarigli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ UTILS = utils/ft_error.c \
 	utils/utils.c \
 	utils/str_utils.c \
 	utils/str_utils2.c \
+	utils/str_utils3.c \
 	utils/matrix_utils.c \
 	utils/arg_to_mtx.c \
 	utils/heredoc.c \

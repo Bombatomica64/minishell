@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/11 11:10:58 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:42:39 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_do_it(t_data *data, char *terminal_input)
 		return ;
 	while (data->input && data->input->next)
 	{
+		printf("analizzo: |%s|\n", data->input->node);
 		comm = input_exec(&data);
 		if (comm.cmd)
 		{
@@ -27,9 +28,9 @@ void	ft_do_it(t_data *data, char *terminal_input)
 			free_matrix(&comm.cmd);
 		}
 	}
-	if (data->input
-		&& (data->input->type == COMMAND || data->input->type == BUILT_IN))
+	if (data->input && ft_iscmd(data->input) == TRUE)
 	{
+		printf("final analizzo: |%s|\n", data->input->node);
 		comm = input_exec(&data);
 		if (comm.cmd)
 		{
@@ -64,9 +65,10 @@ void	process_input(t_data *data)
 		return ;
 	// while (terminal_input)
 	// {
-		ft_do_it(data, terminal_input);
-		free_return(&data, 0);
+	ft_do_it(data, terminal_input);
+	free_return(&data, 0);
 	// }
+	ft_data_reinit(data);
 }
 
 void	fd_malloc(t_data *data)

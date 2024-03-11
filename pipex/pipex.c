@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/11 10:04:59 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:46:57 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,15 @@ void	child(t_pipex *pipex, t_data *data)
 	else if (data->in_pipe == TRUE
 		&& data->cmd_nbr > 0 && data->cmd_nbr < data->pipe_nbr - 1)
 		close(data->fd[data->cmd_nbr][0]);
-	if (pipex->fd_in != STDIN_FILENO)
-	{
-		if (dup2(pipex->fd_in, STDIN_FILENO) == -1)
-			ft_error("child_stdin", DUP, 13, data);
-	}
 	if (pipex->fd_out != STDOUT_FILENO)
 	{
 		if (dup2(pipex->fd_out, STDOUT_FILENO) == -1)
 			ft_error("child", DUP, 13, data);
+	}
+	if (pipex->fd_in != STDIN_FILENO)
+	{
+		if (dup2(pipex->fd_in, STDIN_FILENO) == -1)
+			ft_error("child_stdin", DUP, 13, data);
 	}
 	if (ft_isbuiltin(pipex->cmd[0]) == TRUE)
 		do_builtin(pipex->cmd, data);
@@ -98,8 +98,8 @@ int	pipex(t_pipex *pipex, t_data *data)
 		// if (data->cmd_nbr < data->pipe_nbr)
 		// 	if (dup2(data->fd[ft_max(data->cmd_nbr - 1, 0)][0], STDIN_FILENO) == -1)
 		// 		perror("sesso dup2");
-		if (data->cmd_nbr == data->pipe_nbr && data->pipe_nbr > 1)
-			close(data->fd[data->pipe_nbr - 1][0]);
+		// if (data->cmd_nbr == data->pipe_nbr && data->pipe_nbr > 1)
+		// 	close(data->fd[data->pipe_nbr - 1][0]);
 		if (WIFEXITED(status))
 			return (WEXITSTATUS(status));
 	}

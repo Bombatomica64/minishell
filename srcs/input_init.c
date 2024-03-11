@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:28:06 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/05 17:18:47 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:26:24 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	ft_data_reinit(t_data *data)
 {
 	if (!data)
 		return ;
-	data->envp = FALSE;
 	data->cmd_nbr = 0;
 	data->last_pipe = 0;
 	data->pipe_nbr = 0;

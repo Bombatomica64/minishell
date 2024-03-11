@@ -20,6 +20,7 @@ void	ft_do_it(t_data *data, char *terminal_input)
 		return ;
 	while (data->input && data->input->next)
 	{
+		printf("analizzo: |%s|\n", data->input->node);
 		comm = input_exec(&data);
 		if (comm.cmd)
 		{
@@ -27,9 +28,9 @@ void	ft_do_it(t_data *data, char *terminal_input)
 			free_matrix(&comm.cmd);
 		}
 	}
-	if (data->input
-		&& (data->input->type == COMMAND || data->input->type == BUILT_IN))
+	if (data->input && ft_iscmd(data->input) == TRUE)
 	{
+		printf("final analizzo: |%s|\n", data->input->node);
 		comm = input_exec(&data);
 		if (comm.cmd)
 		{
@@ -68,6 +69,7 @@ void	process_input(t_data *data)
 		if (data->error_codes > 0)
 			break ;
 	}
+  	ft_data_reinit(data);
 }
 
 void	fd_malloc(t_data *data)

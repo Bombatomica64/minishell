@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
 /*   Updated: 2024/03/11 12:51:41 by lmicheli         ###   ########.fr       */
@@ -452,5 +452,7 @@ int		ft_isinset(char c, char *set);
 
 int		ft_max(int a, int b);
 int		ft_min(int a, int b);
+
+t_bool	ft_iscmd(t_input *input);
 
 #endif

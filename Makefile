@@ -6,7 +6,7 @@
 #    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/03/06 16:07:13 by lmicheli         ###   ########.fr        #
+#    Updated: 2024/03/06 16:32:57 by lmicheli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,11 +86,6 @@ val:
 	@$(CC) $(SRC) $(LIB) -o $(NAME) -lreadline
 	@echo "\033[35mAre you ready for debugging?\033[0m 😈"
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=ignore_readline.supp -s --track-fds=yes ./$(NAME)
-
-train:
-	@sl
-	@./minishell
-	@sl
 
 parrot: replay
 	@timeout 3s curl parrot.live || true

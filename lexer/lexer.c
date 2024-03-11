@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:52:13 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/04 10:58:45 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/11 10:39:26 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,6 @@ t_bool	lexer(char **line, t_data *data)
 		return (lexer_error("Syntax error near unexpected token '|'\n", data));
 	pipe_count(*line, data);
 	quote_check(line);
+	bonus_checker(*line, data);
 	return (TRUE);
 }

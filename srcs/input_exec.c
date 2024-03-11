@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/06 12:05:00 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/06 16:43:37 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ t_pipex	input_exec(t_data **data)
 	comm = basic_set(data);
 	while ((*data)->input)
 	{
-		is_inout(&comm, (*data)->input , *data);
+		is_inout(&comm, (*data)->input, *data);
 		if (ft_iscmd((*data)->input) == TRUE)
 		{
 			comm.cmd = ft_splitarg((*data)->input->node);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/06 12:35:46 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/11 09:58:45 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	do_builtin(char **cmd, t_data *data)
 	t_bool	ret;
 
 	ret = TRUE;
-
 	if (ft_strcmp(cmd[0], "echo") == 0)
 		ret = ft_echo(cmd);
 	else if (ft_strcmp(cmd[0], "pwd") == 0)

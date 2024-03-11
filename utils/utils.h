@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/11 11:37:06 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:51:41 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ typedef enum e_error
 	OPEN,
 	BUILTIN
 }	t_error;
+
+typedef struct s_quote
+{
+	t_bool	open;
+	char	type;
+}	t_quote;
 
 typedef enum e_type
 {
@@ -95,6 +101,7 @@ typedef struct s_data
 	char	*home; // home directory (~)
 	char	*pwd; // current directory
 	t_input	*input; // list of commands and files
+	t_bonus	*bonus; // list of commands seprated by && and ||
 }	t_data;
 
 // free and error functions
@@ -438,6 +445,8 @@ char	*ft_strndup(char *str, int len);
 char	*ft_strjoin_2(char *old_str, char *buf);
 
 void	ft_builtin_error(char *com);
+
+int		ft_isinset(char c, char *set);
 
 //math utils
 

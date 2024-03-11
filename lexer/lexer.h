@@ -6,15 +6,16 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:52:36 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/11 12:19:41 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:40:39 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
 
-# include "../utils/utils.h"
-//# pragma once
+# include "../parser/parser.h"
+# include "../bonus/bonus.h"
+# pragma once
 
 t_bool	open_quote_check(char *line, char *new_quote);
 void	uselss_quotes(char **buff, char *quote);

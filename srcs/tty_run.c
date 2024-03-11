@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/11 11:43:16 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/11 15:37:31 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,15 @@ void	process_input(t_data *data)
 	add_history(terminal_input);
 	if (*terminal_input == '\0')
 		return ;
-	while (data->bonus)
+	/*while (data->bonus)
 	{
 		ft_do_it(data, data->bonus->str);
 		free_return(&data, 0);
 		if (data->error_codes > 0)
 			break ;
-	}
+	}*/
+	ft_do_it(data, terminal_input);
+	free_return(&data, 0);
   	ft_data_reinit(data);
 }
 

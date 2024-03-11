@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/11 10:56:10 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/11 15:55:16 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	pipex(t_pipex *pipex, t_data *data)
 		wait(&status);
 		printf("status: %d\n", status);
 		if (data->in_pipe == TRUE && data->cmd_nbr < data->pipe_nbr)
-			close(data->fd[ft_max(data->cmd_nbr - 1, 0)][1]);
+			close(data->fd[data->cmd_nbr][1]);
 		// if (data->cmd_nbr < data->pipe_nbr)
 		// 	if (dup2(data->fd[ft_max(data->cmd_nbr - 1, 0)][0], STDIN_FILENO) == -1)
 		// 		perror("sesso dup2");

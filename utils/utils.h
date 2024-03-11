@@ -41,6 +41,12 @@ typedef enum e_error
 	BUILTIN
 }	t_error;
 
+typedef struct s_quote
+{
+	t_bool	open;
+	char	type;
+}	t_quote;
+
 typedef enum e_type
 {
 	INPUT = 0,// < file in input
@@ -95,6 +101,7 @@ typedef struct s_data
 	char	*home; // home directory (~)
 	char	*pwd; // current directory
 	t_input	*input; // list of commands and files
+	t_bonus	*bonus; // list of commands seprated by && and ||
 }	t_data;
 
 // free and error functions
@@ -443,9 +450,13 @@ char	*join_char(char *str, char c);
 
 void	ft_builtin_error(char *com);
 
+int		ft_isinset(char c, char *set);
+
 //math utils
 
 int		ft_max(int a, int b);
 int		ft_min(int a, int b);
+
+t_bool	ft_iscmd(t_input *input);
 
 #endif

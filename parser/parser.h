@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:29:56 by gduranti          #+#    #+#             */
 /*   Updated: 2024/03/11 12:01:46 by sgarigli         ###   ########.fr       */
@@ -24,12 +24,6 @@ typedef struct s_parser
 	t_type	tmp_type;
 }	t_parser;
 
-typedef	struct s_quote
-{
-	t_bool	open;
-	char 	type;
-}	t_quote;
-
 //parser
 t_type	ft_file_type(char *str, int *offset);
 t_bool	parser(char *str, t_data *data);
@@ -40,7 +34,6 @@ t_bool	quote_error(char *tmp, t_bool *quote);
 char	*expand_name(char *str, t_data *data,
 			t_bool quote, char quote_type);
 char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data);
-
 
 //quotes
 void	quote_start(t_bool *quote, char c, char *quote_type);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arg_to_mtx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:42:04 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/05 17:48:27 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/11 11:16:21 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,13 @@ char	*ft_rowfill(char *str, int *j, int i)
 		if (ft_isquote(str[*j]))
 		{
 			quote_start(&quote.open, str[*j], &quote.type);
-			if (str[*j] == quote.type || !quote.type)
-				(*j)++;
+			while (ft_isquote(str[*j])
+				&& ((quote.open && str[*j] == quote.type) || !quote.open))
+				quote_start(&quote.open, str[++(*j)], &quote.type);
 		}
 		if (!str[*j] || (ft_isspace(str[*j]) == TRUE && quote.open == FALSE))
 			break ;
-		row[i] = str[*j];
-		(*j)++;
-		i++;
+		row[i++] = str[(*j)++];
 	}
 	return (row);
 }

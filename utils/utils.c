@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/29 10:57:08 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/11 11:36:35 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
+
+t_bool	ft_iscmd(t_input *input)
+{
+	if (!input)
+		return (ERROR);
+	if (input->type == COMMAND || input->type == BUILT_IN)
+		return (TRUE);
+	return (FALSE);
+}
 
 t_bool	ft_islimiter(char c)
 {

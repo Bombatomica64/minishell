@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:44:04 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/05 11:31:52 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:44:00 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	handle_quote(char **line, char quote)
 	int		in_quote;
 	char	*buff;
 
+	in_quote = FALSE;
 	while (quote != 0)
 	{
 		buff = read_quotes(&quote);

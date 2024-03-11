@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
+#    By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
 #    Updated: 2024/03/06 16:32:57 by lmicheli         ###   ########.fr        #
@@ -90,10 +90,5 @@ val:
 parrot: replay
 	@timeout 3s curl parrot.live || true
 	@clear
-
-train:
-	@sl
-	@./minishell
-	@sl
 	
 .PHONY: all clean fclean re replay

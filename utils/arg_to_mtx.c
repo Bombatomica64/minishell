@@ -81,14 +81,15 @@ char	*ft_rowfill(char *str, int *j, int i)
 		if (ft_isquote(str[*j]))
 		{
 			quote_start(&quote.open, str[*j], &quote.type);
-			if (str[*j] == quote.type || !quote.type)
+			while (ft_isquote(str[*j]) && ((quote.open == TRUE && str[*j] == quote.type) || quote.open == FALSE))
+			{
 				(*j)++;
+				quote_start(&quote.open, str[*j], &quote.type);
+			}
 		}
 		if (!str[*j] || (ft_isspace(str[*j]) == TRUE && quote.open == FALSE))
 			break ;
-		row[i] = str[*j];
-		(*j)++;
-		i++;
+		row[i++] = str[*j++];
 	}
 	return (row);
 }

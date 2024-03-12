@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:04:41 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/12 11:27:50 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/12 11:52:17 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*cut_string(int len, char *str)
 	int		i;
 
 	i = 0;
-	tmp = malloc(sizeof(char) * (ft_strlen(*str) - len + 1));
+	tmp = malloc(sizeof(char) * (ft_strlen(str) - len + 1));
 	if (!tmp)
 		return (NULL);
 	while ((str)[len])
@@ -86,5 +86,10 @@ char	*cut_string(int len, char *str)
 	tmp[i] = '\0';
 	free(str);
 	str = tmp;
+	if (str[0] == '\0')
+	{
+		free(str);
+		return (NULL);
+	}
 	return (tmp);
 }

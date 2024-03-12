@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/12 11:25:26 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/12 12:04:28 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ char	*get_name(char *str, int tmp_type, t_bool *quote, t_data *data)
 	quote_type = '\0';
 	squote = (t_quote){FALSE, 0};
 	i = skip_spaces2(str);
-	if (tmp_type == HEREDOC || tmp_type == INPUT)
+	if (tmp_type == HEREDOC || tmp_type == INPUT
+		|| tmp_type == APPEND || tmp_type == TRUNC)
 	{
 		quote_start(&squote.open, str[i], &squote.type);
 		while (str[i] && ft_isspace(str[i]) == FALSE && squote.open == FALSE)
@@ -112,19 +113,15 @@ char	*free_strdup(char *str, char **freestr)
 
 t_bool	parser(char *str, t_data *data)
 {
-	int			i;
 	t_parser	parser;
 	t_bool		quote;
 	int			offset;
 
 	quote = FALSE;
 	offset = 0;
-	i = count_limiter(str);
-	if (i == ERROR)
-		return (FALSE);
-	while (i > 0)
+	while (str)
 	{
-		offset += skip_spaces2(str);
+		offset = skip_spaces2(str);
 		parser.tmp_type = ft_file_type(str, &offset);
 		parser.tmp = get_name(str + offset,
 				parser.tmp_type, &quote, data);
@@ -134,11 +131,11 @@ t_bool	parser(char *str, t_data *data)
 		parser.tmp_path = get_path(&parser.tmp, parser.tmp_type, data, &offset);
 		ft_inputadd_back(&(*data).input, ft_inputnew(parser.tmp,
 				parser.tmp_path, parser.tmp_type));
-		str = cut_string(offset + ft_strlen(parser.tmp), str);
-		i--;
+		str = cut_string(offset + 1 + ft_strlen(parser.tmp), str);
 		free(parser.tmp);
 		free(parser.tmp_path);
 	}
+	ft_inputadd_back(&(*data).input, ft_inputnew(NULL, NULL, FINISH));
 	print_list((*data).input);
 	free(str);
 	return (TRUE);

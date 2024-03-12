@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/12 12:45:35 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/12 12:41:57 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	process_input(t_data *data)
 {
 	char	*terminal_input;
 
-	terminal_input = readline("\033[0;94mminishell$ \033[0m");
+	terminal_input = readline("\033[0;94mminishell> \033[0m");
 	if (lexer(&terminal_input, data) == FALSE)
 	{
 		free(terminal_input);

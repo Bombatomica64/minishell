@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/12 12:41:57 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:17:09 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	process_input(t_data *data)
 {
 	char	*terminal_input;
 
-	terminal_input = readline("\033[0;94mminishell> \033[0m");
+	terminal_input = readline("\033[0;95mミニシェル> \033[0m");
 	if (lexer(&terminal_input, data) == FALSE)
 	{
 		free(terminal_input);
@@ -60,7 +60,7 @@ void	process_input(t_data *data)
 	}*/
 	ft_do_it(data, terminal_input);
 	free_return(&data, 0);
-  	ft_data_reinit(data);
+	ft_data_reinit(data);
 }
 
 void	fd_malloc(t_data *data)

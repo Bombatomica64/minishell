@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:28:06 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/11 12:26:24 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/12 12:46:15 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_action(int sig)
 {
 	if (sig == SIGINT)
 	{
-		printf("\033[0;94m\nminishell> \033[0m");
+		printf("\033[0;94m\nminishell$ \033[0m");
 	}
 }
 

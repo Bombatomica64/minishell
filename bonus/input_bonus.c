@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   input_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:46:56 by lmicheli          #+#    #+#             */
 /*   Updated: 2024/03/12 12:47:44 by lmicheli         ###   ########.fr       */

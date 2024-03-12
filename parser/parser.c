@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/11 12:11:12 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/12 11:25:26 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,33 @@
 
 char	*get_name(char *str, int tmp_type, t_bool *quote, t_data *data)
 {
-	int		i ;
-	char	quote_type;
-	char	*tmp;
+	int			i ;
+	char		quote_type;
+	char		*tmp;
+	t_quote		squote;
 
 	i = 0;
 	tmp = NULL;
 	quote_type = '\0';
+	squote = (t_quote){FALSE, 0};
 	i = skip_spaces2(str);
+	if (tmp_type == HEREDOC || tmp_type == INPUT)
+	{
+		quote_start(&squote.open, str[i], &squote.type);
+		while (str[i] && ft_isspace(str[i]) == FALSE && squote.open == FALSE)
+		{
+			tmp = join_char(tmp, str[i]);
+			i++;
+		}
+		return (tmp);
+	}
 	while (str[i] != 0)
 	{
 		if (ft_isquote(str[i]))
 		{
 			quote_start(quote, str[i], &quote_type);
-			if (tmp_type == BUILT_IN || tmp_type == COMMAND || (*quote == TRUE && str[i] != quote_type))
+			if (tmp_type == BUILT_IN || tmp_type == COMMAND
+				|| (*quote == TRUE && str[i] != quote_type))
 				tmp = join_char(tmp, str[i]);
 			i++;
 		}
@@ -121,7 +134,7 @@ t_bool	parser(char *str, t_data *data)
 		parser.tmp_path = get_path(&parser.tmp, parser.tmp_type, data, &offset);
 		ft_inputadd_back(&(*data).input, ft_inputnew(parser.tmp,
 				parser.tmp_path, parser.tmp_type));
-		str = free_strdup(str + offset + ft_strlen(parser.tmp), &str);
+		str = cut_string(offset + ft_strlen(parser.tmp), str);
 		i--;
 		free(parser.tmp);
 		free(parser.tmp_path);

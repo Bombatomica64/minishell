@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:46:56 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/11 18:27:58 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/12 12:38:41 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_bool	bonus_checker(char *line, t_data *data)
 			return (lexer_error("syntax error near unexpected token: ",
 					data, line[i]));
 	}
+	i = 0;
 	while (line[i] && line[i + 1] != '\0')
 	{
 		quote_start(&quote.open, line[i], &quote.type);
@@ -44,6 +45,7 @@ t_bool	bonus_checker(char *line, t_data *data)
 				return (lexer_error("syntax error near unexpected token",
 						data, line[i + 2]));
 		}
+		i++;
 	}
 	return (TRUE);
 }

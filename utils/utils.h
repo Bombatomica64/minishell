@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/12 12:03:53 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/12 12:12:41 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef enum e_type
 	BUILT_IN,//command to be executed without execve
 	TRUNC = O_TRUNC,// > file, rewrites the lines in  the output file
 	APPEND = O_APPEND,// >> file, add more lines in the output file
-	FINISH // end of the list
+	FINISH = 69// end of the list
 }	t_type;
 
 typedef struct s_input

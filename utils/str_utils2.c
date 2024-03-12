@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:45:24 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/11 12:51:46 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:28:04 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,29 +91,16 @@ int	find_first(char *str, char c)
 	return (-1);
 }
 
-char	*strjoin_n_free1(char *line, char *buff, int index)
+int	find_last(char *str, char c)
 {
 	int		i;
-	int		new_str_len;
-	char	*new_str;
 
-	i = 0;
-	new_str_len = ft_strlen(line) + index;
-	new_str = malloc(ft_strlen(line) + index + 1);
-	if (new_str)
+	i = ft_strlen(str) - 1;
+	while (i >= 0)
 	{
-		while (line[i])
-		{
-			new_str[i] = line[i];
-			i++;
-		}
-		while (i < new_str_len)
-		{
-			new_str[i] = buff[i - ft_strlen(line)];
-			i++;
-		}
-		new_str[new_str_len] = '\0';
+		if (str[i] == c)
+			return (i);
+		i--;
 	}
-	free(line);
-	return (new_str);
+	return (-1);
 }

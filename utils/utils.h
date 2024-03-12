@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/12 12:39:09 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:30:35 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -463,5 +463,6 @@ int		ft_min(int a, int b);
 
 t_bool	ft_iscmd(t_input *input);
 char	*cut_string(int len, char *str);
+int		find_last(char *str, char c);
 
 #endif

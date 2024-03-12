@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:46:56 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/12 12:38:41 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/12 12:47:44 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_bool	bonus_checker(char *line, t_data *data)
 		else if (ft_isinset(line[i], "|&") > 0)
 			return (lexer_error("syntax error near unexpected token: ",
 					data, line[i]));
+		i--;
 	}
 	i = 0;
 	while (line[i] && line[i + 1] != '\0')

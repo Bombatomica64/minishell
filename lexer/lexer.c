@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:52:13 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/12 12:39:17 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/12 12:43:32 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ t_bool	lexer(char **line, t_data *data)
 		return (lexer_error("Syntax error near unexpected token: ", data, '|'));
 	pipe_count(*line, data);
 	quote_check(line);
-	if (bonus_checker(*line, data) == FALSE)
-		return (FALSE);
+	// if (bonus_checker(*line, data) == FALSE)
+	// 	return (FALSE);
 	if (redir_check(*line, data) == FALSE)
 		return (FALSE);
 	return (TRUE);

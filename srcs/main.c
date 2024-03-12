@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:05:49 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/04 10:25:16 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/12 12:47:40 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	main(int argc, char **argv, char **envp)
 		exit (1);
 	}
 	(void)argv;
-	printf("getpid: %d\n", getpid());
 	data = ft_data_init(envp);
 	signal(SIGINT, ft_action);
 	signal(SIGQUIT, SIG_IGN);

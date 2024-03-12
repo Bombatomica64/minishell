@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/12 12:38:57 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/12 12:44:55 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static t_pipex	basic_set(t_data **data)
 	dup2((*data)->original_stdin, STDIN_FILENO);
 	dup2((*data)->original_stdout, STDOUT_FILENO);
 	comm.fd_in = (STDIN_FILENO);
-	printf("comm.fd_in: %d\n", comm.fd_in);
 	comm.fd_out = (STDOUT_FILENO);
 	return (comm);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+         #
+#    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/03/12 12:26:45 by gduranti         ###   ########.fr        #
+#    Updated: 2024/03/12 15:19:04 by lmicheli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,14 +81,14 @@ re: fclean all
 replay:
 	@rm -f $(NAME)
 	@$(CC) $(SRC) $(LIB) -o $(NAME) -lreadline
-	@echo "\033[35mRe-compiled "$(NAME)" successfully!\033[0m"
+	@echo "\033[34mRe-compiled "$(NAME)" successfully!\033[0m"
 	@echo "\033[30mPlease work🙏\033[0m"
 	@./$(NAME)
 
 val:
 	@rm -f $(NAME)
 	@$(CC) $(SRC) $(LIB) -o $(NAME) -lreadline
-	@echo "\033[35mAre you ready for debugging?\033[0m 😈"
+	@echo "\033[34mAre you ready for debugging?\033[0m 😈"
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=ignore_readline.supp -s --track-fds=yes ./$(NAME)
 
 parrot: replay

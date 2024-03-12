@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/12 12:03:53 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/12 12:26:13 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <errno.h>
-# include "../ft_printf/ft_printf.h"
-# include "../ft_printf/get_next_line_bonus.h"
+# include "../libft/ft_printf.h"
+# include "../libft/get_next_line_bonus.h"
 # pragma once
 
 # ifndef BONUS

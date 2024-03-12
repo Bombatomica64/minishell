@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
+#    By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/03/12 11:20:45 by lmicheli         ###   ########.fr        #
+#    Updated: 2024/03/12 12:26:45 by gduranti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,8 +55,8 @@ BONUS = bonus/input_bonus.c
 
 SRC = $(PIPEX) $(BUILT_IN) $(UTILS) $(PARSER) $(SRCS) $(LEXER) $(BONUS)
 
-FT_PRINTF = ft_printf
-LIB = ft_printf/libftprintf.a
+FT_PRINTF = libft
+LIB = libft/libftprintf.a
 
 all: $(NAME)
 

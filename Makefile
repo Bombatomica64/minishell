@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
+#    By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/03/12 15:19:04 by lmicheli         ###   ########.fr        #
+#    Updated: 2024/03/12 17:51:52 by mruggier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,5 +94,8 @@ val:
 parrot: replay
 	@timeout 3s curl parrot.live || true
 	@clear
-	
+
+replat: replay
+l: replay
+
 .PHONY: all clean fclean re replay

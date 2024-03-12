@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str_utils3.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:04:41 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/12 12:17:30 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:27:45 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,31 @@ char	*cut_string(int len, char *str)
 	tmp[i] = '\0';
 	free(str);
 	return (tmp);
+}
+
+char	*strjoin_n_free1(char *line, char *buff, int index)
+{
+	int		i;
+	int		new_str_len;
+	char	*new_str;
+
+	i = 0;
+	new_str_len = ft_strlen(line) + index;
+	new_str = malloc(ft_strlen(line) + index + 1);
+	if (new_str)
+	{
+		while (line[i])
+		{
+			new_str[i] = line[i];
+			i++;
+		}
+		while (i < new_str_len)
+		{
+			new_str[i] = buff[i - ft_strlen(line)];
+			i++;
+		}
+		new_str[new_str_len] = '\0';
+	}
+	free(line);
+	return (new_str);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/12 12:20:19 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:36:49 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,11 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data, int *offset)
 			}
 		}
 		else if (tmp_type != BUILT_IN && find_first(tmp_path, '/') != -1)
-			*tmp = free_strrchr(*tmp, '/', &offset) + 1;
+			*tmp = cut_string(find_last(*tmp, '/'), *tmp);
 	}
 	else if (tmp_type != HEREDOC)
 		tmp_path = refactor_path(*tmp, data, 0);
+	(void)offset;
 	return (tmp_path);
 }
 
@@ -126,6 +127,8 @@ t_bool	parser(char *str, t_data *data)
 		parser.tmp = get_name(str + offset,
 				parser.tmp_type, &quote, data);
 		parser.tmp = ft_strtrimfree(parser.tmp, " \t\r\n\v\f");
+		if (parser.tmp == NULL)
+			return (FALSE);
 		if (ft_isbuiltin(parser.tmp) == TRUE)
 			parser.tmp_type = BUILT_IN;
 		parser.tmp_path = get_path(&parser.tmp, parser.tmp_type, data, &offset);

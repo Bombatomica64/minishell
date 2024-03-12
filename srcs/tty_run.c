@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/11 15:37:31 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/12 10:05:32 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	ft_do_it(t_data *data, char *terminal_input)
 		return ;
 	while (data->input && data->input->next)
 	{
-		printf("analizzo: |%s|\n", data->input->node);
 		comm = input_exec(&data);
 		if (comm.cmd)
 		{
@@ -30,7 +29,6 @@ void	ft_do_it(t_data *data, char *terminal_input)
 	}
 	if (data->input && ft_iscmd(data->input) == TRUE)
 	{
-		printf("final analizzo: |%s|\n", data->input->node);
 		comm = input_exec(&data);
 		if (comm.cmd)
 		{

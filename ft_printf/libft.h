@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:48:37 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/01 10:30:10 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/12 11:47:17 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,20 @@ int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			ft_memcmp(const void *s1, const void *s2, size_t n);
 int			ft_atoi(const char *nptr);
 int			ft_lstsize(t_list *lst);
-size_t		ft_strlen(const char *s);
-size_t		ft_strlcat(char *dst, const char *src, size_t size);
-size_t		ft_strlcpy(char *dst, const char *src, size_t size);
-char		*ft_strdup(const char *s);
+size_t		ft_strlen(char *s);
+size_t		ft_strlcat(char *dst, char *src, size_t size);
+size_t		ft_strlcpy(char *dst, char *src, size_t size);
+char		*ft_strdup(char *s);
 char		*ft_itoa(int n);
-char		*ft_strnstr(const char *big, const char *little, size_t len);
-char		*ft_strchr(const char *str, int c);
-char		*ft_strrchr(const char *str, int c);
-char		*ft_substr(char const *s, unsigned int start, size_t len);
+char		*ft_strnstr(const char *big, char *little, size_t len);
+char		*ft_strchr(char *str, int c);
+char		*ft_strrchr(char *str, int c);
+char		*ft_substr(char *s, unsigned int start, size_t len);
 char		*ft_freesubstr(char *s, unsigned int start, size_t len);
 char		*ft_strjoin(char *s1, char *s2);
-char		*ft_strtrim(char const *s1, char const *set);
+char		*ft_strtrim(char *s1, char *set);
 char		*ft_freestrtrim(char *s1, char *set);
-char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+char		*ft_strmapi(char *s, char (*f)(unsigned int, char));
 char		**ft_split(char const *s, char c);
 void		*ft_calloc(size_t nmemb, size_t size);
 void		*ft_memset(void *s, int c, size_t n);

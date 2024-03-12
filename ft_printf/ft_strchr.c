@@ -6,13 +6,13 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 10:26:58 by lmicheli          #+#    #+#             */
-/*   Updated: 2023/12/07 12:57:08 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/12 11:45:18 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *str, int c)
+char	*ft_strchr(char *str, int c)
 {
 	const char	*p;
 

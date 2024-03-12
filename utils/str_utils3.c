@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str_utils3.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:04:41 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/11 12:01:39 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/12 11:52:17 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*free_strrchr(char *str, char c, int **offset)
 {
-	int 	i;
+	int		i;
 	int		len;
 	char	*tmp;
 
@@ -65,5 +65,31 @@ char	*join_char(char *str, char c)
 	tmp[i] = c;
 	tmp[i + 1] = '\0';
 	free(str);
+	return (tmp);
+}
+
+char	*cut_string(int len, char *str)
+{
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = malloc(sizeof(char) * (ft_strlen(str) - len + 1));
+	if (!tmp)
+		return (NULL);
+	while ((str)[len])
+	{
+		tmp[i] = (str)[len];
+		i++;
+		len++;
+	}
+	tmp[i] = '\0';
+	free(str);
+	str = tmp;
+	if (str[0] == '\0')
+	{
+		free(str);
+		return (NULL);
+	}
 	return (tmp);
 }

@@ -6,13 +6,13 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 17:46:13 by lmicheli          #+#    #+#             */
-/*   Updated: 2023/10/26 15:58:31 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/12 11:46:07 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup(char *s)
 {
 	int		s_len;
 	int		i;

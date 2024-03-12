@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/11 18:08:47 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/12 12:03:53 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@
 # include "../ft_printf/ft_printf.h"
 # include "../ft_printf/get_next_line_bonus.h"
 # pragma once
+
+# ifndef BONUS
+#  define BONUS 0
+# endif
 
 typedef enum e_error
 {
@@ -54,7 +58,8 @@ typedef enum e_type
 	COMMAND,//command to be executed with execve
 	BUILT_IN,//command to be executed without execve
 	TRUNC = O_TRUNC,// > file, rewrites the lines in  the output file
-	APPEND = O_APPEND// >> file, add more lines in the output file
+	APPEND = O_APPEND,// >> file, add more lines in the output file
+	FINISH // end of the list
 }	t_type;
 
 typedef struct s_input
@@ -457,5 +462,6 @@ int		ft_max(int a, int b);
 int		ft_min(int a, int b);
 
 t_bool	ft_iscmd(t_input *input);
+char	*cut_string(int len, char *str);
 
 #endif

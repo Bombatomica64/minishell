@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/05 10:32:14 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/12 12:24:26 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ char	*refactor_path(char *tmp, t_data *data, int i)
 	}
 	while (str[ft_strlen(str) - 1] == '/' || str[ft_strlen(str) - 1] == '.')
 		str[ft_strlen(str) - 1] = '\0';
-	return (str);
+	return (free(tmp), str);
 }
 
 t_bool	ft_change_env(char **str, char *oldpwd, t_data *data)

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:52:13 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/12 12:43:30 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/13 16:19:21 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,12 @@ t_bool	lexer_error(char *error, t_data *data, char c)
 
 t_bool	pipe_check(char *line)
 {
-	int		i;
+	int			i;
+	t_quote		squote;
 
+	squote = (t_quote){FALSE, 0};
 	i = skip_spaces2(line);
+	quote_start(&squote.open, line[i], &squote.type);
 	if (line[i] && line[i] == '|')
 		return (FALSE);
 	i = ft_strlen(line) - 1;
@@ -70,7 +73,8 @@ t_bool	pipe_check(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] == '|')
+		quote_start(&squote.open, line[i], &squote.type);
+		if (line[i] == '|' && squote.open == FALSE)
 		{
 			i++;
 			i += skip_spaces2(&line[i]);

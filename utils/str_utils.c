@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:08:47 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/04 15:16:11 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/13 16:17:48 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,25 +125,4 @@ int	ft_strlen_noquote(char *str)
 		i++;
 	}
 	return (count);
-}
-
-char	*ft_strncpy(char *str, int start, int end)
-{
-	char	*dst;
-	int		i;
-
-	if (!str)
-		return (NULL);
-	dst = (char *)malloc(sizeof(char) * (end - start + 1));
-	if (!dst)
-		return (NULL);
-	i = 0;
-	while (start < end)
-	{
-		dst[i] = str[start];
-		i++;
-		start++;
-	}
-	dst[i] = '\0';
-	return (dst);
 }

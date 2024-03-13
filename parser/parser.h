@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:29:56 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/11 12:01:46 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/13 16:07:40 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,5 @@ void	quote_start(t_bool *quote, char c, char *quote_type);
 void	quote_waiting(char **tmp, t_bool *quote, char *quote_type, t_type type);
 void	quote_display(char *quote_type);
 t_bool	check_quote(char *tmp, char quote_type, t_type type, int index);
-
 
 #endif

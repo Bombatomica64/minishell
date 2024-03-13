@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/13 10:48:50 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/13 11:12:28 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,57 +47,52 @@ char	*path_execve(char *command, char **envp)
 	return (NULL);
 }
 
-void	child(t_pipex *pipex, t_data *data)
+void	child(t_pipex *comm, t_data *data)
 {
 	if (data->in_pipe == TRUE && data->cmd_nbr == 0)
 		close(data->fd[0][0]);
 	else if (data->in_pipe == TRUE
 		&& data->cmd_nbr > 0 && data->cmd_nbr < data->pipe_nbr)
 		close(data->fd[data->cmd_nbr][0]);
-	if (pipex->fd_out != STDOUT_FILENO)
+	if (comm->fd_out != STDOUT_FILENO)
 	{
-		if (dup2(pipex->fd_out, STDOUT_FILENO) == -1)
+		if (dup2(comm->fd_out, STDOUT_FILENO) == -1)
 			ft_error("child", DUP, 13, data);
 	}
-	if (pipex->fd_in != STDIN_FILENO)
+	if (comm->fd_in != STDIN_FILENO)
 	{
-		if (dup2(pipex->fd_in, STDIN_FILENO) == -1)
+		if (dup2(comm->fd_in, STDIN_FILENO) == -1)
 			ft_error("child_stdin", DUP, 13, data);
 	}
-	if (ft_isbuiltin(pipex->cmd[0]) == TRUE)
-		do_builtin(pipex->cmd, data);
-	execve(pipex->path, pipex->cmd, data->envp);
+	if (ft_isbuiltin(comm->cmd[0]) == TRUE)
+		do_builtin(comm, data);
+	execve(comm->path, comm->cmd, data->envp);
 	free_array_matrix(data->fd, data->pipe_nbr);
-	free_matrix(&pipex->cmd);
+	free_matrix(&comm->cmd);
 	ft_error("pipex->cmd[0]", EXECVE, 126, data);
 }
 
-int	pipex(t_pipex *pipex, t_data *data)
+int	pipex(t_pipex *comm, t_data *data)
 {
 	pid_t	pid;
 	int		status;
 
 	status = 0;
-	if (is_cd(pipex->cmd[0]) == TRUE)
-		return (ft_cd(pipex->cmd, data));
-	if (is_exit(pipex->cmd[0]) == TRUE)
-		return (ft_exit(pipex->cmd, data));
+	if (is_cd(comm->cmd[0]) == TRUE)
+		return (ft_cd(comm->cmd, data));
+	if (is_exit(comm->cmd[0]) == TRUE)
+		return (ft_exit(comm->cmd, data));
 	pid = fork();
 	if (pid == -1)
 		ft_error("executor", FORK, 124, NULL);
 	if (pid == 0)
-		child(pipex, data);
+		child(comm, data);
 	else
 	{
 		wait(&status);
 		printf("status: %d\n", status);
 		if (data->in_pipe == TRUE && data->cmd_nbr < data->pipe_nbr)
 			close(data->fd[data->cmd_nbr][1]);
-		if (data->in_pipe == FALSE)
-		{
-			close(pipex->fd_in);
-			close(pipex->fd_out);
-		}
 		if (data->cmd_nbr > 0 && data->cmd_nbr < data->pipe_nbr)
 			close(data->fd[data->cmd_nbr - 1][0]);
 		if (WIFEXITED(status))

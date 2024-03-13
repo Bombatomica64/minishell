@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:52:32 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/27 15:47:04 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/13 11:13:27 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 # include "../built_in/built_in.h"
 
 char	*path_execve(char *command, char **envp);
-void	child(t_pipex *pipex, t_data *data);
+void	child(t_pipex *comm, t_data *data);
 void	parent(t_data *data, int i);
 int		checkfile_fd(t_data *data);
 void	ft_execute(t_data *data);
-void	do_builtin(char **cmd, t_data *data);
+void	do_builtin(t_pipex *comm, t_data *data);
 
 /**
  * @brief This function will execute 2 commands between a SINGLE pipe

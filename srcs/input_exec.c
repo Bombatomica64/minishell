@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/12 12:44:55 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/13 10:44:57 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 static void	set_inout(t_pipex *comm, t_input *input, t_data *data)
 {
+	if (comm->fd_in != STDIN_FILENO && input->type == INPUT)
+		close(comm->fd_in);
+	if (comm->fd_out != STDOUT_FILENO
+		&& (input->type == TRUNC || input->type == APPEND))
+		close(comm->fd_out);
 	if (input->type == INPUT)
 		comm->fd_in = open_type(input->path, INPUT);
 	else if (input->type == HEREDOC)
@@ -50,12 +55,7 @@ void	do_pipes(t_data **data, t_pipex *comm)
 	}
 	else
 	{
-		fprintf(stderr,"cmd nbr:%d\n", (*data)->cmd_nbr);
-		for (int i = 0; i < (*data)->pipe_nbr; i++)
-		{
-			for (int j = 0; j < 2; j++)
-				printf ("fd[%d][%d]: %d\n", i, j, (*data)->fd[i][j]);
-		}
+		print_intmatrix((*data)->fd, (*data)->pipe_nbr, 2);
 		comm->fd_in = (*data)->fd[(*data)->cmd_nbr][0];
 		(*data)->in_pipe = FALSE;
 		(*data)->cmd_nbr++;
@@ -84,7 +84,7 @@ t_pipex	input_exec(t_data **data)
 			}
 			else
 			{
-				if ((*data)->cmd_nbr == 0)
+				if ((*data)->cmd_nbr == 0 && (*data)->pipe_nbr > 0)
 					do_pipes(data, &comm);
 				return (comm);
 			}

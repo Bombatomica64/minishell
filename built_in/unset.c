@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:14:12 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/29 12:38:27 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/13 17:34:51 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,24 @@ t_bool	ft_export(char ***envp, char **cmd)
 {
 	char	*tmp;
 	int		i;
+	int		j;
 
 	if (!cmd)
 		return (FALSE);
-	i = 0;
-	while (cmd[1][i] != '=' && cmd[1][i] != '\0')
-		i++;
-	tmp = ft_strndup(cmd[1], i);
-	if (find_in_env(*envp, tmp) != -1)
-		return (add_to_env(envp, tmp));
-	else
-		return (update_env(envp, tmp));
+	j = 0;
+	while (cmd[++j])
+	{
+		i = 0;
+		while (cmd[j][i] != '=' && cmd[j][i] != '\0')
+			i++;
+		tmp = ft_strndup(cmd[1], i);
+		i = find_in_env(*envp, tmp);
+		if (i == -1)
+			return (add_to_env(envp, tmp));
+		else
+			return (update_env(envp, tmp));
+	}
+	return (FALSE);
 }
 
 t_bool	add_to_env(char ***envp, char *str)
@@ -87,6 +94,7 @@ t_bool	add_to_env(char ***envp, char *str)
 		return (FALSE);
 	free(*envp);
 	*envp = new_envp;
+	free(str);
 	return (TRUE);
 }
 
@@ -97,6 +105,7 @@ t_bool	update_env(char ***envp, char *str)
 	i = find_in_env(*envp, str);
 	free((*envp)[i]);
 	(*envp)[i] = ft_strdup(str);
+	free(str);
 	if (!(*envp)[i])
 		return (FALSE);
 	return (TRUE);

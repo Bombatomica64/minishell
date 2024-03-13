@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/13 10:08:59 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/13 10:15:24 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ void	ft_do_it(t_data *data, char *terminal_input)
 		comm = input_exec(&data);
 		if (comm.cmd)
 		{
-			data->error_codes += pipex(&comm, data);
+			data->error_codes = pipex(&comm, data);
 			free_matrix(&comm.cmd);
 		}
+		if (data->error_codes > 0)
+			break ;
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expande_variables_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:40:43 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/06 12:24:03 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/13 12:15:49 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ char	*expand_name(char *tmp, t_data *data, t_bool quote, char quote_type)
 
 	i = 0;
 	str = NULL;
+	if (!tmp)
+		return (NULL);
 	while ((tmp)[i] && (i < ft_strlen(tmp)))
 	{
 		if (tmp[i] == '\'' || tmp[i] == '\"')

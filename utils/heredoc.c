@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:32:21 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/06 12:57:32 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/13 12:17:37 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	heredoc_creat(char *limiter, t_data *data)
 	char	*str;
 	int		fd[2];
 	pid_t	pid;
-	
+
 	printf("limiter: |%s|\n", limiter);
 	if (pipe(fd) < 0)
 		ft_error("heredoc_creat", PIPE, 132, NULL);

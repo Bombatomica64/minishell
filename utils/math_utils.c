@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 16:08:59 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/13 10:44:34 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/13 15:40:12 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,33 @@ void	print_intmatrix(int **matrix, int rows, int cols)
 		printf("\n");
 		i++;
 	}
+}
+
+t_bool	ft_atoibool(char *str, int *nbr)
+{
+	int		i;
+	int		sign;
+	long	res;
+
+	i = 0;
+	res = 0;
+	sign = 1;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (str[i])
+	{
+		if (!(str[i] >= '0' && str[i] <= '9'))
+			return (FALSE);
+		res = res * 10 + str[i] - '0';
+		i++;
+	}
+	res *= sign;
+	if (res > INT_MAX || res < INT_MIN)
+		return (FALSE);
+	*nbr = (int)res;
+	return (TRUE);
 }

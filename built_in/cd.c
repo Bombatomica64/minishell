@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/12 15:36:45 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/13 15:33:37 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 		i++;
 	}
 }*/
+
 char	*ft_tilde(char *str, t_data *data)
 {
 	char	*user;
@@ -52,7 +53,6 @@ char	*ft_tilde(char *str, t_data *data)
 	free(user);
 	return (tmp);
 }
-
 
 char	*ft_remove_chars(char *str, char *to_remove, int i)
 {
@@ -88,10 +88,7 @@ char	*refactor_path(char *tmp, t_data *data, int i)
 	if (*str == '~')
 		str = ft_tilde(str, data);
 	else if (*str != '/')
-	{
-		str = ft_strjoin_2("/", str);
-		str = ft_strjoin_2(data->pwd, str);
-	}
+		str = ft_strjoin_2(data->pwd, ft_strjoin_2("/", str));
 	while (str[i] != '\0')
 	{
 		if (strncmp(str + i, "./", 2) == 0 || strncmp(str + i, "../", 3) == 0
@@ -128,23 +125,25 @@ t_bool	ft_change_env(char **str, char *oldpwd, t_data *data)
 	return (TRUE);
 }
 
-t_bool	ft_cd(char **mtx, t_data *data) //TODO: cd "~/ecc" o < "~", tra virgolette è un path relativo e ~ è il nome
+//TODO: cd "~/ecc" o < "~", tra virgolette è un path relativo e ~ è il nome
+
+t_bool	ft_cd(char **mtx, t_data *data)
 {
 	char	*change_oldpwd;
 	char	*str;
 
+	if (mtx[2])
+	{
+		ft_putstr_fd("cd: too many arguments\n", 2);
+		return (FALSE);
+	}
 	change_oldpwd = ft_strjoin_2("OLDPWD=", getcwd(NULL, 0));
 	if (mtx[1] == NULL)
 		str = ft_strdup(data->home);
 	else if (ft_strcmp(mtx[1], "-") == 0)
-	{
 		str = get_env_value(data->envp, "OLDPWD");
-	}
 	else
-	{
-		str = ft_strdup(mtx[1]);
-		str = refactor_path(str, data, 0);
-	}
+		str = refactor_path(ft_strdup(mtx[1]), data, 0);
 	if (chdir(str) == -1)
 	{
 		perror("cd");

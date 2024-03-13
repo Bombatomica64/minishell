@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/13 11:07:46 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/13 12:31:03 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ t_bool	parser(char *str, t_data *data)
 				parser.tmp_type, &quote, data);
 		parser.tmp = ft_strtrimfree(parser.tmp, " \t\r\n\v\f");
 		if (parser.tmp == NULL)
-			return (FALSE);
+			break ;
 		if (ft_isbuiltin(parser.tmp) == TRUE)
 			parser.tmp_type = BUILT_IN;
 		parser.tmp_path = get_path(&parser.tmp, parser.tmp_type, data, &offset);

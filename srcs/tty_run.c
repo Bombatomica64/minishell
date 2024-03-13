@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/13 11:39:41 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/13 11:46:46 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ void	ft_do_it(t_data *data, char *terminal_input)
 		{
 			data->error_codes = pipex(&comm, data);
 			free_matrix(&comm.cmd);
+		}
+		if (data->in_pipe == FALSE)
+		{
+			close(comm.fd_in);
+			close(comm.fd_out);
 		}
 		if (data->error_codes > 0)
 			break ;

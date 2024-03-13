@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/11 09:58:45 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/13 11:11:44 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,31 @@ t_bool	ft_isthesameas(char *s1, char *s2)
 	return (FALSE);
 }
 
-void	do_builtin(char **cmd, t_data *data)
+void	do_builtin(t_pipex *comm, t_data *data)
 {
 	t_bool	ret;
 
 	ret = TRUE;
-	if (ft_strcmp(cmd[0], "echo") == 0)
-		ret = ft_echo(cmd);
-	else if (ft_strcmp(cmd[0], "pwd") == 0)
+	if (ft_strcmp(comm->cmd[0], "echo") == 0)
+		ret = ft_echo(comm->cmd);
+	else if (ft_strcmp(comm->cmd[0], "pwd") == 0)
 		ft_pwd();
-	else if (ft_strcmp(cmd[0], "export") == 0)
-		ret = ft_export(&data->envp, cmd);
-	else if (ft_strcmp(cmd[0], "unset") == 0)
-		ret = ft_unset(cmd, &data->envp);
-	else if (ft_strcmp(cmd[0], "env") == 0)
+	else if (ft_strcmp(comm->cmd[0], "export") == 0)
+		ret = ft_export(&data->envp, comm->cmd);
+	else if (ft_strcmp(comm->cmd[0], "unset") == 0)
+		ret = ft_unset(comm->cmd, &data->envp);
+	else if (ft_strcmp(comm->cmd[0], "env") == 0)
 		ft_env(data->envp);
-	else if (ft_strcmp(cmd[0], "exit") == 0)
-		ft_exit(cmd, data);
+	else if (ft_strcmp(comm->cmd[0], "exit") == 0)
+		ft_exit(comm->cmd, data);
+	if (data->in_pipe == FALSE)
+	{
+		close(comm->fd_in);
+		close(comm->fd_out);
+	}
 	if (ret == FALSE)
-		ft_builtin_error(cmd[0]);
-	free_matrix(&cmd);
+		ft_builtin_error(comm->cmd[0]);
+	free_matrix(&comm->cmd);
 	if (ret == TRUE)
 		free_close(&data, 0);
 	free_close(&data, 1);

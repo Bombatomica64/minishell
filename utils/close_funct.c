@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close_funct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:10:53 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/13 10:32:48 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/12 18:05:37 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ int	free_return(t_data **data, int status)
 void	free_close(t_data **data, int status)
 {
 	free_return(data, status);
-	free_matrix(&(*data)->envp);
-	free((*data)->home);
 	close((*data)->original_stdin);
 	close((*data)->original_stdout);
-	close (0);
-	close (1);
+	close(0);
+	close(1);
+	free_matrix(&(*data)->envp);
+	free((*data)->home);
 	if ((*data)->pwd)
 		free((*data)->pwd);
 	exit (status);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/13 11:46:46 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/13 12:01:16 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ void	ft_do_it(t_data *data, char *terminal_input)
 		}
 		if (data->in_pipe == FALSE)
 		{
-			close(comm.fd_in);
-			close(comm.fd_out);
+			if (comm.fd_in != STDIN_FILENO)
+				close(comm.fd_in);
+			if (comm.fd_out != STDOUT_FILENO)
+				close(comm.fd_out);
 		}
 		if (data->error_codes > 0)
 			break ;
@@ -58,14 +60,8 @@ void	process_input(t_data *data)
 	add_history(terminal_input);
 	if (*terminal_input == '\0')
 		return ;
-	/*while (data->bonus)
-	{
-		ft_do_it(data, data->bonus->str);
-		free_return(&data, 0);
-		if (data->error_codes > 0)
-			break ;
-	}*/
 	ft_do_it(data, terminal_input);
+	printf("stop\n");
 	free_return(&data, 0);
 	ft_data_reinit(data);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/13 11:41:26 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/13 12:11:08 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	set_inout(t_pipex *comm, t_input *input, t_data *data)
 	if (input->type == INPUT)
 	{
 		if (comm->fd_in != STDIN_FILENO)
-		close(comm->fd_in);
+			close(comm->fd_in);
 		comm->fd_in = open_type(input->path, INPUT);
 	}
 	else if (input->type == HEREDOC)
@@ -38,6 +38,7 @@ static t_pipex	basic_set(t_data **data)
 	dup2((*data)->original_stdout, STDOUT_FILENO);
 	comm.fd_in = (STDIN_FILENO);
 	comm.fd_out = (STDOUT_FILENO);
+	comm.cmd = NULL;
 	return (comm);
 }
 
@@ -72,7 +73,6 @@ t_pipex	input_exec(t_data **data)
 
 	comm = basic_set(data);
 	seen = FALSE;
-	comm.cmd = NULL;
 	while ((*data)->input && (*data)->input->type != FINISH)
 	{
 		set_inout(&comm, (*data)->input, *data);

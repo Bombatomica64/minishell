@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/13 15:33:37 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/13 18:12:53 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,8 @@ t_bool	ft_change_env(char **str, char *oldpwd, t_data *data)
 }
 
 //TODO: cd "~/ecc" o < "~", tra virgolette è un path relativo e ~ è il nome
+// /bin porta a /usr/bin e non a /bin
+// rmdir e poi cd .. va in segfault 🤪️
 
 t_bool	ft_cd(char **mtx, t_data *data)
 {

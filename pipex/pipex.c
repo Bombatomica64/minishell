@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/13 16:01:17 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/13 16:30:54 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,8 @@ void	child(t_pipex *comm, t_data *data)
 	if (ft_isbuiltin(comm->cmd[0]) == TRUE)
 		do_builtin(comm, data);
 	execve(comm->path, comm->cmd, data->envp);
-	free_array_matrix(data->fd, data->pipe_nbr);
 	free_matrix(&comm->cmd);
-	ft_error("pipex->cmd[0]", EXECVE, 126, data);
+	free_close(&data, 127);
 }
 
 int	pipex(t_pipex *comm, t_data *data)

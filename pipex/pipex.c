@@ -14,16 +14,13 @@
 
 int	builtin_child(t_pipex *comm, t_data *data)
 {
-	int		ret;
-
 	// if (data->in_pipe == TRUE && data->cmd_nbr == 0)
 	// 	close(data->fd[0][0]);
 	// else if (data->in_pipe == TRUE
 	// 	&& data->cmd_nbr > 0 && data->cmd_nbr < data->pipe_nbr)
 	// 	close(data->fd[data->cmd_nbr][0]);
 	io_redir(comm, data);
-	ret = do_builtin(comm, data);
-	return (ret);
+	return (do_builtin(comm, data));
 }
 
 char	*path_execve(char *command, char **envp)

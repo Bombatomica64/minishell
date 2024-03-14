@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:52:36 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/12 17:33:40 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/14 18:14:16 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ char	*read_quotes(char *c);
 void	quote_check(char **line);
 t_bool	lexer(char **line, t_data *data);
 t_bool	lexer_error(char *error, t_data *data, char c);
+int		pipe_count(char *line, t_data *data);
+t_bool	pipe_check(char *line);
+t_bool	check_middle(char *line, t_quote *squote);
+t_bool	check_start_end(char *line, t_quote *squote);
 
 #endif
 

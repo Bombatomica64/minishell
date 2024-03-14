@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/13 18:42:29 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/14 11:51:30 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ t_bool	ft_isthesameas(char *s1, char *s2)
 	return (FALSE);
 }
 
-void	do_builtin(t_pipex *comm, t_data *data)
+int	do_builtin(t_pipex *comm, t_data *data)
 {
-	t_bool	ret;
+	int	ret;
 
-	ret = TRUE;
+	ret = 0;
 	if (ft_strcmp(comm->cmd[0], "echo") == 0)
 		ret = ft_echo(comm->cmd);
 	else if (ft_strcmp(comm->cmd[0], "pwd") == 0)
@@ -35,7 +35,17 @@ void	do_builtin(t_pipex *comm, t_data *data)
 	else if (ft_strcmp(comm->cmd[0], "env") == 0)
 		ft_env(data->envp);
 	else if (ft_strcmp(comm->cmd[0], "exit") == 0)
-		ft_exit(comm->cmd, data);
+		ret = ft_exit(comm->cmd, data);
+	else if (ft_strcmp(comm->cmd[0], "cd") == 0)
+		ret = ft_cd(comm->cmd, data);
+	non_pipe_close(data, comm);
+	if (ret != 0)
+		ft_builtin_error(comm->cmd[0]);
+	return (free_matrix(&comm->cmd), ret);
+}
+
+void	non_pipe_close(t_data *data, t_pipex *comm)
+{
 	if (data->in_pipe == FALSE)
 	{
 		if (comm->fd_in != STDIN_FILENO)
@@ -43,13 +53,8 @@ void	do_builtin(t_pipex *comm, t_data *data)
 		if (comm->fd_out != STDOUT_FILENO)
 			close(comm->fd_out);
 	}
-	if (ret == FALSE)
-		ft_builtin_error(comm->cmd[0]);
-	free_matrix(&comm->cmd);
-	if (ret == TRUE)
-		free_close(&data, 0);
-	free_close(&data, 1);
 }
+
 /* void	child(t_data *data, int i)
 {
 	pid_t	pid;

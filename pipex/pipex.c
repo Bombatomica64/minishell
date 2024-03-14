@@ -3,20 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/13 12:10:04 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/14 10:57:24 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-t_bool	is_cd(char *command)
+int	builtin_child(t_pipex *comm, t_data *data)
 {
-	if (ft_strcmp(command, "cd") == 0)
-		return (TRUE);
-	return (FALSE);
+	int		ret;
+
+	if (data->in_pipe == TRUE && data->cmd_nbr == 0)
+		close(data->fd[0][0]);
+	else if (data->in_pipe == TRUE
+		&& data->cmd_nbr > 0 && data->cmd_nbr < data->pipe_nbr)
+		close(data->fd[data->cmd_nbr][0]);
+	if (comm->fd_out != STDOUT_FILENO)
+	{
+		if (dup2(comm->fd_out, STDOUT_FILENO) == -1)
+			ft_error("child", DUP, 13, data);
+	}
+	if (comm->fd_in != STDIN_FILENO)
+	{
+		if (dup2(comm->fd_in, STDIN_FILENO) == -1)
+			ft_error("child_stdin", DUP, 13, data);
+	}
+	ret = do_builtin(comm, data);
+	return (ret);
 }
 
 char	*path_execve(char *command, char **envp)
@@ -64,8 +80,6 @@ void	child(t_pipex *comm, t_data *data)
 		if (dup2(comm->fd_in, STDIN_FILENO) == -1)
 			ft_error("child_stdin", DUP, 13, data);
 	}
-	if (ft_isbuiltin(comm->cmd[0]) == TRUE)
-		do_builtin(comm, data);
 	execve(comm->path, comm->cmd, data->envp);
 	free_array_matrix(data->fd, data->pipe_nbr);
 	free_matrix(&comm->cmd);
@@ -78,10 +92,8 @@ int	pipex(t_pipex *comm, t_data *data)
 	int		status;
 
 	status = 0;
-	if (is_cd(comm->cmd[0]) == TRUE)
-		return (ft_cd(comm->cmd, data));
-	if (is_exit(comm->cmd[0]) == TRUE)
-		return (ft_exit(comm->cmd, data));
+	if (ft_isbuiltin(comm->cmd[0]) == TRUE)
+		return (builtin_child(comm, data));
 	pid = fork();
 	if (pid == -1)
 		ft_error("executor", FORK, 124, NULL);

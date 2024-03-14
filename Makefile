@@ -6,7 +6,7 @@
 #    By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/03/14 15:28:13 by mruggier         ###   ########.fr        #
+#    Updated: 2024/03/14 18:45:53 by mruggier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ UTILS = utils/ft_error.c \
 
 LEXER = lexer/lexer.c \
 		lexer/quote.c \
-		lexer/redir.c
+		lexer/redir.c \
+		lexer/pipe.c
 
 PARSER = parser/parser.c \
 	parser/parser_utils.c \

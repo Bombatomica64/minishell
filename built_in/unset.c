@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:14:12 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/13 17:34:51 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/13 18:36:20 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ t_bool	ft_export(char ***envp, char **cmd)
 		tmp = ft_strndup(cmd[1], i);
 		i = find_in_env(*envp, tmp);
 		if (i == -1)
-			return (add_to_env(envp, tmp));
+			return (add_to_env(envp, cmd[j]));
 		else
-			return (update_env(envp, tmp));
+			return (update_env(envp, cmd[j]));
 	}
 	return (FALSE);
 }
@@ -82,17 +82,20 @@ t_bool	add_to_env(char ***envp, char *str)
 	int		i;
 	char	**new_envp;
 
-	i = 0;
-	while ((*envp)[i])
-		i++;
-	new_envp = ft_calloc(i + 2, sizeof(char *));
+	new_envp = malloc((ft_matrix_len(*envp) + 2) * sizeof(char *));
 	if (!new_envp)
 		return (FALSE);
-	ft_memcpy(new_envp, *envp, i * sizeof(char *));
+	i = 0;
+	while (i < ft_matrix_len(*envp))
+	{
+		new_envp[i] = ft_strdup((*envp)[i]);
+		i++;
+	}
 	new_envp[i] = ft_strdup(str);
+	new_envp[i + 1] = NULL;
 	if (!new_envp[i])
 		return (FALSE);
-	free(*envp);
+	free_matrix(envp);
 	*envp = new_envp;
 	free(str);
 	return (TRUE);

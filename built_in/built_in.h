@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:03:32 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/13 16:07:02 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/14 15:37:15 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  * @return TRUE if success, FALSE if error
  * @note it will only accept -n as a flag
 */
-t_bool	ft_echo(char **mtx);
+int		ft_echo(char **mtx);
 
 /**
  * @brief cd builtin function
@@ -30,7 +30,7 @@ t_bool	ft_echo(char **mtx);
  * @param data struct with envp
  * @return TRUE if success, FALSE if error
 */
-t_bool	ft_cd(char **str, t_data *data);
+int		ft_cd(char **str, t_data *data);
 
 /**
  * @brief env builtin function
@@ -51,15 +51,17 @@ void	ft_pwd(void);
  * @param cmd matrix with export + arguments
  * @return TRUE if success, FALSE if error
 */
-t_bool	ft_export(char ***envp, char **cmd);
+int ft_export(char ***envp, char **cmd);
+
+t_bool add_or_update(char ***envp, char *tmp, char **cmd, int j);
 
 /**
  * @brief unset builtin function
  * @param mtx matrix with unset + arguments
  * @param envp pointer to the environment variables
  * @return TRUE if success, FALSE if error
-*/
-t_bool	ft_unset(char **mtx, char ***envp);
+ */
+int		ft_unset(char **mtx, char ***envp);
 
 // unset helper functions
 /**

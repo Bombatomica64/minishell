@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:14:12 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/29 12:38:27 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/13 18:36:20 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,24 @@ t_bool	ft_export(char ***envp, char **cmd)
 {
 	char	*tmp;
 	int		i;
+	int		j;
 
 	if (!cmd)
 		return (FALSE);
-	i = 0;
-	while (cmd[1][i] != '=' && cmd[1][i] != '\0')
-		i++;
-	tmp = ft_strndup(cmd[1], i);
-	if (find_in_env(*envp, tmp) != -1)
-		return (add_to_env(envp, tmp));
-	else
-		return (update_env(envp, tmp));
+	j = 0;
+	while (cmd[++j])
+	{
+		i = 0;
+		while (cmd[j][i] != '=' && cmd[j][i] != '\0')
+			i++;
+		tmp = ft_strndup(cmd[1], i);
+		i = find_in_env(*envp, tmp);
+		if (i == -1)
+			return (add_to_env(envp, cmd[j]));
+		else
+			return (update_env(envp, cmd[j]));
+	}
+	return (FALSE);
 }
 
 t_bool	add_to_env(char ***envp, char *str)
@@ -75,18 +82,22 @@ t_bool	add_to_env(char ***envp, char *str)
 	int		i;
 	char	**new_envp;
 
-	i = 0;
-	while ((*envp)[i])
-		i++;
-	new_envp = ft_calloc(i + 2, sizeof(char *));
+	new_envp = malloc((ft_matrix_len(*envp) + 2) * sizeof(char *));
 	if (!new_envp)
 		return (FALSE);
-	ft_memcpy(new_envp, *envp, i * sizeof(char *));
+	i = 0;
+	while (i < ft_matrix_len(*envp))
+	{
+		new_envp[i] = ft_strdup((*envp)[i]);
+		i++;
+	}
 	new_envp[i] = ft_strdup(str);
+	new_envp[i + 1] = NULL;
 	if (!new_envp[i])
 		return (FALSE);
-	free(*envp);
+	free_matrix(envp);
 	*envp = new_envp;
+	free(str);
 	return (TRUE);
 }
 
@@ -97,6 +108,7 @@ t_bool	update_env(char ***envp, char *str)
 	i = find_in_env(*envp, str);
 	free((*envp)[i]);
 	(*envp)[i] = ft_strdup(str);
+	free(str);
 	if (!(*envp)[i])
 		return (FALSE);
 	return (TRUE);

@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:14:28 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/04 15:39:28 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/13 16:40:58 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int	ft_error(const char *str, t_error error, int errnbr, t_data *data)
 		perror("unknown error");
 	if (data && (error == EXECVE || error == DUP))
 		free_close(&data, errnbr);
-	return (free_return(&data, errnbr));
+	data->error_codes = errnbr;
+	return (-1);
 }
 
 void	ft_builtin_error(char *com)

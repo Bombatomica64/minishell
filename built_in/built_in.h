@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_in.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:03:32 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/05 11:35:19 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/13 16:07:02 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,10 @@ t_bool	update_env(char ***envp, char *str);
 void	print_pwds(char **envp);
 
 /**
- * @brief Replaces the tilde (~) character in a string with the corresponding path.
- * @param str The input string containing the tilde character.
- * @param data The data structure containing the necessary information for path replacement.
- * @return The modified string with the tilde character replaced by the corresponding path.
+ * @brief Replaces the tilde ~ character in a string with the corresponding path
+ * @param str The input string containing the tilde character
+ * @param data data structure containing the information for path replacement
+ * @return The modified string with ~ replaced by the corresponding path
  */
 char	*ft_tilde(char *str, t_data *data);
 

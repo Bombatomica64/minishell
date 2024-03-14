@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/13 10:43:26 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/13 15:43:09 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <errno.h>
+# include <limits.h>
 # include "../libft/ft_printf.h"
 # include "../libft/get_next_line_bonus.h"
 # pragma once
@@ -461,6 +462,7 @@ int		ft_isinset(char c, char *set);
 int		ft_max(int a, int b);
 int		ft_min(int a, int b);
 void	print_intmatrix(int **matrix, int rows, int cols);
+t_bool	ft_atoibool(char *str, int *nbr);
 
 t_bool	ft_iscmd(t_input *input);
 char	*cut_string(int len, char *str);

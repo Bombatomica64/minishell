@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/14 15:30:34 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:37:36 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	do_builtin(t_pipex *comm, t_data *data)
 	else if (ft_strcmp(comm->cmd[0], "env") == 0)
 		ft_env(data->envp);
 	else if (ft_strcmp(comm->cmd[0], "exit") == 0)
-		ret = ft_exit(comm->cmd, data); // ?????????
+		ret = ft_exit(comm->cmd, data);
 	else if (ft_strcmp(comm->cmd[0], "cd") == 0)
 		ret = ft_cd(comm->cmd, data);
 	non_pipe_close(data, comm);

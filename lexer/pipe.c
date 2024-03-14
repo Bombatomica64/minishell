@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 18:08:44 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/14 18:14:10 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/14 18:43:52 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "lexer.h"
 
 t_bool	check_start_end(char *line, t_quote *squote)
 {

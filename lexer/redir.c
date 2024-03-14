@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 17:04:09 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/11 18:06:23 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/14 17:39:14 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,31 @@ t_bool	redir_check(char *line, t_data *data)
 		i++;
 	}
 	return (TRUE);
+}
+
+t_bool	open_quote_check(char *line, char *new_quote)
+
+{
+	int		i;
+	char	quote;
+
+	i = 0;
+	quote = 0;
+	while (line[i])
+	{
+		if (line[i] == '\'' || line[i] == '\"')
+		{
+			if (quote == 0)
+				quote = line[i];
+			else if (quote == line[i])
+				quote = 0;
+		}
+		i++;
+	}
+	if (quote != 0)
+	{
+		*new_quote = quote;
+		return (TRUE);
+	}
+	return (FALSE);
 }

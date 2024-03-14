@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:14:28 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/13 16:40:58 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/14 18:06:40 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@ int	ft_error(const char *str, t_error error, int errnbr, t_data *data)
 
 void	ft_builtin_error(char *com)
 {
-	dup2(2, 1);
-	ft_printf("%s", com);
+	if (ft_strcmp(com, "export") == 0)
+		return ;
+	ft_putstr_fd(com, 2);
 	perror(" ");
 }
 // Path: utils/utils.h

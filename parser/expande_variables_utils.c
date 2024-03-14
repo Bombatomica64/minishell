@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:40:43 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/14 17:30:34 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/14 17:55:57 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
 		str = ft_strjoin_2free(str, ft_itoa(data->error_codes));
 		return (str);
 	}
+	else if (!ft_isalnum(tmp[*i + 1]))
+		return (join_char(str, tmp[*i]));
 	else
 	{
 		(*i)++;

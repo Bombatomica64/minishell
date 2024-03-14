@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/14 10:57:24 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/14 11:52:15 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,8 @@ void	child(t_pipex *comm, t_data *data)
 			ft_error("child_stdin", DUP, 13, data);
 	}
 	execve(comm->path, comm->cmd, data->envp);
-	free_array_matrix(data->fd, data->pipe_nbr);
 	free_matrix(&comm->cmd);
-	ft_error("pipex->cmd[0]", EXECVE, 126, data);
+	free_close(&data, 127);
 }
 
 int	pipex(t_pipex *comm, t_data *data)

@@ -6,44 +6,40 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/14 11:06:20 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/14 17:30:00 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-char	*get_name(char *str, int tmp_type, t_bool *quote, t_data *data)
+char	*get_name(char *str, int tmp_type, t_quote *quote, t_data *data)
 {
 	int			i ;
-	char		quote_type;
 	char		*tmp;
-	t_quote		squote;
 
 	i = 0;
 	tmp = NULL;
-	quote_type = '\0';
-	squote = (t_quote){FALSE, 0};
 	i = skip_spaces2(str);
 	if (tmp_type == HEREDOC || tmp_type == INPUT
 		|| tmp_type == APPEND || tmp_type == TRUNC)
 	{
-		quote_start(&squote.open, str[i], &squote.type);
-		while (str[i] && ft_isspace(str[i]) == FALSE && squote.open == FALSE)
+		quote_start(&quote->open, str[i], &quote->type);
+		while (str[i] && ft_isspace(str[i]) == FALSE && quote->open == FALSE)
 		{
 			tmp = join_char(tmp, str[i]);
 			i++;
 		}
 		if (tmp_type != HEREDOC)
-			tmp = expand_name(tmp, data, *quote, quote_type);
+			tmp = expand_name(tmp, data, quote->open, quote->type);
 		return (tmp);
 	}
 	while (str[i] != 0)
 	{
 		if (ft_isquote(str[i]))
 		{
-			quote_start(quote, str[i], &quote_type);
+			quote_start(&quote->open, str[i], &quote->type);
 			if (tmp_type == BUILT_IN || tmp_type == COMMAND
-				|| (*quote == TRUE && str[i] != quote_type))
+				|| (quote->open == TRUE && str[i] != quote->type))
 				tmp = join_char(tmp, str[i]);
 			i++;
 		}
@@ -52,11 +48,11 @@ char	*get_name(char *str, int tmp_type, t_bool *quote, t_data *data)
 			tmp = join_char(tmp, str[i]);
 			i++;
 		}
-		if (ft_islimiter(str[i]) == TRUE && *quote == FALSE)
+		if (ft_islimiter(str[i]) == TRUE && quote->open == FALSE)
 			break ;
 	}
 	if (tmp_type != HEREDOC)
-		tmp = expand_name(tmp, data, *quote, quote_type);
+		tmp = expand_name(tmp, data, quote->open, quote->type);
 	return (tmp);
 }
 
@@ -116,10 +112,11 @@ char	*free_strdup(char *str, char **freestr)
 t_bool	parser(char *str, t_data *data)
 {
 	t_parser	parser;
-	t_bool		quote;
+	t_quote		quote;
 	int			offset;
 
-	quote = FALSE;
+	quote.open = FALSE;
+	quote.type = 0;
 	offset = 0;
 	while (str)
 	{

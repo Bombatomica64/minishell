@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/13 12:01:16 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:25:30 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	process_input(t_data *data)
 		return ;
 	}
 	fd_malloc(data);
-	printf("data->pipe_nbr: %d\n", data->pipe_nbr);
 	if (terminal_input == NULL)
 	{
 		ft_printf("EOF received, exiting\n");

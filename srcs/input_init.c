@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:28:06 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/13 11:47:32 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:08:45 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_action(int sig)
 {
 	if (sig == SIGINT)
 	{
-		printf("\033[0;94m\nminishell$ \033[0m");
+		printf("\n\033[0;95;1mミニシェル\033[0;96m> \033[0m");
 	}
 }
 

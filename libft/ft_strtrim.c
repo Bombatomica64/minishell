@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 18:21:56 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/12 11:46:30 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/14 10:53:49 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,24 +97,5 @@ char	*ft_freestrtrim(char *s1, char *set)
 		return (NULL);
 	new_string[0] = '\0';
 	ft_strlcat(new_string, s1 + start, (len - start - end + 1));
-	free(s1);
-	return (new_string);
+	return (free(s1), new_string);
 }
-/*
-#include <stdio.h> 
-int main() {
-    char *s1 = "   Hello, World!   ";
-    char *set = " ";
-    char *trimmed = ft_strtrim(s1, set);
-
-    if (trimmed) {
-        printf(" Original String: \"%s\"\n", s1);
-        printf("Trimmed String: \"%s\"\n", trimmed);
-        free(trimmed); // Don't forget to free the memory allocated by ft_strtrim
-    } else {
-        printf("Allocation or input error occurred.\n");
-    }
-
-    return 0;
-}
-*/

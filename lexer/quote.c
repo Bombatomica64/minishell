@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:44:04 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/11 12:44:00 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/14 11:05:01 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,6 @@ void	uselss_quotes(char **buff, char *quote)
 	free(tmp);
 	free(tmp2);
 }
-
-/* 
-int	find_first(char *str, char c)
-{
-	char	*ptr;
-
-	ptr = ft_strchr(str, c);
-	if (ptr)
-		return (ptr - str);
-	else
-		return (-1);
-} */
 
 t_bool	open_quote_check(char *line, char *new_quote)
 

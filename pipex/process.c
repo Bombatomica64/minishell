@@ -38,7 +38,6 @@ int	do_builtin(t_pipex *comm, t_data *data)
 		ret = ft_unset(comm->cmd, &data->envp);
 	else if (ft_strcmp(comm->cmd[0], "env") == 0)
 		ft_env(data->envp);
-<<<<<<< HEAD
 	else if (ft_strcmp(comm->cmd[0], "exit") == 0)
 		ret = ft_exit(comm->cmd, data);
 	else if (ft_strcmp(comm->cmd[0], "cd") == 0)
@@ -51,8 +50,6 @@ int	do_builtin(t_pipex *comm, t_data *data)
 
 void	non_pipe_close(t_data *data, t_pipex *comm)
 {
-=======
->>>>>>> 24e7f0b67808bc070e705c53a1fdaed6d5be6a12
 	if (data->in_pipe == FALSE)
 	{
 		if (comm->fd_in != STDIN_FILENO)

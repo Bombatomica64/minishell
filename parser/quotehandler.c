@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotehandler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:27:46 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/11 11:12:43 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/14 17:39:59 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,13 @@ void	quote_start(t_bool *quote, char c, char *quote_type)
 		return ;
 	if (*quote == FALSE)
 	{
-		if (*quote == FALSE)
-		{
-			*quote = TRUE;
-			*quote_type = c;
-		}
-		else if (*quote == TRUE && *quote_type == c)
-		{
-			*quote = FALSE;
-			*quote_type = '\0';
-		}
+		*quote = TRUE;
+		*quote_type = c;
+	}
+	else if (*quote == TRUE && *quote_type == c)
+	{
+		*quote = FALSE;
+		*quote_type = '\0';
 	}
 }
 

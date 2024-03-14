@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:24:10 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/06 12:35:38 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/14 15:25:13 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "built_in.h"
 
-t_bool	ft_echo(char **mtx)
+int	ft_echo(char **mtx)
 {
 	int		i;
 
 	if (!mtx || ft_strcmp(mtx[0], "echo") != 0)
-		return (FALSE);
+		return (1);
 	i = 1;
 	if (ft_strcmp(mtx[i], "-n") == 0)
 		i++;
@@ -29,7 +29,7 @@ t_bool	ft_echo(char **mtx)
 	}
 	if (ft_strcmp(mtx[1], "-n") != 0 || mtx[1] == NULL)
 		ft_printf("\n");
-	return (TRUE);
+	return (0);
 }
 
 void	ft_env(char **envp)

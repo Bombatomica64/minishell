@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:27:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/13 17:27:59 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:03:39 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_bool	print_matrix(char **mtx)
 	if (!mtx)
 		return (FALSE);
 	while (mtx[++i])
-		ft_printf("%s\n", mtx[i]);
+		printf("%s\n", mtx[i]);
 	return (TRUE);
 }
 
@@ -54,7 +54,7 @@ int	find_in_env(char **envp, char *to_find)
 	i = 0;
 	while (envp[i] != NULL)
 	{
-		if (ft_strcmp(envp[i], to_find) == 0)
+		if (ft_strncmp(envp[i], to_find, ft_strlen(to_find)) == 0)
 			return (i);
 		i++;
 	}
@@ -69,7 +69,10 @@ char	*get_env_value(char **envp, char *to_find)
 	i = find_in_env(envp, to_find);
 	if (i == -1)
 		return (NULL);
-	value = ft_strdup(envp[i] + ft_strlen(to_find) + 1);
+	if (envp[i][ft_strlen(to_find)] == '=')
+		value = ft_strdup(envp[i] + ft_strlen(to_find) + 1);
+	else
+		value = ft_strdup(envp[i] + ft_strlen(to_find));
 	return (value);
 }
 

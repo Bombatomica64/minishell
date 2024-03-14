@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 11:23:22 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/13 16:13:16 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/14 15:27:34 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_exit(char **cmd, t_data *data)
 	else if (cmd[1] && cmd[2])
 	{
 		write(2, "exit\nminishell: exit: too many arguments\n", 42);
-		return (1);
+		return (127);
 	}
 	free_matrix(&cmd);
 	free_close(&data, arg2);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expande_variables_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:40:43 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/15 10:56:54 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:28:55 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
 {
 	char	*tofind;
-	
+
 	tofind = NULL;
 	if (tmp[*i + 1] == '\0')
 		return (join_char(str, tmp[*i]));

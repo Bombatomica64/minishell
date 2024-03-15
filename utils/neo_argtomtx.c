@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   neo_argtomtx.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 11:58:00 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/15 13:00:32 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:28:26 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ char	*ft_neorowfill(char *str, int *j, int i)
 	if (ft_isquote(row[0]))
 		return (ft_noquote(row, row[0]));
 	return (row);
-	
 }
 
 char	**ft_neosplitarg(char *str)

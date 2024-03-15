@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:32:21 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/14 17:27:25 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/15 12:55:29 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,11 @@ static void	ft_putendl_fd_free(char **s, int fd)
 	free(*s);
 }
 
-int	heredoc_creat(char *limiter, t_data *data)
+int	heredoc_creat(char *limiter, t_data *data, pid_t pid)
 {
 	char	*str;
 	int		fd[2];
-	pid_t	pid;
-	
-	printf("limiter: |%s|\n", limiter);
+
 	if (pipe(fd) < 0)
 		ft_error("heredoc_creat", PIPE, 132, NULL);
 	pid = fork();
@@ -68,8 +66,8 @@ int	heredoc_creat(char *limiter, t_data *data)
 	}
 	else
 	{
-		close(fd[1]);
 		waitpid(pid, NULL, 0);
+		close(fd[1]);
 	}
 	return (fd[0]);
 }

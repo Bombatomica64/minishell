@@ -21,7 +21,7 @@ static void	set_inout(t_pipex *comm, t_input *input, t_data *data)
 		comm->fd_in = open_type(input->path, INPUT);
 	}
 	else if (input->type == HEREDOC)
-		comm->fd_in = heredoc_creat(input->node, data);
+		comm->fd_in = heredoc_creat(input->node, data, 0);
 	else if (input->type == TRUNC || input->type == APPEND)
 	{
 		if (comm->fd_out != STDOUT_FILENO)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/13 12:11:08 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/14 11:04:38 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,15 @@ void	do_pipes(t_data **data, t_pipex *comm)
 	}
 }
 
+static void	set_command(t_data **data, t_pipex *comm, t_bool *seen)
+{
+	*seen = TRUE;
+	comm->cmd = ft_splitarg((*data)->input->node);
+	comm->path = (*data)->input->path;
+	if ((*data)->in_pipe == TRUE)
+		do_pipes(data, comm);
+}
+
 t_pipex	input_exec(t_data **data)
 {
 	t_pipex	comm;
@@ -79,13 +88,7 @@ t_pipex	input_exec(t_data **data)
 		if (ft_iscmd((*data)->input) == TRUE)
 		{
 			if (seen == FALSE)
-			{
-				seen = TRUE;
-				comm.cmd = ft_splitarg((*data)->input->node);
-				comm.path = (*data)->input->path;
-				if ((*data)->in_pipe == TRUE)
-					do_pipes(data, &comm);
-			}
+				set_command(data, &comm, &seen);
 			else
 			{
 				if ((*data)->cmd_nbr == 0 && (*data)->pipe_nbr > 0)

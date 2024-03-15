@@ -124,6 +124,7 @@ t_bool	parser(char *str, t_data *data)
 		parser.tmp_type = ft_file_type(str, &offset);
 		parser.tmp = get_name(str + offset,
 				parser.tmp_type, &quote, data);
+		offset += skip_spaces2(str + offset);
 		parser.tmp = ft_strtrimfree(parser.tmp, " \t\r\n\v\f");
 		if (parser.tmp == NULL)
 			break ;
@@ -135,7 +136,7 @@ t_bool	parser(char *str, t_data *data)
 			return (free(parser.tmp), free(str), FALSE);
 		ft_inputadd_back(&(*data).input, ft_inputnew(parser.tmp,
 				parser.tmp_path, parser.tmp_type));
-		str = cut_string(offset + 1 + ft_strlen(parser.tmp), str);
+		str = cut_string(offset + ft_strlen(parser.tmp), str);
 		free(parser.tmp);
 		free(parser.tmp_path);
 	}

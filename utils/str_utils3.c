@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str_utils3.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:04:41 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/13 16:17:58 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/15 12:57:56 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ char	*cut_string(int len, char *str)
 	char	*tmp;
 	int		i;
 
+	//len += skip_spaces2(str);
 	i = 0;
 	if (!ft_strlen(str) || len >= (int)ft_strlen(str))
 		return (free(str), NULL);

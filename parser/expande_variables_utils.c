@@ -6,16 +6,18 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:40:43 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/14 17:55:57 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/15 10:56:54 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
+//echo $"USER" mi serve una variabile statica per le quote
+
 char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
 {
 	char	*tofind;
-
+	
 	tofind = NULL;
 	if (tmp[*i + 1] == '\0')
 		return (join_char(str, tmp[*i]));
@@ -65,3 +67,5 @@ char	*expand_name(char *tmp, t_data *data, t_bool open, char type)
 	free(tmp);
 	return (str);
 }
+
+//grep c<file1

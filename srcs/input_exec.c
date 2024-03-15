@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/14 11:04:38 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/15 12:10:13 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	set_inout(t_pipex *comm, t_input *input, t_data *data)
 		comm->fd_in = open_type(input->path, INPUT);
 	}
 	else if (input->type == HEREDOC)
-		comm->fd_in = heredoc_creat(input->node, data);
+		comm->fd_in = heredoc_creat(input->node, data, 0);
 	else if (input->type == TRUNC || input->type == APPEND)
 	{
 		if (comm->fd_out != STDOUT_FILENO)
@@ -69,7 +69,10 @@ void	do_pipes(t_data **data, t_pipex *comm)
 static void	set_command(t_data **data, t_pipex *comm, t_bool *seen)
 {
 	*seen = TRUE;
-	comm->cmd = ft_splitarg((*data)->input->node);
+	if (!ft_strncmp((*data)->input->node, "cd ", 3))
+		comm->cmd = ft_neosplitarg((*data)->input->node);
+	else
+		comm->cmd = ft_splitarg((*data)->input->node);
 	comm->path = (*data)->input->path;
 	if ((*data)->in_pipe == TRUE)
 		do_pipes(data, comm);

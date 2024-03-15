@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:42:04 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/11 11:16:21 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/15 12:05:28 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_arg_count(char *str, int i, int nbr_args)
 	return (nbr_args);
 }
 
-static char	*ft_rowgen(char *str)
+char	*ft_rowgen(char *str)
 {
 	char	*row;
 	t_quote	quote;

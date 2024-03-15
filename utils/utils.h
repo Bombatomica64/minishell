@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/15 12:56:21 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/15 12:05:55 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -339,9 +339,10 @@ t_bool	ft_isbuiltin(char *str);
  * @brief adds the heredoc functionality to the program
  * @param limiter string that will be used as a limiter
  * @param data data envp to be passed to the function
+ * @param pid pid to be passed to the function
  * @return fd with the file descriptor of the pipe fd[0]
 */
-int		heredoc_creat(char *limiter, t_data *data);
+int		heredoc_creat(char *limiter, t_data *data, pid_t pid);
 
 /**
  * Removes leading and trailing characters specified in
@@ -397,6 +398,8 @@ char	*get_env_value(char **envp, char *to_find);
  * @return the number of arguments in the string
 */
 int		ft_arg_count(char *str, int i, int nbr_args);
+
+char	*ft_rowgen(char *str);
 
 /**
  * @brief Function that allocates a new string with the argument
@@ -467,5 +470,7 @@ t_bool	ft_atoibool(char *str, int *nbr);
 t_bool	ft_iscmd(t_input *input);
 char	*cut_string(int len, char *str);
 int		find_last(char *str, char c);
+
+char	**ft_neosplitarg(char *str);
 
 #endif

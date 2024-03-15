@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/15 12:08:21 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/15 16:34:38 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ char	*path_execve(char *command, char **envp)
 	char	*possible_path;
 	char	**all_paths;
 
-	i = 0;
-	while (ft_strnstr(envp[i], "PATH=", 5) == 0)
-		i++;
+	i = find_in_env(envp, "PATH=");
+	if (i == -1)
+		return (NULL);
 	all_paths = ft_split(envp[i] + 5, ':');
 	i = 0;
 	while (all_paths[i] != NULL)
@@ -54,6 +54,8 @@ void	child(t_pipex *comm, t_data *data)
 		&& data->cmd_nbr > 0 && data->cmd_nbr < data->pipe_nbr)
 		close(data->fd[data->cmd_nbr][0]);
 	io_redir(comm, data);
+	if (ft_isbuiltin(comm->cmd[0]) == TRUE)
+		builtin_child(comm, data);
 	execve(comm->path, comm->cmd, data->envp);
 	free_matrix(&comm->cmd);
 	free_close(&data, 127);
@@ -86,12 +88,10 @@ int	pipex(t_pipex *comm, t_data *data)
 		child(comm, data);
 	else
 	{
-		wait(&status);
+		waitpid(pid, &status, 0);
 		if (data->in_pipe == TRUE && data->cmd_nbr < data->pipe_nbr)
 			close(data->fd[data->cmd_nbr][1]);
-		if (data->cmd_nbr > 0 && data->cmd_nbr < data->pipe_nbr)
-			close(data->fd[data->cmd_nbr - 1][0]);
-		if (find_prev_cmd_type(data->input) == BUILT_IN && data->pipe_nbr > 0)
+		if (data->cmd_nbr > 0 && data->cmd_nbr <= data->pipe_nbr)
 			close(data->fd[data->cmd_nbr - 1][0]);
 		if (WIFEXITED(status))
 			return (WEXITSTATUS(status));

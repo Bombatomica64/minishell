@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/13 15:43:09 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/15 12:05:55 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -398,6 +398,8 @@ char	*get_env_value(char **envp, char *to_find);
 */
 int		ft_arg_count(char *str, int i, int nbr_args);
 
+char	*ft_rowgen(char *str);
+
 /**
  * @brief Function that allocates a new string with the argument
  * @param str string to be checked
@@ -467,5 +469,7 @@ t_bool	ft_atoibool(char *str, int *nbr);
 t_bool	ft_iscmd(t_input *input);
 char	*cut_string(int len, char *str);
 int		find_last(char *str, char c);
+
+char	**ft_neosplitarg(char *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:10:53 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/15 12:34:21 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:10:44 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	free_matrix(char ***mtx)
 {
 	size_t	i;
 
-	if (!mtx || !*mtx)
+	if (!mtx || !*mtx || !**mtx)
 		return ;
 	i = 0;
 	while ((*mtx)[i])

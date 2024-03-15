@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:03:32 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/15 12:43:19 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:13:58 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ int		ft_unset(char **mtx, char ***envp);
 /**
  * @brief remove an entry from the environment variables
  * @param envp pointer to the environment variables
- * @param entry entry to remove
+ * @param index index of the entry to remove
 */
-void	remove_envp_entry(char ***envp, char *entry);
+void	remove_envp_entry(char ***envp, int index);
 
 // export  helper functions
 

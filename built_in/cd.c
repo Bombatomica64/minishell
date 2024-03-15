@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/14 18:00:17 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:23:27 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,16 @@ char	*ft_remove_chars(char *str, char *to_remove, int i)
 	return (tmp);
 }
 
+char *quptes_and_add_pwd(char *str, t_data *data)
+{
+	if (str[0] == '\"')
+		str = ft_strtrimfree(str, "\"");
+	else if (str[0] == '\'')
+		str = ft_strtrimfree(str, "\'");
+	str = ft_strjoin_2(data->pwd, ft_strjoin_2("/", str));
+	return (str);
+}
+
 char	*refactor_path(char *tmp, t_data *data, int i)
 {
 	char	*str;
@@ -89,7 +99,7 @@ char	*refactor_path(char *tmp, t_data *data, int i)
 	if (*str == '~')
 		str = ft_tilde(str, data);
 	else if (*str != '/')
-		str = ft_strjoin_2(data->pwd, ft_strjoin_2("/", str));
+		str = quptes_and_add_pwd(str, data);
 	while (str[i] != '\0')
 	{
 		if (strncmp(str + i, "./", 2) == 0 || strncmp(str + i, "../", 3) == 0
@@ -126,33 +136,39 @@ t_bool	ft_change_env(char **str, char *oldpwd, t_data *data)
 	return (TRUE);
 }
 
-//TODO: cd "~/ecc" o < "~", tra virgolette è un path relativo e ~ è il nome
-// /bin porta a /usr/bin e non a /bin
-// rmdir e poi cd .. va in segfault 🤪️
+int	ft_errors_cd (char **mtx)
+{
+	char	*tmp;
+
+	if (ft_matrix_len(mtx) > 2)
+	{
+		ft_putstr_fd("cd: too many arguments\n", 2);
+		return (1);
+	}
+	tmp = getcwd(NULL, 0);
+	if (tmp == NULL)
+	{
+		perror("cd");
+		return (1);
+	}
+	free(tmp);
+	return (0);
+}
 
 int	ft_cd(char **mtx, t_data *data)
 {
 	char	*change_oldpwd;
 	char	*str;
 
-	printf("mtx[1]: %s\n", mtx[1]);
-	if (mtx[2])
-	{
-		ft_putstr_fd("cd: too many arguments\n", 2);
+	if (ft_errors_cd(mtx) == 1)
 		return (1);
-	}
-	if (getcwd(NULL, 0) == NULL)
-	{
-		perror("cd");
-		return (1);
-	}
 	change_oldpwd = ft_strjoin_2("OLDPWD=", getcwd(NULL, 0));
 	if (mtx[1] == NULL)
 		str = ft_strdup(data->home);
 	else if (ft_strcmp(mtx[1], "-") == 0)
 		str = get_env_value(data->envp, "OLDPWD");
 	else
-		str = refactor_path(ft_strdup(mtx[1]), data, 0);
+		str = refactor_path(mtx[1], data, 0);
 	if (chdir(str) == -1)
 	{
 		perror("cd");

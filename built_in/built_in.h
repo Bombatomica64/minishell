@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   built_in.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:03:32 by gduranti          #+#    #+#             */
 /*   Updated: 2024/03/15 18:13:58 by lmicheli         ###   ########.fr       */
@@ -110,6 +110,8 @@ char	*ft_tilde(char *str, t_data *data);
 // take a file and output absolute path
 char	*refactor_path(char *str, t_data *data, int i);
 char	*ft_remove_chars(char *str, char *to_remove, int i);
+int		ft_errors_cd(char **mtx);
+t_bool	ft_change_env(char **str, char *oldpwd, t_data *data);
 
 t_bool	is_exit(char *command);
 int		ft_exit(char **cmd, t_data *data);

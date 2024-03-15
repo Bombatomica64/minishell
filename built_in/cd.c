@@ -6,12 +6,13 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/15 17:23:27 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:31:32 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "built_in.h"
 
+/*
 void	print_pwds(char **envp)
 {
 	int	i;
@@ -24,7 +25,7 @@ void	print_pwds(char **envp)
 			printf("%s\n", envp[i]);
 		i++;
 	}
-}
+}*/
 
 char	*ft_tilde(char *str, t_data *data)
 {
@@ -118,41 +119,6 @@ char	*refactor_path(char *tmp, t_data *data, int i)
 	while (str[ft_strlen(str) - 1] == '/' || str[ft_strlen(str) - 1] == '.')
 		str[ft_strlen(str) - 1] = '\0';
 	return (str);
-}
-
-t_bool	ft_change_env(char **str, char *oldpwd, t_data *data)
-{
-	int	i;
-
-	i = find_in_env(data->envp, "PWD");
-	free(data->envp[i]);
-	data->envp[i] = ft_strjoin("PWD=", *str);
-	free(data->pwd);
-	data->pwd = ft_strdup(data->envp[i] + 4);
-	i = find_in_env(data->envp, "OLDPWD");
-	free(data->envp[i]);
-	data->envp[i] = oldpwd;
-	free(*str);
-	return (TRUE);
-}
-
-int	ft_errors_cd (char **mtx)
-{
-	char	*tmp;
-
-	if (ft_matrix_len(mtx) > 2)
-	{
-		ft_putstr_fd("cd: too many arguments\n", 2);
-		return (1);
-	}
-	tmp = getcwd(NULL, 0);
-	if (tmp == NULL)
-	{
-		perror("cd");
-		return (1);
-	}
-	free(tmp);
-	return (0);
 }
 
 int	ft_cd(char **mtx, t_data *data)

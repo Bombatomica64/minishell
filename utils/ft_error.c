@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:14:28 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/14 18:06:40 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/15 10:48:41 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,11 @@ int	ft_error(const char *str, t_error error, int errnbr, t_data *data)
 		ft_printf("Open error in %s\n", str);
 	else
 		perror("unknown error");
+	close(2);
+	dup2(data->original_stdout, STDOUT_FILENO);
+	data->error_codes = errnbr;
 	if (data && (error == EXECVE || error == DUP))
 		free_close(&data, errnbr);
-	data->error_codes = errnbr;
 	return (-1);
 }
 

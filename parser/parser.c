@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/14 18:11:10 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/15 10:51:04 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ t_bool	parser(char *str, t_data *data)
 			return (free(parser.tmp),free(str),FALSE);
 		ft_inputadd_back(&(*data).input, ft_inputnew(parser.tmp,
 				parser.tmp_path, parser.tmp_type));
-		str = cut_string(offset + 2 + ft_strlen(parser.tmp), str);
+		str = cut_string(offset + 1 + ft_strlen(parser.tmp), str);
 		free(parser.tmp);
 		free(parser.tmp_path);
 	}

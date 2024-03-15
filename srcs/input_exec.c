@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/15 12:56:17 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/15 12:10:13 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ void	do_pipes(t_data **data, t_pipex *comm)
 static void	set_command(t_data **data, t_pipex *comm, t_bool *seen)
 {
 	*seen = TRUE;
-	comm->cmd = ft_splitarg((*data)->input->node);
+	if (!ft_strncmp((*data)->input->node, "cd ", 3))
+		comm->cmd = ft_neosplitarg((*data)->input->node);
+	else
+		comm->cmd = ft_splitarg((*data)->input->node);
 	comm->path = (*data)->input->path;
 	if ((*data)->in_pipe == TRUE)
 		do_pipes(data, comm);

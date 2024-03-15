@@ -6,7 +6,7 @@
 #    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/03/15 12:40:26 by lmicheli         ###   ########.fr        #
+#    Updated: 2024/03/15 12:04:56 by gduranti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ UTILS = utils/ft_error.c \
 	utils/str_utils3.c \
 	utils/matrix_utils.c \
 	utils/arg_to_mtx.c \
+	utils/neo_argtomtx.c \
 	utils/heredoc.c \
 	utils/list_utils.c \
 	utils/space_utils.c \

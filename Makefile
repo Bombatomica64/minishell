@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+         #
+#    By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/03/14 18:45:53 by mruggier         ###   ########.fr        #
+#    Updated: 2024/03/15 10:17:27 by gduranti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,11 +92,7 @@ val:
 	@echo "\033[34mAre you ready for debugging?\033[0m 😈"
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=ignore_readline.supp -s --track-fds=yes ./$(NAME)
 
-parrot: replay
-	@timeout 3s curl parrot.live || true
-	@clear
-
 bash:
 	@bash
 
-.PHONY: all clean fclean re replay
+.PHONY: all clean fclean re play

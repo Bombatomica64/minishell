@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+         #
+#    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/03/15 10:17:27 by gduranti         ###   ########.fr        #
+#    Updated: 2024/03/15 12:40:26 by lmicheli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ PIPEX = pipex/pipex.c \
 BUILT_IN = built_in/echo.c \
 	built_in/cd.c \
 	built_in/unset.c \
-	built_in/ft_exit.c
+	built_in/ft_exit.c \
+	built_in/export.c \
 
 UTILS = utils/ft_error.c \
 	utils/close_funct.c \

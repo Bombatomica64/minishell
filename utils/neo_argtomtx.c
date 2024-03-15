@@ -3,14 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   neo_argtomtx.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 11:58:00 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/15 12:23:39 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/15 13:00:32 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser/parser.h"
+
+char	*ft_noquote(char *str, char c)
+{
+	char	*dst;
+	int		i;
+	int		start;
+
+	printf("str: %s\n", str);
+	if (!str)
+		return (NULL);
+	dst = ft_calloc((ft_strlen(str) + 1), sizeof(char));
+	if (!dst)
+		return (NULL);
+	i = 1;
+	start = 1;
+	dst[0] = c;
+	while (str[start] && start < (int)ft_strlen(str) - 1)
+	{
+		while (str[start] == c)
+			start++;
+		dst[i] = str[start];
+		i++;
+		start++;
+	}
+	dst[i] = c;
+	free(str);
+	return (dst);
+}
 
 char	*ft_neorowfill(char *str, int *j, int i)
 {
@@ -31,7 +59,10 @@ char	*ft_neorowfill(char *str, int *j, int i)
 			break ;
 		row[i++] = str[(*j)++];
 	}
+	if (ft_isquote(row[0]))
+		return (ft_noquote(row, row[0]));
 	return (row);
+	
 }
 
 char	**ft_neosplitarg(char *str)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/14 18:00:17 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/15 15:36:18 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,13 @@ char	*refactor_path(char *tmp, t_data *data, int i)
 	if (*str == '~')
 		str = ft_tilde(str, data);
 	else if (*str != '/')
+	{
+		if (str[0] == '\"')
+			str = ft_strtrimfree(str, "\"");
+		else if (str[0] == '\'')
+			str = ft_strtrimfree(str, "\'");
 		str = ft_strjoin_2(data->pwd, ft_strjoin_2("/", str));
+	}
 	while (str[i] != '\0')
 	{
 		if (strncmp(str + i, "./", 2) == 0 || strncmp(str + i, "../", 3) == 0
@@ -125,17 +131,13 @@ t_bool	ft_change_env(char **str, char *oldpwd, t_data *data)
 	free(*str);
 	return (TRUE);
 }
-
 //TODO: cd "~/ecc" o < "~", tra virgolette è un path relativo e ~ è il nome
-// /bin porta a /usr/bin e non a /bin
-// rmdir e poi cd .. va in segfault 🤪️
 
 int	ft_cd(char **mtx, t_data *data)
 {
 	char	*change_oldpwd;
 	char	*str;
 
-	printf("mtx[1]: %s\n", mtx[1]);
 	if (mtx[2])
 	{
 		ft_putstr_fd("cd: too many arguments\n", 2);

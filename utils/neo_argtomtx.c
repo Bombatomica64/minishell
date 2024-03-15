@@ -6,23 +6,28 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 11:58:00 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/15 12:06:15 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/15 12:23:39 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parser/parser.h"
 
-static char	*ft_neorowfill(char *str, int *j, int i)
+char	*ft_neorowfill(char *str, int *j, int i)
 {
 	char	*row;
+	t_quote	quote;
 
+	quote.open = FALSE;
+	quote.type = 0;
 	*j += skip_spaces2(&str[*j]);
 	row = ft_rowgen(&str[*j]);
 	if (!row)
 		return (NULL);
 	while (str[*j])
 	{
-		if (!str[*j] || ft_isspace(str[*j]) == TRUE)
+		if (ft_isquote(str[*j]))
+			quote_start(&quote.open, str[*j], &quote.type);
+		if (!str[*j] || (ft_isspace(str[*j]) == TRUE && quote.open == FALSE))
 			break ;
 		row[i++] = str[(*j)++];
 	}

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/14 11:53:55 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:37:36 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	do_builtin(t_pipex *comm, t_data *data)
 		ret = ft_cd(comm->cmd, data);
 	non_pipe_close(data, comm);
 	if (ret != 0)
-		ft_builtin_error(comm->cmd[0]);
+		return (ft_builtin_error(comm->cmd[0]), ret);
 	return (free_matrix(&comm->cmd), ret);
 }
 

@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/13 18:12:53 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/14 18:00:17 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "built_in.h"
-/*void	print_pwds(char **envp)
+
+void	print_pwds(char **envp)
 {
 	int	i;
 
@@ -23,7 +24,7 @@
 			printf("%s\n", envp[i]);
 		i++;
 	}
-}*/
+}
 
 char	*ft_tilde(char *str, t_data *data)
 {
@@ -129,15 +130,21 @@ t_bool	ft_change_env(char **str, char *oldpwd, t_data *data)
 // /bin porta a /usr/bin e non a /bin
 // rmdir e poi cd .. va in segfault 🤪️
 
-t_bool	ft_cd(char **mtx, t_data *data)
+int	ft_cd(char **mtx, t_data *data)
 {
 	char	*change_oldpwd;
 	char	*str;
 
+	printf("mtx[1]: %s\n", mtx[1]);
 	if (mtx[2])
 	{
 		ft_putstr_fd("cd: too many arguments\n", 2);
-		return (FALSE);
+		return (1);
+	}
+	if (getcwd(NULL, 0) == NULL)
+	{
+		perror("cd");
+		return (1);
 	}
 	change_oldpwd = ft_strjoin_2("OLDPWD=", getcwd(NULL, 0));
 	if (mtx[1] == NULL)
@@ -151,8 +158,8 @@ t_bool	ft_cd(char **mtx, t_data *data)
 		perror("cd");
 		free(change_oldpwd);
 		free(str);
-		return (FALSE);
+		return (1);
 	}
 	ft_change_env(&str, change_oldpwd, data);
-	return (TRUE);
+	return (0);
 }

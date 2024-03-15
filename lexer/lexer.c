@@ -6,37 +6,11 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:52:13 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/13 16:19:21 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/14 18:09:27 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
-
-int	pipe_count(char *line, t_data *data)
-{
-	int		i;
-	int		pipe_count;
-	char	quote;
-
-	i = 0;
-	pipe_count = 0;
-	quote = 0;
-	while (line[i])
-	{
-		if (line[i] == '\'' || line[i] == '"')
-		{
-			if (quote == 0)
-				quote = line[i];
-			else if (quote == line[i])
-				quote = 0;
-		}
-		if (line[i] == '|' && quote == 0)
-			pipe_count++;
-		i++;
-	}
-	data->pipe_nbr = pipe_count;
-	return (pipe_count);
-}
 
 t_bool	lexer_error(char *error, t_data *data, char c)
 {
@@ -53,37 +27,6 @@ t_bool	lexer_error(char *error, t_data *data, char c)
 	else
 		waitpid(pid, &data->error_codes, 0);
 	return (FALSE);
-}
-
-t_bool	pipe_check(char *line)
-{
-	int			i;
-	t_quote		squote;
-
-	squote = (t_quote){FALSE, 0};
-	i = skip_spaces2(line);
-	quote_start(&squote.open, line[i], &squote.type);
-	if (line[i] && line[i] == '|')
-		return (FALSE);
-	i = ft_strlen(line) - 1;
-	while (i > 0 && ft_isspace(line[i]))
-		i--;
-	if (line[i] == '|')
-		return (FALSE);
-	i = 0;
-	while (line[i])
-	{
-		quote_start(&squote.open, line[i], &squote.type);
-		if (line[i] == '|' && squote.open == FALSE)
-		{
-			i++;
-			i += skip_spaces2(&line[i]);
-			if (line[i] == '|')
-				return (FALSE);
-		}
-		i++;
-	}
-	return (TRUE);
 }
 
 t_bool	lexer(char **line, t_data *data)

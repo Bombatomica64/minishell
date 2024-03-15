@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expande_variables_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:40:43 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/13 12:15:49 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/14 17:55:57 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
 		str = ft_strjoin_2free(str, ft_itoa(data->error_codes));
 		return (str);
 	}
+	else if (!ft_isalnum(tmp[*i + 1]))
+		return (join_char(str, tmp[*i]));
 	else
 	{
 		(*i)++;
@@ -38,7 +40,7 @@ char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
 	return (free(tofind), (*i)--, str);
 }
 
-char	*expand_name(char *tmp, t_data *data, t_bool quote, char quote_type)
+char	*expand_name(char *tmp, t_data *data, t_bool open, char type)
 {
 	size_t		i;
 	char		*str;
@@ -51,10 +53,10 @@ char	*expand_name(char *tmp, t_data *data, t_bool quote, char quote_type)
 	{
 		if (tmp[i] == '\'' || tmp[i] == '\"')
 		{
-			quote_start(&quote, tmp[i], &quote_type);
+			quote_start(&open, tmp[i], &type);
 			str = join_char(str, tmp[i]);
 		}
-		else if (tmp[i] == '$' && quote_type != '\'')
+		else if (tmp[i] == '$' && type != '\'')
 			str = expand_dollar(str, tmp, &i, data);
 		else
 			str = join_char(str, tmp[i]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/14 12:08:44 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/14 17:34:12 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,13 @@
 
 int	builtin_child(t_pipex *comm, t_data *data)
 {
-	int		ret;
-
-	if (data->in_pipe == TRUE && data->cmd_nbr == 0)
-		close(data->fd[0][0]);
-	else if (data->in_pipe == TRUE
-		&& data->cmd_nbr > 0 && data->cmd_nbr < data->pipe_nbr)
-		close(data->fd[data->cmd_nbr][0]);
+	// if (data->in_pipe == TRUE && data->cmd_nbr == 0)
+	// 	close(data->fd[0][0]);
+	// else if (data->in_pipe == TRUE
+	// 	&& data->cmd_nbr > 0 && data->cmd_nbr < data->pipe_nbr)
+	// 	close(data->fd[data->cmd_nbr][0]);
 	io_redir(comm, data);
-	ret = do_builtin(comm, data);
-	return (ret);
+	return (do_builtin(comm, data));
 }
 
 char	*path_execve(char *command, char **envp)
@@ -81,10 +78,23 @@ void	io_redir(t_pipex *comm, t_data *data)
 	}
 }
 
+t_type	find_prev_cmd_type(t_input *input)
+{
+	t_input	*tmp;
+
+	tmp = input->prev;
+	if (tmp == NULL)
+		return (FINISH);
+	while (tmp && tmp->type != COMMAND && tmp->type != BUILT_IN)
+		tmp = tmp->prev;
+	return (tmp->type);
+}
+
 int	pipex(t_pipex *comm, t_data *data)
 {
 	pid_t	pid;
 	int		status;
+	
 
 	status = 0;
 	if (ft_isbuiltin(comm->cmd[0]) == TRUE)
@@ -101,6 +111,9 @@ int	pipex(t_pipex *comm, t_data *data)
 			close(data->fd[data->cmd_nbr][1]);
 		if (data->cmd_nbr > 0 && data->cmd_nbr < data->pipe_nbr)
 			close(data->fd[data->cmd_nbr - 1][0]);
+		if (find_prev_cmd_type(data->input) == BUILT_IN && data->pipe_nbr > 0)
+			{printf("\033[1;31mred\033[0m\n");
+			close(data->fd[data->cmd_nbr - 1][0]);}
 		if (WIFEXITED(status))
 			return (WEXITSTATUS(status));
 	}

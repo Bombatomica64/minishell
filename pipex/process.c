@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/15 17:00:16 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:59:20 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	do_builtin(t_pipex *comm, t_data *data)
 	else if (ft_strcmp(comm->cmd[0], "cd") == 0)
 		ret = ft_cd(comm->cmd, data);
 	non_pipe_close(data, comm);
-	if (data->pipe_nbr > 0)
+	if (data->in_pipe == TRUE && data->cmd_nbr <= data->pipe_nbr)
 		close(data->fd[data->cmd_nbr][1]);
 	if (ret != 0)
 		return (ft_builtin_error(comm->cmd[0]), ret);

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/15 16:34:38 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:01:08 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	pipex(t_pipex *comm, t_data *data)
 	else
 	{
 		waitpid(pid, &status, 0);
-		if (data->in_pipe == TRUE && data->cmd_nbr < data->pipe_nbr)
+		if (data->in_pipe == TRUE && data->cmd_nbr <= data->pipe_nbr)
 			close(data->fd[data->cmd_nbr][1]);
 		if (data->cmd_nbr > 0 && data->cmd_nbr <= data->pipe_nbr)
 			close(data->fd[data->cmd_nbr - 1][0]);

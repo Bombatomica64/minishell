@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:52:13 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/14 18:09:27 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/18 18:15:30 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ t_bool	lexer_error(char *error, t_data *data, char c)
 	if (pid == 0)
 	{
 		dup2(2, 1);
-		printf("%s", error);
-		printf("%c\n", c);
-		exit(2);
+		printf("%s`", error);
+		printf("%c'\n", c);
+		free_close(&data, 1);
 	}
 	else
 		waitpid(pid, &data->error_codes, 0);

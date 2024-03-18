@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:47:13 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/11 17:42:21 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:52:48 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define BONUS_H
 
 # include "../lexer/lexer.h"
+# pragma once
 
 t_bool	bonus_checker(char *line, t_data *data);
 t_bool	check_if_last(char c, char *str, t_data *data);

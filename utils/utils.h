@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/18 17:35:28 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:54:09 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,7 @@
 # include "../libft/get_next_line_bonus.h"
 # pragma once
 
-typedef struct s_parser
-{
-	char	*tmp;
-	char	*tmp_path;
-	t_type	tmp_type;
-}	t_parser;
+
 typedef enum e_error
 {
 	NO_PATH,
@@ -67,6 +62,12 @@ typedef enum e_type
 	FINISH = 69// end of the list
 }	t_type;
 
+typedef struct s_parser
+{
+	char	*tmp;
+	char	*tmp_path;
+	t_type	tmp_type;
+}	t_parser;
 typedef struct s_input
 {
 	char			*node; // command or file name

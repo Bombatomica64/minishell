@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:29:56 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/18 17:38:06 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:51:50 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PARSER_H
 
 # include "../pipex/pipex.h"
-# include "../lexer/lexer.h"
 # pragma once
 
 //parser

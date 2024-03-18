@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:40:43 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/15 17:28:55 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/18 16:53:43 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
 	{
 		(*i)++;
 		str = ft_strjoin_2free(str, ft_itoa(data->error_codes));
+		printf("str = %s\n", str);
 		return (str);
 	}
 	else if (!ft_isalnum(tmp[*i + 1]))

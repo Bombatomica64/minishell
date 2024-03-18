@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 17:30:20 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/15 17:31:37 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/18 16:21:44 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "built_in.h"
 
-int	ft_errors_cd (char **mtx)
+int	ft_errors_cd(char **mtx)
 {
 	char	*tmp;
 

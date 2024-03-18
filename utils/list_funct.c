@@ -6,22 +6,22 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:27:22 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/13 12:06:17 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:34:11 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-t_input	*ft_inputnew(char *node, char *path, t_type type)
+t_input	*ft_inputnew(t_parser parser)
 {
 	t_input	*my_list;
 
 	my_list = (t_input *)malloc(sizeof(t_input));
 	if (!my_list)
 		return (NULL);
-	my_list->node = ft_strdup(node);
-	my_list->type = type;
-	my_list->path = ft_strdup(path);
+	my_list->node = ft_strdup(parser.tmp);
+	my_list->type = parser.tmp_type;
+	my_list->path = ft_strdup(parser.tmp_path);
 	my_list->next = NULL;
 	my_list->prev = NULL;
 	return (my_list);

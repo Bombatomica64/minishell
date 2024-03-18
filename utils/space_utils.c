@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:05:13 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 17:06:14 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:15:57 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,16 @@ t_bool	ft_isspace(char c)
 	if ((c >= 9 && c <= 13) || c == ' ')
 		return (TRUE);
 	return (FALSE);
+}
+
+t_bool	print_matrix(char **mtx)
+{
+	int	i;
+
+	i = -1;
+	if (!mtx)
+		return (FALSE);
+	while (mtx[++i])
+		printf("%s\n", mtx[i]);
+	return (TRUE);
 }

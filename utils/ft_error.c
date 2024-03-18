@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:14:28 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/18 17:11:11 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/18 18:07:07 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_error(char *str, t_error error, int errnbr, t_data *data)
 		ft_printf("Minishell: %s: Permission denied\n", str);
 	else
 		perror("unknown error");
-	close(2);
+	close(1);
 	dup2(data->original_stdout, STDOUT_FILENO);
 	if (data && (error == EXECVE || error == DUP))
 		return (free_return(&data, errnbr));

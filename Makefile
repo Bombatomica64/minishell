@@ -6,7 +6,7 @@
 #    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/03/18 12:41:38 by lmicheli         ###   ########.fr        #
+#    Updated: 2024/03/18 18:00:29 by lmicheli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,11 +65,11 @@ LIB = libft/libftprintf.a
 
 all: $(NAME)
 
-bonus: $(BONUS_NAME)
+bonus: $(NAME)
 
 $(NAME):
 	@make all -C $(FT_PRINTF)
-	@$(CC) $(SRC) $(LIB) -o $(NAME) -D BONUS=0 -lreadline
+	@$(CC) $(SRC) $(LIB) -o $(NAME) -lreadline
 	@echo "Compiled "$(NAME)" successfully!"
 
 clean:

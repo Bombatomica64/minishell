@@ -6,14 +6,13 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:52:32 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/15 15:58:17 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:55:11 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include "../utils/utils.h"
 # include "../built_in/built_in.h"
 
 char	*path_execve(char *command, char **envp);

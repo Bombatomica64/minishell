@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/18 17:37:00 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:49:22 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,10 @@ char	*free_strdup(char *str, char **freestr)
 	return (tmp);
 }
 
-t_bool	parser(char *str, t_data *data, t_parser parser)
+t_bool	parser(char *str, t_data *data, int offset)
 {
 	t_quote		quote;
-	int			offset;
+	t_parser	parser;
 
 	quote = (t_quote){FALSE, 0};
 	while (str)

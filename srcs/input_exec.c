@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/18 12:57:55 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:48:17 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	do_pipes(t_data **data, t_pipex *comm)
 	}
 	else
 	{
-		print_intmatrix((*data)->fd, (*data)->pipe_nbr, 2);
 		comm->fd_in = (*data)->fd[(*data)->cmd_nbr][0];
 		(*data)->in_pipe = FALSE;
 		(*data)->cmd_nbr++;

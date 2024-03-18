@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/18 12:56:29 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/18 16:16:32 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	do_builtin(t_pipex *comm, t_data *data)
 	else if (ft_strcmp(comm->cmd[0], "unset") == 0)
 		ret = ft_unset(comm->cmd, &data->envp);
 	else if (ft_strcmp(comm->cmd[0], "env") == 0)
-		ft_env(data->envp);
+		ret = ft_env(data->envp, &comm->cmd[1]);
 	else if (ft_strcmp(comm->cmd[0], "exit") == 0)
 		ret = ft_exit(comm->cmd, data);
 	else if (ft_strcmp(comm->cmd[0], "cd") == 0)
@@ -41,8 +41,6 @@ int	do_builtin(t_pipex *comm, t_data *data)
 	non_pipe_close(data, comm);
 	if (data->in_pipe == TRUE && data->cmd_nbr <= data->pipe_nbr)
 		close(data->fd[data->cmd_nbr][1]);
-	if (ret != 0)
-		return (ft_builtin_error(comm->cmd[0]), ret);
 	return (free_matrix(&comm->cmd), ret);
 }
 

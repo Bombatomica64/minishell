@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 12:39:27 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/15 18:22:52 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/18 16:08:24 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	add_or_update(char ***envp, char *tmp, char **cmd, int j)
 	if (find_in_env(*envp, tmp) == -1)
 		return (add_to_env(envp, cmd[j]));
 	else
-		return (update_env(envp, cmd[j]));
+		return (update_env(envp, cmd[j], tmp));
 }
 
 int	add_to_env(char ***envp, char *str)
@@ -91,16 +91,13 @@ int	add_to_env(char ***envp, char *str)
 	return (0);
 }
 
-int	update_env(char ***envp, char *str)
+int	update_env(char ***envp, char *str, char *tmp)
 {
 	int		i;
 
-	printf("str: %s\n", str);
-	i = find_in_env(*envp, str);
-	printf("i: %d\n", i);
+	i = find_in_env(*envp, tmp);
 	free((*envp)[i]);
 	(*envp)[i] = ft_strdup(str);
-	free(str);
 	if (!(*envp)[i])
 		return (1);
 	return (0);

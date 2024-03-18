@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+         #
+#    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/03/15 17:32:43 by mruggier         ###   ########.fr        #
+#    Updated: 2024/03/18 12:41:38 by lmicheli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ UTILS = utils/ft_error.c \
 	utils/heredoc.c \
 	utils/list_utils.c \
 	utils/space_utils.c \
-	utils/math_utils.c
+	utils/math_utils.c \
+	utils/file_check.c
 
 LEXER = lexer/lexer.c \
 		lexer/quote.c \

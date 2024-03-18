@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/15 12:20:02 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/18 12:30:50 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,13 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data, int *offset)
 			}
 		}
 		else if (tmp_type != BUILT_IN && find_first(tmp_path, '/') != -1)
-			*tmp = cut_string(find_last(*tmp, '/'), *tmp);
+		{
+			*offset += find_last(*tmp, '/') + 1;
+			*tmp = cut_string(find_last(*tmp, '/') + 1, *tmp);
+		}
 	}
 	else if (tmp_type != HEREDOC)
-		tmp_path = refactor_path(*tmp, data, 0);
-	(void)offset;
+		tmp_path = refactor_path(*tmp, data, 0, offset);
 	return (tmp_path);
 }
 
@@ -136,7 +138,11 @@ t_bool	parser(char *str, t_data *data)
 			return (free(parser.tmp), free(str), FALSE);
 		ft_inputadd_back(&(*data).input, ft_inputnew(parser.tmp,
 				parser.tmp_path, parser.tmp_type));
+		printf("parser.tmp: %s\n", parser.tmp);
+		printf("parser.tmp_path: %s\n", parser.tmp_path);
+		printf("offset: %d\n", offset);
 		str = cut_string(offset + ft_strlen(parser.tmp), str);
+		printf("str: %s\n", str);
 		free(parser.tmp);
 		free(parser.tmp_path);
 	}

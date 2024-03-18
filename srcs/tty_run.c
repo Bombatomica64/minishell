@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/14 16:25:30 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/18 10:20:28 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	process_input(t_data *data)
 	if (*terminal_input == '\0')
 		return ;
 	ft_do_it(data, terminal_input);
-	printf("stop\n");
 	free_return(&data, 0);
 	ft_data_reinit(data);
 }

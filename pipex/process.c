@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/15 17:59:20 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/18 12:56:29 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void	non_pipe_close(t_data *data, t_pipex *comm)
 {
 	if (data->in_pipe == FALSE)
 	{
-		if (comm->fd_in != STDIN_FILENO)
+		if (comm->fd_in >= 0 && comm->fd_in != STDIN_FILENO)
 			close(comm->fd_in);
-		if (comm->fd_out != STDOUT_FILENO)
+		if (comm->fd_out >= 0 && comm->fd_out != STDOUT_FILENO)
 			close(comm->fd_out);
 	}
 }

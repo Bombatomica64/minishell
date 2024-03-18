@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:27:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/14 16:49:12 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:38:09 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,23 @@ char	**matrix_dup(char **matrix)
 	return (new_matrix);
 }
 
+t_bool	name_is_thesame(char *envp, char *to_find)
+{
+	int	i;
+
+	i = 0;
+	while (envp[i] != '=' && to_find[i] != '\0')
+	{
+		if (envp[i] != to_find[i])
+			return (FALSE);
+		i++;
+	}
+	printf("ciao\n");
+	if (envp[i] == '=')
+		return (TRUE);
+	return (FALSE);
+}
+
 int	find_in_env(char **envp, char *to_find)
 {
 	int	i;
@@ -56,7 +73,8 @@ int	find_in_env(char **envp, char *to_find)
 		return (-1);
 	while (envp[i] != NULL)
 	{
-		if (ft_strncmp(envp[i], to_find, ft_strlen(to_find)) == 0)
+		if (ft_strncmp(envp[i], to_find, ft_strlen(to_find)) == 0
+			|| name_is_thesame(envp[i], to_find) == TRUE)
 			return (i);
 		i++;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/15 17:31:32 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/18 12:28:12 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*ft_tilde(char *str, t_data *data)
 	return (tmp);
 }
 
-char	*ft_remove_chars(char *str, char *to_remove, int i)
+char	*ft_remove_chars(char *str, char *to_remove, int i, int *off)
 {
 	int		j;
 	int		char_path;
@@ -78,11 +78,13 @@ char	*ft_remove_chars(char *str, char *to_remove, int i)
 		tmp[j - char_path + 1] = '\0';
 	}
 	tmp = ft_newstrjoin(tmp, str + i + ft_strlen(to_remove));
+	if (off != NULL)
+		*off += ft_strlen(to_remove);
 	free(str);
 	return (tmp);
 }
 
-char *quptes_and_add_pwd(char *str, t_data *data)
+char	*quptes_and_add_pwd(char *str, t_data *data)
 {
 	if (str[0] == '\"')
 		str = ft_strtrimfree(str, "\"");
@@ -92,7 +94,7 @@ char *quptes_and_add_pwd(char *str, t_data *data)
 	return (str);
 }
 
-char	*refactor_path(char *tmp, t_data *data, int i)
+char	*refactor_path(char *tmp, t_data *data, int i, int *off)
 {
 	char	*str;
 
@@ -107,11 +109,11 @@ char	*refactor_path(char *tmp, t_data *data, int i)
 			|| strncmp(str + i, "..", 2) == 0)
 		{
 			if (strncmp(str + i, "./", 2) == 0)
-				str = ft_remove_chars(str, "./", i);
+				str = ft_remove_chars(str, "./", i, off);
 			else if (strncmp(str + i, "../", 3) == 0)
-				str = ft_remove_chars(str, "../", i);
+				str = ft_remove_chars(str, "../", i, off);
 			else if (strncmp(str + i, "..", 2) == 0)
-				str = ft_remove_chars(str, "..", i);
+				str = ft_remove_chars(str, "..", i, off);
 			i = 0;
 		}
 		i++;
@@ -134,7 +136,7 @@ int	ft_cd(char **mtx, t_data *data)
 	else if (ft_strcmp(mtx[1], "-") == 0)
 		str = get_env_value(data->envp, "OLDPWD");
 	else
-		str = refactor_path(mtx[1], data, 0);
+		str = refactor_path(mtx[1], data, 0, NULL);
 	if (chdir(str) == -1)
 	{
 		perror("cd");

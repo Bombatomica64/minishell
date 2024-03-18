@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_in.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:03:32 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/15 18:13:58 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/18 12:27:43 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,8 @@ void	print_pwds(char **envp);
 char	*ft_tilde(char *str, t_data *data);
 
 // take a file and output absolute path
-char	*refactor_path(char *str, t_data *data, int i);
-char	*ft_remove_chars(char *str, char *to_remove, int i);
+char	*refactor_path(char *str, t_data *data, int i, int *off);
+char	*ft_remove_chars(char *str, char *to_remove, int i, int *off);
 int		ft_errors_cd(char **mtx);
 t_bool	ft_change_env(char **str, char *oldpwd, t_data *data);
 

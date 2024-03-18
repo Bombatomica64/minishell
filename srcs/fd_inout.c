@@ -3,20 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   fd_inout.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:05:07 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/06 12:09:59 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/18 12:49:26 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	open_type(char *str, t_type type)
+int	open_type(char *str, t_type type, t_data *data)
 {
 	int	fd;
 
-	fd = 0;
+	fd = -1;
+	if (check_access(str, type, data) != 0)
+		return (-1);
 	if (type == TRUNC)
 		fd = open(str, O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
 	else if (type == APPEND)
@@ -24,7 +26,7 @@ int	open_type(char *str, t_type type)
 	else if (type == INPUT)
 		fd = open(str, O_RDONLY);
 	if (fd < 0)
-		ft_error("open_type", OPEN, 101, NULL);
+		ft_error(str, OPEN, 101, data);
 	return (fd);
 }
 
@@ -49,7 +51,7 @@ int	open_type(char *str, t_type type)
 	return (STDIN_FILENO);
 } */
 
-int	fd_out(t_data data)
+/* int	fd_out(t_data data)
 {
 	while (data.input != NULL && (data.input->type != TRUNC
 			&& data.input->type != APPEND))
@@ -67,3 +69,4 @@ int	fd_out(t_data data)
 	}
 	return (STDOUT_FILENO);
 }
+ */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/15 12:52:44 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/18 12:57:55 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ static void	set_inout(t_pipex *comm, t_input *input, t_data *data)
 {
 	if (input->type == INPUT)
 	{
-		if (comm->fd_in != STDIN_FILENO)
+		if (comm->fd_in >= 0 && comm->fd_in != STDIN_FILENO)
 			close(comm->fd_in);
-		comm->fd_in = open_type(input->path, INPUT);
+		comm->fd_in = open_type(input->path, INPUT, data);
 	}
 	else if (input->type == HEREDOC)
 		comm->fd_in = heredoc_creat(input->node, data, 0);
 	else if (input->type == TRUNC || input->type == APPEND)
 	{
-		if (comm->fd_out != STDOUT_FILENO)
+		if (comm->fd_out >= 0 && comm->fd_out != STDOUT_FILENO)
 			close(comm->fd_out);
-		comm->fd_out = open_type(input->path, input->type);
+		comm->fd_out = open_type(input->path, input->type, data);
 	}
 }
 

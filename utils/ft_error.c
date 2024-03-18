@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:14:28 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/15 10:48:41 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/18 12:51:33 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_bool	ft_malloc_err(void *ptr, char *str)
 	return (FALSE);
 }
 
-int	ft_error(const char *str, t_error error, int errnbr, t_data *data)
+int	ft_error(char *str, t_error error, int errnbr, t_data *data)
 {
 	dup2(2, 1);
 	if (error == NO_PATH)
@@ -33,20 +33,24 @@ int	ft_error(const char *str, t_error error, int errnbr, t_data *data)
 	else if (error == EXECVE)
 		perror("Command not found");
 	else if (error == PIPE)
-		perror("pipex: pipe error");
+		perror("pipe: ");
 	else if (error == FORK)
 		perror("pipex: fork error");
 	else if (error == ACCESS)
-		perror("pipex: access error");
+		ft_printf("Minishell: %s: Permission denied\n", str);
 	else if (error == OPEN)
-		ft_printf("Open error in %s\n", str);
+		ft_printf("Minishell: %s: No such file or directory\n", str);
+	else if (error == NO_EXST)
+		ft_printf("Minishell: %s: No such file or directory\n", str);
+	else if (error == WRITE)
+		ft_printf("Minishell: %s: Permission denied\n", str);
 	else
 		perror("unknown error");
 	close(2);
 	dup2(data->original_stdout, STDOUT_FILENO);
-	data->error_codes = errnbr;
 	if (data && (error == EXECVE || error == DUP))
-		free_close(&data, errnbr);
+		return (free_return(&data, errnbr));
+	data->error_codes = errnbr;
 	return (-1);
 }
 

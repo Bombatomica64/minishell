@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/15 12:05:55 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/18 12:51:50 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ typedef enum e_error
 	PIPE,
 	FORK,
 	ACCESS,
+	WRITE,
+	NO_EXST,
 	OPEN,
 	BUILTIN
 }	t_error;
@@ -133,7 +135,7 @@ void	free_array_matrix(int **matrix, int size);
  * @param data, data to be freed
  * @return int the error number
 */
-int		ft_error(const char *str, t_error error, int errnbr, t_data *data);
+int		ft_error(char *str, t_error error, int errnbr, t_data *data);
 
 /**
  * @brief Function that checks if a malloc has failed
@@ -459,6 +461,8 @@ char	*join_char(char *str, char c);
 void	ft_builtin_error(char *com);
 
 int		ft_isinset(char c, char *set);
+
+int		check_access(char *file, t_type type, t_data *data);
 
 //math utils
 

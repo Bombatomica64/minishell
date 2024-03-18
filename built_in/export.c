@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 12:39:27 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/15 12:41:01 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:22:52 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,9 @@ int	update_env(char ***envp, char *str)
 {
 	int		i;
 
+	printf("str: %s\n", str);
 	i = find_in_env(*envp, str);
-	printf("i = %d\n", i);
+	printf("i: %d\n", i);
 	free((*envp)[i]);
 	(*envp)[i] = ft_strdup(str);
 	free(str);

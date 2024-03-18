@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/18 16:05:12 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:37:00 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,15 +111,12 @@ char	*free_strdup(char *str, char **freestr)
 	return (tmp);
 }
 
-t_bool	parser(char *str, t_data *data)
+t_bool	parser(char *str, t_data *data, t_parser parser)
 {
-	t_parser	parser;
 	t_quote		quote;
 	int			offset;
 
-	quote.open = FALSE;
-	quote.type = 0;
-	offset = 0;
+	quote = (t_quote){FALSE, 0};
 	while (str)
 	{
 		offset = skip_spaces2(str);
@@ -128,22 +125,17 @@ t_bool	parser(char *str, t_data *data)
 				parser.tmp_type, &quote, data);
 		offset += skip_spaces2(str + offset);
 		parser.tmp = ft_strtrimfree(parser.tmp, " \t\r\n\v\f");
-		if (parser.tmp == NULL)
-			break ;
 		if (ft_isbuiltin(parser.tmp) == TRUE)
 			parser.tmp_type = BUILT_IN;
 		parser.tmp_path = get_path(&parser.tmp, parser.tmp_type, data, &offset);
-		if (parser.tmp_path == NULL
-			&& (parser.tmp_type == COMMAND || parser.tmp_type == INPUT))
+		if (parser.tmp_path == NULL && (parser.tmp_type <= COMMAND))
 			return (free(parser.tmp), free(str), FALSE);
-		ft_inputadd_back(&(*data).input, ft_inputnew(parser.tmp,
-				parser.tmp_path, parser.tmp_type));
+		ft_inputadd_back(&(*data).input, ft_inputnew(parser));
 		str = cut_string(offset + ft_strlen(parser.tmp), str);
 		free(parser.tmp);
 		free(parser.tmp_path);
 	}
-	ft_inputadd_back(&(*data).input, ft_inputnew(NULL, NULL, FINISH));
-	print_list((*data).input);
+	ft_inputadd_back(&(*data).input, ft_inputnew((t_parser){NULL, NULL, 69}));
 	free(str);
 	return (TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/18 12:51:50 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:35:28 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,12 @@
 # include "../libft/get_next_line_bonus.h"
 # pragma once
 
-# ifndef BONUS
-#  define BONUS 0
-# endif
-
+typedef struct s_parser
+{
+	char	*tmp;
+	char	*tmp_path;
+	t_type	tmp_type;
+}	t_parser;
 typedef enum e_error
 {
 	NO_PATH,
@@ -57,8 +59,8 @@ typedef struct s_quote
 typedef enum e_type
 {
 	INPUT = 0,// < file in input
-	HEREDOC,// << limiter, terminal input until limiter
 	COMMAND,//command to be executed with execve
+	HEREDOC,// << limiter, terminal input until limiter
 	BUILT_IN,//command to be executed without execve
 	TRUNC = O_TRUNC,// > file, rewrites the lines in  the output file
 	APPEND = O_APPEND,// >> file, add more lines in the output file
@@ -170,7 +172,7 @@ int		free_return(t_data **data, int status);
  * @param type type of the node
  * @return a new node of t_input type
 */
-t_input	*ft_inputnew(char *node, char *path, t_type type);
+t_input	*ft_inputnew(t_parser parser);
 
 /**
  * @brief Function that clears the input double linked list

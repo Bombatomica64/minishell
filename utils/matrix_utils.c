@@ -6,23 +6,11 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:27:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/15 18:38:09 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:15:45 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-
-t_bool	print_matrix(char **mtx)
-{
-	int	i;
-
-	i = -1;
-	if (!mtx)
-		return (FALSE);
-	while (mtx[++i])
-		printf("%s\n", mtx[i]);
-	return (TRUE);
-}
 
 char	**matrix_dup(char **matrix)
 {

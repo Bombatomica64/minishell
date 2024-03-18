@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:14:28 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/18 12:51:33 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:11:11 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,6 @@ int	ft_error(char *str, t_error error, int errnbr, t_data *data)
 		ft_printf("Command not found: %s\n", str);
 	else if (error == DUP)
 		ft_printf("%s failed to duplicate file descriptor\n", str);
-	else if (error == EXECVE)
-		perror("Command not found");
-	else if (error == PIPE)
-		perror("pipe: ");
-	else if (error == FORK)
-		perror("pipex: fork error");
 	else if (error == ACCESS)
 		ft_printf("Minishell: %s: Permission denied\n", str);
 	else if (error == OPEN)

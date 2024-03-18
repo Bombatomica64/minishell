@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:24:10 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/14 15:25:13 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/18 16:12:55 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,21 @@ int	ft_echo(char **mtx)
 	return (0);
 }
 
-void	ft_env(char **envp)
+int	ft_env(char **envp, char **mtx)
 {
+	if (mtx)
+	{
+		while (*mtx)
+		{
+			ft_putstr_fd("minishell: env: `", 2);
+			ft_putstr_fd(*mtx, 2);
+			ft_putstr_fd("': No such file or directory\n", 2);
+			mtx++;
+		}
+		return (1);
+	}
 	print_matrix(envp);
+	return (0);
 }
 
 void	ft_pwd(void)

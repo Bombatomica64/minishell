@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:03:32 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/18 12:27:43 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/18 16:12:15 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ int		ft_cd(char **str, t_data *data);
 
 /**
  * @brief env builtin function
- * @param envp matrix with env + arguments
+ * @param envp matrix with environment variables
  * @note the environment variables are stored in data->envp
 */
-void	ft_env(char **envp);
+int		ft_env(char **envp, char **mtx);
 
 /**
  * @brief pwd builtin function
@@ -88,7 +88,7 @@ t_bool	add_to_env(char ***envp, char *str);
  * @param str entry to update
  * @return TRUE if success, FALSE if error
 */
-t_bool	update_env(char ***envp, char *str);
+int		update_env(char ***envp, char *str, char *tmp);
 
 // debug functions
 
@@ -117,7 +117,6 @@ t_bool	is_exit(char *command);
 int		ft_exit(char **cmd, t_data *data);
 int		add_or_update(char ***envp, char *tmp, char **cmd, int j);
 int		add_to_env(char ***envp, char *str);
-int		update_env(char ***envp, char *str);
 int		export_error(char *str);
 
 #endif

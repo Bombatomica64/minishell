@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:14:28 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/18 18:07:07 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/19 17:59:47 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,16 @@ int	ft_error(char *str, t_error error, int errnbr, t_data *data)
 {
 	dup2(2, 1);
 	if (error == NO_PATH)
-		ft_printf("Command not found: %s\n", str);
+		{ft_putstr_fd(str, 2);
+		ft_printf(": command not found\n");}
 	else if (error == DUP)
 		ft_printf("%s failed to duplicate file descriptor\n", str);
 	else if (error == ACCESS)
 		ft_printf("Minishell: %s: Permission denied\n", str);
 	else if (error == OPEN)
-		ft_printf("Minishell: %s: No such file or directory\n", str);
+		ft_printf(" No such file or directory\n");
 	else if (error == NO_EXST)
-		ft_printf("Minishell: %s: No such file or directory\n", str);
+		ft_printf(" No such file or directory\n");
 	else if (error == WRITE)
 		ft_printf("Minishell: %s: Permission denied\n", str);
 	else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:32:21 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/15 12:55:29 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/19 10:47:01 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	heredoc_creat(char *limiter, t_data *data, pid_t pid)
 			str = readline("heredoc> ");
 			if (ft_strcmp(str, limiter) == 0)
 				break ;
-			str = expand_name(str, data, FALSE, '\0');
+			str = expand_name(str, data, FALSE, '\0', 0);
 			ft_putendl_fd_free(&str, fd[1]);
 		}
 		exit(0);

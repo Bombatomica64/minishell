@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:45:24 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/15 12:56:02 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/19 10:59:48 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_isinset(char c, char *set)
 	return (0);
 }
 
-static char	*ft_result(char *s1, size_t start, size_t end)
+static char	*ft_result(char *s1, size_t start, size_t end, int *trimmed)
 {
 	char	*dst;
 	size_t	i;
@@ -46,6 +46,7 @@ static char	*ft_result(char *s1, size_t start, size_t end)
 	while (start <= end)
 	{
 		dst[i] = s1[start];
+		(*trimmed)++;
 		start++;
 		i++;
 	}
@@ -54,7 +55,7 @@ static char	*ft_result(char *s1, size_t start, size_t end)
 	return (dst);
 }
 
-char	*ft_strtrimfree(char *s1, char *set)
+char	*ft_strtrimfree(char *s1, char *set, int *trimmed)
 {
 	size_t	start;
 	size_t	end;
@@ -64,17 +65,17 @@ char	*ft_strtrimfree(char *s1, char *set)
 	if (s1 == NULL || set == NULL)
 		return (NULL);
 	if (s1[0] == '\0')
-		return (ft_result(s1, 0, 0));
+		return (ft_result(s1, 0, 0, trimmed));
 	while (s1[start] && ft_isinset(s1[start], set) == 1)
 		start++;
 	while (s1[end])
 		end++;
 	if (start == end)
-		return (ft_result(s1, start, end));
+		return (ft_result(s1, start, end, trimmed));
 	end--;
 	while (ft_isinset(s1[end], set) == 1)
 		end--;
-	return (ft_result(s1, start, end));
+	return (ft_result(s1, start, end, trimmed));
 }
 
 int	find_first(char *str, char c)

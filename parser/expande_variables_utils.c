@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expande_variables_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:40:43 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/18 16:53:43 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/19 10:48:00 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //echo $"USER" mi serve una variabile statica per le quote
 
-char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
+char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data, int *off)
 {
 	char	*tofind;
 
@@ -26,8 +26,8 @@ char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
 	else if (tmp[*i + 1] == '?')
 	{
 		(*i)++;
+		*off += 2;
 		str = ft_strjoin_2free(str, ft_itoa(data->error_codes));
-		printf("str = %s\n", str);
 		return (str);
 	}
 	else if (!ft_isalnum(tmp[*i + 1]))
@@ -39,11 +39,13 @@ char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
 			tofind = join_char(tofind, tmp[(*i)++]);
 		if (find_in_env(data->envp, tofind) != -1)
 			str = ft_strjoin_2free(str, get_env_value(data->envp, tofind));
+		else
+			*off += ft_strlen(tofind) + 1;
 	}
 	return (free(tofind), (*i)--, str);
 }
 
-char	*expand_name(char *tmp, t_data *data, t_bool open, char type)
+char	*expand_name(char *tmp, t_data *data, t_bool open, char type, int *off)
 {
 	size_t		i;
 	char		*str;
@@ -60,11 +62,11 @@ char	*expand_name(char *tmp, t_data *data, t_bool open, char type)
 			str = join_char(str, tmp[i]);
 		}
 		else if (tmp[i] == '$' && type != '\'')
-			str = expand_dollar(str, tmp, &i, data);
+			str = expand_dollar(str, tmp, &i, data, off);
 		else
 			str = join_char(str, tmp[i]);
 		i++;
-	}
+	} 
 	free(tmp);
 	return (str);
 }

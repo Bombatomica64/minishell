@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/19 11:01:53 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/19 11:06:19 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,13 +123,16 @@ t_bool	parser(char *str, t_data *data, int offset)
 		parser.tmp_type = ft_file_type(str, &offset);
 		parser.tmp = get_name(str + offset,
 				parser.tmp_type, &quote, data, &offset);
+		printf("offset prima trim: %d\n", offset);
 		parser.tmp = ft_strtrimfree(parser.tmp, " \t\r\n\v\f", &offset);
+		printf("offset dopo trim: %d\n", offset);
 		if (ft_isbuiltin(parser.tmp) == TRUE)
 			parser.tmp_type = BUILT_IN;
 		parser.tmp_path = get_path(&parser.tmp, parser.tmp_type, data, &offset);
 		if (parser.tmp_path == NULL && (parser.tmp_type <= COMMAND))
 			return (free(parser.tmp), free(str), FALSE);
 		ft_inputadd_back(&(*data).input, ft_inputnew(parser));
+		printf("offset: %d\n", offset);
 		str = cut_string(offset + ft_strlen(parser.tmp), str);
 		free(parser.tmp);
 		free(parser.tmp_path);

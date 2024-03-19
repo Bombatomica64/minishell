@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/19 12:00:52 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:58:37 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_parser
 	char	*tmp_path;
 	t_type	tmp_type;
 }	t_parser;
+
 typedef struct s_input
 {
 	char			*node; // command or file name
@@ -474,7 +475,7 @@ int		ft_min(int a, int b);
 void	print_intmatrix(int **matrix, int rows, int cols);
 t_bool	ft_atoibool(char *str, int *nbr);
 
-t_bool	ft_iscmd(t_input *input);
+t_bool	ft_iscmd(t_input *input, t_data *data);
 char	*cut_string(int len, char *str);
 int		find_last(char *str, char c);
 

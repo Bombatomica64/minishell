@@ -3,20 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/11 11:36:35 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:11:36 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-t_bool	ft_iscmd(t_input *input)
+t_bool	ft_iscmd(t_input *input, t_data *data)
 {
+	struct stat st;
+
 	if (!input)
 		return (ERROR);
-	if (input->type == COMMAND || input->type == BUILT_IN)
+	if (input->type == BUILT_IN)
+		return (TRUE);
+	if (stat(input->path, &st) == 0)
+	{
+		if (S_ISDIR(st.st_mode))		
+		{
+			ft_putstr_fd(input->path, 2);
+			ft_putstr_fd(": Is a directory\n", 2);
+			data->error_codes = 126;
+			return (ERROR);
+		}
+		else if (access(input->path, X_OK) == -1)
+		{
+			ft_putstr_fd(input->path, 2);
+			ft_putstr_fd(": Permission denied\n", 2);
+			data->error_codes = 126;
+			return (ERROR);
+		}
+	}
+	else
+	{
+		ft_putstr_fd(input->node, 2);
+		ft_putstr_fd(": No such file or directory\n", 2);
+		data->error_codes = 127;
+	}
+	if (input->type == COMMAND)
 		return (TRUE);
 	return (FALSE);
 }

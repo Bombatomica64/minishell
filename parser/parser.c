@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/18 17:49:22 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/19 11:19:34 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-char	*get_name(char *str, int tmp_type, t_quote *quote, t_data *data)
+char	*get_name(char *str, int tmp_type, t_quote *quote, t_data *data, int *off)
 {
 	int			i ;
 	char		*tmp;
@@ -30,7 +30,7 @@ char	*get_name(char *str, int tmp_type, t_quote *quote, t_data *data)
 			i++;
 		}
 		if (tmp_type != HEREDOC)
-			tmp = expand_name(tmp, data, quote->open, quote->type);
+			tmp = expand_name(tmp, data, quote->open, quote->type, off);
 		return (tmp);
 	}
 	while (str[i] != 0)
@@ -52,7 +52,7 @@ char	*get_name(char *str, int tmp_type, t_quote *quote, t_data *data)
 			break ;
 	}
 	if (tmp_type != HEREDOC)
-		tmp = expand_name(tmp, data, quote->open, quote->type);
+		tmp = expand_name(tmp, data, quote->open, quote->type, off);
 	return (tmp);
 }
 
@@ -64,7 +64,7 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data, int *offset)
 
 	tmp_path = NULL;
 	i = 0;
-	if (tmp_type == COMMAND || tmp_type == BUILT_IN)
+	if (tmp_type == COMMAND)
 	{
 		while ((*tmp)[i] != ' ' && (*tmp)[i] != '\0')
 		{
@@ -122,9 +122,9 @@ t_bool	parser(char *str, t_data *data, int offset)
 		offset = skip_spaces2(str);
 		parser.tmp_type = ft_file_type(str, &offset);
 		parser.tmp = get_name(str + offset,
-				parser.tmp_type, &quote, data);
+				parser.tmp_type, &quote, data, &offset);
 		offset += skip_spaces2(str + offset);
-		parser.tmp = ft_strtrimfree(parser.tmp, " \t\r\n\v\f");
+		parser.tmp = ft_strtrimfree(parser.tmp, " \t\r\n\v\f", &offset);
 		if (ft_isbuiltin(parser.tmp) == TRUE)
 			parser.tmp_type = BUILT_IN;
 		parser.tmp_path = get_path(&parser.tmp, parser.tmp_type, data, &offset);

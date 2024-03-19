@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/18 17:54:09 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/19 10:55:56 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -359,7 +359,7 @@ the 'set' parameter from the string 's1'.
  * @param set The set of characters to be removed from the string.
  * @return A pointer to the trimmed string, or NULL if memory allocation fails.
  */
-char	*ft_strtrimfree(char *s1, char *set);
+char	*ft_strtrimfree(char *s1, char *set, int *trimmed);
 
 /**
  * @brief Function that prints the list of commands and files

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/18 16:29:30 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/19 10:59:27 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,9 @@ char	*ft_remove_chars(char *str, char *to_remove, int i, int *off)
 char	*quptes_and_add_pwd(char *str, t_data *data)
 {
 	if (str[0] == '\"')
-		str = ft_strtrimfree(str, "\"");
+		str = ft_strtrimfree(str, "\"", 0);
 	else if (str[0] == '\'')
-		str = ft_strtrimfree(str, "\'");
+		str = ft_strtrimfree(str, "\'", 0);
 	str = ft_strjoin_2(data->pwd, ft_strjoin_2("/", str));
 	return (str);
 }

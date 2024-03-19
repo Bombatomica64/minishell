@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/18 17:38:18 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/19 11:02:29 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	process_input(t_data *data)
 	fd_malloc(data);
 	if (terminal_input == NULL)
 	{
-		ft_printf("EOF received, exiting\n");
 		free(terminal_input);
 		rl_clear_history();
 		free_close(&data, 0);

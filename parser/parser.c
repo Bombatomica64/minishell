@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/19 11:19:34 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/19 12:04:40 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*get_name(char *str, int tmp_type, t_quote *quote, t_data *data, int *off)
 		|| tmp_type == APPEND || tmp_type == TRUNC)
 	{
 		quote_start(&quote->open, str[i], &quote->type);
-		while (str[i] && ft_isspace(str[i]) == FALSE && quote->open == FALSE)
+		while (str[i] && ft_isspace(str[i]) == FALSE && ft_islimiter(str[i]) == FALSE && quote->open == FALSE)
 		{
 			tmp = join_char(tmp, str[i]);
 			i++;
@@ -128,7 +128,7 @@ t_bool	parser(char *str, t_data *data, int offset)
 		if (ft_isbuiltin(parser.tmp) == TRUE)
 			parser.tmp_type = BUILT_IN;
 		parser.tmp_path = get_path(&parser.tmp, parser.tmp_type, data, &offset);
-		if (parser.tmp_path == NULL && (parser.tmp_type <= COMMAND))
+		if (parser.tmp_path == NULL && (parser.tmp_type <= 1026))
 			return (free(parser.tmp), free(str), FALSE);
 		ft_inputadd_back(&(*data).input, ft_inputnew(parser));
 		str = cut_string(offset + ft_strlen(parser.tmp), str);

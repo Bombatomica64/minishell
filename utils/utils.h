@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/19 10:55:56 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/19 12:00:52 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ typedef struct s_quote
 typedef enum e_type
 {
 	INPUT = 0,// < file in input
+	TRUNC = O_TRUNC,// > file, rewrites the lines in  the output file
+	APPEND = O_APPEND,// >> file, add more lines in the output file
 	COMMAND,//command to be executed with execve
 	HEREDOC,// << limiter, terminal input until limiter
 	BUILT_IN,//command to be executed without execve
-	TRUNC = O_TRUNC,// > file, rewrites the lines in  the output file
-	APPEND = O_APPEND,// >> file, add more lines in the output file
 	FINISH = 69// end of the list
 }	t_type;
 

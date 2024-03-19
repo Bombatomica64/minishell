@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   input_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/18 17:48:17 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/19 12:09:40 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	set_inout(t_pipex *comm, t_input *input, t_data *data)
+static int	set_inout(t_pipex *comm, t_input *input, t_data *data)
 {
 	if (input->type == INPUT)
 	{
@@ -28,6 +28,9 @@ static void	set_inout(t_pipex *comm, t_input *input, t_data *data)
 			close(comm->fd_out);
 		comm->fd_out = open_type(input->path, input->type, data);
 	}
+	if (comm->fd_in == -1 || comm->fd_out == -1)
+		return (-1);
+	return (0);
 }
 
 static t_pipex	basic_set(t_data **data)
@@ -86,7 +89,8 @@ t_pipex	input_exec(t_data **data)
 	seen = FALSE;
 	while ((*data)->input && (*data)->input->type != FINISH)
 	{
-		set_inout(&comm, (*data)->input, *data);
+		if (set_inout(&comm, (*data)->input, *data) == -1)
+			return (free_matrix(&comm.cmd), comm);
 		if (ft_iscmd((*data)->input) == TRUE)
 		{
 			if (seen == FALSE)

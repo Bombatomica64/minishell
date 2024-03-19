@@ -54,11 +54,11 @@ typedef struct s_quote
 typedef enum e_type
 {
 	INPUT = 0,// < file in input
+	TRUNC = O_TRUNC,// > file, rewrites the lines in  the output file
+	APPEND = O_APPEND,// >> file, add more lines in the output file
 	COMMAND,//command to be executed with execve
 	HEREDOC,// << limiter, terminal input until limiter
 	BUILT_IN,//command to be executed without execve
-	TRUNC = O_TRUNC,// > file, rewrites the lines in  the output file
-	APPEND = O_APPEND,// >> file, add more lines in the output file
 	FINISH = 69// end of the list
 }	t_type;
 

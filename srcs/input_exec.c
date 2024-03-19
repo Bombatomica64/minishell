@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-static void	set_inout(t_pipex *comm, t_input *input, t_data *data)
+static int	set_inout(t_pipex *comm, t_input *input, t_data *data)
 {
 	if (input->type == INPUT)
 	{
@@ -28,6 +28,9 @@ static void	set_inout(t_pipex *comm, t_input *input, t_data *data)
 			close(comm->fd_out);
 		comm->fd_out = open_type(input->path, input->type, data);
 	}
+	if (comm->fd_in == -1 || comm->fd_out == -1)
+		return (-1);
+	return (0);
 }
 
 static t_pipex	basic_set(t_data **data)
@@ -47,19 +50,23 @@ void	do_pipes(t_data **data, t_pipex *comm)
 	if ((*data)->in_pipe == FALSE)
 	{
 		pipe((*data)->fd[(*data)->cmd_nbr]);
-		comm->fd_out = ((*data)->fd[0][1]);
+		if (comm->fd_out == STDOUT_FILENO)
+			comm->fd_out = ((*data)->fd[0][1]);
 		(*data)->in_pipe = TRUE;
 	}
 	else if ((*data)->cmd_nbr < (*data)->pipe_nbr - 1)
 	{
-		comm->fd_in = (*data)->fd[(*data)->cmd_nbr][0];
+		if (comm->fd_in == STDIN_FILENO)
+			comm->fd_in = (*data)->fd[(*data)->cmd_nbr][0];
 		pipe((*data)->fd[(*data)->cmd_nbr + 1]);
-		comm->fd_out = (*data)->fd[(*data)->cmd_nbr + 1][1];
+		if (comm->fd_out == STDOUT_FILENO)
+			comm->fd_out = (*data)->fd[(*data)->cmd_nbr + 1][1];
 		(*data)->cmd_nbr++;
 	}
 	else
 	{
-		comm->fd_in = (*data)->fd[(*data)->cmd_nbr][0];
+		if (comm->fd_in == STDIN_FILENO)
+			comm->fd_in = (*data)->fd[(*data)->cmd_nbr][0];
 		(*data)->in_pipe = FALSE;
 		(*data)->cmd_nbr++;
 	}
@@ -86,7 +93,8 @@ t_pipex	input_exec(t_data **data)
 	seen = FALSE;
 	while ((*data)->input && (*data)->input->type != FINISH)
 	{
-		set_inout(&comm, (*data)->input, *data);
+		if (set_inout(&comm, (*data)->input, *data) == -1)
+			return (free_matrix(&comm.cmd), comm);
 		if (ft_iscmd((*data)->input, *data) == TRUE)
 		{
 			if (seen == FALSE)

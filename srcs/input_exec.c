@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/19 12:09:40 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/19 12:42:20 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,23 @@ void	do_pipes(t_data **data, t_pipex *comm)
 	if ((*data)->in_pipe == FALSE)
 	{
 		pipe((*data)->fd[(*data)->cmd_nbr]);
-		comm->fd_out = ((*data)->fd[0][1]);
+		if (comm->fd_out == STDOUT_FILENO)
+			comm->fd_out = ((*data)->fd[0][1]);
 		(*data)->in_pipe = TRUE;
 	}
 	else if ((*data)->cmd_nbr < (*data)->pipe_nbr - 1)
 	{
-		comm->fd_in = (*data)->fd[(*data)->cmd_nbr][0];
+		if (comm->fd_in == STDIN_FILENO)
+			comm->fd_in = (*data)->fd[(*data)->cmd_nbr][0];
 		pipe((*data)->fd[(*data)->cmd_nbr + 1]);
-		comm->fd_out = (*data)->fd[(*data)->cmd_nbr + 1][1];
+		if (comm->fd_out == STDOUT_FILENO)
+			comm->fd_out = (*data)->fd[(*data)->cmd_nbr + 1][1];
 		(*data)->cmd_nbr++;
 	}
 	else
 	{
-		comm->fd_in = (*data)->fd[(*data)->cmd_nbr][0];
+		if (comm->fd_in == STDIN_FILENO)
+			comm->fd_in = (*data)->fd[(*data)->cmd_nbr][0];
 		(*data)->in_pipe = FALSE;
 		(*data)->cmd_nbr++;
 	}

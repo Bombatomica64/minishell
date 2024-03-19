@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/19 12:45:53 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:25:39 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ char	*get_path(char **tmp, t_type tmp_type, t_data *data, int *offset)
 
 	tmp_path = NULL;
 	i = 0;
+	if (*tmp == NULL)
+		return (NULL);
 	if (tmp_type == COMMAND)
 	{
 		while ((*tmp)[i] != ' ' && (*tmp)[i] != '\0')

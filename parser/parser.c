@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/20 15:52:57 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/20 10:10:45 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,15 @@ t_bool	get_name(char *str, t_parser parser, t_data *data, int *off)
 	t_bool		error;
 
 	tmp = NULL;
+	/*i = skip_spaces2(str);
+	if (tmp_type == HEREDOC)
+		tmp = get_heredoc(str, quote, data, off);
+	else if (tmp_type == INPUT)
+		tmp = get_input(str, quote, data, off);
+	else if (tmp_type == COMMAND)
+		tmp = get_command(str, quote, data, off);
+	else if (tmp_type == APPEND || tmp_type == TRUNC)
+		tmp = get_output();*/
 	if (parser.tmp_type == HEREDOC)
 		tmp = get_heredoc();
 	else if (parser.tmp_type == INPUT)

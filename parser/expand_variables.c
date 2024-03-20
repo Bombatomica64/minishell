@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_variables.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:40:43 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/20 10:03:19 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/20 11:49:00 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data, int *off)
 	return (free(tofind), (*i)--, str);
 }
 
-char	*expand_name(char *tmp, t_data *data, t_bool open, char type, int *off)
+char	*expand_name(char *tmp, t_data *data, t_quote squote, int *off)
 {
 	size_t		i;
 	char		*str;
@@ -58,15 +58,15 @@ char	*expand_name(char *tmp, t_data *data, t_bool open, char type, int *off)
 	{
 		if (tmp[i] == '\'' || tmp[i] == '\"')
 		{
-			quote_start(&open, tmp[i], &type);
+			quote_start(&squote.open, tmp[i], &squote.type);
 			str = join_char(str, tmp[i]);
 		}
-		else if (tmp[i] == '$' && type != '\'')
+		else if (tmp[i] == '$' && squote.type != '\'')
 			str = expand_dollar(str, tmp, &i, data, off);
 		else
 			str = join_char(str, tmp[i]);
 		i++;
-	} 
+	}
 	free(tmp);
 	return (str);
 }

@@ -3,31 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/20 10:01:26 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/20 12:34:59 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-char	*get_name(char *str, int tmp_type, t_quote *quote, t_data *data, int *off)
+t_bool	get_output(int *off, char *str, char **tmp, t_data *data)
 {
-	int			i ;
-	char		*tmp;
+	int			i;
+	t_quote		squote;
 
-	i = 0;
+	i = *off;
+	quote_start(&squote.open, str[i], &squote.type);
+	while (str[i] && ft_isspace(str[i]) == FALSE && squote.open == FALSE)
+	{
+		quote_start(&squote.open, str[i], &squote.type);
+		tmp = join_char(tmp, str[i]);
+		i++;
+	}
+	tmp = expand_name(tmp, data, squote, off);
+	i += skip_spaces2(str + i);
+	*off = i;
+	if (ft_islimiter(str[i]) == FALSE && str[i])
+		return (FALSE);
+	return (TRUE);
+}
+
+t_bool	get_name(char *str, t_parser parser, t_data *data, int *off)
+{
+	char		*tmp;
+	t_bool		error;
+
 	tmp = NULL;
-	i = skip_spaces2(str);
-	if (tmp_type == HEREDOC)
+	if (parser.tmp_type == HEREDOC)
 		tmp = get_heredoc();
-	else if (tmp_type == INPUT)
+	else if (parser.tmp_type == INPUT)
 		tmp = get_input();
-	else if (tmp_type == COMMAND)
+	else if (parser.tmp_type == COMMAND)
 		tmp = get_command();
-	else if (tmp_type == APPEND || tmp_type == TRUNC)
-		tmp = get_output();
+	else if (parser.tmp_type == APPEND || parser.tmp_type == TRUNC)
+		error = get_output(off, str, &tmp, data);
 	return (tmp);
 	// if (tmp_type == HEREDOC || tmp_type == INPUT
 	// 	|| tmp_type == APPEND || tmp_type == TRUNC)
@@ -126,14 +145,19 @@ t_bool	parser(char *str, t_data *data, int offset)
 {
 	t_quote		quote;
 	t_parser	parser;
+	int			error;
 
 	quote = (t_quote){FALSE, 0};
 	while (str)
 	{
 		offset = skip_spaces2(str);
 		parser.tmp_type = ft_file_type(str, &offset);
-		parser.tmp = get_name(str + offset,
-				parser.tmp_type, &quote, data, &offset);
+		error = get_name(str, parser, data, &offset);
+		if (error == FALSE)
+		{
+			str = redo(&str, data, offset);
+			continue ;
+		}
 		offset += skip_spaces2(str + offset);
 		parser.tmp = ft_strtrimfree(parser.tmp, " \t\r\n\v\f", &offset);
 		if (ft_isbuiltin(parser.tmp) == TRUE)

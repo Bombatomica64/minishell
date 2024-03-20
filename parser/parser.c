@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/19 18:25:39 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/20 10:01:26 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,40 +20,49 @@ char	*get_name(char *str, int tmp_type, t_quote *quote, t_data *data, int *off)
 	i = 0;
 	tmp = NULL;
 	i = skip_spaces2(str);
-	if (tmp_type == HEREDOC || tmp_type == INPUT
-		|| tmp_type == APPEND || tmp_type == TRUNC)
-	{
-		quote_start(&quote->open, str[i], &quote->type);
-		while (str[i] && ft_isspace(str[i]) == FALSE && ft_islimiter(str[i]) == FALSE && quote->open == FALSE)
-		{
-			tmp = join_char(tmp, str[i]);
-			i++;
-		}
-		if (tmp_type != HEREDOC)
-			tmp = expand_name(tmp, data, quote->open, quote->type, off);
-		return (tmp);
-	}
-	while (str[i] != 0)
-	{
-		if (ft_isquote(str[i]))
-		{
-			quote_start(&quote->open, str[i], &quote->type);
-			if (tmp_type == BUILT_IN || tmp_type == COMMAND
-				|| (quote->open == TRUE && str[i] != quote->type))
-				tmp = join_char(tmp, str[i]);
-			i++;
-		}
-		else
-		{
-			tmp = join_char(tmp, str[i]);
-			i++;
-		}
-		if (ft_islimiter(str[i]) == TRUE && quote->open == FALSE)
-			break ;
-	}
-	if (tmp_type != HEREDOC)
-		tmp = expand_name(tmp, data, quote->open, quote->type, off);
+	if (tmp_type == HEREDOC)
+		tmp = get_heredoc();
+	else if (tmp_type == INPUT)
+		tmp = get_input();
+	else if (tmp_type == COMMAND)
+		tmp = get_command();
+	else if (tmp_type == APPEND || tmp_type == TRUNC)
+		tmp = get_output();
 	return (tmp);
+	// if (tmp_type == HEREDOC || tmp_type == INPUT
+	// 	|| tmp_type == APPEND || tmp_type == TRUNC)
+	// {
+	// 	quote_start(&quote->open, str[i], &quote->type);
+	// 	while (str[i] && ft_isspace(str[i]) == FALSE && ft_islimiter(str[i]) == FALSE && quote->open == FALSE)
+	// 	{
+	// 		tmp = join_char(tmp, str[i]);
+	// 		i++;
+	// 	}
+	// 	if (tmp_type != HEREDOC)
+	// 		tmp = expand_name(tmp, data, quote->open, quote->type, off);
+	// 	return (tmp);
+	// }
+	// while (str[i] != 0)
+	// {
+	// 	if (ft_isquote(str[i]))
+	// 	{
+	// 		quote_start(&quote->open, str[i], &quote->type);
+	// 		if (tmp_type == BUILT_IN || tmp_type == COMMAND
+	// 			|| (quote->open == TRUE && str[i] != quote->type))
+	// 			tmp = join_char(tmp, str[i]);
+	// 		i++;
+	// 	}
+	// 	else
+	// 	{
+	// 		tmp = join_char(tmp, str[i]);
+	// 		i++;
+	// 	}
+	// 	if (ft_islimiter(str[i]) == TRUE && quote->open == FALSE)
+	// 		break ;
+	// }
+	// if (tmp_type != HEREDOC)
+	// 	tmp = expand_name(tmp, data, quote->open, quote->type, off);
+	// return (tmp);
 }
 
 char	*get_path(char **tmp, t_type tmp_type, t_data *data, int *offset)

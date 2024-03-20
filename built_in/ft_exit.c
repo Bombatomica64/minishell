@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 11:23:22 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/20 15:18:33 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/20 15:36:40 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,29 @@ t_bool	is_exit(char *command)
 	return (FALSE);
 }
 
-t_bool	ft_atoll(char *str)
-{
-	long long int	num;
-	t_bool			neg;
-	int				i;
-	int				digit;
+// t_bool	ft_atoll(char *str)
+// {
+// 	long long int	num;
+// 	t_bool			neg;
+// 	int				i;
+// //	int				digit;
 
-	num = 0;
-	neg = FALSE;
-	i = 0;
-	if (*str == '-')
-	{
-		neg = TRUE;
-		str++;
-	}
-	else if (*str == '+')
-		str++;
-	while (str[i] && ft_isdigit(str[i]))
-	{
-		num = num * 10 + (str[i] - '0');
-		i++;
-	}
-}
+// 	num = 0;
+// 	neg = FALSE;
+// 	i = 0;
+// 	if (*str == '-')
+// 	{
+// 		neg = TRUE;
+// 		str++;
+// 	}
+// 	else if (*str == '+')
+// 		str++;
+// 	while (str[i] && ft_isdigit(str[i]))
+// 	{
+// 		num = num * 10 + (str[i] - '0');
+// 		i++;
+// 	}
+// }
 
 int	ft_exit(char **cmd, t_data *data)
 {

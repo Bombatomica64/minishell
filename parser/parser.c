@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/20 10:01:26 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/20 10:10:45 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ char	*get_name(char *str, int tmp_type, t_quote *quote, t_data *data, int *off)
 	tmp = NULL;
 	i = skip_spaces2(str);
 	if (tmp_type == HEREDOC)
-		tmp = get_heredoc();
+		tmp = get_heredoc(str, quote, data, off);
 	else if (tmp_type == INPUT)
-		tmp = get_input();
+		tmp = get_input(str, quote, data, off);
 	else if (tmp_type == COMMAND)
-		tmp = get_command();
+		tmp = get_command(str, quote, data, off);
 	else if (tmp_type == APPEND || tmp_type == TRUNC)
 		tmp = get_output();
 	return (tmp);

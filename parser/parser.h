@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:29:56 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/20 11:47:16 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/20 15:34:50 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_bool	parser(char *str, t_data *data, int offset);
 int		count_limiter(char *str, t_quote squote);
 t_bool	is_double_operator(char *str, int i, t_quote squote);
 t_bool	quote_error(char *tmp, t_bool *quote);
+char	*ft_reparsing(char *str, int i, t_data *data);
 
 //expand_variables_utils
 char	*expand_name(char *str, t_data *data, t_quote squote, int *off);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/20 10:10:45 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/20 16:27:08 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,23 @@ t_bool	get_inout(int *off, char *str, char **tmp, t_data *data)
 	int			i;
 	t_quote		squote;
 
+	i = 0;
+	squote = (t_quote){FALSE, 0};
 	while (ft_islimiter(str[*off]) == TRUE)
 		(*off)++;
 	*off += skip_spaces2(str + *off);
 	i = *off;
-	quote_start(&squote.open, str[i], &squote.type);
 	while (str[i])
 	{
 		quote_start(&squote.open, str[i], &squote.type);
-		if (ft_isspace(str[i]) == TRUE && squote.open == FALSE)
+		if ((ft_isspace(str[i]) == TRUE || ft_islimiter(str[i]) == TRUE) && squote.open == FALSE)
 			break ;
 		*tmp = join_char(*tmp, str[i]);
 		i++;
 	}
-	*tmp = expand_name(*tmp, data, squote, off);
-	i += skip_spaces2(str + i);
 	*off = i;
-	if (ft_islimiter(str[i]) == FALSE && str[i])
+	*tmp = expand_name(*tmp, data, squote, off);
+	if ((ft_islimiter(str[i]) == FALSE && str[i]) || str[i] == '\0')
 		return (FALSE);
 	return (TRUE);
 }
@@ -41,9 +41,10 @@ t_bool	get_inout(int *off, char *str, char **tmp, t_data *data)
 t_bool	get_name(char *str, t_parser parser, t_data *data, int *off)
 {
 	char		*tmp;
-	t_bool		error;
+	t_bool		check;
 
 	tmp = NULL;
+	check =  FALSE;
 	/*i = skip_spaces2(str);
 	if (tmp_type == HEREDOC)
 		tmp = get_heredoc(str, quote, data, off);
@@ -53,17 +54,13 @@ t_bool	get_name(char *str, t_parser parser, t_data *data, int *off)
 		tmp = get_command(str, quote, data, off);
 	else if (tmp_type == APPEND || tmp_type == TRUNC)
 		tmp = get_output();*/
-	if (parser.tmp_type == HEREDOC)
-		tmp = get_heredoc();
-	else if (parser.tmp_type == INPUT)
-		tmp = get_input();
-	else if (parser.tmp_type == COMMAND)
-		tmp = get_command();
-	else if (parser.tmp_type == APPEND || parser.tmp_type == TRUNC)
-		error = get_output(off, str, &tmp, data);
-	return (tmp);
-	// if (tmp_type == HEREDOC || tmp_type == INPUT
-	// 	|| tmp_type == APPEND || tmp_type == TRUNC)
+	// else if (parser.tmp_type == COMMAND)
+	// 	tmp = get_command();
+	if (parser.tmp_type == HEREDOC || parser.tmp_type == INPUT
+		|| parser.tmp_type == APPEND || parser.tmp_type == TRUNC)
+		check = get_inout(off, str, &tmp, data);
+	return (check);
+	
 	// {
 	// 	quote_start(&quote->open, str[i], &quote->type);
 	// 	while (str[i] && ft_isspace(str[i]) == FALSE && ft_islimiter(str[i]) == FALSE && quote->open == FALSE)
@@ -169,7 +166,7 @@ t_bool	parser(char *str, t_data *data, int offset)
 		error = get_name(str, parser, data, &offset);
 		if (error == FALSE)
 		{
-			str = redo(&str, data, offset);
+			str = ft_reparsing(str, offset, data);
 			continue ;
 		}
 		offset += skip_spaces2(str + offset);

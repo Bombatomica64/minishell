@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:14:12 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/15 18:13:49 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/20 12:56:32 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,40 @@ void	remove_envp_entry(char ***envp, int index)
 	*envp = new_envp;
 }
 
+int	unset_wrong_identifier(char **mtx)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (mtx[i])
+	{
+		j = 0;
+		while (mtx[i][j])
+		{
+			if (mtx[i][j] == '='
+				|| (i == 0 && !ft_isalpha(mtx[i][j]) && mtx[i][j] != '_')
+				|| (!ft_isalnum(mtx[i][j]) && mtx[i][j] != '_'))
+			{
+				ft_putstr_fd("minishell: unset: `", 2);
+				ft_putstr_fd(mtx[i], 2);
+				ft_putstr_fd("': not a valid identifier\n", 2);
+				return (ERROR);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
 int	ft_unset(char **mtx, char ***envp)
 {
 	int		i;
 
 	if (!mtx || ft_strcmp(mtx[0], "unset") != 0)
+		return (1);
+	if (unset_wrong_identifier(mtx) == ERROR)
 		return (1);
 	i = 1;
 	if (find_in_env(*envp, mtx[i]) == -1)

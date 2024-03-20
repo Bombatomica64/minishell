@@ -57,6 +57,7 @@ settings.json
 
 #temp files
 .nfs*
+file*
 
 # executables
 minishell

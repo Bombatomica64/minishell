@@ -1,24 +1,50 @@
-bash.pdf
-bonus
-built_in
-~c
-file
-file1
-file2
-file3
-file4
-ft_printf
-ignore_readline.supp
-lexer
-libft
-Makefile
-minishell
-minishell_tester
-parser
-philo
-pipex
-README.md
-srcs
-subject.pdf
-utils
-wewe
+total 2568
+-rwxrwxrwx 1 lmicheli 2023_florence  795771 Mar  4 17:47 bash.pdf
+drwxrwxrwx 2 lmicheli 2023_florence    4096 Mar 13 10:57 bonus
+drwxrwxrwx 2 lmicheli 2023_florence    4096 Mar 20 16:48 built_in
+-rwxrwxrwx 1 lmicheli 2023_florence       4 Feb 26 10:11 ~c
+-rwxrwxrwx 1 lmicheli 2023_florence       6 Mar 20 10:40 file
+-rwxr-xr-x 1 lmicheli 2023_florence       0 Mar 20 18:36 file1
+-rwxr-xr-x 1 lmicheli 2023_florence       0 Mar 20 15:53 file2
+-rwxrwxrwx 1 lmicheli 2023_florence    2825 Mar 18 16:20 file3
+-rwxrwxrwx 1 lmicheli 2023_florence       0 Feb 19 10:02 file4
+drwxrwxrwx 2 lmicheli 2023_florence    4096 Mar 13 10:57 ft_printf
+-rwxrwxrwx 1 lmicheli 2023_florence      92 Feb 28 10:02 ignore_readline.supp
+drwxrwxrwx 2 lmicheli 2023_florence    4096 Mar 19 11:22 lexer
+drwxrwxrwx 2 lmicheli 2023_florence    4096 Mar 20 18:35 libft
+-rwxr-xr-x 1 lmicheli 2023_florence    2786 Mar 20 10:16 Makefile
+-rwxr-xr-x 1 lmicheli 2023_florence  143176 Mar 20 18:36 minishell
+drwxr-xr-x 2 lmicheli 2023_florence    4096 Mar 19 18:20 minishell_tester
+drwxrwxrwx 2 lmicheli 2023_florence    4096 Mar 20 16:48 parser
+-rwxrwxrwx 1 lmicheli 2023_florence   48072 Mar 14 18:15 philo
+drwxrwxrwx 2 lmicheli 2023_florence    4096 Mar 19 11:22 pipex
+-rwxrwxrwx 1 lmicheli 2023_florence      96 Feb 19 11:59 README.md
+drwxrwxrwx 2 lmicheli 2023_florence    4096 Mar 19 18:20 srcs
+-rwxrwxrwx 1 lmicheli 2023_florence 1568461 Feb  6 18:07 subject.pdf
+drwxrwxrwx 2 lmicheli 2023_florence    4096 Mar 20 16:48 utils
+-rw-r--r-- 1 lmicheli 2023_florence       0 Mar 20 10:41 wewe
+total 2572
+-rwxrwxrwx 1 lmicheli 2023_florence  795771 Mar  4 17:47 bash.pdf
+drwxrwxrwx 2 lmicheli 2023_florence    4096 Mar 13 10:57 bonus
+drwxrwxrwx 2 lmicheli 2023_florence    4096 Mar 20 16:48 built_in
+-rwxrwxrwx 1 lmicheli 2023_florence       4 Feb 26 10:11 ~c
+-rwxrwxrwx 1 lmicheli 2023_florence       6 Mar 20 10:40 file
+-rwxr-xr-x 1 lmicheli 2023_florence    1571 Mar 20 18:36 file1
+-rwxr-xr-x 1 lmicheli 2023_florence       0 Mar 20 15:53 file2
+-rwxrwxrwx 1 lmicheli 2023_florence    2825 Mar 18 16:20 file3
+-rwxrwxrwx 1 lmicheli 2023_florence       0 Feb 19 10:02 file4
+drwxrwxrwx 2 lmicheli 2023_florence    4096 Mar 13 10:57 ft_printf
+-rwxrwxrwx 1 lmicheli 2023_florence      92 Feb 28 10:02 ignore_readline.supp
+drwxrwxrwx 2 lmicheli 2023_florence    4096 Mar 19 11:22 lexer
+drwxrwxrwx 2 lmicheli 2023_florence    4096 Mar 20 18:35 libft
+-rwxr-xr-x 1 lmicheli 2023_florence    2786 Mar 20 10:16 Makefile
+-rwxr-xr-x 1 lmicheli 2023_florence  143168 Mar 20 18:36 minishell
+drwxr-xr-x 2 lmicheli 2023_florence    4096 Mar 19 18:20 minishell_tester
+drwxrwxrwx 2 lmicheli 2023_florence    4096 Mar 20 16:48 parser
+-rwxrwxrwx 1 lmicheli 2023_florence   48072 Mar 14 18:15 philo
+drwxrwxrwx 2 lmicheli 2023_florence    4096 Mar 19 11:22 pipex
+-rwxrwxrwx 1 lmicheli 2023_florence      96 Feb 19 11:59 README.md
+drwxrwxrwx 2 lmicheli 2023_florence    4096 Mar 19 18:20 srcs
+-rwxrwxrwx 1 lmicheli 2023_florence 1568461 Feb  6 18:07 subject.pdf
+drwxrwxrwx 2 lmicheli 2023_florence    4096 Mar 20 16:48 utils
+-rw-r--r-- 1 lmicheli 2023_florence       0 Mar 20 10:41 wewe

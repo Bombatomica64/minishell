@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 10:05:27 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/20 18:00:02 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/20 18:36:24 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_bool	get_command(int *off, char *str, t_parser *parser, t_data *data)
 
 	i = 0;
 	squote = (t_quote){FALSE, 0};
-	printf("parser->tmp: %s\n", parser->tmp);
 	if (ft_islimiter(str[*off]) == TRUE)
 		(*off)++;
 	while (str[i])
@@ -31,7 +30,6 @@ t_bool	get_command(int *off, char *str, t_parser *parser, t_data *data)
 		i++;
 	}
 	parser->tmp = expand_name(parser->tmp, data, squote, off);
-	printf("parser->tmp: %s\n", parser->tmp);
 	return (TRUE);
 }
 
@@ -57,7 +55,10 @@ t_bool	get_inout(int *off, char *str, t_parser *parser, t_data *data)
 	}
 	*off = i;
 	parser->tmp = expand_name(parser->tmp, data, squote, off);
-	if ((ft_islimiter(str[i]) == FALSE && str[i]) || str[i] == '\0')
+	*off += skip_spaces2(str + *off);
+	if (str[*off] == '\0')
+		return (TRUE);
+	if ((ft_islimiter(str[i]) == FALSE && str[i + 1]))
 		return (FALSE);
 	return (TRUE);
 }
@@ -86,7 +87,6 @@ char	*ft_reparsing(char *str, int i, t_data *data)
 	args = ft_substr(str, i, j);
 	dst = ft_strjoin_2free(args, file);
 	dst = ft_newstrjoin(dst, str + j);
-	printf("dst: %s\n", dst);
 	return (free(str), ft_inputclear(&data->input), dst);
 }
 //echo ciao > "file1 |" pippo 'amico|' ls

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/20 18:00:53 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/20 18:35:25 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_bool	get_name(char *str, t_parser *parser, t_data *data, int *off)
 {
 	t_bool		check;
 
-	check = FALSE;
+	check = TRUE;
 	if (parser->tmp_type == COMMAND)
 		check = get_command(off, str, parser, data);
 	else if (parser->tmp_type == HEREDOC || parser->tmp_type == INPUT
@@ -122,7 +122,6 @@ t_bool	parser(char *str, t_data *data, int offset, t_parser parser)
 	quote = (t_quote){FALSE, 0};
 	while (str)
 	{
-		printf("str: %s\n", str);
 		offset = skip_spaces2(str);
 		parser.tmp_type = ft_file_type(str, &offset);
 		error = get_name(str, &parser, data, &offset);

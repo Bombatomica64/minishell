@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:29:56 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/20 15:34:50 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/20 17:58:58 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 
 //parser
 t_type	ft_file_type(char *str, int *offset);
-t_bool	parser(char *str, t_data *data, int offset);
+t_bool	get_command(int *off, char *str, t_parser *parser, t_data *data);
+t_bool	get_inout(int *off, char *str, t_parser *parser, t_data *data);
+t_bool	parser(char *str, t_data *data, int offset, t_parser parser);
 int		count_limiter(char *str, t_quote squote);
 t_bool	is_double_operator(char *str, int i, t_quote squote);
 t_bool	quote_error(char *tmp, t_bool *quote);

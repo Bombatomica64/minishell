@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/20 10:22:21 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/20 17:52:05 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -478,6 +478,7 @@ t_bool	ft_iscmd(t_input *input, t_data *data);
 char	*cut_string(int len, char *str);
 int		find_last(char *str, char c);
 
+void	free_parser(t_parser *parser);
 char	**ft_neosplitarg(char *str);
 
 #endif

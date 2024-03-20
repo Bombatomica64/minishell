@@ -6,11 +6,21 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:10:53 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/15 18:10:44 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/20 17:57:08 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
+
+void	free_parser(t_parser *parser)
+{
+	if (parser->tmp)
+		free(parser->tmp);
+	parser->tmp = NULL;
+	if (parser->tmp_path)
+		free(parser->tmp_path);
+	parser->tmp_path = NULL;
+}
 
 void	free_matrix(char ***mtx)
 {

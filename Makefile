@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
+#    By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/03/18 18:00:29 by lmicheli         ###   ########.fr        #
+#    Updated: 2024/03/20 10:06:48 by gduranti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,8 @@ LEXER = lexer/lexer.c \
 PARSER = parser/parser.c \
 	parser/parser_utils.c \
 	parser/quotehandler.c \
-	parser/expande_variables_utils.c
+	parser/expand_variables.c \
+	parser/get_hicat.c
 
 SRCS = srcs/main.c \
 	srcs/input_init.c \

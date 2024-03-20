@@ -12,20 +12,25 @@
 
 #include "parser.h"
 
-t_bool	get_output(int *off, char *str, char **tmp, t_data *data)
+t_bool	get_inout(int *off, char *str, char **tmp, t_data *data)
 {
 	int			i;
 	t_quote		squote;
 
+	while (ft_islimiter(str[*off]) == TRUE)
+		(*off)++;
+	*off += skip_spaces2(str + *off);
 	i = *off;
 	quote_start(&squote.open, str[i], &squote.type);
-	while (str[i] && ft_isspace(str[i]) == FALSE && squote.open == FALSE)
+	while (str[i])
 	{
 		quote_start(&squote.open, str[i], &squote.type);
-		tmp = join_char(tmp, str[i]);
+		if (ft_isspace(str[i]) == TRUE && squote.open == FALSE)
+			break ;
+		*tmp = join_char(*tmp, str[i]);
 		i++;
 	}
-	tmp = expand_name(tmp, data, squote, off);
+	*tmp = expand_name(*tmp, data, squote, off);
 	i += skip_spaces2(str + i);
 	*off = i;
 	if (ft_islimiter(str[i]) == FALSE && str[i])

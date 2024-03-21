@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/21 11:52:44 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/21 12:52:10 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,27 @@ char	*free_strdup(char *str, char **freestr)
 	return (tmp);
 }
 
+char	*cut_pars_str(char *str, char *node)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == node[0])
+		{
+			j = 0;
+			while (node[j] && node[j] == str[i + j])
+				j++;
+			if (!node[j])
+				return (cut_string(i + j, str));
+		}
+		i++;
+	}
+	return (free(str), NULL);
+}
+
 t_bool	parser(char *str, t_data *data, int offset, t_parser parser)
 {
 	t_quote		quote;
@@ -140,12 +161,15 @@ t_bool	parser(char *str, t_data *data, int offset, t_parser parser)
 		parser.tmp_path = get_path(&parser.tmp, parser.tmp_type, data, &offset);
 		if (parser.tmp_path == NULL && (parser.tmp_type <= 1026))
 			return (free(parser.tmp), free(str), FALSE);
-		ft_inputadd_back(&(*data).input, ft_inputnew(parser));
-		str = cut_string(offset + ft_strlen(parser.tmp), str);
+		ft_inputadd_back(&data->input, ft_inputnew(parser));
+		printf("offset =%d\tparser.tmp = %s\tstrlen = %ld\n", offset,parser.tmp, ft_strlen(parser.tmp));
+		// str = cut_string(offset + ft_strlen(parser.tmp), str);
+		str = cut_pars_str(str, parser.tmp);
 		free_parser(&parser);
 	}
-	ft_inputadd_back(&(*data).input, ft_inputnew((t_parser){NULL, NULL, 69}));
+	ft_inputadd_back(&data->input, ft_inputnew((t_parser){NULL, NULL, 69}));
 	free(str);
+	print_list(data->input);
 	return (TRUE);
 }
 // Path: srcs/parser.c

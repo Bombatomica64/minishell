@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 10:05:27 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/21 11:42:48 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/21 13:01:55 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@ t_bool	get_command(int *off, char *str, t_parser *parser, t_data *data)
 
 	i = 0;
 	squote = (t_quote){FALSE, 0};
-	if (ft_islimiter(str[*off]) == TRUE)
+	i = skip_spaces2(str);
+	if (ft_islimiter(str[*off + i]) == TRUE)
+	{
 		(*off)++;
-	while (str[i])
+		i++;
+	}
+	while (str[i] && (ft_islimiter(str[i]) == FALSE || squote.open == TRUE))
 	{
 		quote_start(&squote.open, str[i], &squote.type);
-		if (ft_islimiter(str[i]) == TRUE && squote.open == FALSE)
-			break ;
 		parser->tmp = join_char(parser->tmp, str[i]);
 		i++;
 	}

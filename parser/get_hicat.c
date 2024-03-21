@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 10:05:27 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/21 10:26:38 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/21 11:42:48 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,18 @@ t_bool	get_inout(int *off, char *str, t_parser *parser, t_data *data)
 	*off += skip_spaces2(str + *off);
 	if (str[*off] == '\0')
 		return (TRUE);
-	if ((ft_islimiter(str[i]) == FALSE && str[i + 1]))
+	if ((ft_islimiter(str[*off]) == FALSE && str[*off + 1]))
 		return (FALSE);
 	return (TRUE);
 }
 
-char	*ft_reparsing(char *str, int i, t_data *data)
+char	*ft_reparsing(char *str, int i, t_data *data, t_quote squote)
 {
-	t_quote	squote;
 	char	*tmp;
 	char	*dst;
 	int		j;
 	int		k;
 
-	squote = (t_quote){FALSE, 0};
 	dst = ft_calloc(ft_strlen(str) + 1, sizeof(char));
 	if (!dst)
 		return(free(str), ft_inputclear(&data->input), NULL);
@@ -79,7 +77,7 @@ char	*ft_reparsing(char *str, int i, t_data *data)
 	j = -1;
 	while (k > 0 && (ft_islimiter(str[k]) == FALSE || squote.open == TRUE))
 		quote_start(&squote.open, str[k--], &squote.type);
-	if (ft_islimiter(str[k - 1]) == TRUE)
+	if ( k > 0 && ft_islimiter(str[k - 1]) == TRUE)
 		k--;
 	while(str[++j] && j < k)
 		dst[j] = str[j];
@@ -89,14 +87,13 @@ char	*ft_reparsing(char *str, int i, t_data *data)
 		quote_start(&squote.open, str[i], &squote.type);
 		dst[j++] = str[i++];
 	}
-	k = 0;
-	while (tmp && tmp[k])
-		dst[j++] = tmp[k++];
-	while (str[i])
-		dst[j++] = str[i++];
-	return (free(tmp), free(str), ft_inputclear(&data->input), dst);
+	dst = ft_strjoin_2free(ft_input2str(&data->input),
+		ft_newstrjoin(ft_strjoin_2free(dst, tmp), &str[i]));
+	printf("dstFINAL: %s\n", dst);
+	return (free(str), ft_inputclear(&data->input), dst);
 }
 
+// lasciamogliela, magari si arrabbia
 // char	*ft_reparsing(char *str, int i, t_data *data)
 // {
 // 	t_quote	squote;
@@ -121,5 +118,6 @@ char	*ft_reparsing(char *str, int i, t_data *data)
 // 	args = ft_substr(str, i, j);
 // 	dst = ft_strjoin_2free(args, file);
 // 	dst = ft_newstrjoin(dst, str + j);
+// 	dst = ft_strjoin_2free(ft_input2str(&data->input), dst);
 // 	return (free(str), ft_inputclear(&data->input), dst);
 // }

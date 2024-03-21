@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/20 18:35:25 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/21 11:52:44 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,18 +117,20 @@ char	*free_strdup(char *str, char **freestr)
 t_bool	parser(char *str, t_data *data, int offset, t_parser parser)
 {
 	t_quote		quote;
-	int			error;
+	int			check;
 
 	quote = (t_quote){FALSE, 0};
 	while (str)
 	{
 		offset = skip_spaces2(str);
 		parser.tmp_type = ft_file_type(str, &offset);
-		error = get_name(str, &parser, data, &offset);
-		if (error == FALSE)
+		check = get_name(str, &parser, data, &offset);
+		if (check == FALSE)
 		{
-			str = ft_reparsing(str, offset, data);
+			str = ft_reparsing(str, offset, data, (t_quote){FALSE, 0});
 			free_parser(&parser);
+			offset = 0;
+			check = TRUE;
 			continue ;
 		}
 		offset += skip_spaces2(str + offset);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/20 17:52:05 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/21 11:17:48 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -480,5 +480,7 @@ int		find_last(char *str, char c);
 
 void	free_parser(t_parser *parser);
 char	**ft_neosplitarg(char *str);
+
+char	*ft_input2str(t_input **input);
 
 #endif

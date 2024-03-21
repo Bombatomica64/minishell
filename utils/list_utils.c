@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:47:54 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/28 12:05:02 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/21 11:17:15 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
+
+char	*ft_input2str(t_input **input)
+{
+	t_input	*tmp;
+	char	*str;
+
+	if (!input || !*input)
+		return (NULL);
+	tmp = *input;
+	str = NULL;
+	while (tmp)
+	{
+		str = ft_newstrjoin(str, tmp->node);
+		str = join_char(str, ' ');
+		tmp = tmp->next;
+	}
+	return (str);
+}
 
 t_input	*ft_inputfirst(t_input **lst)
 {

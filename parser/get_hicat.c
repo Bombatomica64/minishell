@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 10:05:27 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/21 13:01:55 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:36:50 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ t_bool	get_command(int *off, char *str, t_parser *parser, t_data *data)
 	int		i;
 	t_quote	squote;
 
+	(void)data;
 	i = 0;
 	squote = (t_quote){FALSE, 0};
 	i = skip_spaces2(str);
-	if (ft_islimiter(str[*off + i]) == TRUE)
+	if (ft_islimiter(str[i]) == TRUE)
 	{
 		(*off)++;
 		i++;
@@ -31,7 +32,7 @@ t_bool	get_command(int *off, char *str, t_parser *parser, t_data *data)
 		parser->tmp = join_char(parser->tmp, str[i]);
 		i++;
 	}
-	parser->tmp = expand_name(parser->tmp, data, squote, off);
+	//parser->tmp = expand_name(parser->tmp, data, squote, off);
 	return (TRUE);
 }
 
@@ -40,6 +41,7 @@ t_bool	get_inout(int *off, char *str, t_parser *parser, t_data *data)
 	int			i;
 	t_quote		squote;
 
+	(void)data;
 	i = 0;
 	squote = (t_quote){FALSE, 0};
 	while (ft_islimiter(str[*off]) == TRUE)
@@ -56,7 +58,7 @@ t_bool	get_inout(int *off, char *str, t_parser *parser, t_data *data)
 		i++;
 	}
 	*off = i;
-	parser->tmp = expand_name(parser->tmp, data, squote, off);
+	//parser->tmp = expand_name(parser->tmp, data, squote, off);
 	*off += skip_spaces2(str + *off);
 	if (str[*off] == '\0')
 		return (TRUE);

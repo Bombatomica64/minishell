@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/21 12:52:10 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:29:17 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ t_bool	parser(char *str, t_data *data, int offset, t_parser parser)
 	int			check;
 
 	quote = (t_quote){FALSE, 0};
+	str = expand_name(str, data, quote, &offset);
 	while (str)
 	{
 		offset = skip_spaces2(str);

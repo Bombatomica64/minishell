@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/21 11:52:44 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/22 11:09:57 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_bool	get_name(char *str, t_parser *parser, t_data *data, int *off)
 	t_bool		check;
 
 	check = TRUE;
-	if (parser->tmp_type == COMMAND)
+	if (parser->tmp_type == COMMAND || parser->tmp_type == BUILT_IN)
 		check = get_command(off, str, parser, data);
 	else if (parser->tmp_type == HEREDOC || parser->tmp_type == INPUT
 		|| parser->tmp_type == APPEND || parser->tmp_type == TRUNC)
@@ -114,12 +114,34 @@ char	*free_strdup(char *str, char **freestr)
 	return (tmp);
 }
 
+char	*cut_pars_str(char *str, char *node)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == node[0])
+		{
+			j = 0;
+			while (node[j] && node[j] == str[i + j])
+				j++;
+			if (!node[j])
+				return (cut_string(i + j, str));
+		}
+		i++;
+	}
+	return (free(str), NULL);
+}
+
 t_bool	parser(char *str, t_data *data, int offset, t_parser parser)
 {
 	t_quote		quote;
 	int			check;
 
 	quote = (t_quote){FALSE, 0};
+	str = expand_name(str, data, quote, &offset);
 	while (str)
 	{
 		offset = skip_spaces2(str);
@@ -140,12 +162,15 @@ t_bool	parser(char *str, t_data *data, int offset, t_parser parser)
 		parser.tmp_path = get_path(&parser.tmp, parser.tmp_type, data, &offset);
 		if (parser.tmp_path == NULL && (parser.tmp_type <= 1026))
 			return (free(parser.tmp), free(str), FALSE);
-		ft_inputadd_back(&(*data).input, ft_inputnew(parser));
-		str = cut_string(offset + ft_strlen(parser.tmp), str);
+		ft_inputadd_back(&data->input, ft_inputnew(parser));
+		printf("offset =%d\tparser.tmp = %s\tstrlen = %ld\n", offset,parser.tmp, ft_strlen(parser.tmp));
+		// str = cut_string(offset + ft_strlen(parser.tmp), str);
+		str = cut_pars_str(str, parser.tmp);
 		free_parser(&parser);
 	}
-	ft_inputadd_back(&(*data).input, ft_inputnew((t_parser){NULL, NULL, 69}));
+	ft_inputadd_back(&data->input, ft_inputnew((t_parser){NULL, NULL, 69}));
 	free(str);
+	print_list(data->input);
 	return (TRUE);
 }
 // Path: srcs/parser.c

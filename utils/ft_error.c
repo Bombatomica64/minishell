@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:14:28 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/22 10:59:21 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/22 15:21:15 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,13 @@ int	ft_error(char *str, t_error error, int errnbr, t_data *data)
 	else if (error == ACCESS)
 		ft_printf("minishell: %s: Permission denied\n", str);
 	else if (error == OPEN)
-		ft_printf(" No such file or directory\n");
+		ft_printf("minishell: %s: No such file or directory\n", str);
 	else if (error == NO_EXST)
-		ft_printf(" No such file or directory\n");
+		ft_printf("minishell: %s: No such file or directory\n", str);
 	else if (error == WRITE)
 		ft_printf("minishell: %s: Permission denied\n", str);
+	else if (error == DIR)
+		ft_printf("minishell: %s: Is a directory\n", str);
 	else
 		perror("unknown error");
 	close(1);

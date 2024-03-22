@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:46:56 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/15 12:32:11 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/22 16:14:12 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@ t_bool	bonus_checker(char *line, t_data *data)
 
 	quote = (t_quote){FALSE, 0};
 	if (!check_start_b(line, &i))
-		return (lexer_error("syntax error near unexpected token: ",
+		return (lexer_error("minishell: syntax error near unexpected token `",
 				data, line[i]));
 	if (!check_end_b(line, &quote, &i))
-		return (lexer_error("syntax error near unexpected token: ",
+		return (lexer_error("minishell: syntax error near unexpected token `",
 				data, line[i]));
 	if (!check_middle_b(line, &quote, &i))
-		return (lexer_error("syntax error near unexpected token",
+		return (lexer_error("minishell: syntax error near unexpected token `",
 				data, line[i + 2]));
 	return (TRUE);
 }

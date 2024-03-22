@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/22 11:09:57 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/22 15:31:56 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,14 +163,14 @@ t_bool	parser(char *str, t_data *data, int offset, t_parser parser)
 		if (parser.tmp_path == NULL && (parser.tmp_type <= 1026))
 			return (free(parser.tmp), free(str), FALSE);
 		ft_inputadd_back(&data->input, ft_inputnew(parser));
-		printf("offset =%d\tparser.tmp = %s\tstrlen = %ld\n", offset,parser.tmp, ft_strlen(parser.tmp));
+		//printf("offset =%d\tparser.tmp = %s\tstrlen = %ld\n", offset,parser.tmp, ft_strlen(parser.tmp));
 		// str = cut_string(offset + ft_strlen(parser.tmp), str);
 		str = cut_pars_str(str, parser.tmp);
 		free_parser(&parser);
 	}
 	ft_inputadd_back(&data->input, ft_inputnew((t_parser){NULL, NULL, 69}));
 	free(str);
-	print_list(data->input);
+	//print_list(data->input);
 	return (TRUE);
 }
 // Path: srcs/parser.c

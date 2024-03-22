@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 17:04:09 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/18 18:18:48 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/22 16:13:51 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ t_bool	check_if_last(char c, char *str, t_data *data)
 		i++;
 	if (str[i] && ft_islimiter(str[i]) == TRUE)
 		return (lexer_error(
-				"Syntax error near unexpected token: ", data, str[i]));
+				"minishell: syntax error near unexpected token `", data, str[i]));
 	while (str[i] && ft_isspace(str[i]) == TRUE)
 		i++;
 	if (str[i] == '\0')
 		return (lexer_error(
-				"Syntax error near unexpected token: ", data, c));
+				"minishell: syntax error near unexpected token `", data, c));
 	else
 		return (TRUE);
 }

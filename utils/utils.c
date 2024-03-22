@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/22 11:20:05 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/22 12:24:26 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 t_bool	ft_iscmd(t_input *input, t_data *data)
 {
-	struct stat st;
+	//struct stat st;
 
+	(void)data;
 	if (!input)
 		return (ERROR);
 	if (input->type == BUILT_IN)
 		return (TRUE);
-	if (stat(input->path, &st) == 0)
+	/*if (stat(input->path, &st) == 0)
 	{
 		if (S_ISDIR(st.st_mode))		
 		{
@@ -42,7 +43,7 @@ t_bool	ft_iscmd(t_input *input, t_data *data)
 		ft_putstr_fd(input->node, 2);
 		ft_putstr_fd(": No such file or directory\n", 2);
 		data->error_codes = 127;
-	}
+	}*/
 	if (input->type == COMMAND)
 		return (TRUE);
 	return (FALSE);

@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 10:05:27 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/21 16:36:50 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/22 10:40:01 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ t_bool	get_inout(int *off, char *str, t_parser *parser, t_data *data)
 	t_quote		squote;
 
 	(void)data;
-	i = 0;
 	squote = (t_quote){FALSE, 0};
-	while (ft_islimiter(str[*off]) == TRUE)
-		(*off)++;
-	*off += skip_spaces2(str + *off);
-	i = *off;
+	i = skip_spaces2(str);
+	while (ft_islimiter(str[i]) == TRUE)
+		(i)++;
+	i += skip_spaces2(str + i);
+	// i = *off;
 	while (str[i])
 	{
 		quote_start(&squote.open, str[i], &squote.type);
@@ -62,7 +62,7 @@ t_bool	get_inout(int *off, char *str, t_parser *parser, t_data *data)
 	*off += skip_spaces2(str + *off);
 	if (str[*off] == '\0')
 		return (TRUE);
-	if ((ft_islimiter(str[*off]) == FALSE && str[*off + 1]))
+	if (ft_islimiter(str[*off]) == FALSE)
 		return (FALSE);
 	return (TRUE);
 }
@@ -93,6 +93,7 @@ char	*ft_reparsing(char *str, int i, t_data *data, t_quote squote)
 	}
 	dst = ft_strjoin_2free(ft_input2str(&data->input),
 		ft_newstrjoin(ft_strjoin_2free(dst, tmp), &str[i]));
+	dst = ft_strtrimfree(dst, " \t\r\n\v\f", &i);
 	printf("dstFINAL: %s\n", dst);
 	return (free(str), ft_inputclear(&data->input), dst);
 }

@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/21 16:29:17 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/22 10:46:11 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_bool	get_name(char *str, t_parser *parser, t_data *data, int *off)
 	t_bool		check;
 
 	check = TRUE;
-	if (parser->tmp_type == COMMAND)
+	if (parser->tmp_type == COMMAND || parser->tmp_type == BUILT_IN)
 		check = get_command(off, str, parser, data);
 	else if (parser->tmp_type == HEREDOC || parser->tmp_type == INPUT
 		|| parser->tmp_type == APPEND || parser->tmp_type == TRUNC)

@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:45:24 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/19 11:08:13 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/22 10:52:10 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ static char	*ft_result(char *s1, size_t start, size_t end, int *trimmed)
 		i++;
 	}
 	dst[i] = '\0';
-	*trimmed += ft_strlen(s1) - ft_strlen(dst);
+	if (trimmed)
+		*trimmed += ft_strlen(s1) - ft_strlen(dst);
 	free(s1);
 	return (dst);
 }

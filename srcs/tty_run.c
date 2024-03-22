@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/20 17:58:46 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/22 12:51:27 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,17 @@ void	process_input(t_data *data)
 	char	*terminal_input;
 
 	terminal_input = readline("\033[0;95;1mミニシェル\033[0;96m> \033[0m");
-	if (lexer(&terminal_input, data) == FALSE)
-	{
-		free(terminal_input);
-		return ;
-	}
-	fd_malloc(data);
 	if (terminal_input == NULL)
 	{
 		free(terminal_input);
 		rl_clear_history();
 		free_close(&data, 0);
 	}
+	else if (terminal_input[skip_spaces2(terminal_input)] == '\0')
+		return (free(terminal_input));
+	if (lexer(&terminal_input, data) == FALSE)
+		return (free(terminal_input));
+	fd_malloc(data);
 	add_history(terminal_input);
 	if (*terminal_input == '\0')
 		return ;

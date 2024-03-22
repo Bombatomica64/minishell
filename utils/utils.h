@@ -174,7 +174,7 @@ int		free_return(t_data **data, int status);
  * @param type type of the node
  * @return a new node of t_input type
 */
-t_input	*ft_inputnew(t_parser parser);
+t_input	*ft_inputnew(t_parser prs);
 
 /**
  * @brief Function that clears the input double linked list
@@ -479,7 +479,7 @@ t_bool	ft_iscmd(t_input *input, t_data *data);
 char	*cut_string(int len, char *str);
 int		find_last(char *str, char c);
 
-void	free_parser(t_parser *parser);
+void	free_parser(t_parser *prs);
 char	**ft_neosplitarg(char *str);
 
 char	*ft_input2str(t_input **input);

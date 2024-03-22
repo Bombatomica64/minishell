@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_hicat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 10:05:27 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/22 10:40:01 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/22 12:07:11 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-t_bool	get_command(int *off, char *str, t_parser *parser, t_data *data)
+t_bool	get_command(int *off, char *str, t_parser *prs, t_data *data)
 {
 	int		i;
 	t_quote	squote;
@@ -29,14 +29,14 @@ t_bool	get_command(int *off, char *str, t_parser *parser, t_data *data)
 	while (str[i] && (ft_islimiter(str[i]) == FALSE || squote.open == TRUE))
 	{
 		quote_start(&squote.open, str[i], &squote.type);
-		parser->tmp = join_char(parser->tmp, str[i]);
+		prs->tmp = join_char(prs->tmp, str[i]);
 		i++;
 	}
 	//parser->tmp = expand_name(parser->tmp, data, squote, off);
 	return (TRUE);
 }
 
-t_bool	get_inout(int *off, char *str, t_parser *parser, t_data *data)
+t_bool	get_inout(int *off, char *str, t_parser *prs, t_data *data)
 {
 	int			i;
 	t_quote		squote;
@@ -54,11 +54,10 @@ t_bool	get_inout(int *off, char *str, t_parser *parser, t_data *data)
 		if ((ft_isspace(str[i]) == TRUE || ft_islimiter(str[i]) == TRUE)
 			&& squote.open == FALSE)
 			break ;
-		parser->tmp = join_char(parser->tmp, str[i]);
+		prs->tmp = join_char(prs->tmp, str[i]);
 		i++;
 	}
 	*off = i;
-	//parser->tmp = expand_name(parser->tmp, data, squote, off);
 	*off += skip_spaces2(str + *off);
 	if (str[*off] == '\0')
 		return (TRUE);

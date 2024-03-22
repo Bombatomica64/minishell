@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/22 12:13:15 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/22 12:26:27 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,6 @@ t_bool	parser(char *str, t_data *data, int offset, t_parser prs)
 		if (ft_isbuiltin(prs.tmp) == TRUE)
 			prs.tmp_type = BUILT_IN;
 		prs.tmp_path = get_path(&prs.tmp, prs.tmp_type, data, &offset);
-		printf("type: %d\n", prs.tmp_type);
 		if (prs.tmp_path == NULL && (prs.tmp_type < HEREDOC))
 			return (free(prs.tmp), free(str), FALSE);
 		ft_inputadd_back(&data->input, ft_inputnew(prs));

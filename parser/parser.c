@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/22 10:46:11 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/22 12:13:15 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-t_bool	get_name(char *str, t_parser *parser, t_data *data, int *off)
+t_bool	get_name(char *str, t_parser *prs, t_data *data, int *off)
 {
 	t_bool		check;
 
 	check = TRUE;
-	if (parser->tmp_type == COMMAND || parser->tmp_type == BUILT_IN)
-		check = get_command(off, str, parser, data);
-	else if (parser->tmp_type == HEREDOC || parser->tmp_type == INPUT
-		|| parser->tmp_type == APPEND || parser->tmp_type == TRUNC)
-		check = get_inout(off, str, parser, data);
+	if (prs->tmp_type == COMMAND || prs->tmp_type == BUILT_IN)
+		check = get_command(off, str, prs, data);
+	else if (prs->tmp_type == HEREDOC || prs->tmp_type == INPUT
+		|| prs->tmp_type == APPEND || prs->tmp_type == TRUNC)
+		check = get_inout(off, str, prs, data);
 	return (check);
 	// {
 	// 	quote_start(&quote->open, str[i], &quote->type);
@@ -135,43 +135,33 @@ char	*cut_pars_str(char *str, char *node)
 	return (free(str), NULL);
 }
 
-t_bool	parser(char *str, t_data *data, int offset, t_parser parser)
+t_bool	parser(char *str, t_data *data, int offset, t_parser prs)
 {
-	t_quote		quote;
-	int			check;
-
-	quote = (t_quote){FALSE, 0};
-	str = expand_name(str, data, quote, &offset);
 	while (str)
 	{
 		offset = skip_spaces2(str);
-		parser.tmp_type = ft_file_type(str, &offset);
-		check = get_name(str, &parser, data, &offset);
-		if (check == FALSE)
+		prs.tmp_type = ft_file_type(str, &offset);
+		if (!get_name(str, &prs, data, &offset))
 		{
 			str = ft_reparsing(str, offset, data, (t_quote){FALSE, 0});
-			free_parser(&parser);
-			offset = 0;
-			check = TRUE;
+			free_parser(&prs);
 			continue ;
 		}
 		offset += skip_spaces2(str + offset);
-		parser.tmp = ft_strtrimfree(parser.tmp, " \t\r\n\v\f", &offset);
-		if (ft_isbuiltin(parser.tmp) == TRUE)
-			parser.tmp_type = BUILT_IN;
-		parser.tmp_path = get_path(&parser.tmp, parser.tmp_type, data, &offset);
-		if (parser.tmp_path == NULL && (parser.tmp_type <= 1026))
-			return (free(parser.tmp), free(str), FALSE);
-		ft_inputadd_back(&data->input, ft_inputnew(parser));
-		printf("offset =%d\tparser.tmp = %s\tstrlen = %ld\n", offset,parser.tmp, ft_strlen(parser.tmp));
-		// str = cut_string(offset + ft_strlen(parser.tmp), str);
-		str = cut_pars_str(str, parser.tmp);
-		free_parser(&parser);
+		prs.tmp = ft_strtrimfree(prs.tmp, " \t\r\n\v\f", &offset);
+		if (ft_isbuiltin(prs.tmp) == TRUE)
+			prs.tmp_type = BUILT_IN;
+		prs.tmp_path = get_path(&prs.tmp, prs.tmp_type, data, &offset);
+		printf("type: %d\n", prs.tmp_type);
+		if (prs.tmp_path == NULL && (prs.tmp_type < HEREDOC))
+			return (free(prs.tmp), free(str), FALSE);
+		ft_inputadd_back(&data->input, ft_inputnew(prs));
+		str = cut_pars_str(str, prs.tmp);
+		free_parser(&prs);
 	}
 	ft_inputadd_back(&data->input, ft_inputnew((t_parser){NULL, NULL, 69}));
-	free(str);
-	print_list(data->input);
-	return (TRUE);
+	expand_list(data);
+	return (free(str), TRUE);
 }
 // Path: srcs/parser.c
 //ptr[32, | , 3 ,4]

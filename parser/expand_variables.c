@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   expand_variables.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:40:43 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/20 11:49:00 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/22 11:50:15 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-//echo $"USER" mi serve una variabile statica per le quote
-
-char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data, int *off)
+char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
 {
 	char	*tofind;
 
@@ -26,7 +24,6 @@ char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data, int *off)
 	else if (tmp[*i + 1] == '?')
 	{
 		(*i)++;
-		*off += 2;
 		str = ft_strjoin_2free(str, ft_itoa(data->error_codes));
 		return (str);
 	}
@@ -39,17 +36,17 @@ char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data, int *off)
 			tofind = join_char(tofind, tmp[(*i)++]);
 		if (find_in_env(data->envp, tofind) != -1)
 			str = ft_strjoin_2free(str, get_env_value(data->envp, tofind));
-		else
-			*off += ft_strlen(tofind) + 1;
 	}
 	return (free(tofind), (*i)--, str);
 }
 
-char	*expand_name(char *tmp, t_data *data, t_quote squote, int *off)
+char	*expand_name(char *tmp, t_data *data)
 {
 	size_t		i;
 	char		*str;
+	t_quote 	quote;
 
+	quote = (t_quote){0, 0};
 	i = 0;
 	str = NULL;
 	if (!tmp)
@@ -58,11 +55,11 @@ char	*expand_name(char *tmp, t_data *data, t_quote squote, int *off)
 	{
 		if (tmp[i] == '\'' || tmp[i] == '\"')
 		{
-			quote_start(&squote.open, tmp[i], &squote.type);
+			quote_start(&quote.open, tmp[i], &quote.type);
 			str = join_char(str, tmp[i]);
 		}
-		else if (tmp[i] == '$' && squote.type != '\'')
-			str = expand_dollar(str, tmp, &i, data, off);
+		else if (tmp[i] == '$' && quote.type != '\'')
+			str = expand_dollar(str, tmp, &i, data);
 		else
 			str = join_char(str, tmp[i]);
 		i++;
@@ -71,4 +68,13 @@ char	*expand_name(char *tmp, t_data *data, t_quote squote, int *off)
 	return (str);
 }
 
-//grep c<file1
+void	expand_list(t_data *data)
+{
+	while ((data->input)->type != FINISH)
+	{
+		if ((data->input)->node && (data->input)->type != HEREDOC)
+			(data->input)->node = expand_name((data->input)->node, data);
+		data->input = (data->input)->next;
+	}
+	data->input = ft_inputfirst(&(data->input));
+}

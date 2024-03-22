@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 10:05:27 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/22 12:07:11 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/22 12:33:36 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ char	*ft_reparsing(char *str, int i, t_data *data, t_quote squote)
 	dst = ft_strjoin_2free(ft_input2str(&data->input),
 		ft_newstrjoin(ft_strjoin_2free(dst, tmp), &str[i]));
 	dst = ft_strtrimfree(dst, " \t\r\n\v\f", &i);
-	printf("dstFINAL: %s\n", dst);
 	return (free(str), ft_inputclear(&data->input), dst);
 }
 

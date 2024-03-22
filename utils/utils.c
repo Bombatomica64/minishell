@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/22 11:04:25 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/22 11:20:05 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_bool	ft_iscmd(t_input *input, t_data *data)
 			data->error_codes = 126;
 			return (ERROR);
 		}
-		else if (access(input->path, X_OK) == -1) //echo ciao > "file1 c"
+		else if (check_access(input->path, input->type, data) != 0)
 		{
 			ft_putstr_fd(input->path, 2);
 			ft_putstr_fd(": Permission denied\n", 2);

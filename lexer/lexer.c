@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:52:13 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/22 16:13:45 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/25 10:10:22 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ t_bool	lexer_error(char *error, t_data *data, char c)
 t_bool	file_check(char *line, t_data *data)
 {
 	struct stat st;
-
 	//printf("line: %s\n", line);
 	if (strncmp(line, "./", 2) == 0 || strncmp(line, "/", 1) == 0)
     {
@@ -56,8 +55,6 @@ t_bool	lexer(char **line, t_data *data)
 	pipe_count(*line, data);
 	quote_check(line);
 	if (redir_check(*line, data) == FALSE)
-		return (FALSE);
-	if (file_check(*line, data) == FALSE)
 		return (FALSE);
 	return (TRUE);
 }

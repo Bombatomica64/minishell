@@ -138,7 +138,7 @@ int	ft_cd(char **mtx, t_data *data)
 		str = get_env_value(data->envp, "OLDPWD");
 	else
 		str = refactor_path(mtx[1], data, 0, NULL);
-	printf("str: %s\n", str);
+	//printf("str: %s\n", str);
 	if (chdir(str) == -1)
 	{
 		perror("cd");

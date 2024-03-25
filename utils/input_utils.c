@@ -19,6 +19,8 @@ t_bool	file_check(char *tmp, t_data *data)
 	int			i;
 	
 	i = 0;
+	if (!tmp)
+		return (FALSE); 
 	while (tmp[i] && ft_isspace(tmp[i++]) == FALSE);
 	line = ft_strncpy(tmp, 0, i);
 	if (strncmp(line, "./", 2) == 0 || strncmp(line, "/", 1) == 0)

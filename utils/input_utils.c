@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 11:34:55 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/25 12:22:11 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/25 12:25:36 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ t_bool	file_check(char *tmp, t_data *data)
 		return (FALSE); 
 	while (tmp[i] && ft_isspace(tmp[i++]) == FALSE);
 	line = ft_strncpy(tmp, 0, i);
+	if (!line)
+		return (ERROR);
 	if (strncmp(line, "./", 2) == 0 || strncmp(line, "/", 1) == 0)
 	{
 		if (stat(line, &st) == -1)

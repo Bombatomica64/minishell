@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 11:23:22 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/22 17:58:38 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:24:37 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_bool	is_exit(char *command)
 
 int	ft_exit(char **cmd, t_data *data)
 {
-	int		arg2;
+	unsigned int		arg2;
 	//char	*str
 	//exit\n va stampato in stdin, il resto l'ho cambiato perche sono stupido;
 

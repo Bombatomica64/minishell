@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:14:28 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/25 11:35:02 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:37:19 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_error(char *str, t_error error, int errnbr, t_data *data)
 {
 	dup2(2, 1);
 	if (error == NO_PATH)
-		ft_printf("minishell: command not found: %s\n", str);
+		ft_printf("%s: command not found\n", str);
 	else if (error == DUP)
 		ft_printf("%s failed to duplicate file descriptor\n", str);
 	else if (error == ACCESS)

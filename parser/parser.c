@@ -178,7 +178,7 @@ t_bool	parser(char *str, t_data *data, int offset, t_parser prs)
 	}
 	ft_inputadd_back(&data->input, ft_inputnew((t_parser){NULL, NULL, 69}));
 	expand_list(data);
-	print_list(data->input);
+	//print_list(data->input);
 	return (free(str), TRUE);
 }
 // Path: srcs/parser.c

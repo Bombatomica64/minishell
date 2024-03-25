@@ -62,3 +62,4 @@ file*
 # executables
 minishell
 minishell_tester/
+minishell_tester

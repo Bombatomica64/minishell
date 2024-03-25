@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:14:28 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/22 15:21:15 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:21:43 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ int	ft_error(char *str, t_error error, int errnbr, t_data *data)
 {
 	dup2(2, 1);
 	if (error == NO_PATH)
-		{ft_putstr_fd(str, 2);
-		ft_printf(": command not found\n");}
+		ft_printf("minishell: command not found: %s\n", str);
 	else if (error == DUP)
 		ft_printf("%s failed to duplicate file descriptor\n", str);
 	else if (error == ACCESS)
@@ -44,7 +43,6 @@ int	ft_error(char *str, t_error error, int errnbr, t_data *data)
 	else
 		perror("unknown error");
 	close(1);
-	dup2(data->original_stdout, STDOUT_FILENO);
 	if (data && (error == EXECVE || error == DUP))
 		return (free_return(&data, errnbr));
 	data->error_codes = errnbr;

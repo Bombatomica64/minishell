@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/25 10:15:23 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:22:17 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	builtin_child(t_pipex *comm, t_data *data)
 	return (do_builtin(comm, data));
 }
 
-char	*path_execve(char *command, char **envp)
+char	*path_execve(char *command, char **envp, t_data *data)
 {
 	int		i;
 	char	*tmp_path;
@@ -41,6 +41,7 @@ char	*path_execve(char *command, char **envp)
 			free(possible_path);
 		i++;
 	}
+	ft_error(command, NO_PATH, 127, data);
 	free(command);
 	free_matrix(&all_paths);
 	return (NULL);

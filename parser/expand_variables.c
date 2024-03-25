@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:40:43 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/25 12:17:18 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/25 12:43:53 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
 		(*i)++;
 		while (ft_isalpha(tmp[0]) && (ft_isalnum(tmp[*i]) || tmp[*i] == '_'))
 			tofind = join_char(tofind, tmp[(*i)++]);
+		tofind =  join_char(tofind, '=');
 		if (find_in_env(data->envp, tofind) != -1)
 			str = ft_strjoin_2free(str, get_env_value(data->envp, tofind));
 	}

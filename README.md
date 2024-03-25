@@ -5,15 +5,15 @@ ciao copilot
 
 ⭐️minishell_tester    ./tester ...⭐️
 
-bash.supp        mancano { e }
+bash.supp             ✅️
 
-builtins         |echo "ciao" |  con lo spazio dopo le quotes non funziona
+builtins          bo
 
 extras           $EMPTY $PWD
 
-local.supp       mancano { e }
+local.supp            ✅️
 
-os_specific      exit non giusto e test assurdi
+os_specific      exit quasi giusto e test assurdi
 
 outfile01             ✅️
 
@@ -21,8 +21,7 @@ pipes            si ferma
 
 redirects        < bo
 
-syntax                ✅️ errori diversi per scelta
-
+syntax                ✅️ 
 tester           che schifo e' sta roba
 
 loop.out         bo?

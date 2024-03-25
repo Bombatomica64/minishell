@@ -21,31 +21,6 @@ t_bool	lexer_error(char *error, t_data *data, char c)
 	return (FALSE);
 }
 
-t_bool	file_check(char *line, t_data *data)
-{
-	struct stat st;
-	//printf("line: %s\n", line);
-	if (strncmp(line, "./", 2) == 0 || strncmp(line, "/", 1) == 0)
-    {
-		if (stat(line, &st) == -1)
-		{
-			ft_error(line, NO_EXST, 127, data);
-			return (FALSE);
-		}
-		else if (S_ISDIR(st.st_mode))
-		{
-			ft_error(line, DIR, 126, data);
-			return (FALSE);
-		}
-		else if (access(line, X_OK) == -1)
-        {
-            ft_error(line, ACCESS, 126, data);
-            return (FALSE);
-        }
-	}
-	return (TRUE);
-}
-
 t_bool	lexer(char **line, t_data *data)
 {
 	if (ft_strlen(*line) == 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/19 18:01:20 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/25 11:47:16 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,9 @@ t_pipex	input_exec(t_data **data)
 	{
 		if (set_inout(&comm, (*data)->input, *data) == -1)
 			return (free_matrix(&comm.cmd), comm);
-		if (ft_iscmd((*data)->input, *data) == TRUE)
+		if (ft_iscmd((*data)->input, *data) == ERROR)
+			return (comm_error(data));
+		else if (ft_iscmd((*data)->input, *data) == TRUE)
 		{
 			if (seen == FALSE)
 				set_command(data, &comm, &seen);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/22 15:25:21 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/25 11:24:23 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 t_bool	ft_iscmd(t_input *input, t_data *data)
 {
-	(void)data;
 	if (!input)
 		return (ERROR);
 	if (input->type == BUILT_IN || input->type == COMMAND)
-		return (TRUE);
+		return (file_check(input->node, data));
 	return (FALSE);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_hicat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 10:05:27 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/22 12:33:36 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/25 10:34:34 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ t_bool	get_command(int *off, char *str, t_parser *prs, t_data *data)
 		prs->tmp = join_char(prs->tmp, str[i]);
 		i++;
 	}
-	//parser->tmp = expand_name(parser->tmp, data, squote, off);
 	return (TRUE);
 }
+	//parser->tmp = expand_name(parser->tmp, data, squote, off);
+	// i = *off;
 
 t_bool	get_inout(int *off, char *str, t_parser *prs, t_data *data)
 {
@@ -47,7 +48,6 @@ t_bool	get_inout(int *off, char *str, t_parser *prs, t_data *data)
 	while (ft_islimiter(str[i]) == TRUE)
 		(i)++;
 	i += skip_spaces2(str + i);
-	// i = *off;
 	while (str[i])
 	{
 		quote_start(&squote.open, str[i], &squote.type);
@@ -75,23 +75,23 @@ char	*ft_reparsing(char *str, int i, t_data *data, t_quote squote)
 
 	dst = ft_calloc(ft_strlen(str) + 1, sizeof(char));
 	if (!dst)
-		return(free(str), ft_inputclear(&data->input), NULL);
+		return (free(str), ft_inputclear(&data->input), NULL);
 	k = i;
 	j = -1;
 	while (k > 0 && (ft_islimiter(str[k]) == FALSE || squote.open == TRUE))
 		quote_start(&squote.open, str[k--], &squote.type);
-	if ( k > 0 && ft_islimiter(str[k - 1]) == TRUE)
+	if (k > 0 && ft_islimiter(str[k - 1]) == TRUE)
 		k--;
-	while(str[++j] && j < k)
+	while (str[++j] && j < k)
 		dst[j] = str[j];
 	tmp = ft_strncpy(str, k, i);
-	while(str[i] && (ft_islimiter(str[i]) == FALSE || squote.open == TRUE))
+	while (str[i] && (ft_islimiter(str[i]) == FALSE || squote.open == TRUE))
 	{
 		quote_start(&squote.open, str[i], &squote.type);
 		dst[j++] = str[i++];
 	}
 	dst = ft_strjoin_2free(ft_input2str(&data->input),
-		ft_newstrjoin(ft_strjoin_2free(dst, tmp), &str[i]));
+			ft_newstrjoin(ft_strjoin_2free(dst, tmp), &str[i]));
 	dst = ft_strtrimfree(dst, " \t\r\n\v\f", &i);
 	return (free(str), ft_inputclear(&data->input), dst);
 }

@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/25 11:44:19 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/25 13:02:20 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -473,7 +473,7 @@ int		check_access(char *file, t_type type, t_data *data);
 int		ft_max(int a, int b);
 int		ft_min(int a, int b);
 void	print_intmatrix(int **matrix, int rows, int cols);
-t_bool	ft_atoibool(char *str, int *nbr);
+t_bool	ft_atoibool(char *str, unsigned int *nbr);
 
 t_bool	ft_iscmd(t_input *input, t_data *data);
 char	*cut_string(int len, char *str);

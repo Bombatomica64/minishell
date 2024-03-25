@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/22 16:19:12 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/25 09:26:40 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,8 @@ char	*cut_pars_str(char *str, char *node)
 			while (node[j] && node[j] == str[i + j])
 				j++;
 			if (!node[j])
-				return (cut_string(i + j, str));
+				return (cut_string(i + j,
+						ft_strtrimfree(str, " \t\r\n\v\f", 0)));
 		}
 		i++;
 	}
@@ -160,6 +161,7 @@ t_bool	parser(char *str, t_data *data, int offset, t_parser prs)
 	}
 	ft_inputadd_back(&data->input, ft_inputnew((t_parser){NULL, NULL, 69}));
 	expand_list(data);
+	print_list(data->input);
 	return (free(str), TRUE);
 }
 // Path: srcs/parser.c

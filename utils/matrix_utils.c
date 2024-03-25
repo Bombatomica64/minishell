@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:27:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/18 17:15:45 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/25 10:52:36 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ t_bool	name_is_thesame(char *envp, char *to_find)
 			return (FALSE);
 		i++;
 	}
-	printf("ciao\n");
-	if (envp[i] == '=')
+	printf("sesso\n");
+	if (envp[i] == '=' && to_find[i] == '\0')
 		return (TRUE);
 	return (FALSE);
 }
@@ -59,7 +59,7 @@ int	find_in_env(char **envp, char *to_find)
 	i = 0;
 	if (ft_strlen(to_find) == 0)
 		return (-1);
-	while (envp[i] != NULL)
+	while (envp[i])
 	{
 		if (ft_strncmp(envp[i], to_find, ft_strlen(to_find)) == 0
 			|| name_is_thesame(envp[i], to_find) == TRUE)

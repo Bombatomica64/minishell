@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:52:32 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/18 17:55:11 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:22:28 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "../built_in/built_in.h"
 
-char	*path_execve(char *command, char **envp);
+char	*path_execve(char *command, char **envp, t_data *data);
 void	child(t_pipex *comm, t_data *data);
 t_type	find_prev_cmd_type(t_input *input);
 void	io_redir(t_pipex *comm, t_data *data);

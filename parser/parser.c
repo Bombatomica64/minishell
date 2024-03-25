@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/25 11:56:49 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:22:39 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char	*get_path(t_parser *prs, t_data *data, int *offset)
 		if (find_first(tmp_path, '/') != -1)
 			return (tmp_path);
 		else
-			return (path_execve(tmp_path, data->envp));
+			return (path_execve(tmp_path, data->envp, data));
 	}
 	else if (prs->tmp_type != HEREDOC && prs->tmp_type != BUILT_IN)
 		return (refactor_path(prs->tmp, data, 0, offset));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:18:56 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/19 10:59:27 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:40:26 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,12 +131,14 @@ int	ft_cd(char **mtx, t_data *data)
 	if (ft_errors_cd(mtx) == 1)
 		return (1);
 	change_oldpwd = ft_strjoin_2("OLDPWD=", getcwd(NULL, 0));
+	//printf("change_oldpwd: %s\n", change_oldpwd);
 	if (mtx[1] == NULL)
 		str = ft_strdup(data->home);
 	else if (ft_strcmp(mtx[1], "-") == 0)
 		str = get_env_value(data->envp, "OLDPWD");
 	else
 		str = refactor_path(mtx[1], data, 0, NULL);
+	printf("str: %s\n", str);
 	if (chdir(str) == -1)
 	{
 		perror("cd");

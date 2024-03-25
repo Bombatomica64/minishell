@@ -6,7 +6,7 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:27:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/25 10:52:36 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/25 10:53:35 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ t_bool	name_is_thesame(char *envp, char *to_find)
 			return (FALSE);
 		i++;
 	}
-	printf("sesso\n");
 	if (envp[i] == '=' && to_find[i] == '\0')
 		return (TRUE);
 	return (FALSE);

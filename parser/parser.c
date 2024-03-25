@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/25 10:26:08 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/25 10:25:40 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_bool	get_name(char *str, t_parser *prs, t_data *data, int *off)
 		|| prs->tmp_type == APPEND || prs->tmp_type == TRUNC)
 		check = get_inout(off, str, prs, data);
 	return (check);
+}
 	// {
 	// 	quote_start(&quote->open, str[i], &quote->type);
 	// 	while (str[i] && ft_isspace(str[i]) == FALSE && ft_islimiter(str[i]) == FALSE && quote->open == FALSE)
@@ -55,7 +56,6 @@ t_bool	get_name(char *str, t_parser *prs, t_data *data, int *off)
 	// if (tmp_type != HEREDOC)
 	// 	tmp = expand_name(tmp, data, quote->open, quote->type, off);
 	// return (tmp);
-}
 
 char	*get_path(char **tmp, t_type tmp_type, t_data *data, int *offset)
 {

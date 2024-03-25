@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/22 12:49:59 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/25 11:44:19 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <limits.h>
 # include "../libft/ft_printf.h"
 # include "../libft/get_next_line_bonus.h"
+# include "colours.h"
 # pragma once
 
 typedef enum e_error
@@ -87,7 +88,6 @@ typedef struct s_pipex
 	char	*fileout; // output file name
 	int		fd_in; // input file descriptor
 	int		fd_out; // output file descriptor
-	char	*connector; // the connector to the next command (NULL, |, &&, ||)
 }				t_pipex;
 
 typedef struct s_bonus
@@ -483,5 +483,7 @@ void	free_parser(t_parser *prs);
 char	**ft_neosplitarg(char *str);
 
 char	*ft_input2str(t_input **input);
+t_bool	file_check(char *line, t_data *data);
+t_pipex	comm_error(t_data **data);
 
 #endif

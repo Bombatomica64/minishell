@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:52:13 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/25 17:15:23 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:33:46 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,11 @@ int	graffe_check(char *line, t_data *data)
 		i++;
 	}
 	if (graffe < 0)
-		return (lexer_error("minishell: syntax error near unexpected token `", data, '}'));
+		return (lexer_error("minishell: syntax error near unexpected token `",
+				data, '}'));
 	if (graffe > 0)
-		return (lexer_error("minishell: syntax error near unexpected token `", data, '{'));
+		return (lexer_error("minishell: syntax error near unexpected token `",
+				data, '{'));
 	return (TRUE);
 }
 
@@ -51,7 +53,8 @@ t_bool	lexer(char **line, t_data *data)
 	if (ft_strlen(*line) == 0)
 		return (TRUE);
 	if (pipe_check(*line) == FALSE)
-		return (lexer_error("minishell: syntax error near unexpected token `", data, '|'));
+		return (lexer_error("minishell: syntax error near unexpected token `",
+				data, '|'));
 	if (graffe_check(*line, data) == FALSE)
 		return (FALSE);
 	pipe_count(*line, data);

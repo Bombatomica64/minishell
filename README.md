@@ -5,26 +5,27 @@ ciao copilot
 
 ⭐️minishell_tester    ./tester ...⭐️
 
-bash.supp             ✅️
+bash.supp             ✅️ errori diversi per scelta
 
-builtins          bo
+builtins              ✅️
 
 extras           $EMPTY $PWD
 
 local.supp            ✅️
 
-os_specific      exit quasi giusto e test assurdi
+os_specific           ✅️ export (senza argomento) ❌️
 
 outfile01             ✅️
 
 pipes            si ferma 
 
-redirects        < bo
+redirects        < bo ❌️ si ferma
 
-syntax                ✅️ 
-tester           che schifo e' sta roba
+syntax                ✅️ errori diversi per scelta
 
-loop.out         bo?
+tester                ❌️ + test assurdi
+
+loop.out              bo?
 
 wildcards             ❌️
 

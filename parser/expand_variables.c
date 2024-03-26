@@ -34,6 +34,7 @@ char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
 		(*i)++;
 		while (ft_isalpha(tmp[0]) && (ft_isalnum(tmp[*i]) || tmp[*i] == '_'))
 			tofind = join_char(tofind, tmp[(*i)++]);
+		tofind =  join_char(tofind, '=');
 		if (find_in_env(data->envp, tofind) != -1)
 			str = ft_strjoin_2free(str, get_env_value(data->envp, tofind));
 	}
@@ -77,6 +78,27 @@ void	expand_list(t_data *data)
 		data->input = (data->input)->next;
 	}
 	data->input = ft_inputfirst(&(data->input));
+}
+
+char	*expand_first(char *str, int *i, t_data *data)
+{
+	char	*dst;
+	char	*tofind;
+	char	*tmp;
+	int		j;
+
+	j = 0;
+	tmp = NULL;
+	while (str[++(*i)] && ft_isalnum(str[(*i)]))
+		j++;
+	tofind = join_char(ft_strncpy(str, (*i) - j, *i), '=');
+	if (find_in_env(data->envp, tofind) != -1)
+			tmp = get_env_value(data->envp, tofind);
+	dst = ft_strncpy(str, 0, (*i) - j);
+	dst = ft_newstrjoin(dst, tmp);
+	dst = ft_newstrjoin(dst, &str[*i]);
+	*i = *i - j + ft_strlen(tmp);
+	return (free(str), free(tofind), free(tmp), dst);
 }
 
 void	expand_input(char **str, t_data *data)

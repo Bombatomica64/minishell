@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:29:56 by gduranti          #+#    #+#             */
 /*   Updated: 2024/03/26 10:44:51 by lmicheli         ###   ########.fr       */
@@ -31,6 +31,9 @@ char	*expand_name(char *str, t_data *data);
 char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data);
 void	expand_list(t_data *data);
 void	expand_input(char **str, t_data *data);
+
+
+char	*expand_first(char *str, int *i, t_data *data);
 
 //quotes
 void	quote_start(t_bool *quote, char c, char *quote_type);

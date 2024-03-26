@@ -6,7 +6,19 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:40:43 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/26 15:25:34 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:56:26 by lmicheli         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expand_variables.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/06 10:40:43 by sgarigli          #+#    #+#             */
+/*   Updated: 2024/03/26 15:48:18 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +31,56 @@ char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
 	tofind = NULL;
 	if (tmp[*i + 1] == '\0')
 		return (join_char(str, tmp[*i]));
-	else if (tmp[*i + 1] == '$' || tmp[*i + 1] == '!')
+	if (tmp[*i + 1] == '$' || tmp[*i + 1] == '!')
 		return ((*i)++, str);
-	else if (tmp[*i + 1] == '?')
-	{
-		(*i)++;
-		str = ft_strjoin_2free(str, ft_itoa(data->error_codes));
+	else if (ft_isquote(tmp[*i + 1]))
 		return (str);
-	}
+	else if (tmp[((*i)++) + 1] == '?')
+		return (ft_strjoin_2free(str, ft_itoa(data->error_codes)));
 	else if (!ft_isalnum(tmp[*i + 1]))
 		return (join_char(str, tmp[*i]));
 	else
 	{
-		(*i)++;
-		while (ft_isalpha(tmp[0]) && (ft_isalnum(tmp[*i]) || tmp[*i] == '_'))
+		while (ft_isalpha(tmp[0])
+			&& (ft_isalnum(tmp[++(*i)]) || tmp[*i] == '_'))
+			tofind = join_char(tofind, tmp[(*i)++]);
+		tofind = join_char(tofind, '=');
+		if (find_in_env(data->envp, tofind) != -1)
+			str = ft_strjoin_2free(str, get_env_value(data->envp, tofind));
+	}
+	return (free(tofind), (*i)--, str);
+}
+
+char	*replace_str(char *original, char *to_repl, char *subs, int start)
+{
+	char	*new;
+	int		i;
+
+	i = 0;
+	new = ft_strndup(original, start);
+	if (ft_strlen(subs) > 0)
+		new = ft_strjoin_2free(new, subs);
+	new = ft_newstrjoin(new, &original[start + ft_strlen(to_repl)]);
+	return (free(to_repl), free(original), new);
+}
+
+char	*expand_dollar2(char *str, char *tmp, size_t *i, t_data *data)
+{
+	char	*tofind;
+
+	tofind = NULL;
+	if (tmp[*i + 1] == '\0')
+		return (join_char(str, tmp[*i]));
+	if (tmp[*i + 1] == '$' || tmp[*i + 1] == '!')
+		return ((*i)++, str);
+	else if (tmp[((*i)++) + 1] == '?')
+		return (ft_strjoin_2free(str, ft_itoa(data->error_codes)));
+	else if (!ft_isalnum(tmp[*i + 1]))
+		return (join_char(str, tmp[*i]));
+	else
+	{
+		while (ft_isalpha(tmp[0])
+			&& (ft_isalnum(tmp[++(*i)]) || tmp[*i] == '_'))
 			tofind = join_char(tofind, tmp[(*i)++]);
 		tofind = join_char(tofind, '=');
 		if (find_in_env(data->envp, tofind) != -1)
@@ -60,7 +108,7 @@ char	*expand_name(char *tmp, t_data *data)
 {
 	size_t		i;
 	char		*str;
-	t_quote 	quote;
+	t_quote		quote;
 
 	quote = (t_quote){0, 0};
 	i = 0;
@@ -72,8 +120,10 @@ char	*expand_name(char *tmp, t_data *data)
 		quote_start(&quote.open, tmp[i], &quote.type);
 		if (tmp[i] == '<' && tmp[i + 1] == '<' && quote.open == FALSE)
 			str = ft_hereskip(str, tmp, &i, &quote);
-		else if (tmp[i] == '$' && quote.type != '\'')
+		else if (tmp[i] == '$' && quote.type != '\'' && quote.open == FALSE)
 			str = expand_dollar(str, tmp, &i, data);
+		else if (tmp[i] == '$' && quote.type != '\'' && quote.open == TRUE)
+			str = expand_dollar2(str, tmp, &i, data);
 		else
 			str = join_char(str, tmp[i]);
 		i++;

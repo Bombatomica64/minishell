@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_variables.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:40:43 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/26 10:47:41 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/26 12:42:14 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,21 @@ char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
 	return (free(tofind), (*i)--, str);
 }
 
+char	*ft_hereskip(char *str, char *tmp, size_t *i, t_quote *quote)
+{
+	str = join_char(str, tmp[(*i)++]);
+	str = join_char(str, tmp[(*i)++]);
+	while (tmp[*i] && ft_isspace(tmp[*i]))
+		str = join_char(str, tmp[(*i)++]);
+	while (tmp[*i] && (ft_isspace(tmp[*i]) == FALSE || (*quote).open == TRUE))
+	{
+		quote_start(&(*quote).open, tmp[*i], &(*quote).type);
+		str = join_char(str, tmp[(*i)++]);
+	}
+	(*i)--;
+	return (str);
+}
+
 char	*expand_name(char *tmp, t_data *data)
 {
 	size_t		i;
@@ -54,11 +69,9 @@ char	*expand_name(char *tmp, t_data *data)
 		return (NULL);
 	while ((tmp)[i] && (i < ft_strlen(tmp)))
 	{
-		if (tmp[i] == '\'' || tmp[i] == '\"')
-		{
-			quote_start(&quote.open, tmp[i], &quote.type);
-			str = join_char(str, tmp[i]);
-		}
+		quote_start(&quote.open, tmp[i], &quote.type);
+		if (tmp[i] == '<' && tmp[i + 1] == '<' && quote.open == FALSE)
+			str = ft_hereskip(str, tmp, &i, &quote);
 		else if (tmp[i] == '$' && quote.type != '\'')
 			str = expand_dollar(str, tmp, &i, data);
 		else
@@ -78,47 +91,4 @@ void	expand_list(t_data *data)
 		data->input = (data->input)->next;
 	}
 	data->input = ft_inputfirst(&(data->input));
-}
-
-char	*expand_first(char *str, int *i, t_data *data)
-{
-	char	*dst;
-	char	*tofind;
-	char	*tmp;
-	int		j;
-
-	j = 0;
-	tmp = NULL;
-	while (str[++(*i)] && ft_isalnum(str[(*i)]))
-		j++;
-	tofind = join_char(ft_strncpy(str, (*i) - j, *i), '=');
-	if (find_in_env(data->envp, tofind) != -1)
-			tmp = get_env_value(data->envp, tofind);
-	dst = ft_strncpy(str, 0, (*i) - j);
-	dst = ft_newstrjoin(dst, tmp);
-	dst = ft_newstrjoin(dst, &str[*i]);
-	*i = *i - j + ft_strlen(tmp);
-	return (free(str), free(tofind), free(tmp), dst);
-}
-
-void	expand_input(char **str, t_data *data)
-{
-	t_type	last_lim;
-	t_quote	squote;
-	int		i;
-
-	i = 0;
-	squote = (t_quote){FALSE, 0};
-	last_lim = COMMAND;
-	while ((*str)[i])
-	{
-		quote_start(&squote.open, (*str)[i], &squote.type);
-		if ((ft_islimiter((*str)[i]) == TRUE && squote.open == FALSE))
-			last_lim = ft_file_type((*str), &i);
-		if (last_lim == HEREDOC && (*str)[i] == ' ' && squote.open == FALSE)
-			last_lim = COMMAND;
-		if ((*str)[i] == '$' && squote.type != '\'' && last_lim != HEREDOC)
-			*str = expand_first(str, &i, data);
-		i++;
-	}
 }

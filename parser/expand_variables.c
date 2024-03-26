@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_variables.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:40:43 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/26 10:55:19 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/26 10:47:41 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
 {
 	char	*tofind;
-	
+
 	tofind = NULL;
 	if (tmp[*i + 1] == '\0')
 		return (join_char(str, tmp[*i]));
@@ -99,4 +99,26 @@ char	*expand_first(char *str, int *i, t_data *data)
 	dst = ft_newstrjoin(dst, &str[*i]);
 	*i = *i - j + ft_strlen(tmp);
 	return (free(str), free(tofind), free(tmp), dst);
+}
+
+void	expand_input(char **str, t_data *data)
+{
+	t_type	last_lim;
+	t_quote	squote;
+	int		i;
+
+	i = 0;
+	squote = (t_quote){FALSE, 0};
+	last_lim = COMMAND;
+	while ((*str)[i])
+	{
+		quote_start(&squote.open, (*str)[i], &squote.type);
+		if ((ft_islimiter((*str)[i]) == TRUE && squote.open == FALSE))
+			last_lim = ft_file_type((*str), &i);
+		if (last_lim == HEREDOC && (*str)[i] == ' ' && squote.open == FALSE)
+			last_lim = COMMAND;
+		if ((*str)[i] == '$' && squote.type != '\'' && last_lim != HEREDOC)
+			*str = expand_first(str, &i, data);
+		i++;
+	}
 }

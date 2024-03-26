@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_variables.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:40:43 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/26 12:42:14 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:29:32 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
 		return (join_char(str, tmp[*i]));
 	else if (tmp[*i + 1] == '$' || tmp[*i + 1] == '!')
 		return ((*i)++, str);
+	else if (ft_isquote(tmp[*i + 1]))
+		return (str);
 	else if (tmp[*i + 1] == '?')
 	{
 		(*i)++;
@@ -74,7 +76,7 @@ char	*expand_name(char *tmp, t_data *data)
 			str = ft_hereskip(str, tmp, &i, &quote);
 		else if (tmp[i] == '$' && quote.type != '\'')
 			str = expand_dollar(str, tmp, &i, data);
-		else
+		else 
 			str = join_char(str, tmp[i]);
 		i++;
 	}

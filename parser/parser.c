@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/25 15:22:39 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/26 10:34:05 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,9 @@ char	*cut_pars_str(char *str, char *node)
 
 t_bool	parser(char *str, t_data *data, int offset, t_parser prs)
 {
+	if (str == NULL)
+		return (FALSE);
+	expand_input(&str, data);
 	while (str)
 	{
 		offset = skip_spaces2(str);

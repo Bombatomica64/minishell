@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/25 11:29:32 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:42:33 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,13 @@ void	ft_do_it(t_data *data, char *terminal_input)
 			free_matrix(&comm.cmd);
 		}
 		else
-			break ;
-		if (data->in_pipe == FALSE)
 		{
-			if (comm.fd_in >= 0 && comm.fd_in != STDIN_FILENO)
-				close(comm.fd_in);
-			if (comm.fd_out >= 0 && comm.fd_out != STDOUT_FILENO)
-				close(comm.fd_out);
+			printf("minishell\n");
+			close_fds(&comm);
+			break ;
 		}
+		if (data->in_pipe == FALSE)
+			close_fds(&comm);
 		if (data->error_codes > 0)
 			break ;
 	}

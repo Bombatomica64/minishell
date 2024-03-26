@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 16:08:59 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/25 15:39:00 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:12:52 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,16 @@ void	print_intmatrix(int **matrix, int rows, int cols)
 	}
 }
 
-t_bool	ft_atoibool(char *str, unsigned int *nbr)
+t_bool	ft_atoibool(char *str, unsigned int *nbr, int i, int sign)
 {
-	int			i;
-	int			sign;
 	long long	res;
 
-	i = 0;
+	if (strcmp(str, "-9223372036854775808") == 0)
+	{
+		*nbr = (unsigned int)LLONG_MIN;
+		return (TRUE);
+	}
 	res = 0;
-	sign = 1;
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
@@ -64,9 +65,7 @@ t_bool	ft_atoibool(char *str, unsigned int *nbr)
 	}
 	while (str[i])
 	{
-		if (!(str[i] >= '0' && str[i] <= '9'))
-			return (FALSE);
-		if (res >= res * 10 + str[i] - '0')
+		if (!(str[i] >= '0' && str[i] <= '9') || res >= res * 10 + str[i] - '0')
 			return (FALSE);
 		res = res * 10 + str[i] - '0';
 		i++;

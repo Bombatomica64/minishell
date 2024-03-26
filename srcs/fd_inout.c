@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fd_inout.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:05:07 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/22 11:50:39 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:41:30 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,43 +32,10 @@ int	open_type(char *str, t_type type, t_data *data)
 	return (fd);
 }
 
-/* int	fd_in(t_data data)
+void	close_fds(t_pipex *comm)
 {
-	while (data.input != NULL && (data.input->type != INPUT
-			&& data.input->type != HEREDOC))
-		data.input = data.input->next;
-	while (data.input != NULL && (data.input->type == INPUT
-			|| data.input->type == HEREDOC))
-	{
-		if (data.input->type == INPUT && data.input->next->type != INPUT
-			&& data.input->next->type != HEREDOC)
-			return (open_type(data.input->node, INPUT));
-		if (data.input->type == HEREDOC)
-			heredoc_creat(data.input->node);
-		if (data.input->next->type != INPUT
-			&& data.input->next->type != HEREDOC)
-			return (open_type(".heredoc.txt", INPUT));
-		data.input = data.input->next;
-	}
-	return (STDIN_FILENO);
-} */
-
-/* int	fd_out(t_data data)
-{
-	while (data.input != NULL && (data.input->type != TRUNC
-			&& data.input->type != APPEND))
-		data.input = data.input->next;
-	while (data.input != NULL && (data.input->type == TRUNC
-			|| data.input->type == APPEND))
-	{
-		if (data.input->type == TRUNC && data.input->next->type != TRUNC
-			&& data.input->next->type != APPEND)
-			return (open_type(data.input->node, TRUNC));
-		if (data.input->type == APPEND && data.input->next->type != TRUNC
-			&& data.input->next->type != APPEND)
-			return (open_type(data.input->node, APPEND));
-		data.input = data.input->next;
-	}
-	return (STDOUT_FILENO);
+	if (comm->fd_in != STDIN_FILENO)
+		close(comm->fd_in);
+	if (comm->fd_out != STDOUT_FILENO)
+		close(comm->fd_out);
 }
- */

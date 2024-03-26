@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:32:21 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/22 11:27:22 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:43:08 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ int	heredoc_creat(char *limiter, t_data *data, pid_t pid)
 			str = expand_name(str, data);
 			ft_putendl_fd_free(&str, fd[1]);
 		}
-		exit(0);
+		close(fd[1]);
+		free_close(&data, 0);
 	}
 	else
 	{

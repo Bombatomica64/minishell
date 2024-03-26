@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:05:20 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/25 11:42:53 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:41:39 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	malloc_input_pipex(t_data *data, int i);
 
 //fd_inout
 int		open_type(char *str, t_type type, t_data *data);
+void	close_fds(t_pipex *comm);
 // int		fd_in(t_data data);
 // int		fd_out(t_data data);
 

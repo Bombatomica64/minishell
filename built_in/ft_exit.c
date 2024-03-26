@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 11:23:22 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/25 15:24:37 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:06:03 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,28 +46,20 @@ t_bool	is_exit(char *command)
 int	ft_exit(char **cmd, t_data *data)
 {
 	unsigned int		arg2;
-	//char	*str
-	//exit\n va stampato in stdin, il resto l'ho cambiato perche sono stupido;
 
 	arg2 = 0;
-	//str = NULL;
-	if (cmd[1] && ft_atoibool(cmd[1], &arg2) == FALSE)
+	if (cmd[1] && ft_atoibool(cmd[1], &arg2, 0, 1) == FALSE)
 	{
 		printf("exit\n");
 		ft_putstr_fd("minishell: exit: ", 2);
 		ft_putstr_fd(cmd[1], 2);
 		ft_putstr_fd(": numeric argument required\n", 2);
-		/*str = ft_strjoin("exit\nminishell: exit: ", cmd[1]);
-		str = ft_newstrjoin(str, ": numeric argument required\n");
-		ft_putstr_fd(str, 2);
-		free(str);*/
 		arg2 = 2;
 	}
 	else if (cmd[1] && cmd[2])
 	{
 		printf("exit\n");
 		ft_putstr_fd("minishell: exit: too many arguments\n", 2);
-		//write(2, "exit\nminishell: exit: too many arguments\n", 42);
 		return (1);
 	}
 	free_matrix(&cmd);

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:40:43 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/26 10:44:17 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/26 10:47:41 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,11 @@ void	expand_input(char **str, t_data *data)
 	{
 		quote_start(&squote.open, (*str)[i], &squote.type);
 		if ((ft_islimiter((*str)[i]) == TRUE && squote.open == FALSE))
-			last_lim = ft_file_type((*str), i);
+			last_lim = ft_file_type((*str), &i);
 		if (last_lim == HEREDOC && (*str)[i] == ' ' && squote.open == FALSE)
 			last_lim = COMMAND;
 		if ((*str)[i] == '$' && squote.type != '\'' && last_lim != HEREDOC)
-			*str = expand_first(str, i, data);
+			*str = expand_first(str, &i, data);
 		i++;
 	}
 }

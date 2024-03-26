@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:40:43 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/26 15:55:34 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:56:26 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,19 @@ char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
 			str = ft_strjoin_2free(str, get_env_value(data->envp, tofind));
 	}
 	return (free(tofind), (*i)--, str);
+}
+
+char	*replace_str(char *original, char *to_repl, char *subs, int start)
+{
+	char	*new;
+	int		i;
+
+	i = 0;
+	new = ft_strndup(original, start);
+	if (ft_strlen(subs) > 0)
+		new = ft_strjoin_2free(new, subs);
+	new = ft_newstrjoin(new, &original[start + ft_strlen(to_repl)]);
+	return (free(to_repl), free(original), new);
 }
 
 char	*expand_dollar2(char *str, char *tmp, size_t *i, t_data *data)

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:47:28 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/04 12:52:49 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/26 10:59:37 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*ft_newstrjoin(char *old_str, char *buf)
 	if (old_str)
 		while (old_str[++i] != '\0')
 			res[i] = old_str[i];
-	while (buf[j] != '\0')
+	while (buf[j])
 		res[i++] = buf[j++];
 	res[ft_strlen(old_str) + ft_strlen(buf)] = '\0';
 	free(old_str);

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:40:43 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/26 10:47:41 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/26 11:06:53 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,9 @@ char	*expand_first(char *str, int *i, t_data *data)
 		j++;
 	tofind = join_char(ft_strncpy(str, (*i) - j, *i), '=');
 	if (find_in_env(data->envp, tofind) != -1)
-			tmp = get_env_value(data->envp, tofind);
-	dst = ft_strncpy(str, 0, (*i) - j);
+		tmp = get_env_value(data->envp, tofind);
+	dst = ft_strndup(str, (*i) - j - 1);
+	
 	dst = ft_newstrjoin(dst, tmp);
 	dst = ft_newstrjoin(dst, &str[*i]);
 	*i = *i - j + ft_strlen(tmp);
@@ -118,7 +119,7 @@ void	expand_input(char **str, t_data *data)
 		if (last_lim == HEREDOC && (*str)[i] == ' ' && squote.open == FALSE)
 			last_lim = COMMAND;
 		if ((*str)[i] == '$' && squote.type != '\'' && last_lim != HEREDOC)
-			*str = expand_first(str, &i, data);
+			*str = expand_first(*str, &i, data);
 		i++;
 	}
 }

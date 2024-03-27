@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close_funct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:10:53 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/27 10:05:46 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/27 11:11:58 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	free_matrix(char ***mtx)
 {
 	size_t	i;
 
-	if (!mtx || !*mtx || !**mtx)
+	if (!mtx || !*mtx)
 		return ;
 	i = 0;
 	while ((*mtx)[i])
@@ -34,8 +34,8 @@ void	free_matrix(char ***mtx)
 		free((*mtx)[i]);
 		i++;
 	}
-	free(*mtx);
-	*mtx = NULL;
+	free((*mtx));
+	mtx = NULL;
 }
 
 void	free_array_matrix(int **matrix, int size)

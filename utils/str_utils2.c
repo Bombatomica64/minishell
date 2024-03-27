@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:45:24 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/27 10:03:00 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/27 11:04:17 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,8 @@ static char	*ft_result(char *s1, size_t start, size_t end, int *trimmed)
 
 	i = 0;
 	if (!s1[start])
-	{
-		dst = (char *)malloc(sizeof(char));
-		if (dst == NULL)
-			return (NULL);
-		dst[0] = '\0';
-		return (dst);
-	}
-	dst = (char *)malloc((end - start + 2) * sizeof(char));
+		return (ft_calloc(1, sizeof(char)));
+	dst = ft_calloc((end - start + 2), sizeof(char));
 	if (dst == NULL)
 		return (NULL);
 	while (start <= end)
@@ -49,7 +43,6 @@ static char	*ft_result(char *s1, size_t start, size_t end, int *trimmed)
 		start++;
 		i++;
 	}
-	dst[i] = '\0';
 	if (trimmed)
 		*trimmed += ft_strlen(s1) - ft_strlen(dst);
 	free(s1);

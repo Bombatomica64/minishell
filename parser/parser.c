@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/27 13:03:34 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/27 15:34:46 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ t_bool	parser(char *str, t_data *data, int offset, t_parser prs)
 		if (prs.tmp_type == PIPPE)
 		{
 			ft_inputadd_back(&data->input, ft_inputnew
-				((t_parser){"|", NULL, PIPPE}));
+				((t_parser){"💈️", "[pipe]", PIPPE}));
 			str = ft_skipstring(i_skip_pippe(str, 0), str);
 			continue ;
 		}

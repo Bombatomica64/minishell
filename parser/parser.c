@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/27 11:16:33 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:25:15 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,37 +54,6 @@ char	*get_path(t_parser *prs, t_data *data, int *offset)
 	return (ft_strdup(prs->tmp));
 }
 
-char	*free_strdup(char *str, char **freestr)
-{
-	char	*tmp;
-
-	tmp = ft_strdup(str);
-	free(*freestr);
-	return (tmp);
-}
-
-char	*cut_pars_str(char *str, char *node)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == node[0])
-		{
-			j = 0;
-			while (node[j] && node[j] == str[i + j])
-				j++;
-			if (!node[j])
-				return (cut_string(i + j,
-						ft_strtrimfree(str, " \t\r\n\v\f", 0)));
-		}
-		i++;
-	}
-	return (free(str), NULL);
-}
-
 t_bool	parser(char *str, t_data *data, int offset, t_parser prs)
 {
 	str = expand_name(str, data);
@@ -92,15 +61,26 @@ t_bool	parser(char *str, t_data *data, int offset, t_parser prs)
 	{
 		offset = skip_spaces2(str);
 		prs.tmp_type = ft_file_type(str, &offset);
+		if (prs.tmp_type == PIPPE)
+		{
+			ft_inputadd_back(&data->input, ft_inputnew
+				((t_parser){"💈️", "[pipe]", PIPPE}));
+			str = ft_skipstring(i_skip_pippe(str, 0), str);
+			continue ;
+		}
 		if (!get_name(str, &prs, data, &offset))
 		{
 			str = ft_reparsing(str, offset, data, (t_quote){FALSE, 0});
 			free_parser(&prs);
-			printf("str=%s\n", str);
 			continue ;
 		}
 		offset += skip_spaces2(str + offset);
 		prs.tmp = ft_strtrimfree(prs.tmp, " \t\r\n\v\f", &offset);
+		if (!prs.tmp)
+		{
+			str = ft_skipstring(offset, str);
+			continue ;
+		}
 		if (ft_isbuiltin(prs.tmp) == TRUE)
 			prs.tmp_type = BUILT_IN;
 		prs.tmp_path = get_path(&prs, data, &offset);
@@ -111,7 +91,7 @@ t_bool	parser(char *str, t_data *data, int offset, t_parser prs)
 		free_parser(&prs);
 	}
 	ft_inputadd_back(&data->input, ft_inputnew((t_parser){NULL, NULL, 69}));
-	// print_list(data->input);
+	print_list(data->input);
 	return (free(str), TRUE);
 }
 // Path: srcs/parser.c

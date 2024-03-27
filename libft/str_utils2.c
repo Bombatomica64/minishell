@@ -6,11 +6,11 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:45:24 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/27 11:04:17 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:18:26 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "libft.h"
 
 int	ft_isinset(char c, char *set)
 {
@@ -33,7 +33,7 @@ static char	*ft_result(char *s1, size_t start, size_t end, int *trimmed)
 
 	i = 0;
 	if (!s1[start])
-		return (ft_calloc(1, sizeof(char)));
+		return (NULL);
 	dst = ft_calloc((end - start + 2), sizeof(char));
 	if (dst == NULL)
 		return (NULL);
@@ -46,6 +46,8 @@ static char	*ft_result(char *s1, size_t start, size_t end, int *trimmed)
 	if (trimmed)
 		*trimmed += ft_strlen(s1) - ft_strlen(dst);
 	free(s1);
+	if (ft_strlen(dst) == 0)
+		return (free(dst), NULL);
 	return (dst);
 }
 
@@ -56,7 +58,7 @@ char	*ft_strtrimfree(char *s1, char *set, int *trimmed)
 
 	start = 0;
 	end = 0;
-	if (s1 == NULL || set == NULL)
+	if (!s1)
 		return (NULL);
 	if (s1[0] == '\0')
 		return (ft_result(s1, 0, 0, trimmed));

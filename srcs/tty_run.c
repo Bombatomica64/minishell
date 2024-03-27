@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/26 15:42:33 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:07:12 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	ft_do_it(t_data *data, char *terminal_input)
 {
 	t_pipex	comm;
 
-	if (parser(terminal_input, data, 0, (t_parser){NULL, NULL, 69}) == FALSE)
+	if (parser(expand_name(terminal_input, data),
+			data, 0, (t_parser){NULL, NULL, 69}) == FALSE)
 		return ;
 	while (data->input && data->input->type != FINISH)
 	{
@@ -28,7 +29,6 @@ void	ft_do_it(t_data *data, char *terminal_input)
 		}
 		else
 		{
-			printf("minishell\n");
 			close_fds(&comm);
 			break ;
 		}

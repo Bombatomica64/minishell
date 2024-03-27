@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/27 15:52:30 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:35:41 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static t_pipex	basic_set(t_data **data)
 
 void	do_pipes(t_data **data, t_pipex *comm)
 {
-	if ((*data)->in_pipe == FALSE)
+	if ((*data)->cmd_nbr == 0 && (*data)->in_pipe == FALSE)
 	{
 		pipe((*data)->fd[(*data)->cmd_nbr]);
 		comm->fd_out = fd_io_check(comm->fd_out, STDOUT_FILENO,
@@ -63,7 +63,7 @@ void	do_pipes(t_data **data, t_pipex *comm)
 				(*data)->fd[(*data)->cmd_nbr + 1][1]);
 		(*data)->cmd_nbr++;
 	}
-	else
+	else if ((*data)->cmd_nbr == (*data)->pipe_nbr - 1)
 	{
 		comm->fd_in = fd_io_check(comm->fd_in, STDIN_FILENO,
 				(*data)->fd[(*data)->cmd_nbr][0]);

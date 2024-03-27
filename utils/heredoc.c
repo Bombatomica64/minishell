@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:32:21 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/27 11:19:10 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:21:09 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	heredoc_creat(char *limiter, t_data *data, pid_t pid, t_pipex *comm)
 		close(fd[0]);
 		while (TRUE)
 		{
-			str = readline("heredoc> ");
-			if (ft_strcmp(str, limiter) == 0)
+			str = readline("Heredoc> ");
+			if (ft_strcmp(str, limiter) == 0 || str == NULL)
 				break ;
 			str = expand_name(str, data);
 			ft_putendl_fd_free(&str, fd[1]);

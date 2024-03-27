@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/22 11:55:56 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:42:06 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ t_type	ft_file_type(char *str, int *offset)
 	{
 		(*offset)++;
 		if (str[*offset] == '<')
-		{
-			(*offset)++;
-			return (HEREDOC);
-		}
+			return ((*offset)++, HEREDOC);
 		else
 			return (INPUT);
 	}
@@ -29,15 +26,12 @@ t_type	ft_file_type(char *str, int *offset)
 	{
 		(*offset)++;
 		if (str[*offset] == '>')
-		{
-			(*offset)++;
-			return (APPEND);
-		}
+			return ((*offset)++, APPEND);
 		else
 			return (TRUNC);
 	}
 	else if (str[*offset] == '|')
-		(*offset)++;
+		return ((*offset)++, PIPPE);
 	return (COMMAND);
 }
 

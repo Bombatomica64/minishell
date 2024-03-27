@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/27 11:16:33 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:10:56 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,15 @@ char	*cut_pars_str(char *str, char *node)
 	return (free(str), NULL);
 }
 
+char	*ft_skipstring(int offset, char *str)
+{
+	char	*dst;
+
+	printf("offset=%d\n", offset);
+	dst = ft_strdup(str + offset);
+	return (free(str), dst);
+}
+
 t_bool	parser(char *str, t_data *data, int offset, t_parser prs)
 {
 	str = expand_name(str, data);
@@ -95,23 +104,31 @@ t_bool	parser(char *str, t_data *data, int offset, t_parser prs)
 		if (!get_name(str, &prs, data, &offset))
 		{
 			str = ft_reparsing(str, offset, data, (t_quote){FALSE, 0});
-			free_parser(&prs);
 			printf("str=%s\n", str);
+			free_parser(&prs);
 			continue ;
 		}
 		offset += skip_spaces2(str + offset);
 		prs.tmp = ft_strtrimfree(prs.tmp, " \t\r\n\v\f", &offset);
+		if (!prs.tmp)
+		{
+			str = ft_skipstring(offset, str);
+			continue ;
+		}
 		if (ft_isbuiltin(prs.tmp) == TRUE)
 			prs.tmp_type = BUILT_IN;
 		prs.tmp_path = get_path(&prs, data, &offset);
 		if (prs.tmp_path == NULL && (prs.tmp_type < HEREDOC))
 			return (free(prs.tmp), free(str), FALSE);
 		ft_inputadd_back(&data->input, ft_inputnew(prs));
+		printf("prs.tmp=|%s|\n", prs.tmp);
+		printf("str=%s\n", str);
 		str = cut_pars_str(str, prs.tmp);
+		printf("post_str=%s\n\n", str);
 		free_parser(&prs);
 	}
 	ft_inputadd_back(&data->input, ft_inputnew((t_parser){NULL, NULL, 69}));
-	// print_list(data->input);
+	print_list(data->input);
 	return (free(str), TRUE);
 }
 // Path: srcs/parser.c

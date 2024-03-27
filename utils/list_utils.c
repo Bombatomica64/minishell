@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:47:54 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/21 11:17:15 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:00:50 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,25 @@ int	input_nbr_of_cmd(t_input *input)
 
 void	print_list(t_input *input)
 {
+	static char	*colors[] = {RED, BRIGHT_RED, YELLOW, BRIGHT_YELLOW,
+		GREEN, BRIGHT_GREEN, CYAN, BRIGHT_CYAN, BLUE, BRIGHT_BLUE,
+		MAGENTA, BRIGHT_MAGENTA, RED, BRIGHT_RED, YELLOW, BRIGHT_YELLOW,
+		GREEN, BRIGHT_GREEN, CYAN, BRIGHT_CYAN, BLUE, BRIGHT_BLUE, END};
+	int			i;
+
 	while (input)
 	{
-		printf("--------------------\n");
+		i = 0;
+		while (i < 22)
+			printf("%s-"END, colors[i++]);
+		printf("\n");
 		printf("type: %d\n", input->type);
 		printf("path: %s\n", input->path);
 		printf("node: |%s|\n", input->node);
-		printf("--------------------\n");
 		input = input->next;
 	}
+	i = 0;
+	while (i < 22)
+		printf("%s-"END, colors[i++]);
+	printf("\n");
 }

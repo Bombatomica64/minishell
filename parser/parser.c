@@ -64,7 +64,7 @@ t_bool	parser(char *str, t_data *data, int offset, t_parser prs)
 		if (prs.tmp_type == PIPPE)
 		{
 			ft_inputadd_back(&data->input, ft_inputnew
-				((t_parser){"💈️", NULL, PIPPE}));
+				((t_parser){"💈️", "[pipe]", PIPPE}));
 			str = ft_skipstring(i_skip_pippe(str, 0), str);
 			continue ;
 		}

@@ -3,31 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   colours.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 11:38:58 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/25 11:39:25 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/27 15:46:29 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COLOURS_H
 # define COLOURS_H
 
-# define BLACK "\033[0;30m"
 # define RED "\033[0;31m"
-# define GREEN "\033[0;32m"
-# define YELLOW "\033[0;33m"
-# define BLUE "\033[0;34m"
-# define MAGENTA "\033[0;35m"
-# define CYAN "\033[0;36m"
-# define WHITE "\033[0;37m"
-# define BRIGHT_BLACK "\033[0;90m"
 # define BRIGHT_RED "\033[0;91m"
-# define BRIGHT_GREEN "\033[0;92m"
+# define YELLOW "\033[0;33m"
 # define BRIGHT_YELLOW "\033[0;93m"
-# define BRIGHT_BLUE "\033[0;94m"
-# define BRIGHT_MAGENTA "\033[0;95m"
+# define GREEN "\033[0;32m"
+# define BRIGHT_GREEN "\033[0;92m"
+# define CYAN "\033[0;36m"
 # define BRIGHT_CYAN "\033[0;96m"
+# define BLUE "\033[0;34m"
+# define BRIGHT_BLUE "\033[0;94m"
+# define MAGENTA "\033[0;35m"
+# define PURPLE MAGENTA
+# define BRIGHT_MAGENTA "\033[0;95m"
+# define BLACK "\033[0;30m"
+# define BRIGHT_BLACK "\033[0;90m"
+# define WHITE "\033[0;37m"
 # define BRIGHT_WHITE "\033[0;97m"
 # define END "\033[0m"
 # define BG_BLACK "\033[40m"

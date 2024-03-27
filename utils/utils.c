@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/25 11:24:23 by gduranti         ###   ########.fr       */
+/*   Created: 2024/03/27 17:30:19 by lmicheli          #+#    #+#             */
+/*   Updated: 2024/03/27 17:32:57 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
+
+t_bool	is_double_operator(char *str, int i, t_quote squote)
+{
+	return (((str[i] == '<' && str[i + 1] == '<')
+			|| (str[i] == '>' && str[i + 1] == '>'))
+		&& squote.type == FALSE);
+}
 
 t_bool	ft_iscmd(t_input *input, t_data *data)
 {
@@ -18,20 +25,6 @@ t_bool	ft_iscmd(t_input *input, t_data *data)
 		return (ERROR);
 	if (input->type == BUILT_IN || input->type == COMMAND)
 		return (file_check(input->node, data));
-	return (FALSE);
-}
-
-t_bool	ft_islimiter(char c)
-{
-	if (c == '<' || c == '>' || c == '\0' || c == '|')
-		return (TRUE);
-	return (FALSE);
-}
-
-t_bool	ft_isquote(char c)
-{
-	if (c == '\"' || c == '\'')
-		return (TRUE);
 	return (FALSE);
 }
 

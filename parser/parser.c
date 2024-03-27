@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/27 13:03:34 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:25:15 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,54 +54,6 @@ char	*get_path(t_parser *prs, t_data *data, int *offset)
 	return (ft_strdup(prs->tmp));
 }
 
-char	*free_strdup(char *str, char **freestr)
-{
-	char	*tmp;
-
-	tmp = ft_strdup(str);
-	free(*freestr);
-	return (tmp);
-}
-
-char	*cut_pars_str(char *str, char *node)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == node[0])
-		{
-			j = 0;
-			while (node[j] && node[j] == str[i + j])
-				j++;
-			if (!node[j])
-				return (cut_string(i + j,
-						ft_strtrimfree(str, " \t\r\n\v\f", 0)));
-		}
-		i++;
-	}
-	return (free(str), NULL);
-}
-
-char	*ft_skipstring(int offset, char *str)
-{
-	char	*dst;
-
-	printf("offset=%d\n", offset);
-	dst = ft_strdup(str + offset);
-	return (free(str), dst);
-}
-
-int	i_skip_pippe(char *str, int i)
-{
-	i = 0;
-	while (str[i] == '|' || ft_isspace(str[i]) == TRUE)
-		i++;
-	return (i);
-}
-
 t_bool	parser(char *str, t_data *data, int offset, t_parser prs)
 {
 	str = expand_name(str, data);
@@ -112,14 +64,13 @@ t_bool	parser(char *str, t_data *data, int offset, t_parser prs)
 		if (prs.tmp_type == PIPPE)
 		{
 			ft_inputadd_back(&data->input, ft_inputnew
-				((t_parser){"|", NULL, PIPPE}));
+				((t_parser){"💈️", NULL, PIPPE}));
 			str = ft_skipstring(i_skip_pippe(str, 0), str);
 			continue ;
 		}
 		if (!get_name(str, &prs, data, &offset))
 		{
 			str = ft_reparsing(str, offset, data, (t_quote){FALSE, 0});
-			printf("str=%s\n", str);
 			free_parser(&prs);
 			continue ;
 		}
@@ -136,10 +87,7 @@ t_bool	parser(char *str, t_data *data, int offset, t_parser prs)
 		if (prs.tmp_path == NULL && (prs.tmp_type < HEREDOC))
 			return (free(prs.tmp), free(str), FALSE);
 		ft_inputadd_back(&data->input, ft_inputnew(prs));
-		printf("prs.tmp=|%s|\n", prs.tmp);
-		printf("str=%s\n", str);
 		str = cut_pars_str(str, prs.tmp);
-		printf("post_str=%s\n\n", str);
 		free_parser(&prs);
 	}
 	ft_inputadd_back(&data->input, ft_inputnew((t_parser){NULL, NULL, 69}));

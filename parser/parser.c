@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/27 12:10:56 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/27 13:03:34 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,14 @@ char	*ft_skipstring(int offset, char *str)
 	return (free(str), dst);
 }
 
+int	i_skip_pippe(char *str, int i)
+{
+	i = 0;
+	while (str[i] == '|' || ft_isspace(str[i]) == TRUE)
+		i++;
+	return (i);
+}
+
 t_bool	parser(char *str, t_data *data, int offset, t_parser prs)
 {
 	str = expand_name(str, data);
@@ -101,6 +109,13 @@ t_bool	parser(char *str, t_data *data, int offset, t_parser prs)
 	{
 		offset = skip_spaces2(str);
 		prs.tmp_type = ft_file_type(str, &offset);
+		if (prs.tmp_type == PIPPE)
+		{
+			ft_inputadd_back(&data->input, ft_inputnew
+				((t_parser){"|", NULL, PIPPE}));
+			str = ft_skipstring(i_skip_pippe(str, 0), str);
+			continue ;
+		}
 		if (!get_name(str, &prs, data, &offset))
 		{
 			str = ft_reparsing(str, offset, data, (t_quote){FALSE, 0});

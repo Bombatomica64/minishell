@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/19 10:25:19 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/27 11:14:39 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	do_builtin(t_pipex *comm, t_data *data)
 	non_pipe_close(data, comm);
 	if (data->in_pipe == TRUE && data->cmd_nbr <= data->pipe_nbr)
 		close(data->fd[data->cmd_nbr][1]);
-	return (free_matrix(&comm->cmd), ret);
+	return (ret);
 }
 
 void	non_pipe_close(t_data *data, t_pipex *comm)

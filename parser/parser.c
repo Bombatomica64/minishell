@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/27 10:10:49 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/27 11:16:33 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,38 +24,6 @@ t_bool	get_name(char *str, t_parser *prs, t_data *data, int *off)
 		check = get_inout(off, str, prs, data);
 	return (check);
 }
-	// {
-	// 	quote_start(&quote->open, str[i], &quote->type);
-	// 	while (str[i] && ft_isspace(str[i]) == FALSE && ft_islimiter(str[i]) == FALSE && quote->open == FALSE)
-	// 	{
-	// 		tmp = join_char(tmp, str[i]);
-	// 		i++;
-	// 	}
-	// 	if (tmp_type != HEREDOC)
-	// 		tmp = expand_name(tmp, data, quote->open, quote->type, off);
-	// 	return (tmp);
-	// }
-	// while (str[i] != 0)
-	// {
-	// 	if (ft_isquote(str[i]))
-	// 	{
-	// 		quote_start(&quote->open, str[i], &quote->type);
-	// 		if (tmp_type == BUILT_IN || tmp_type == COMMAND
-	// 			|| (quote->open == TRUE && str[i] != quote->type))
-	// 			tmp = join_char(tmp, str[i]);
-	// 		i++;
-	// 	}
-	// 	else
-	// 	{
-	// 		tmp = join_char(tmp, str[i]);
-	// 		i++;
-	// 	}
-	// 	if (ft_islimiter(str[i]) == TRUE && quote->open == FALSE)
-	// 		break ;
-	// }
-	// if (tmp_type != HEREDOC)
-	// 	tmp = expand_name(tmp, data, quote->open, quote->type, off);
-	// return (tmp);
 
 char	*get_path(t_parser *prs, t_data *data, int *offset)
 {
@@ -85,42 +53,6 @@ char	*get_path(t_parser *prs, t_data *data, int *offset)
 		return (refactor_path(prs->tmp, data, 0, offset));
 	return (ft_strdup(prs->tmp));
 }
-	// if (tmp_type == COMMAND)
-	// {
-	// 	while ((*tmp)[i] != ' ' && (*tmp)[i] != '\0')
-	// 	{
-	// 		if (ft_isquote((*tmp)[i]) == TRUE)
-	// 		{
-	// 			i++;
-	// 			j = i;
-	// 			while ((*tmp)[j] != '\'' && (*tmp)[j] != '\"')
-	// 				j++;
-	// 			tmp_path = ft_strjoin_2free(tmp_path,
-	// 					ft_strncpy_noquote(*tmp, i, j));
-	// 			i = j;
-	// 		}
-	// 		else
-	// 			tmp_path = join_char(tmp_path, (*tmp)[i]);
-	// 		i++;
-	// 	}
-	// 	if (ft_strchr(tmp_path, '/') == NULL && tmp_type != BUILT_IN)
-	// 	{
-	// 		tmp_path = path_execve(tmp_path, data->envp);
-	// 		if (tmp_path == NULL)
-	// 		{
-	// 			free(tmp_path);
-	// 			return (ft_error(*tmp, NO_PATH, 127, data), NULL);
-	// 		}
-	// 	}
-	// 	else if (tmp_type != BUILT_IN && find_first(tmp_path, '/') != -1)
-	// 	{
-	// 		*offset += find_last(*tmp, '/') + 1;
-	// 		*tmp = cut_string(find_last(*tmp, '/') + 1, *tmp);
-	// 	}
-	// }
-	// else if (tmp_type != HEREDOC)
-	// 	tmp_path = refactor_path(*tmp, data, 0, offset);
-	// return (tmp_path);
 
 char	*free_strdup(char *str, char **freestr)
 {
@@ -184,3 +116,71 @@ t_bool	parser(char *str, t_data *data, int offset, t_parser prs)
 }
 // Path: srcs/parser.c
 //ptr[32, | , 3 ,4]
+	// if (tmp_type == COMMAND)
+	// {
+	// 	while ((*tmp)[i] != ' ' && (*tmp)[i] != '\0')
+	// 	{
+	// 		if (ft_isquote((*tmp)[i]) == TRUE)
+	// 		{
+	// 			i++;
+	// 			j = i;
+	// 			while ((*tmp)[j] != '\'' && (*tmp)[j] != '\"')
+	// 				j++;
+	// 			tmp_path = ft_strjoin_2free(tmp_path,
+	// 					ft_strncpy_noquote(*tmp, i, j));
+	// 			i = j;
+	// 		}
+	// 		else
+	// 			tmp_path = join_char(tmp_path, (*tmp)[i]);
+	// 		i++;
+	// 	}
+	// 	if (ft_strchr(tmp_path, '/') == NULL && tmp_type != BUILT_IN)
+	// 	{
+	// 		tmp_path = path_execve(tmp_path, data->envp);
+	// 		if (tmp_path == NULL)
+	// 		{
+	// 			free(tmp_path);
+	// 			return (ft_error(*tmp, NO_PATH, 127, data), NULL);
+	// 		}
+	// 	}
+	// 	else if (tmp_type != BUILT_IN && find_first(tmp_path, '/') != -1)
+	// 	{
+	// 		*offset += find_last(*tmp, '/') + 1;
+	// 		*tmp = cut_string(find_last(*tmp, '/') + 1, *tmp);
+	// 	}
+	// }
+	// else if (tmp_type != HEREDOC)
+	// 	tmp_path = refactor_path(*tmp, data, 0, offset);
+	// return (tmp_path);
+	// {
+	// 	quote_start(&quote->open, str[i], &quote->type);
+	// 	while (str[i] && ft_isspace(str[i]) == FALSE && ft_islimiter(str[i]) == FALSE && quote->open == FALSE)
+	// 	{
+	// 		tmp = join_char(tmp, str[i]);
+	// 		i++;
+	// 	}
+	// 	if (tmp_type != HEREDOC)
+	// 		tmp = expand_name(tmp, data, quote->open, quote->type, off);
+	// 	return (tmp);
+	// }
+	// while (str[i] != 0)
+	// {
+	// 	if (ft_isquote(str[i]))
+	// 	{
+	// 		quote_start(&quote->open, str[i], &quote->type);
+	// 		if (tmp_type == BUILT_IN || tmp_type == COMMAND
+	// 			|| (quote->open == TRUE && str[i] != quote->type))
+	// 			tmp = join_char(tmp, str[i]);
+	// 		i++;
+	// 	}
+	// 	else
+	// 	{
+	// 		tmp = join_char(tmp, str[i]);
+	// 		i++;
+	// 	}
+	// 	if (ft_islimiter(str[i]) == TRUE && quote->open == FALSE)
+	// 		break ;
+	// }
+	// if (tmp_type != HEREDOC)
+	// 	tmp = expand_name(tmp, data, quote->open, quote->type, off);
+	// return (tmp);

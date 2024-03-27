@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:05:07 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/26 15:41:30 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/27 15:46:01 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,12 @@ void	close_fds(t_pipex *comm)
 		close(comm->fd_in);
 	if (comm->fd_out != STDOUT_FILENO)
 		close(comm->fd_out);
+}
+
+int	fd_io_check(int fd_io, int fd_to_check, int pipe_fd)
+{
+	if (fd_io == fd_to_check)
+		return (pipe_fd);
+	close(pipe_fd);
+	return (fd_io);
 }

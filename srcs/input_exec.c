@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/27 09:57:16 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/27 15:52:30 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,23 +50,23 @@ void	do_pipes(t_data **data, t_pipex *comm)
 	if ((*data)->in_pipe == FALSE)
 	{
 		pipe((*data)->fd[(*data)->cmd_nbr]);
-		if (comm->fd_out == STDOUT_FILENO)
-			comm->fd_out = ((*data)->fd[0][1]);
+		comm->fd_out = fd_io_check(comm->fd_out, STDOUT_FILENO,
+				(*data)->fd[(*data)->cmd_nbr][1]);
 		(*data)->in_pipe = TRUE;
 	}
 	else if ((*data)->cmd_nbr < (*data)->pipe_nbr - 1)
 	{
-		if (comm->fd_in == STDIN_FILENO)
-			comm->fd_in = (*data)->fd[(*data)->cmd_nbr][0];
+		comm->fd_in = fd_io_check(comm->fd_in, STDIN_FILENO,
+				(*data)->fd[(*data)->cmd_nbr][0]);
 		pipe((*data)->fd[(*data)->cmd_nbr + 1]);
-		if (comm->fd_out == STDOUT_FILENO)
-			comm->fd_out = (*data)->fd[(*data)->cmd_nbr + 1][1];
+		comm->fd_out = fd_io_check(comm->fd_out, STDOUT_FILENO,
+				(*data)->fd[(*data)->cmd_nbr + 1][1]);
 		(*data)->cmd_nbr++;
 	}
 	else
 	{
-		if (comm->fd_in == STDIN_FILENO)
-			comm->fd_in = (*data)->fd[(*data)->cmd_nbr][0];
+		comm->fd_in = fd_io_check(comm->fd_in, STDIN_FILENO,
+				(*data)->fd[(*data)->cmd_nbr][0]);
 		(*data)->in_pipe = FALSE;
 		(*data)->cmd_nbr++;
 	}
@@ -89,8 +89,8 @@ t_pipex	input_exec(t_data **data)
 	t_pipex	comm;
 	t_bool	seen;
 
-	comm = basic_set(data);
 	seen = FALSE;
+	comm = basic_set(data);
 	while ((*data)->input && (*data)->input->type != FINISH)
 	{
 		if (set_inout(&comm, (*data)->input, *data) == -1)
@@ -98,15 +98,12 @@ t_pipex	input_exec(t_data **data)
 		if (ft_iscmd((*data)->input, *data) == ERROR)
 			return (comm_error(data));
 		else if (ft_iscmd((*data)->input, *data) == TRUE)
+			set_command(data, &comm, &seen);
+		if ((*data)->input->type == PIPPE)
 		{
-			if (seen == FALSE)
-				set_command(data, &comm, &seen);
-			else
-			{
-				if ((*data)->cmd_nbr == 0 && (*data)->pipe_nbr > 0)
-					do_pipes(data, &comm);
+			do_pipes(data, &comm);
+			if (seen == TRUE)
 				return (comm);
-			}
 		}
 		(*data)->input = (*data)->input->next;
 	}

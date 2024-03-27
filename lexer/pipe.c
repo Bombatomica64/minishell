@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 18:08:44 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/27 12:26:05 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/27 15:55:02 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_bool	check_middle(char *line, t_quote *squote)
 		{
 			i++;
 			i += skip_spaces2(&line[i]);
-			if (ft_islimiter(line[i]))
+			if ((line[i]) == '|')
 				return (FALSE);
 		}
 		i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/27 12:42:06 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:26:12 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,32 @@ int	count_limiter(char *str, t_quote squote)
 	return (count);
 }
 
-t_bool	is_double_operator(char *str, int i, t_quote squote)
+int	i_skip_pippe(char *str, int i)
 {
-	return (((str[i] == '<' && str[i + 1] == '<')
-			|| (str[i] == '>' && str[i + 1] == '>'))
-		&& squote.type == FALSE);
+	i = 0;
+	while (str[i] == '|' || ft_isspace(str[i]) == TRUE)
+		i++;
+	return (i);
+}
+
+char	*cut_pars_str(char *str, char *node)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == node[0])
+		{
+			j = 0;
+			while (node[j] && node[j] == str[i + j])
+				j++;
+			if (!node[j])
+				return (cut_string(i + j,
+						ft_strtrimfree(str, " \t\r\n\v\f", 0)));
+		}
+		i++;
+	}
+	return (free(str), NULL);
 }

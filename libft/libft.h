@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:48:37 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/12 11:47:17 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:32:16 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,38 @@ t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 t_list		*ft_lstnew(void *content);
 t_list		*ft_lstlast(t_list *lst);
 int			ft_strcmp(const char *s1, const char *s2);
+
+//str_utils.c
+
+char		*ft_strncpy_noquote(char *str, int start, int end);
+char		*ft_strjoin_2free(char *old_str, char *buf);
+char		*ft_strjoin_2(char *old_str, char *buf);
+char		*ft_strndup(char *str, int i);
+int			ft_strlen_noquote(char *str);
+
+//str_utils2.c
+
+int			ft_isinset(char c, char *set);
+char		*ft_strtrimfree(char *s1, char *set, int *trimmed);
+int			find_first(char *str, char c);
+int			find_last(char *str, char c);
+
+//str_utils3.c
+
+char		*free_strrchr(char *str, char c, int **offset);
+char		*join_char(char *str, char c);
+char		*cut_string(int len, char *str);
+char		*strjoin_n_free1(char *line, char *buff, int index);
+char		*ft_strncpy(char *str, int start, int end);
+
+//str_utils4.c
+
+char		*free_strdup(char *str, char **freestr);
+char		*ft_skipstring(int offset, char *str);
+
+//type_check
+
+t_bool		ft_islimiter(char c);
+t_bool		ft_isquote(char c);
 
 #endif

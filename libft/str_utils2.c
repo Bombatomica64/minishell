@@ -6,11 +6,11 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:45:24 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/27 12:09:58 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:18:26 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "libft.h"
 
 int	ft_isinset(char c, char *set)
 {

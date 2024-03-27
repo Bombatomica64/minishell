@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/25 11:47:16 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/27 09:57:16 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	set_inout(t_pipex *comm, t_input *input, t_data *data)
 		comm->fd_in = open_type(input->path, INPUT, data);
 	}
 	else if (input->type == HEREDOC)
-		comm->fd_in = heredoc_creat(input->node, data, 0);
+		comm->fd_in = heredoc_creat(input->node, data, 0, comm);
 	else if (input->type == TRUNC || input->type == APPEND)
 	{
 		if (comm->fd_out >= 0 && comm->fd_out != STDOUT_FILENO)

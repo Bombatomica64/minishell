@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:32:21 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/26 15:43:08 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/27 10:01:59 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	ft_putendl_fd_free(char **s, int fd)
 	free(*s);
 }
 
-int	heredoc_creat(char *limiter, t_data *data, pid_t pid)
+int	heredoc_creat(char *limiter, t_data *data, pid_t pid, t_pipex *comm)
 {
 	char	*str;
 	int		fd[2];
@@ -63,6 +63,7 @@ int	heredoc_creat(char *limiter, t_data *data, pid_t pid)
 			ft_putendl_fd_free(&str, fd[1]);
 		}
 		close(fd[1]);
+		free_matrix(&comm->cmd);
 		free_close(&data, 0);
 	}
 	else

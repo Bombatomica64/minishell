@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/26 16:06:14 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/27 09:55:56 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -348,7 +348,7 @@ t_bool	ft_isbuiltin(char *str);
  * @param pid pid to be passed to the function
  * @return fd with the file descriptor of the pipe fd[0]
 */
-int		heredoc_creat(char *limiter, t_data *data, pid_t pid);
+int		heredoc_creat(char *limiter, t_data *data, pid_t pid, t_pipex *comm);
 
 /**
  * Removes leading and trailing characters specified in

@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:45:24 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/22 10:52:10 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/27 10:03:00 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ int	find_first(char *str, char c)
 	int		i;
 
 	i = 0;
+	if (!str)
+		return (-1);
 	while (str[i])
 	{
 		if (str[i] == c)

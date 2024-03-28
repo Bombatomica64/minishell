@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 11:38:58 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/27 15:46:29 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/28 15:37:09 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@
 # define WHITE "\033[0;37m"
 # define BRIGHT_WHITE "\033[0;97m"
 # define END "\033[0m"
+
+# define BOLD "\033[1m"
+# define UNDERLINE "\033[4m"
+# define REVERSED "\033[7m"
+
 # define BG_BLACK "\033[40m"
 # define BG_RED "\033[41m"
 # define BG_GREEN "\033[42m"

@@ -19,7 +19,7 @@ outfile01             ✅️
 
 pipes                 ❌️ si ferma 
 
-redirects        < bo ❌️ si ferma          MRUGGIER: echo ciao <fileinsesistente
+redirects        < bo ❌️ si ferma          MRUGGIER: echo ciao <fileinsesistente (no free con NO_EXST) mentre /filenonesistente (free con NO_EXST)
 
 syntax                ✅️ errori diversi per scelta
 

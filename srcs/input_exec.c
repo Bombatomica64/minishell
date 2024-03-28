@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/28 13:05:20 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/28 17:53:18 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ t_pipex	input_exec(t_data **data)
 	while ((*data)->input && (*data)->input->type != FINISH)
 	{
 		if (set_inout(&comm, (*data)->input, *data) == -1)
-			return (free_matrix(&comm.cmd), comm);
+			return (free_matrix(&comm.cmd), comm.cmd = NULL, comm);
 		if (ft_iscmd((*data)->input, *data) == ERROR)
 			return (comm_error(data));
 		else if (ft_iscmd((*data)->input, *data) == TRUE)

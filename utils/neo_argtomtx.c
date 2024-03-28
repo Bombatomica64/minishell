@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   neo_argtomtx.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 11:58:00 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/15 17:28:26 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/28 17:24:35 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ char	*ft_noquote(char *str, char c)
 	int		i;
 	int		start;
 
-	printf("str: %s\n", str);
 	if (!str)
 		return (NULL);
 	dst = ft_calloc((ft_strlen(str) + 1), sizeof(char));

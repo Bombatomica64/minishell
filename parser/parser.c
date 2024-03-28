@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/28 16:18:57 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/28 17:58:00 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ char	*get_path(t_parser *prs, t_data *data, int *offset)
 
 t_bool	parser(char *str, t_data *data, int offset, t_parser prs)
 {
-	printf("str: %s\n", str);
 	while (str)
 	{
 		offset = skip_spaces2(str);
@@ -91,7 +90,7 @@ t_bool	parser(char *str, t_data *data, int offset, t_parser prs)
 		free_parser(&prs);
 	}
 	ft_inputadd_back(&data->input, ft_inputnew((t_parser){NULL, NULL, 69}));
-	//print_list(data->input);
+	print_list(data->input);
 	return (free(str), TRUE);
 }
 // Path: srcs/parser.c

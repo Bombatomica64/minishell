@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 17:30:19 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/28 11:00:27 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/28 17:17:01 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ t_bool	ft_isbuiltin(char *cmd)
 
 void	close_fds(t_pipex *comm)
 {
-	if (comm->fd_in != STDIN_FILENO)
+	if (comm->fd_in != STDIN_FILENO && comm->fd_in != -1)
 		close(comm->fd_in);
-	if (comm->fd_out != STDOUT_FILENO)
+	if (comm->fd_out != STDOUT_FILENO && comm->fd_out != -1)
 		close(comm->fd_out);
 }

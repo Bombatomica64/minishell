@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:32:21 by gduranti          #+#    #+#             */
 /*   Updated: 2024/03/28 15:34:22 by lmicheli         ###   ########.fr       */
@@ -34,7 +34,7 @@ int	heredoc_creat(char *limiter, t_data *data, pid_t pid, t_pipex *comm)
 		close(fd[0]);
 		while (TRUE)
 		{
-			str = readline("\033[0;32;1mHeredoc\033[0;96m> \033[0m");
+			str = readline(YELLOW BOLD"サ巳尺巳りロ长"BRIGHT_CYAN"> "END);
 			if (ft_strcmp(str, limiter) == 0 || str == NULL)
 				break ;
 			str = expand_name(str, data);

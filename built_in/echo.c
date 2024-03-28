@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:24:10 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/19 10:25:58 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/28 17:32:09 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,25 @@ void	ft_pwd(void)
 	pwd = getcwd(NULL, 0);
 	ft_printf("%s\n", pwd);
 	free(pwd);
+}
+
+int	print_export(char **envp)
+{
+	int		i;
+	int		j;
+	char	**tmp;
+
+	i = 0;
+	while (envp[i])
+	{
+		j = 0;
+		tmp = ft_split(envp[i], '=');
+		ft_printf("declare -x %s", tmp[j]);
+		if (tmp[++j])
+			ft_printf("=\"%s\"", tmp[j]);
+		ft_printf("\n");
+		free_matrix(&tmp);
+		i++;
+	}
+	return (0);
 }

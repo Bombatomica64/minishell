@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:40:43 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/28 10:04:09 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/28 10:05:19 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ char	*expand_dollar2(char *str, char *tmp, size_t *i, t_data *data)
 	else
 	{
 		while (ft_isalpha(tmp[0])
-			&& (ft_isalnum(tmp[++(*i)]) || tmp[*i] == '_'))
-			tofind = join_char(tofind, tmp[(*i)]);
+			&& (ft_isalnum(tmp[(*i)]) || tmp[*i] == '_'))
+			tofind = join_char(tofind, tmp[(*i)++]);
 		tofind = join_char(tofind, '=');
 		if (find_in_env(data->envp, tofind) != -1)
 			str = ft_strjoin_2free(str, get_env_value(data->envp, tofind));

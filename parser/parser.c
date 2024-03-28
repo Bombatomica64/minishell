@@ -56,6 +56,7 @@ char	*get_path(t_parser *prs, t_data *data, int *offset)
 
 t_bool	parser(char *str, t_data *data, int offset, t_parser prs)
 {
+	printf("str: %s\n", str);
 	while (str)
 	{
 		offset = skip_spaces2(str);

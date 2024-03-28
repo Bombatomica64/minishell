@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_variables.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:40:43 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/28 13:08:35 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:49:03 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
 		return (join_char(str, tmp[*i]));
 	else
 	{
-		while (ft_isalpha(tmp[0])
+		while (ft_isalpha(tmp[1])
 			&& (ft_isalnum(tmp[(*i)]) || tmp[*i] == '_'))
 			tofind = join_char(tofind, tmp[(*i)++]);
 		tofind = join_char(tofind, '=');
@@ -64,10 +64,10 @@ char	*expand_dollar2(char *str, char *tmp, size_t *i, t_data *data)
 	else if (tmp[((*i)++) + 1] == '?')
 		return (ft_strjoin_2free(str, ft_itoa(data->error_codes)));
 	else if (!ft_isalnum(tmp[*i + 1]))
-		return (join_char(str, tmp[*i]));
+		return (join_char(str, tmp[--(*i)]));
 	else
 	{
-		while (ft_isalpha(tmp[0])
+		while (ft_isalpha(tmp[1])
 			&& (ft_isalnum(tmp[(*i)]) || tmp[*i] == '_'))
 			tofind = join_char(tofind, tmp[(*i)++]);
 		tofind = join_char(tofind, '=');

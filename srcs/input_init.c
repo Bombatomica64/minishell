@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:28:06 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/14 16:08:45 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/28 13:04:47 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_data	ft_data_init(char **envp)
 	data.original_stdin = dup(STDIN_FILENO);
 	data.original_stdout = dup(STDOUT_FILENO);
 	data.error_codes = 0;
-	data.last_pipe = 0;
+	data.counter = 0;
 	data.input = NULL;
 	data.in_pipe = FALSE;
 	data.fd = NULL;
@@ -59,7 +59,7 @@ void	ft_data_reinit(t_data *data)
 	if (!data)
 		return ;
 	data->cmd_nbr = 0;
-	data->last_pipe = 0;
+	data->counter = 0;
 	data->pipe_nbr = 0;
 	data->in_pipe = FALSE;
 	data->input = NULL;

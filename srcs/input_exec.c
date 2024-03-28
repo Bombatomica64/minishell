@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/27 18:35:41 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/28 13:05:20 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ static void	set_command(t_data **data, t_pipex *comm, t_bool *seen)
 	else
 		comm->cmd = ft_splitarg((*data)->input->node);
 	comm->path = (*data)->input->path;
-	if ((*data)->in_pipe == TRUE)
-		do_pipes(data, comm);
+	// if ((*data)->in_pipe == TRUE)
+	// 	do_pipes(data, comm);
 }
 
 t_pipex	input_exec(t_data **data)
@@ -101,9 +101,11 @@ t_pipex	input_exec(t_data **data)
 			set_command(data, &comm, &seen);
 		if ((*data)->input->type == PIPPE)
 		{
-			do_pipes(data, &comm);
+			if (++(*data)->counter == 1)
+				do_pipes(data, &comm);
 			if (seen == TRUE)
 				return (comm);
+			do_pipes(data, &comm);
 		}
 		(*data)->input = (*data)->input->next;
 	}

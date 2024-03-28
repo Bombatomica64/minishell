@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 17:30:19 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/27 17:32:57 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/28 11:00:27 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,12 @@ t_bool	ft_isbuiltin(char *cmd)
 		return (free(str), TRUE);
 	free(str);
 	return (FALSE);
+}
+
+void	close_fds(t_pipex *comm)
+{
+	if (comm->fd_in != STDIN_FILENO)
+		close(comm->fd_in);
+	if (comm->fd_out != STDOUT_FILENO)
+		close(comm->fd_out);
 }

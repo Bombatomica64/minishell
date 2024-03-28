@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:05:20 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/27 17:58:20 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/28 10:59:21 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	malloc_input_pipex(t_data *data, int i);
 
 //fd_inout
 int		open_type(char *str, t_type type, t_data *data);
-void	close_fds(t_pipex *comm);
 int		fd_io_check(int fd_io, int fd_to_check, int pipe_fd);
 t_pipex	input_exec(t_data **data);
 

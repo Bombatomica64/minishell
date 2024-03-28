@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/27 12:42:58 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/28 11:01:03 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -406,8 +406,6 @@ char	*get_env_value(char **envp, char *to_find);
 */
 int		ft_arg_count(char *str, int i, int nbr_args);
 
-char	*ft_rowgen(char *str);
-
 /**
  * @brief Function that allocates a new string with the argument
  * @param str string to be checked
@@ -469,6 +467,7 @@ int		ft_isinset(char c, char *set);
 
 int		check_access(char *file, t_type type, t_data *data);
 
+void	close_fds(t_pipex *comm);
 //math utils
 
 int		ft_max(int a, int b);
@@ -486,5 +485,6 @@ char	**ft_neosplitarg(char *str);
 char	*ft_input2str(t_input **input);
 t_bool	file_check(char *line, t_data *data);
 t_pipex	comm_error(t_data **data);
+char	*ft_rowgen(char *str);
 
 #endif

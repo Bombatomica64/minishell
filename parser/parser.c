@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/28 11:04:36 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:26:37 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ char	*get_path(t_parser *prs, t_data *data, int *offset)
 
 t_bool	parser(char *str, t_data *data, int offset, t_parser prs)
 {
+	printf("str: %s\n", str);
 	while (str)
 	{
 		offset = skip_spaces2(str);

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:29:56 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/29 12:09:23 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/29 12:10:00 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct s_curs
 {
 	int		k;
 	int		j;
-} t_curs;
+}	t_curs;
 
 //parser
 t_type	ft_file_type(char *str, int *offset);

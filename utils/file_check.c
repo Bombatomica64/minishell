@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 10:36:19 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/29 11:40:18 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/29 12:49:59 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	check_access(char *file, t_type type, t_data *data)
 		if (file_exist(file) == TRUE && file_readable(file) == TRUE)
 			return (0);
 		else if (file_exist(file) == FALSE)
-			return (ft_error(file, NO_EST, 127, data));
+			return (ft_error(file, NO_EST, 1, data));
 		else if (file_readable(file) == FALSE)
 			return (ft_error(file, ACCESS, 126, data));
 	}

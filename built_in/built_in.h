@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:03:32 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/18 16:12:15 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/28 17:32:26 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	ft_pwd(void);
  * @return TRUE if success, FALSE if error
 */
 int		ft_export(char ***envp, char **cmd);
-int		check_for_non_valid_export(char **cmd);
 
 t_bool	add_or_update(char ***envp, char *tmp, char **cmd, int j);
 
@@ -118,5 +117,7 @@ int		ft_exit(char **cmd, t_data *data);
 int		add_or_update(char ***envp, char *tmp, char **cmd, int j);
 int		add_to_env(char ***envp, char *str);
 int		export_error(char *str);
+int		check_for_non_valid_export(char **cmd);
+int		print_export(char **envp);
 
 #endif

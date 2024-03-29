@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 16:08:59 by lmicheli          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/03/28 17:46:18 by mruggier         ###   ########.fr       */
+=======
+/*   Updated: 2024/03/29 11:05:52 by lmicheli         ###   ########.fr       */
+>>>>>>> 3cf1ceba698aadd485a7bd9ac54794bd941b6f7d
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +71,7 @@ t_bool	ft_atoibool(char *str, unsigned int *nbr, int i, int sign)
 	}
 	while (str[i])
 	{
-		if (!(str[i] >= '0' && str[i] <= '9') || res >= res * 10 + str[i] - '0')
+		if (!(str[i] >= '0' && str[i] <= '9') || res > res * 10 + str[i] - '0')
 			return (FALSE);
 		res = res * 10 + str[i] - '0';
 		i++;

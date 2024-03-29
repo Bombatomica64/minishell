@@ -9,23 +9,24 @@ bash.supp             ✅️ errori diversi per scelta
 
 builtins              ✅️
 
-extras           $EMPTY $PWD
+extras                ✅️
 
-local.supp            ✅️
+local.supp            ✅️ errori diversi per scelta
 
 os_specific           ✅️ export (senza argomento) ❌️
 
 outfile01             ✅️
 
-pipes            si ferma 
+pipes                 ❌️ si ferma 
 
-redirects        < bo ❌️ si ferma
+redirects        < bo ❌️ si ferma          MRUGGIER: echo ciao <fileinsesistente (no free con NO_EXST) mentre /filenonesistente (free con NO_EXST)
 
 syntax                ✅️ errori diversi per scelta
 
-tester                ❌️ + test assurdi
+tester                ❌️ + test assurdi    GDURANTI CORREGGI ERROR
 
-loop.out              bo?
+----------------------------------------------------------------
+bonus:
 
 wildcards             ❌️
 

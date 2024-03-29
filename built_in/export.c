@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 12:39:27 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/18 16:08:24 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/28 17:31:14 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	ft_export(char ***envp, char **cmd)
 		return (FALSE);
 	j = 0;
 	error = 0;
+	if (ft_matrix_len(cmd) == 1)
+		return (print_export(*envp));
 	if (check_for_non_valid_export(cmd) == 1)
 		return (1);
 	while (cmd[++j])

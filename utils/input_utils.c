@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 11:34:55 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/29 11:41:47 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:53:49 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_bool	file_check(char *tmp, t_data *data)
 			return (ft_error(line, ACCESS, 126, data), ERROR);
 	}
 	return (free(line), TRUE);
- }
+}
 
 t_pipex	comm_error(t_data **data)
 {

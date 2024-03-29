@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fd_inout.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:05:07 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/28 11:00:20 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/29 16:31:10 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	open_type(char *str, t_type type, t_data *data)
 {
 	int	fd;
 
+	if (check_access(str, type, data) != 0)
+		return (-1);
 	fd = -1;
 	if (type == TRUNC)
 		fd = open(str, O_RDWR | O_CREAT | O_TRUNC, 0644);
@@ -23,8 +25,6 @@ int	open_type(char *str, t_type type, t_data *data)
 		fd = open(str, O_RDWR | O_CREAT | O_APPEND, 0644);
 	else if (type == INPUT)
 	{
-		if (check_access(str, type, data) != 0)
-			return (-1);
 		fd = open(str, O_RDONLY);
 	}
 	if (fd < 0)

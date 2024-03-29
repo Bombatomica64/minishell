@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:14:28 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/29 11:55:59 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/29 16:23:05 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ int	ft_error(char *str, t_error error, int errnbr, t_data *data)
 		ft_printf("%s: command not found\n", str);
 	else if (error == DUP)
 		ft_printf("%s failed to duplicate file descriptor\n", str);
-	else if (error == ACCESS)
+	else if (error == ACCESS || error == ACCESS_NOFREE)
 		ft_printf("minishell: %s: Permission denied\n", str);
 	else if (error == OPEN)
 		ft_printf("minishell: %s: No such file or directory\n", str);
-	else if (error == NO_EXST || error == NO_EST)
+	else if (error == NO_EXST || error == NO_EST_NOFREE)
 		ft_printf("minishell: %s: No such file or directory\n", str);
 	else if (error == WRITE)
 		ft_printf("minishell: %s: Permission denied\n", str);

@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/29 11:40:33 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/29 16:23:13 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,10 @@ typedef enum e_error
 	PIPE,
 	FORK,
 	ACCESS,
+	ACCESS_NOFREE,
 	WRITE,
 	NO_EXST,
-	NO_EST,
+	NO_EST_NOFREE,
 	OPEN,
 	BUILTIN,
 	DIR

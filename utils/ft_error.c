@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:14:28 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/29 11:40:51 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:55:59 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,7 @@ int	ft_error(char *str, t_error error, int errnbr, t_data *data)
 	else
 		perror("unknown error");
 	if (error == NO_EXST || error == ACCESS || error == DIR)
-	{
 		free(str);
-		str = NULL;
-	}
 	close(1);
 	if (data && (error == EXECVE || error == DUP))
 		return (free_return(&data, errnbr));

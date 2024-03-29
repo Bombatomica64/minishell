@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/29 12:31:50 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/29 12:33:09 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,13 @@ t_bool	parse_temp_data(t_parser *prs, t_data *data, int *offset)
 	return (TRUE);
 }
 
-t_bool	check_pippe(char **str, t_parser *prs, t_data *data, int *offset)
+t_bool	check_pippe(char **str, t_parser *prs, t_data *data)
 {
 	if (prs->tmp_type != PIPPE)
 		return (FALSE);
 	ft_inputadd_back(&data->input, ft_inputnew
 		((t_parser){"💈️", "[pipe]", PIPPE}));
-	str = ft_skipstring(i_skip_pippe(str, 0), str);
+	*str = ft_skipstring(i_skip_pippe(*str, 0), *str);
 	return (TRUE);
 }
 
@@ -80,7 +80,7 @@ t_bool	parser(char *str, t_data *data, int offset, t_parser prs)
 	while (str)
 	{
 		prs.tmp_type = ft_file_type(str, &offset);
-		if (check_pippe(str, &prs, data, &offset) == TRUE)
+		if (check_pippe(&str, &prs, data) == TRUE)
 			continue ;
 		if (!get_name(str, &prs, data, &offset))
 		{

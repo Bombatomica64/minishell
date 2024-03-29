@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/27 17:26:12 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/29 12:22:51 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 t_type	ft_file_type(char *str, int *offset)
 {
+	*offset = skip_spaces2(str);
 	if (str[*offset] == '<')
 	{
 		(*offset)++;

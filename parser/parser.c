@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/29 11:50:45 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/29 12:29:00 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,34 @@ char	*get_path(t_parser *prs, t_data *data, int *offset)
 	return (ft_strdup(prs->tmp));
 }
 
+t_bool	parse_temp_data(t_parser *prs, t_data *data, int *offset)
+{
+	if (ft_isbuiltin(prs->tmp) == TRUE)
+		prs->tmp_type = BUILT_IN;
+	prs->tmp_path = get_path(prs, data, offset);
+	if (prs->tmp_path == NULL && (prs->tmp_type < HEREDOC))
+		return (FALSE);
+	ft_inputadd_back(&data->input, ft_inputnew(*prs));
+	return (TRUE);
+}
+
+t_bool	check_pippe(t_parser *prs, t_data *data, int *offset)
+{
+	ft_inputadd_back(&data->input, ft_inputnew
+		((t_parser){"💈️", "[pipe]", PIPPE}));
+	prs->tmp = ft_strtrimfree(prs->tmp, " \t\r\n\v\f", offset);
+	if (prs->tmp == NULL)
+		return (FALSE);
+	return (TRUE);
+}
+
 t_bool	parser(char *str, t_data *data, int offset, t_parser prs)
 {
 	while (str)
 	{
-		offset = skip_spaces2(str);
 		prs.tmp_type = ft_file_type(str, &offset);
-		if (prs.tmp_type == PIPPE)
-		{
-			ft_inputadd_back(&data->input, ft_inputnew
-				((t_parser){"💈️", "[pipe]", PIPPE}));
-			str = ft_skipstring(i_skip_pippe(str, 0), str);
+		if (check_pippes(str, &prs, data, &offset) == TRUE)
 			continue ;
-		}
 		if (!get_name(str, &prs, data, &offset))
 		{
 			str = ft_reparsing(str, offset, data, (t_quote){FALSE, 0});
@@ -80,19 +95,16 @@ t_bool	parser(char *str, t_data *data, int offset, t_parser prs)
 			str = ft_skipstring(offset, str);
 			continue ;
 		}
-		if (ft_isbuiltin(prs.tmp) == TRUE)
-			prs.tmp_type = BUILT_IN;
-		prs.tmp_path = get_path(&prs, data, &offset);
-		if (prs.tmp_path == NULL && (prs.tmp_type < HEREDOC))
+		if (!handle_tmp(&prs, data, &offset))
 			return (free(prs.tmp), free(str), FALSE);
-		ft_inputadd_back(&data->input, ft_inputnew(prs));
 		str = cut_pars_str(str, prs.tmp);
 		free_parser(&prs);
 	}
 	ft_inputadd_back(&data->input, ft_inputnew((t_parser){NULL, NULL, 69}));
-	print_list(data->input);
 	return (free(str), TRUE);
 }
+
+// print_list(data->input);
 // Path: srcs/parser.c
 //ptr[32, | , 3 ,4]
 	// if (tmp_type == COMMAND)

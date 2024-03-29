@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 10:05:27 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/25 10:34:34 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/29 12:08:52 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,27 +68,26 @@ t_bool	get_inout(int *off, char *str, t_parser *prs, t_data *data)
 
 char	*ft_reparsing(char *str, int i, t_data *data, t_quote squote)
 {
-	char	*tmp;
-	char	*dst;
-	int		j;
-	int		k;
+	char		*tmp;
+	char		*dst;
+	t_curs		c;
 
 	dst = ft_calloc(ft_strlen(str) + 1, sizeof(char));
 	if (!dst)
 		return (free(str), ft_inputclear(&data->input), NULL);
-	k = i;
-	j = -1;
-	while (k > 0 && (ft_islimiter(str[k]) == FALSE || squote.open == TRUE))
-		quote_start(&squote.open, str[k--], &squote.type);
-	if (k > 0 && ft_islimiter(str[k - 1]) == TRUE)
-		k--;
-	while (str[++j] && j < k)
-		dst[j] = str[j];
-	tmp = ft_strncpy(str, k, i);
+	c.k = i;
+	c.j = -1;
+	while (c.k > 0 && (ft_islimiter(str[c.k]) == FALSE || squote.open == TRUE))
+		quote_start(&squote.open, str[c.k--], &squote.type);
+	if (c.k > 0 && ft_islimiter(str[c.k - 1]) == TRUE)
+		c.k--;
+	while (str[++c.j] && c.j < c.k)
+		dst[c.j] = str[c.j];
+	tmp = ft_strncpy(str, c.k, i);
 	while (str[i] && (ft_islimiter(str[i]) == FALSE || squote.open == TRUE))
 	{
 		quote_start(&squote.open, str[i], &squote.type);
-		dst[j++] = str[i++];
+		dst[c.j++] = str[i++];
 	}
 	dst = ft_strjoin_2free(ft_input2str(&data->input),
 			ft_newstrjoin(ft_strjoin_2free(dst, tmp), &str[i]));
@@ -115,7 +114,7 @@ char	*ft_reparsing(char *str, int i, t_data *data, t_quote squote)
 // 	{
 // 		quote_start(&squote.open, str[j], &squote.type);
 // 		if (ft_islimiter(str[j]) == TRUE && squote.open == FALSE)
-// 			break ;
+// 			breac.k ;
 // 		j++;
 // 	}
 // 	args = ft_substr(str, i, j);

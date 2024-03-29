@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/29 11:28:26 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:50:45 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,8 @@ t_bool	parser(char *str, t_data *data, int offset, t_parser prs)
 	// return (tmp_path);
 	// {
 	// 	quote_start(&quote->open, str[i], &quote->type);
-	// 	while (str[i] && ft_isspace(str[i]) == FALSE && ft_islimiter(str[i]) == FALSE && quote->open == FALSE)
+	// 	while (str[i] && ft_isspace(str[i]) == FALSE &&
+	//		ft_islimiter(str[i]) == FALSE && quote->open == FALSE)
 	// 	{
 	// 		tmp = join_char(tmp, str[i]);
 	// 		i++;

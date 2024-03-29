@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 17:30:20 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/26 10:09:24 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:49:11 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,7 @@ t_bool	ft_change_env(char **str, char *oldpwd, t_data *data)
 	free(mtx[1]);
 	free(oldpwd);
 	free(*str);
-	//data->pwd = get_env_value(data->envp, "PWD");
 	i = find_in_env(data->envp, "PWD");
-	// free(data->envp[i]);
-	// data->envp[i] = ft_strjoin("PWD=", *str);
 	free(data->pwd);
 	data->pwd = ft_strdup(data->envp[i] + 4);
 	return (TRUE);

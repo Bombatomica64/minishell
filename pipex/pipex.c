@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/28 10:58:08 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:52:40 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,6 @@ int	pipex(t_pipex *comm, t_data *data)
 		waitpid(pid, &status, 0);
 		if (data->in_pipe == TRUE)
 			close_fds(comm);
-		// if (data->in_pipe == TRUE && data->cmd_nbr <= data->pipe_nbr)
-		// 	close(data->fd[data->cmd_nbr][1]);
-		// if (data->cmd_nbr > 0 && data->cmd_nbr <= data->pipe_nbr)
-		// 	close(data->fd[data->cmd_nbr - 1][0]);
 		if (WIFEXITED(status))
 			return (WEXITSTATUS(status));
 	}

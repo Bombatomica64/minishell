@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 16:08:59 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/29 11:05:52 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:28:19 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ void	print_intmatrix(int **matrix, int rows, int cols)
 t_bool	ft_atoibool(char *str, unsigned int *nbr, int i, int sign)
 {
 	long long	res;
-
+	
+	/*if (str[i] == '0')  TODO: perche' mandi FALSE se il numero e' da 0 a 9? exit 1 deve chiudere con 1
+		return (TRUE);*/
 	if (strcmp(str, "-9223372036854775808") == 0)
 	{
 		*nbr = (unsigned int)LLONG_MIN;

@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/28 17:53:18 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:48:38 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ static void	set_command(t_data **data, t_pipex *comm, t_bool *seen)
 	else
 		comm->cmd = ft_splitarg((*data)->input->node);
 	comm->path = (*data)->input->path;
-	// if ((*data)->in_pipe == TRUE)
-	// 	do_pipes(data, comm);
 }
 
 t_pipex	input_exec(t_data **data)

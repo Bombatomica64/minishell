@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/02 12:58:06 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/04/02 15:32:56 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,7 +235,7 @@ int		input_nbr_of_cmd(t_input *input);
  * @param end, end index of the string
  * @return a copy of the string without quotes
 */
-char	*ft_strncpy_noquote(char *str, int start, int end);
+char	*ft_strncpy_noquote(char *str, int start, int end, t_quote qte);
 
 // string functions
 

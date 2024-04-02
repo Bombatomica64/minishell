@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:32:21 by gduranti          #+#    #+#             */
-/*   Updated: 2024/04/02 12:53:21 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/04/02 15:34:15 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	heredoc_creat(char *limiter, t_data *data, pid_t pid, t_pipex *comm)
 	char	*str;
 	int		fd[2];
 
-	limiter = ft_strncpy_noquote(limiter, 0, ft_strlen(limiter));
-	printf("limiter: %s\n", limiter);
+	limiter = ft_strncpy_noquote(limiter, 0, ft_strlen(limiter),
+			(t_quote){0, 0});
 	if (pipe(fd) < 0)
 		ft_error("heredoc_creat", PIPE, 132, NULL);
 	pid = fork();

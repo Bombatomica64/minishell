@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:32:21 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/29 12:14:38 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/04/02 12:53:21 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parser/parser.h"
+#include "minishell.h"
 
 static void	ft_putendl_fd_free(char *s, int fd)
 {
@@ -26,6 +26,8 @@ int	heredoc_creat(char *limiter, t_data *data, pid_t pid, t_pipex *comm)
 	char	*str;
 	int		fd[2];
 
+	limiter = ft_strncpy_noquote(limiter, 0, ft_strlen(limiter));
+	printf("limiter: %s\n", limiter);
 	if (pipe(fd) < 0)
 		ft_error("heredoc_creat", PIPE, 132, NULL);
 	pid = fork();

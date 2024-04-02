@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:48:37 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/27 17:32:16 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/02 12:42:09 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int			ft_strcmp(const char *s1, const char *s2);
 
 //str_utils.c
 
-char		*ft_strncpy_noquote(char *str, int start, int end);
+// char		*ft_strncpy_noquote(char *str, int start, int end);
 char		*ft_strjoin_2free(char *old_str, char *buf);
 char		*ft_strjoin_2(char *old_str, char *buf);
 char		*ft_strndup(char *str, int i);

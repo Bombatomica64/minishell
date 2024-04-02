@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/29 16:23:13 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/04/02 12:58:06 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -345,15 +345,6 @@ t_bool	ft_isquote(char c);
 t_bool	ft_isbuiltin(char *str);
 
 /**
- * @brief adds the heredoc functionality to the program
- * @param limiter string that will be used as a limiter
- * @param data data envp to be passed to the function
- * @param pid pid to be passed to the function
- * @return fd with the file descriptor of the pipe fd[0]
-*/
-int		heredoc_creat(char *limiter, t_data *data, pid_t pid, t_pipex *comm);
-
-/**
  * Removes leading and trailing characters specified in
  * #include "str_utils2.h"
 the 'set' parameter from the string 's1'.
@@ -396,34 +387,6 @@ int		find_in_env(char **envp, char *to_find);
  * @return a copy of the string in the matrix or NULL if it isn't found
 */
 char	*get_env_value(char **envp, char *to_find);
-
-// mtx functions
-
-/**
- * @brief Function that returns the number of arguments in a command string
- * @param str string to be checked
- * @param i index of the string
- * @param nbr_args number of arguments
- * @return the number of arguments in the string
-*/
-int		ft_arg_count(char *str, int i, int nbr_args);
-
-/**
- * @brief Function that allocates a new string with the argument
- * @param str string to be checked
- * @param c character used as a check for quotes
- * @param i index of the new string
- * @param j index of the old string
- * @return a new string with the length of the argument
-*/
-char	*ft_rowfill(char *str, int *j, int i);
-
-/**
- * @brief Function that creates the matrix of a command and arguments
- * @param str string to be splitted
- * @return the matrix with command and arguments
-*/
-char	**ft_splitarg(char *str);
 
 /**
  * @brief Function that prints a matrix
@@ -488,5 +451,10 @@ char	*ft_input2str(t_input **input);
 t_bool	file_check(char *line, t_data *data);
 t_pipex	comm_error(t_data **data);
 char	*ft_rowgen(char *str);
+
+//quotes
+void	quote_start(t_bool *quote, char c, char *quote_type);
+void	quote_waiting(char **tmp, t_bool *quote, char *quote_type, t_type type);
+t_bool	check_quote(char *tmp, char quote_type, t_type type, int index);
 
 #endif

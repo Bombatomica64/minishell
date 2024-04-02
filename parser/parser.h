@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:29:56 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/29 12:10:00 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/02 12:46:38 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data);
 void	expand_list(t_data *data);
 
 //quotes
-void	quote_start(t_bool *quote, char c, char *quote_type);
-void	quote_waiting(char **tmp, t_bool *quote, char *quote_type, t_type type);
-void	quote_display(char *quote_type);
-t_bool	check_quote(char *tmp, char quote_type, t_type type, int index);
+// void	quote_start(t_bool *quote, char c, char *quote_type);
+// void	quote_waiting(char **tmp, t_bool *quote, char *quote_type, t_type type);
+// void	quote_display(char *quote_type);
+// t_bool	check_quote(char *tmp, char quote_type, t_type type, int index);
 
 #endif

@@ -3,14 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 17:30:19 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/28 17:17:01 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/04/02 12:50:10 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
+
+char	*ft_strncpy_noquote(char *str, int start, int end)
+{
+	char	*dst;
+	int		i;
+	t_quote	squote;
+
+	squote = (t_quote){FALSE, 0};
+	if (!str)
+		return (NULL);
+	dst = malloc(sizeof(char) * (end - start + 1));
+	if (!dst)
+		return (NULL);
+	i = 0;
+	while (str[start])
+	{
+		if (ft_isquote(str[start]))
+		{
+			quote_start(&squote.open, str[start], &squote.type);
+			while (ft_isquote(str[start])
+				&& ((squote.open && str[start] == squote.type) || !squote.open))
+				quote_start(&squote.open, str[++(start)], &squote.type);
+		}
+		if (!str[start] || (ft_isspace(str[start]) == TRUE && squote.open == FALSE))
+			break ;
+		dst[i++] = str[(start)++];
+	}
+	// while (start < end)
+	// {
+	// 	quote_start(&squote.open, str[start], &squote.type);
+	// 	dst[i] = str[start];
+	// 	i++;
+	// 	start++;
+	// }
+	dst[i] = '\0';
+	return (dst);
+}
 
 t_bool	is_double_operator(char *str, int i, t_quote squote)
 {

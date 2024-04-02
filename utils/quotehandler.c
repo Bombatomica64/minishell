@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   quotehandler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:27:46 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/14 17:39:59 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/04/02 12:46:02 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "utils.h"
 
 void	quote_start(t_bool *quote, char c, char *quote_type)
 {

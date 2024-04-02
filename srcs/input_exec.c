@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/04/02 10:17:06 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/02 10:19:50 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,3 +106,4 @@ t_pipex	input_exec(t_data **data)
 	}
 	return (comm);
 }
+//we :D

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/29 18:28:14 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/02 10:18:00 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ void	ft_do_it(t_data *data, char *terminal_input)
 {
 	t_pipex	comm;
 
-	if (parser(expand_name(terminal_input, data),
-			data, 0, (t_parser){NULL, NULL, 69}) == FALSE)
-		return ;
+	parser(expand_name(terminal_input, data),
+		data, 0, (t_parser){NULL, NULL, 69});
 	while (data->input && data->input->type != FINISH)
 	{
 		comm = input_exec(&data);
@@ -30,7 +29,7 @@ void	ft_do_it(t_data *data, char *terminal_input)
 		else
 		{
 			close_fds(&comm);
-			break ;
+			data->counter++;
 		}
 		if (data->in_pipe == FALSE)
 			close_fds(&comm);

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:08:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/27 11:14:39 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/02 10:12:01 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ void	non_pipe_close(t_data *data, t_pipex *comm)
 
 void	io_redir(t_pipex *comm, t_data *data)
 {
-	if (comm->fd_in != STDIN_FILENO)
+	if (comm->fd_in != STDIN_FILENO && comm->fd_in >= 0)
 	{
 		if (dup2(comm->fd_in, STDIN_FILENO) == -1)
 			ft_error("child_stdin", DUP, 13, data);
 	}
-	if (comm->fd_out != STDOUT_FILENO)
+	if (comm->fd_out != STDOUT_FILENO && comm->fd_out >= 0)
 	{
 		if (dup2(comm->fd_out, STDOUT_FILENO) == -1)
 			ft_error("child", DUP, 13, data);

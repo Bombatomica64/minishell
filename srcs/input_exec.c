@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/29 11:48:38 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/04/02 10:17:06 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ static int	set_inout(t_pipex *comm, t_input *input, t_data *data)
 			close(comm->fd_out);
 		comm->fd_out = open_type(input->path, input->type, data);
 	}
-	if (comm->fd_in == -1 || comm->fd_out == -1)
-		return (-1);
 	return (0);
 }
 
@@ -91,8 +89,7 @@ t_pipex	input_exec(t_data **data)
 	comm = basic_set(data);
 	while ((*data)->input && (*data)->input->type != FINISH)
 	{
-		if (set_inout(&comm, (*data)->input, *data) == -1)
-			return (free_matrix(&comm.cmd), comm.cmd = NULL, comm);
+		set_inout(&comm, (*data)->input, *data);
 		if (ft_iscmd((*data)->input, *data) == ERROR)
 			return (comm_error(data));
 		else if (ft_iscmd((*data)->input, *data) == TRUE)

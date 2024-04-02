@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
+#    By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/03/27 17:31:24 by lmicheli         ###   ########.fr        #
+#    Updated: 2024/04/02 12:55:54 by gduranti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,14 +28,12 @@ UTILS = utils/ft_error.c \
 	utils/close_funct.c \
 	utils/list_funct.c \
 	utils/matrix_utils.c \
-	utils/arg_to_mtx.c \
-	utils/neo_argtomtx.c \
-	utils/heredoc.c \
 	utils/list_utils.c \
 	utils/space_utils.c \
 	utils/math_utils.c \
 	utils/file_check.c \
 	utils/input_utils.c \
+	utils/quotehandler.c \
 	utils/utils.c
 
 LEXER = lexer/lexer.c \
@@ -45,7 +43,6 @@ LEXER = lexer/lexer.c \
 
 PARSER = parser/parser.c \
 	parser/parser_utils.c \
-	parser/quotehandler.c \
 	parser/expand_variables.c \
 	parser/get_hicat.c
 
@@ -53,6 +50,9 @@ SRCS = srcs/main.c \
 	srcs/input_init.c \
 	srcs/tty_run.c \
 	srcs/fd_inout.c \
+	srcs/heredoc.c \
+	srcs/arg_to_mtx.c \
+	srcs/neo_argtomtx.c \
 	srcs/input_exec.c
 
 BONUS = bonus/input_bonus.c

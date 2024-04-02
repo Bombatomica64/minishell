@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   neo_argtomtx.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 11:58:00 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/28 17:24:35 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/04/02 12:58:37 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parser/parser.h"
+#include "minishell.h"
 
 char	*ft_noquote(char *str, char c)
 {

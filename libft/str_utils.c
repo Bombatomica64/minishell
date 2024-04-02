@@ -3,37 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   str_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:08:47 by gduranti          #+#    #+#             */
-/*   Updated: 2024/03/27 17:18:18 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/02 12:42:02 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy_noquote(char *str, int start, int end)
-{
-	char	*dst;
-	int		i;
+// char	*ft_strncpy_noquote(char *str, int start, int end)
+// {
+// 	char	*dst;
+// 	int		i;
 
-	if (!str)
-		return (NULL);
-	dst = (char *)malloc(sizeof(char) * (end - start + 1));
-	if (!dst)
-		return (NULL);
-	i = 0;
-	while (start < end)
-	{
-		if (str[start] == '\'' || str[start] == '\"')
-			start++;
-		dst[i] = str[start];
-		i++;
-		start++;
-	}
-	dst[i] = '\0';
-	return (dst);
-}
+// 	if (!str)
+// 		return (NULL);
+// 	dst = (char *)malloc(sizeof(char) * (end - start + 1));
+// 	if (!dst)
+// 		return (NULL);
+// 	i = 0;
+// 	while (start < end)
+// 	{
+// 		if (str[start] == '\'' || str[start] == '\"')
+// 			start++;
+// 		dst[i] = str[start];
+// 		i++;
+// 		start++;
+// 	}
+// 	dst[i] = '\0';
+// 	return (dst);
+// }
 
 char	*ft_strjoin_2free(char *old_str, char *buf)
 {

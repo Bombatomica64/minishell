@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 17:30:19 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/02 15:32:16 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/04/02 15:36:10 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ char	*ft_strncpy_noquote(char *str, int sta, int end, t_quote qte)
 	char	*dst;
 	int		i;
 
-	if (!str || sta >= end || sta >= ft_strlen(str)
-		|| end > ft_strlen(str) || sta < 0 || end <= 0)
+	if (!str || sta >= end || sta >= (int)ft_strlen(str)
+		|| end > (int)ft_strlen(str) || sta < 0 || end <= 0)
 		return (NULL);
 	dst = ft_calloc((end - sta + 1), sizeof(char));
 	if (!dst)
@@ -28,10 +28,10 @@ char	*ft_strncpy_noquote(char *str, int sta, int end, t_quote qte)
 	{
 		if (ft_isquote(str[sta]))
 		{
-			quote_sta(&qte.open, str[sta], &qte.type);
+			quote_start(&qte.open, str[sta], &qte.type);
 			while (ft_isquote(str[sta])
 				&& ((qte.open && str[sta] == qte.type) || !qte.open))
-				quote_sta(&qte.open, str[++(sta)], &qte.type);
+				quote_start(&qte.open, str[++(sta)], &qte.type);
 		}
 		if (!str[sta] || (ft_isspace(str[sta]) == TRUE && qte.open == FALSE))
 			break ;

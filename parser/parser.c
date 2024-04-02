@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/29 12:33:09 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/02 09:55:40 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ t_bool	parse_temp_data(t_parser *prs, t_data *data, int *offset)
 	if (ft_isbuiltin(prs->tmp) == TRUE)
 		prs->tmp_type = BUILT_IN;
 	prs->tmp_path = get_path(prs, data, offset);
-	if (prs->tmp_path == NULL && (prs->tmp_type < HEREDOC))
-		return (FALSE);
+	// if (prs->tmp_path == NULL && (prs->tmp_type < HEREDOC))
+	// 	return (FALSE);
 	ft_inputadd_back(&data->input, ft_inputnew(*prs));
 	return (TRUE);
 }

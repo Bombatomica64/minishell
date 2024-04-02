@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/03/29 11:52:40 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/04/02 10:15:08 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void	child(t_pipex *comm, t_data *data)
 		&& data->cmd_nbr > 0 && data->cmd_nbr < data->pipe_nbr)
 		close(data->fd[data->cmd_nbr][0]);
 	io_redir(comm, data);
-	if (ft_isbuiltin(comm->cmd[0]) == TRUE)
-		builtin_child(comm, data);
+	if (comm->fd_in < 0 || comm->fd_out < 0)
+		return (free_matrix(&comm->cmd), free_close(&data, 1));
 	execve(comm->path, comm->cmd, data->envp);
 	free_matrix(&comm->cmd);
 	free_close(&data, 127);

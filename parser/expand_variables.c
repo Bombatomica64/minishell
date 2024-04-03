@@ -6,40 +6,11 @@
 /*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:40:43 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/04/03 09:40:13 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/04/03 10:22:56 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-
-char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
-{
-	char	*tofind;
-
-	tofind = NULL;
-	if (tmp[*i + 1] == '\0')
-		return (join_char(str, tmp[*i]));
-	if (tmp[*i + 1] == '$' || tmp[*i + 1] == '!')
-		return ((*i)++, str);
-	else if (ft_isquote(tmp[*i + 1]))
-		return (str);
-	else if (tmp[((*i)++) + 1] == '?')
-		return (ft_strjoin_2free(str, ft_itoa(data->error_codes)));
-	else if (!ft_isalnum(tmp[*i + 1]))
-		return (join_char(str, tmp[*i]));
-	else
-	{
-		while (ft_isalpha(tmp[1])
-			&& (ft_isalnum(tmp[(*i)]) || tmp[*i] == '_'))
-			tofind = join_char(tofind, tmp[(*i)++]);
-		if(!tofind)
-			return (join_char(str, '$'));
-		tofind = join_char(tofind, '=');
-		if (find_in_env(data->envp, tofind) != -1)
-			str = ft_strjoin_2free(str, get_env_value(data->envp, tofind));
-	}
-	return (free(tofind), (*i)--, str);
-}
 
 char	*replace_str(char *original, char *to_repl, char *subs, int start)
 {
@@ -54,10 +25,42 @@ char	*replace_str(char *original, char *to_repl, char *subs, int start)
 	return (free(to_repl), free(original), new);
 }
 
+char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
+{
+	char		*tofind;
+	size_t		j;
+	
+	j = *i;
+	tofind = NULL;
+	if (tmp[*i + 1] == '\0')
+		return (join_char(str, tmp[*i]));
+	if (tmp[*i + 1] == '$' || tmp[*i + 1] == '!')
+		return ((*i)++, str);
+	else if (ft_isquote(tmp[*i + 1]))
+		return (str);
+	else if (tmp[((*i)++) + 1] == '?')
+		return (ft_strjoin_2free(str, ft_itoa(data->error_codes)));
+	else if (!ft_isalnum(tmp[*i + 1]))
+		return (join_char(str, tmp[*i]));
+	else
+	{
+		while (ft_isalpha(tmp[j + 1])
+			&& (ft_isalnum(tmp[(*i)]) || tmp[*i] == '_'))
+			tofind = join_char(tofind, tmp[(*i)++]);
+		tofind = join_char(tofind, '=');
+		if (find_in_env(data->envp, tofind) != -1)
+			str = ft_strjoin_2free(str, get_env_value(data->envp, tofind));
+	}
+	return (free(tofind), (*i)--, str);
+}
+
+
 char	*expand_dollar2(char *str, char *tmp, size_t *i, t_data *data)
 {
 	char	*tofind;
+	size_t	j;
 
+	j = *i;
 	tofind = NULL;
 	if (tmp[*i + 1] == '\0')
 		return (join_char(str, tmp[*i]));
@@ -69,7 +72,7 @@ char	*expand_dollar2(char *str, char *tmp, size_t *i, t_data *data)
 		return (join_char(str, tmp[--(*i)]));
 	else
 	{
-		while (ft_isalpha(tmp[1])
+		while (ft_isalpha(tmp[j + 1])
 			&& (ft_isalnum(tmp[(*i)]) || tmp[*i] == '_'))
 			tofind = join_char(tofind, tmp[(*i)++]);
 		if(!tofind)
@@ -120,6 +123,7 @@ char	*expand_name(char *tmp, t_data *data)
 			str = join_char(str, tmp[i]);
 		i++;
 	}
+	str = ft_strtrimfree(str, "\t\n\v\f\r ", NULL);
 	free(tmp);
 	return (str);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:45:24 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/27 17:18:26 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/03 17:22:24 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ static char	*ft_result(char *s1, size_t start, size_t end, int *trimmed)
 
 	i = 0;
 	if (!s1[start])
+	{
+		free(s1);
 		return (NULL);
+	}
 	dst = ft_calloc((end - start + 2), sizeof(char));
 	if (dst == NULL)
 		return (NULL);

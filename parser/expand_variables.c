@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_variables.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:40:43 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/03/28 16:49:03 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/03 09:40:13 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
 		while (ft_isalpha(tmp[1])
 			&& (ft_isalnum(tmp[(*i)]) || tmp[*i] == '_'))
 			tofind = join_char(tofind, tmp[(*i)++]);
+		if(!tofind)
+			return (join_char(str, '$'));
 		tofind = join_char(tofind, '=');
 		if (find_in_env(data->envp, tofind) != -1)
 			str = ft_strjoin_2free(str, get_env_value(data->envp, tofind));
@@ -70,6 +72,8 @@ char	*expand_dollar2(char *str, char *tmp, size_t *i, t_data *data)
 		while (ft_isalpha(tmp[1])
 			&& (ft_isalnum(tmp[(*i)]) || tmp[*i] == '_'))
 			tofind = join_char(tofind, tmp[(*i)++]);
+		if(!tofind)
+			return (join_char(str, '$'));
 		tofind = join_char(tofind, '=');
 		if (find_in_env(data->envp, tofind) != -1)
 			str = ft_strjoin_2free(str, get_env_value(data->envp, tofind));

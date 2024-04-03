@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 17:30:19 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/02 15:36:10 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/04/03 11:21:12 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,19 @@ t_bool	is_double_operator(char *str, int i, t_quote squote)
 
 t_bool	ft_iscmd(t_input *input, t_data *data)
 {
+	t_bool	ret;
+	char	*tmp;
+
 	if (!input)
 		return (ERROR);
 	if (input->type == BUILT_IN || input->type == COMMAND)
-		return (file_check(input->node, data));
+	{
+		tmp = ft_strncpy_noquote(input->node,
+				0, ft_strlen(input->node), (t_quote){FALSE, 0});
+		ret = file_check(tmp, data);
+		free(tmp);
+		return (ret);
+	}
 	return (FALSE);
 }
 

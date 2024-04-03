@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:29:56 by gduranti          #+#    #+#             */
-/*   Updated: 2024/04/02 12:46:38 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/04/03 16:35:53 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int		count_limiter(char *str, t_quote squote);
 t_bool	is_double_operator(char *str, int i, t_quote squote);
 t_bool	quote_error(char *tmp, t_bool *quote);
 char	*ft_reparsing(char *str, int i, t_data *data, t_quote squote);
+int		get_cmd_name(char *str, int *offset, t_quote squote);
+char	*remove_quotes(char *str, int *offset);
 
 //expand_variables_utils
 char	*expand_name(char *str, t_data *data);

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/03 16:21:48 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/03 16:38:16 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,18 @@ char	*get_path(t_parser *prs, t_data *data, int *offset)
 
 t_bool	parse_temp_data(t_parser *prs, t_data *data, int *offset)
 {
+	char	*tmp;
+
 	if (prs->tmp_type == COMMAND)
 		prs->tmp = remove_quotes(prs->tmp, offset);
 	else
-		prs->tmp = ft_strncpy_noquote(prs->tmp,
-				0, ft_strlen(prs->tmp), (t_quote){FALSE, 0});
+	{
+		tmp = ft_strdup(prs->tmp);
+		free(prs->tmp);
+		prs->tmp = ft_strncpy_noquote(tmp,
+				0, ft_strlen(tmp), (t_quote){FALSE, 0});
+		free(tmp);
+	}
 	if (ft_isbuiltin(prs->tmp) == TRUE)
 		prs->tmp_type = BUILT_IN;
 	prs->tmp_path = get_path(prs, data, offset);

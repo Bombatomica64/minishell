@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:40:43 by mruggier          #+#    #+#             */
-/*   Updated: 2024/04/03 18:44:41 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:48:44 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data)
 		return (str);
 	else if (tmp[((*i)++) + 1] == '?')
 		return (ft_strjoin_2free(str, ft_itoa(data->error_codes)));
-	// else if (!ft_isalnum(tmp[*i + 1]))
-	// 	return (join_char(str, tmp[--(*i)]));
 	else
 	{
 		while (ft_isalpha(tmp[j + 1])
@@ -67,8 +65,6 @@ char	*expand_dollar2(char *str, char *tmp, size_t *i, t_data *data)
 		return ((*i)++, str);
 	else if (tmp[((*i)++) + 1] == '?')
 		return (ft_strjoin_2free(str, ft_itoa(data->error_codes)));
-	// else if (!ft_isalnum(tmp[*i + 1]))
-	// 	return (join_char(str, tmp[--(*i)]));
 	else
 	{
 		while (ft_isalpha(tmp[j + 1])

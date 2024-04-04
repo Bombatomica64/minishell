@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/03 16:38:16 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/04 11:20:13 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,16 +105,16 @@ t_bool	parser(char *str, t_data *data, int offset, t_parser prs)
 			str = ft_skipstring(offset, str);
 			continue ;
 		}
+		str = cut_pars_str(str, prs.tmp);
 		if (!parse_temp_data(&prs, data, &offset))
 			return (free(prs.tmp), free(str), FALSE);
-		str = cut_pars_str(str, prs.tmp);
 		free_parser(&prs);
 	}
 	ft_inputadd_back(&data->input, ft_inputnew((t_parser){NULL, NULL, 69}));
 	return (free(str), TRUE);
 }
 
-// print_list(data->input);
+	// print_list(data->input);
 // Path: srcs/parser.c
 //ptr[32, | , 3 ,4]
 	// if (tmp_type == COMMAND)

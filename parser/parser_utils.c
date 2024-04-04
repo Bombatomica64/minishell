@@ -3,14 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/29 12:22:51 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/04 11:21:13 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+
+char	*remove_quotes(char *str, int *offset)
+{
+	int		i;
+	char	*tmp;
+	char	*tmp2;
+	char	*new;
+
+	i = get_cmd_name(str, offset, (t_quote){FALSE, 0});
+	tmp = ft_substr(str, 0, i);
+	tmp2 = ft_strncpy_noquote(tmp, 0, ft_strlen(tmp), (t_quote){FALSE, 0});
+	free(tmp);
+	new = ft_strdup(str + i);
+	free(str);
+	str = ft_strjoin_2free(tmp2, new);
+	return (str);
+}
+
+int	get_cmd_name(char *str, int *offset, t_quote squote)
+{
+	int	i;
+
+	i = *offset;
+	while (str[i])
+	{
+		quote_start(&squote.open, str[i], &squote.type);
+		if (squote.open == FALSE && ft_isspace(str[i]) == TRUE)
+			break ;
+		i++;
+	}
+	*offset = i;
+	return (i);
+}
 
 t_type	ft_file_type(char *str, int *offset)
 {

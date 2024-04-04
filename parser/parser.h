@@ -33,6 +33,8 @@ int		count_limiter(char *str, t_quote squote);
 t_bool	is_double_operator(char *str, int i, t_quote squote);
 t_bool	quote_error(char *tmp, t_bool *quote);
 char	*ft_reparsing(char *str, int i, t_data *data, t_quote squote);
+int		get_cmd_name(char *str, int *offset, t_quote squote);
+char	*remove_quotes(char *str, int *offset);
 
 //expand_variables_utils
 char	*expand_name(char *str, t_data *data);

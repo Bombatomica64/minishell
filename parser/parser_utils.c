@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by mruggier          #+#    #+#             */
-/*   Updated: 2024/04/04 11:44:41 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:58:04 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	get_cmd_name(char *str, int *offset, t_quote squote)
 {
 	int	i;
 
-	i = *offset;
+	i = 0;
 	while (str[i])
 	{
 		quote_start(&squote.open, str[i], &squote.type);

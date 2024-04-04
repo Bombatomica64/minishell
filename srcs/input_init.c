@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:28:06 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/03 18:46:17 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:14:04 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ void	ft_action(int sig)
 {
 	if (sig == SIGINT)
 	{
-		printf("\n\033[0;95;1mミニシェル\033[0;96m> \033[0m");
+        printf("\n");
+		rl_on_new_line();
+        rl_replace_line("", 0);
+    	rl_redisplay();
 	}
 }
 

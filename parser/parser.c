@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/04 11:45:32 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/04/04 17:03:14 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,9 @@ t_bool	get_name(char *str, t_parser *prs, t_data *data, int *off)
 char	*get_path(t_parser *prs, t_data *data, int *offset)
 {
 	char	*tmp_path;
-	t_quote	squote;
 	int		i;
 
 	i = 0;
-	squote = (t_quote){FALSE, 0};
 	if (prs->tmp == NULL)
 		return (NULL);
 	tmp_path = NULL;
@@ -40,7 +38,6 @@ char	*get_path(t_parser *prs, t_data *data, int *offset)
 	{
 		while (prs->tmp[i] != 32 && prs->tmp[i] != '\0')
 		{
-			quote_start(&squote.open, prs->tmp[i], &squote.type);
 			tmp_path = join_char(tmp_path, prs->tmp[i]);
 			i++;
 		}
@@ -70,7 +67,17 @@ t_bool	parse_temp_data(t_parser *prs, t_data *data, int *offset)
 	}
 	if (ft_isbuiltin(prs->tmp) == TRUE)
 		prs->tmp_type = BUILT_IN;
+	if (prs->tmp && prs->tmp[0] == ' ')
+	{
+		ft_error(prs->tmp, NO_PATH, 127, data);
+		return (TRUE);
+	}
 	prs->tmp_path = get_path(prs, data, offset);
+	if (prs->tmp_path == NULL)
+	{
+		ft_error(prs->tmp, NO_PATH, 127, data);
+		return (TRUE);
+	}
 	ft_inputadd_back(&data->input, ft_inputnew(*prs));
 	return (TRUE);
 }
@@ -106,7 +113,7 @@ t_bool	parser(char *str, t_data *data, int offset, t_parser prs)
 			continue ;
 		}
 		str = cut_pars_str(str, prs.tmp);
-		if (!parse_temp_data(&prs, data, &offset))
+		if (parse_temp_data(&prs, data, &offset) == FALSE)
 			return (free(prs.tmp), free(str), FALSE);
 		free_parser(&prs);
 	}

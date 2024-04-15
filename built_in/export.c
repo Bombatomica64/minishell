@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 12:39:27 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/28 17:31:14 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/15 10:33:45 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	ft_export(char ***envp, char **cmd)
 		tmp = ft_strndup(cmd[j], i);
 		error += add_or_update(envp, tmp, cmd, j);
 		free(tmp);
-	}
+	}//todo sort export""
 	return (error);
 }
 

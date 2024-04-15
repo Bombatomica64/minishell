@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/03 18:47:07 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/04/15 10:46:25 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ typedef enum e_type
 	HEREDOC,// << limiter, terminal input until limiter
 	BUILT_IN,//command to be executed without execve
 	PIPPE,// | pipe
-	FINISH = 69// end of the list
+	FINISH = 69,// end of the list
+	USELESS
 }	t_type;
 
 typedef struct s_parser

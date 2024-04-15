@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by mruggier          #+#    #+#             */
-/*   Updated: 2024/04/04 16:55:37 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/04/15 11:06:32 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_do_it(t_data *data, char *terminal_input)
 		data, 0, (t_parser){NULL, NULL, 69});
 	while (data->input && data->input->type != FINISH)
 	{
+		print_list(data->input);
 		comm = input_exec(&data);
 		if (comm.cmd)
 		{

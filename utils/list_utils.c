@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:47:54 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/27 18:00:50 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/04/15 11:04:11 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ char	*ft_input2str(t_input **input)
 	str = NULL;
 	while (tmp)
 	{
+		if (tmp->type == INPUT)
+			str = join_char(str, '<');
+		else if (tmp->type == APPEND)
+			str = ft_newstrjoin(str, ">>");
+		else if (tmp->type == TRUNC)
+			str = join_char(str, '>');
+		else if (tmp->type == HEREDOC)
+			str = ft_newstrjoin(str, "<<");
 		str = ft_newstrjoin(str, tmp->node);
 		str = join_char(str, ' ');
 		tmp = tmp->next;

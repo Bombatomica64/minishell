@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:11:17 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/04 17:03:14 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/04/15 11:08:35 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,16 +68,10 @@ t_bool	parse_temp_data(t_parser *prs, t_data *data, int *offset)
 	if (ft_isbuiltin(prs->tmp) == TRUE)
 		prs->tmp_type = BUILT_IN;
 	if (prs->tmp && prs->tmp[0] == ' ')
-	{
 		ft_error(prs->tmp, NO_PATH, 127, data);
-		return (TRUE);
-	}
 	prs->tmp_path = get_path(prs, data, offset);
 	if (prs->tmp_path == NULL)
-	{
 		ft_error(prs->tmp, NO_PATH, 127, data);
-		return (TRUE);
-	}
 	ft_inputadd_back(&data->input, ft_inputnew(*prs));
 	return (TRUE);
 }
@@ -87,7 +81,7 @@ t_bool	check_pippe(char **str, t_parser *prs, t_data *data)
 	if (prs->tmp_type != PIPPE)
 		return (FALSE);
 	ft_inputadd_back(&data->input, ft_inputnew
-		((t_parser){"💈️", "[pipe]", PIPPE}));
+		((t_parser){"|", "[pipe]", PIPPE}));
 	*str = ft_skipstring(i_skip_pippe(*str, 0), *str);
 	return (TRUE);
 }

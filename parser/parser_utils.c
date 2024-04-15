@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by mruggier          #+#    #+#             */
-/*   Updated: 2024/04/04 16:58:04 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/04/15 11:43:24 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,35 +67,6 @@ t_type	ft_file_type(char *str, int *offset)
 	else if (str[*offset] == '|')
 		return ((*offset)++, PIPPE);
 	return (COMMAND);
-}
-
-int	count_limiter(char *str, t_quote squote)
-{
-	int		i;
-	int		count;
-
-	i = 0;
-	count = 1;
-	i = skip_spaces2(str);
-	if (!str)
-		return (ERROR);
-	if (is_double_operator(str, i, squote) == TRUE)
-		i += 2;
-	if (ft_islimiter(str[i]) == TRUE)
-		i++;
-	while (str[i])
-	{
-		quote_start(&squote.open, str[i], &squote.type);
-		if (is_double_operator(str, i, squote) == TRUE)
-		{
-			i += 2;
-			count++;
-		}
-		if (ft_islimiter(str[i]) == TRUE && (squote.type == FALSE))
-			count++;
-		i++;
-	}
-	return (count);
 }
 
 int	i_skip_pippe(char *str, int i)

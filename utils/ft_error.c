@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:14:28 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/15 10:48:05 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/15 11:16:45 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	ft_error(char *str, t_error error, int errnbr, t_data *data)
 		perror("unknown error");
 	if (error == NO_EXST || error == ACCESS || error == DIR)
 		free(str);
-	// close(1);
 	dup2(data->original_stdout, STDOUT_FILENO);
 	if (data && (error == EXECVE || error == DUP))
 		return (free_return(&data, errnbr));

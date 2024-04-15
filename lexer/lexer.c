@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:52:13 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/03/25 18:33:46 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/15 11:28:55 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,3 @@ t_bool	lexer(char **line, t_data *data)
 		return (FALSE);
 	return (TRUE);
 }
-
-	// if (bonus_checker(*line, data) == FALSE)
-	// 	return (FALSE);

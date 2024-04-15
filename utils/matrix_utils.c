@@ -3,36 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:27:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/03 18:47:20 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/04/15 11:37:23 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-char	**matrix_dup(char **matrix)
+void	sort_matrix(char ***mtx)
 {
-	char	**new_matrix;
 	int		i;
+	int		j;
+	char	*tmp;
 
-	if (!matrix)
-		return (NULL);
 	i = 0;
-	while (matrix[i] != NULL)
-		i++;
-	new_matrix = (char **)malloc(sizeof(char *) * (i + 1));
-	if (!new_matrix)
-		return (NULL);
-	i = 0;
-	while (matrix[i] != NULL)
+	while ((*mtx)[i])
 	{
-		new_matrix[i] = ft_strdup(matrix[i]);
+		j = i + 1;
+		if (j > ft_matrix_len((*mtx)) - 1)
+			break ;
+		while ((*mtx)[j])
+		{
+			if (ft_strcmp((*mtx)[i], (*mtx)[j]) > 0)
+			{
+				tmp = (*mtx)[i];
+				(*mtx)[i] = (*mtx)[j];
+				(*mtx)[j] = tmp;
+			}
+			j++;
+		}
 		i++;
 	}
-	new_matrix[i] = NULL;
-	return (new_matrix);
 }
 
 t_bool	name_is_thesame(char *envp, char *to_find)

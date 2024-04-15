@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/15 10:46:25 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/15 11:31:52 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -290,14 +290,6 @@ char	*ft_strjoin_2free(char *old_str, char *buf);
 char	*ft_strncpy(char *str, int start, int end);
 
 /**
- * @brief Function that allocates a copy of a matrix and returns it
- * @param matrix matrix to be copied
- * @return a copy of the matrix
- */
-
-char	**matrix_dup(char **matrix);
-
-/**
  * @brief Function that checks if a character is a limiter
  * @param c character to be checked
  * @n
@@ -452,6 +444,7 @@ char	*ft_input2str(t_input **input);
 t_bool	file_check(char *line, t_data *data);
 t_pipex	comm_error(t_data **data);
 char	*ft_rowgen(char *str);
+void	sort_matrix(char ***mtx);
 
 //quotes
 void	quote_start(t_bool *quote, char c, char *quote_type);

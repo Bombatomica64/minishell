@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/03 18:45:48 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/04/15 11:29:01 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,4 +106,3 @@ t_pipex	input_exec(t_data **data)
 	}
 	return (comm);
 }
-//we :D

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/15 11:31:52 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/15 11:51:15 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,65 +238,6 @@ int		input_nbr_of_cmd(t_input *input);
 */
 char	*ft_strncpy_noquote(char *str, int start, int end, t_quote qte);
 
-// string functions
-
-/**
- * Finds the index of the first occurrence of a character in a string.
- *
- * @param str The string to search in.
- * @param c The character to find.
- * @return The index of the first occurrence 
- * of the character, or -1 if not found.
- */
-int		find_first(char *str, char c);
-
-/**
- * Concatenates two strings and frees the first string.
- *
- * @param line The first string to be concatenated.
- * @param buff The second string to be concatenated.
- * @param index The index at which to stop concatenating.
- * @return The concatenated string, or NULL if memory allocation fails.
- */
-char	*strjoin_n_free1(char *line, char *buff, int index);
-
-/**
- * @brief Function that mimics the behaviour of strjoin but frees both strings
- * @param old_str string to join to , will be freed
- * @param buf string that will be joined, will be freed 
- * @return a new string with the joined strings
- * @note both strings will be freed
- * @note the new string will be allocated
- */
-int		ft_strlen_noquote(char *str);
-
-/**
- * @brief Function that mimics the behaviour of strjoin but frees both strings
- * @param old_str string to join to , will be freed
- * @param buf string that will be joined, will be freed 
- * @return a new string with the joined strings
- * @note both strings will be freed
- * @note the new string will be allocated
- */
-
-char	*ft_strjoin_2free(char *old_str, char *buf);
-
-/**
- * @brief Function that allocates a copy of a matrix and returns it
- * @param matrix matrix to be copied
- * @return a copy of the matrix
- */
-
-char	*ft_strncpy(char *str, int start, int end);
-
-/**
- * @brief Function that checks if a character is a limiter
- * @param c character to be checked
- * @n
- * @return TRUE if the character is a limiter, FALSE if it isn't
- */
-t_bool	ft_islimiter(char c);
-
 /**
  * @brief Function that skips spaces in a string
  * @param str a pointer to the string
@@ -323,31 +264,11 @@ int		skip_spaces2(char *str);
 t_bool	ft_isspace(char c);
 
 /**
- * @brief Function that checks if a character is a quote
- * @param c character to be checked
- * @return TRUE if the character is a quote, FALSE if it isn't
- * @note quote is defined as " or '\''
-*/
-t_bool	ft_isquote(char c);
-
-/**
  * @brief Function that checks the command name is a builtin
  * @param str string to be checked
  * @return TRUE if the command is a builtin, FALSE if it isn't
 */
 t_bool	ft_isbuiltin(char *str);
-
-/**
- * Removes leading and trailing characters specified in
- * #include "str_utils2.h"
-the 'set' parameter from the string 's1'.
- * Additionally, frees the memory allocated for 's1'.
- *
- * @param s1 The string to be trimmed and freed.
- * @param set The set of characters to be removed from the string.
- * @return A pointer to the trimmed string, or NULL if memory allocation fails.
- */
-char	*ft_strtrimfree(char *s1, char *set, int *trimmed);
 
 /**
  * @brief Function that prints the list of commands and files
@@ -395,30 +316,6 @@ t_bool	print_matrix(char **mtx);
 */
 int		ft_matrix_len(char **matrix);
 
-/**
- * @brief Function that copies a string until len and allocates it
- * @param str string to be copied
- * @param len length of the string to be copied
- * @return a copy of the string until len
- * @note the new string will be allocated
-*/
-char	*ft_strndup(char *str, int len);
-
-/**
- * Concatenates two strings and returns the result.
- * If the first string is NULL, it is treated as an empty string.
- * If either string is NULL, the function returns NULL.
- *
- * @param old_str The first string to concatenate.
- * @param buf The second string to concatenate.
- * @return The concatenated string, or NULL if an error occurred.
- */
-char	*ft_strjoin_2(char *old_str, char *buf);
-
-char	*free_strrchr(char *str, char c, int **offset);
-
-char	*join_char(char *str, char c);
-
 void	ft_builtin_error(char *com);
 
 int		ft_isinset(char c, char *set);
@@ -434,8 +331,6 @@ void	print_intmatrix(int **matrix, int rows, int cols);
 t_bool	ft_atoibool(char *str, unsigned int *nbr, int i, int sign);
 
 t_bool	ft_iscmd(t_input *input, t_data *data);
-char	*cut_string(int len, char *str);
-int		find_last(char *str, char c);
 
 void	free_parser(t_parser *prs);
 char	**ft_neosplitarg(char *str);
@@ -448,7 +343,6 @@ void	sort_matrix(char ***mtx);
 
 //quotes
 void	quote_start(t_bool *quote, char c, char *quote_type);
-void	quote_waiting(char **tmp, t_bool *quote, char *quote_type, t_type type);
 t_bool	check_quote(char *tmp, char quote_type, t_type type, int index);
 
 #endif

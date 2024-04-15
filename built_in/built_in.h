@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_in.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:03:32 by mruggier          #+#    #+#             */
-/*   Updated: 2024/04/15 11:27:55 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/15 11:53:35 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,6 @@ t_bool	add_to_env(char ***envp, char *str);
 int		update_env(char ***envp, char *str, char *tmp);
 
 // debug functions
-
-/**
- * @brief print the environment variables
- * @param envp matrix with the environment variables
- * @note used for debugging 
-*/
-void	print_pwds(char **envp);
 
 /**
  * @brief Replaces the tilde ~ character in a string with the corresponding path

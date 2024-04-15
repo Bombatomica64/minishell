@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+         #
+#    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/04/03 18:47:07 by mruggier         ###   ########.fr        #
+#    Updated: 2024/04/08 09:56:11 by lmicheli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ BUILT_IN = built_in/echo.c \
 	built_in/unset.c \
 	built_in/ft_exit.c \
 	built_in/export.c \
-	built_in/cd_utils.c \
+	built_in/cd_utils.c
 
 UTILS = utils/ft_error.c \
 	utils/close_funct.c \

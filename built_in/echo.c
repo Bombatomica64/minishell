@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:24:10 by mruggier          #+#    #+#             */
-/*   Updated: 2024/04/03 18:43:50 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/04/15 11:39:15 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,17 @@ int	print_export(char **envp)
 	char	**tmp;
 
 	i = 0;
+	j = 0;
+	tmp = ft_calloc(sizeof(char *), (ft_matrix_len(envp) + 1));
 	while (envp[i])
 	{
-		j = 0;
-		tmp = ft_split(envp[i], '=');
-		ft_printf("declare -x %s", tmp[j]);
-		if (tmp[++j])
-			ft_printf("=\"%s\"", tmp[j]);
-		ft_printf("\n");
-		free_matrix(&tmp);
+		tmp[j] = ft_strdup(envp[i]);
+		tmp[j] = ft_strjoin_2("declare -x ", tmp[j]);
+		j++;
 		i++;
 	}
+	sort_matrix(&tmp);
+	print_matrix(tmp);
+	free_matrix(&tmp);
 	return (0);
 }

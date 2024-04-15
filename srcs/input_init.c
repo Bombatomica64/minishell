@@ -3,23 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   input_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:28:06 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/04 16:14:04 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/04/15 11:31:14 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+char	**matrix_dup(char **matrix)
+{
+	char	**new_matrix;
+	int		i;
+
+	if (!matrix)
+		return (NULL);
+	i = 0;
+	while (matrix[i] != NULL)
+		i++;
+	new_matrix = (char **)malloc(sizeof(char *) * (i + 1));
+	if (!new_matrix)
+		return (NULL);
+	i = 0;
+	while (matrix[i] != NULL)
+	{
+		new_matrix[i] = ft_strdup(matrix[i]);
+		i++;
+	}
+	new_matrix[i] = NULL;
+	return (new_matrix);
+}
+
 void	ft_action(int sig)
 {
 	if (sig == SIGINT)
 	{
-        printf("\n");
+		printf("\n");
 		rl_on_new_line();
-        rl_replace_line("", 0);
-    	rl_redisplay();
+		rl_replace_line("", 0);
+		rl_redisplay();
 	}
 }
 

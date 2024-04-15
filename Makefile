@@ -6,13 +6,13 @@
 #    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/04/08 09:56:11 by lmicheli         ###   ########.fr        #
+#    Updated: 2024/04/15 11:29:44 by lmicheli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-CC = cc -Wall -Wextra -Werror -g -Wuninitialized
+CC = cc -Wall -Wextra -Werror -g
 
 PIPEX = pipex/pipex.c \
 	pipex/process.c

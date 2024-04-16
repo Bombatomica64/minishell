@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:12:34 by mruggier          #+#    #+#             */
-/*   Updated: 2024/04/04 16:58:04 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/04/16 12:19:36 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ char	*remove_quotes(char *str, int *offset)
 	i = get_cmd_name(str, offset, (t_quote){FALSE, 0});
 	tmp = ft_substr(str, 0, i);
 	tmp2 = ft_strncpy_noquote(tmp, 0, ft_strlen(tmp), (t_quote){FALSE, 0});
-	free(tmp);
 	new = ft_strdup(str + i);
 	free(str);
 	str = ft_strjoin_2free(tmp2, new);

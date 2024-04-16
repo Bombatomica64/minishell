@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by mruggier          #+#    #+#             */
-/*   Updated: 2024/04/15 11:06:32 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/16 12:23:58 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ void	ft_do_it(t_data *data, char *terminal_input)
 {
 	t_pipex	comm;
 
-	parser(expand_name(terminal_input, data),
-		data, 0, (t_parser){NULL, NULL, 69});
+	parser(terminal_input, data, 0, (t_parser){NULL, NULL, 69});
 	while (data->input && data->input->type != FINISH)
 	{
 		print_list(data->input);
@@ -50,10 +49,11 @@ void	process_input(t_data *data)
 	}
 	else if (terminal_input[skip_spaces2(terminal_input)] == '\0')
 		return (free(terminal_input));
+	add_history(terminal_input);
+	terminal_input = expand_name(terminal_input, data);
 	if (lexer(&terminal_input, data) == FALSE)
 		return (free(terminal_input));
 	fd_malloc(data);
-	add_history(terminal_input);
 	if (*terminal_input == '\0')
 		return ;
 	ft_do_it(data, terminal_input);

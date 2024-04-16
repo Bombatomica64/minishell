@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by mruggier          #+#    #+#             */
-/*   Updated: 2024/04/16 12:23:58 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/16 12:32:21 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	ft_do_it(t_data *data, char *terminal_input)
 	parser(terminal_input, data, 0, (t_parser){NULL, NULL, 69});
 	while (data->input && data->input->type != FINISH)
 	{
-		print_list(data->input);
 		comm = input_exec(&data);
 		if (comm.cmd)
 		{

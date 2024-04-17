@@ -20,11 +20,11 @@ outfile01             ✅️
 
 pipes                 ❌️ si ferma 
 
-redirects        < bo ❌️ si ferma          MRUGGIER: echo ciao <fileinsesistente (no free con NO_EXST) mentre /filenonesistente (free con NO_EXST)
+redirects        < bo ❌️ si ferma          sgarigli: echo ciao <fileinsesistente (no free con NO_EXST) mentre /filenonesistente (free con NO_EXST)
 
 syntax                ✅️ errori diversi per scelta
 
-tester                ❌️ + test assurdi    mruggier CORREGGI ERROR
+tester                ❌️ + test assurdi    sgarigli CORREGGI ERROR
 
 ----------------------------------------------------------------
 ![Screenshot from 2024-03-29 18-45-46](https://github.com/Bombatomica64/minishell/assets/145976814/cb81ae26-fe7d-4dce-a3bf-3012fb548be3)

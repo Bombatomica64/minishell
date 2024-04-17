@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 11:22:43 by gduranti          #+#    #+#             */
-/*   Updated: 2024/04/15 11:55:57 by gduranti         ###   ########.fr       */
+/*   Created: 2024/02/26 11:22:43 by lmicheli          #+#    #+#             */
+/*   Updated: 2024/04/16 12:26:44 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	set_inout(t_pipex *comm, t_input *input, t_data *data)
 		comm->fd_in = open_type(input->path, INPUT, data);
 	}
 	else if (input->type == HEREDOC)
-		comm->fd_in = heredoc_creat(input->node, data, 0, comm);
+		comm->fd_in = heredoc_creat(ft_strdup(input->node), data, 0, comm);
 	else if (input->type == TRUNC || input->type == APPEND)
 	{
 		if (comm->fd_out >= 0 && comm->fd_out != STDOUT_FILENO)
@@ -47,6 +47,7 @@ void	do_pipes(t_data **data, t_pipex *comm)
 {
 	if ((*data)->cmd_nbr == 0 && (*data)->in_pipe == FALSE)
 	{
+		printf("cmd_nbr: %d\n", (*data)->cmd_nbr);
 		pipe((*data)->fd[(*data)->cmd_nbr]);
 		comm->fd_out = fd_io_check(comm->fd_out, STDOUT_FILENO,
 				(*data)->fd[(*data)->cmd_nbr][1]);

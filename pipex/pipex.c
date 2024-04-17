@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/04/16 12:36:47 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/17 12:50:05 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../srcs/minishell.h"
 
 int	builtin_child(t_pipex *comm, t_data *data)
 {
@@ -49,8 +49,8 @@ char	*path_execve(char *command, char **envp, t_data *data)
 
 void	child(t_pipex *comm, t_data *data)
 {
-	signal(SIGINT, SIG_DFL);
-	signal(SIGQUIT, SIG_DFL);
+	signal(SIGQUIT, ft_action);
+	fprintf(stderr,"%d",g_duranti);
 	if (data->in_pipe == TRUE && data->cmd_nbr == 0)
 		close(data->fd[0][0]);
 	else if (data->in_pipe == TRUE

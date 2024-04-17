@@ -6,7 +6,7 @@
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:11:21 by gduranti          #+#    #+#             */
-/*   Updated: 2024/04/15 11:55:57 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/04/17 12:42:52 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # include "../libft/get_next_line_bonus.h"
 # include "colours.h"
 # pragma once
+
+extern int	g_duranti; 
 
 typedef enum e_error
 {

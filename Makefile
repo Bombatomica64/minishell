@@ -6,7 +6,7 @@
 #    By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by gduranti          #+#    #+#              #
-#    Updated: 2024/04/15 11:55:57 by gduranti         ###   ########.fr        #
+#    Updated: 2024/04/17 12:55:00 by gduranti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ SRCS = srcs/main.c \
 BONUS = bonus/input_bonus.c
 
 SRC = $(PIPEX) $(BUILT_IN) $(UTILS) $(PARSER) $(SRCS) $(LEXER) $(BONUS)
+OBJ = $(SRC:.c=.o)
 
 FT_PRINTF = libft
 LIB = libft/libftprintf.a
@@ -66,13 +67,17 @@ all: $(NAME)
 
 bonus: $(NAME)
 
-$(NAME):
+%.o: %.c
+	@$(CC) -c $< -o $@
+
+$(NAME): $(OBJ)
 	@make all -C $(FT_PRINTF)
-	@$(CC) $(SRC) $(LIB) -o $(NAME) -lreadline
+	@$(CC) $(OBJ) $(LIB) -o $(NAME) -lreadline
 	@echo "Compiled "$(NAME)" successfully!"
 
 clean:
 	@make clean -C $(FT_PRINTF)
+	@rm -f $(OBJ)
 	@echo "Cleaned "$(NAME)" and libft objects successfully!"
 	
 fclean: clean
@@ -82,14 +87,14 @@ fclean: clean
 	
 re: fclean all
 
-play:
+play: clean $(OBJ)
 	@rm -f $(NAME)
-	@$(CC) $(SRC) $(LIB) -o $(NAME) -lreadline
+	@$(CC) $(OBJ) $(LIB) -o $(NAME) -lreadline
 	@echo "\033[34mRe-compiled "$(NAME)" successfully!\033[0m"
 	@echo "\033[30mPlease work🙏\033[0m"
 	@./$(NAME)
 
-val:
+val: clean $(OBJ)
 	@rm -f $(NAME)
 	@$(CC) $(SRC) $(LIB) -o $(NAME) -lreadline
 	@echo "\033[34mAre you ready for debugging?\033[0m 😈"

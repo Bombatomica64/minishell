@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
+#    By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/11/20 11:05:48 by lmicheli          #+#    #+#              #
-#    Updated: 2024/04/15 11:29:44 by lmicheli         ###   ########.fr        #
+#    Created: 2023/11/20 11:05:48 by gduranti          #+#    #+#              #
+#    Updated: 2024/04/15 11:55:57 by gduranti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

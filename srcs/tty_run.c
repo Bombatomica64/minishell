@@ -6,27 +6,11 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by mruggier          #+#    #+#             */
-/*   Updated: 2024/04/18 10:48:42 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/18 11:32:59 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	nbr_cmds(t_data *data)
-{
-	t_input	*tmp;
-	int		i;
-
-	i = 0;
-	tmp = data->input;
-	while (tmp)
-	{
-		if (tmp->type == COMMAND || tmp->type == BUILT_IN)
-			i++;
-		tmp = tmp->next;
-	}
-	return (i);
-}
 
 void	ft_do_it(t_data *data, char *terminal_input)
 {
@@ -38,18 +22,16 @@ void	ft_do_it(t_data *data, char *terminal_input)
 	i = 0;
 	while (data->input && data->input->type != FINISH)
 		comm[i++] = input_exec(&data);
-	if (comm[i].cmd)
+	if (comm[0].cmd)
 	{
-		data->error_codes = pipex(&comm, data);
-		free_matrix(comm[i].cmd);
+		data->error_codes = pipex(comm, data);
+		free_matrix(&comm[0].cmd);
 	}
 	else
 	{
-		close_fds(&comm);
+		close_fds(&comm[0]);
 		data->counter++;
 	}
-	if (data->in_pipe == FALSE)
-		close_fds(&comm);
 }
 
 void	process_input(t_data *data)
@@ -57,7 +39,6 @@ void	process_input(t_data *data)
 	char	*terminal_input;
 
 	terminal_input = readline("\033[0;95;1mミニシェル\033[0;96m> \033[0m");
-	printf("ciao\n");
 	if (terminal_input == NULL)
 	{
 		free(terminal_input);

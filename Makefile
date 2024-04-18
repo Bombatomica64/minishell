@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+         #
+#    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by gduranti          #+#    #+#              #
-#    Updated: 2024/04/15 11:55:57 by gduranti         ###   ########.fr        #
+#    Updated: 2024/04/18 11:31:58 by lmicheli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ UTILS = utils/ft_error.c \
 	utils/file_check.c \
 	utils/input_utils.c \
 	utils/quotehandler.c \
-	utils/utils.c
+	utils/utils.c \
+	utils/accounting.c
 
 LEXER = lexer/lexer.c \
 		lexer/quote.c \

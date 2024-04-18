@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:22:43 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/16 12:26:44 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/18 11:33:07 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	do_pipes(t_data **data, t_pipex *comm)
 {
 	if ((*data)->cmd_nbr == 0 && (*data)->in_pipe == FALSE)
 	{
-		printf("cmd_nbr: %d\n", (*data)->cmd_nbr);
 		pipe((*data)->fd[(*data)->cmd_nbr]);
 		comm->fd_out = fd_io_check(comm->fd_out, STDOUT_FILENO,
 				(*data)->fd[(*data)->cmd_nbr][1]);

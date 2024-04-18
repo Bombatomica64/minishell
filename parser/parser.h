@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:29:56 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/04/15 11:56:24 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/04/18 11:15:50 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,6 @@
 
 # include "../pipex/pipex.h"
 # pragma once
-
-typedef struct s_curs
-{
-	int		k;
-	int		j;
-}	t_curs;
 
 //parser
 t_type	ft_file_type(char *str, int *offset);

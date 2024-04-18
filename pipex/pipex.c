@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/04/18 10:29:37 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/18 11:38:50 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,27 +77,34 @@ t_type	find_prev_cmd_type(t_input *input)
 
 int	pipex(t_pipex *comm, t_data *data)
 {
-	pid_t	pid;
+	pid_t	*pid;
 	int		status;
+	t_curs	curs;
 
+	curs = (t_curs){-1, 0, 0};
 	status = 0;
-	if (ft_isbuiltin(comm->cmd[0]) == TRUE)
-		return (builtin_child(comm, data));
-	pid = fork();
-	if (pid == -1)
-		ft_error("fork", FORK, 124, NULL);
-	if (pid == 0)
-		child(comm, data);
-	else
+	curs.k = nbr_cmds(data);
+	printf("nbr_cmds = %d\n", curs.k);
+	pid = malloc(sizeof(pid_t) * nbr_cmds_notb(data));
+	while (++(curs.i) < curs.k)
 	{
-		waitpid(pid, &status, 0);
-		if (data->in_pipe == TRUE)
-			close_fds(comm);
-		if (WIFEXITED(status))
-			return (WEXITSTATUS(status));
-		else if (WIFSIGNALED(status))
-			return (WTERMSIG(status) + 128);
+		if (ft_isbuiltin(comm[curs.i].cmd[0]) == TRUE)
+		{
+			status = builtin_child(comm, data);
+			continue ;
+		}
+		pid[curs.j] = fork();
+		if (pid[curs.j] == -1)
+			ft_error("fork", FORK, 124, NULL);
+		if (pid[curs.j] == 0)
+			child(&comm[curs.i], data);
+		close_fds(&comm[curs.i]);
+		curs.j++;
 	}
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
+	else if (WIFSIGNALED(status))
+		return (WTERMSIG(status) + 128);
 	return (0);
 }
 

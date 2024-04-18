@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:29:56 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/04/15 11:56:24 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/04/18 12:43:33 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,14 @@ char	*ft_reparsing(char *str, int i, t_data *data, t_quote squote);
 int		get_cmd_name(char *str, int *offset, t_quote squote);
 char	*remove_quotes(char *str, int *offset);
 
-//expand_variables_utils
+/**
+ * @brief expand $
+ * @param tmp string to be expanded
+ * @return string with $VAR expanded
+*/
 char	*expand_name(char *str, t_data *data);
 char	*expand_dollar(char *str, char *tmp, size_t *i, t_data *data);
+char	*expand_dollar2(char *str, char *tmp, size_t *i, t_data *data);
 
 //quotes
 // void	quote_start(t_bool *quote, char c, char *quote_type);

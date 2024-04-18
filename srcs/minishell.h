@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:05:20 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/04/15 11:56:24 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/04/18 12:44:20 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,28 @@
 # include "../lexer/lexer.h"
 //# pragma once
 
+/**
+ * @brief inizialize data struct
+ * @param envp to inizialize data.home, data.envp, data.pwd
+ * @return data struct inizialized
+*/
+t_data	ft_data_init(char **envp);
+
+/**
+ * @brief infinite cicle doing process_input(data);
+*/
+void	ft_tty_exec(t_data *data);
+
+/**
+ * @brief take input and process it 
+ * (readline, expand_name, lexer, ft_do_it, free_return, ft_data_reinit)
+*/
+void	process_input(t_data *data);
+
 //input manage
 void	ft_action(int sig);
 void	malloc_input(char *str);
-t_data	ft_data_init(char **envp);
 void	ft_data_reinit(t_data *data);
-void	ft_tty_exec(t_data *data);
 
 void	fd_malloc(t_data *data);
 

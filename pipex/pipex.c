@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/04/18 10:29:37 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/18 12:36:25 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int	pipex(t_pipex *comm, t_data *data)
 	int		status;
 
 	status = 0;
+	fprintf(stderr, "|we|\n");
 	if (ft_isbuiltin(comm->cmd[0]) == TRUE)
 		return (builtin_child(comm, data));
 	pid = fork();

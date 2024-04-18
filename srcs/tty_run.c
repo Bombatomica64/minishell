@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:41:01 by mruggier          #+#    #+#             */
-/*   Updated: 2024/04/16 12:32:21 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/18 10:38:49 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	process_input(t_data *data)
 	char	*terminal_input;
 
 	terminal_input = readline("\033[0;95;1mミニシェル\033[0;96m> \033[0m");
+	printf("ciao\n");
 	if (terminal_input == NULL)
 	{
 		free(terminal_input);

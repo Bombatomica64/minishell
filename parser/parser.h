@@ -16,12 +16,6 @@
 # include "../pipex/pipex.h"
 # pragma once
 
-typedef struct s_curs
-{
-	int		k;
-	int		j;
-}	t_curs;
-
 //parser
 t_type	ft_file_type(char *str, int *offset);
 t_bool	get_command(int *off, char *str, t_parser *prs, t_data *data);

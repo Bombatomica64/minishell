@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli < lmicheli@student.42firenze.it>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/19 15:41:01 by mruggier          #+#    #+#             */
-/*   Updated: 2024/04/18 12:37:11 by mruggier         ###   ########.fr       */
+/*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
+/*   Updated: 2024/04/18 11:32:59 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,23 @@
 
 void	ft_do_it(t_data *data, char *terminal_input)
 {
-	t_pipex	comm;
+	t_pipex	*comm;
+	int		i;
 
 	parser(terminal_input, data, 0, (t_parser){NULL, NULL, 69});
+	comm = malloc(sizeof(t_pipex) * nbr_cmds(data));
+	i = 0;
 	while (data->input && data->input->type != FINISH)
+		comm[i++] = input_exec(&data);
+	if (comm[0].cmd)
 	{
-		comm = input_exec(&data);
-		if (comm.cmd)
-		{
-			data->error_codes = pipex(&comm, data);
-			free_matrix(&comm.cmd);
-		}
-		else
-		{
-			close_fds(&comm);
-			data->counter++;
-		}
-		if (data->in_pipe == FALSE)
-			close_fds(&comm);
+		data->error_codes = pipex(comm, data);
+		free_matrix(&comm[0].cmd);
+	}
+	else
+	{
+		close_fds(&comm[0]);
+		data->counter++;
 	}
 }
 

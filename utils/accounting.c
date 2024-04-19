@@ -1,29 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   accounting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmicheli < lmicheli@student.42firenze.it>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/18 10:31:02 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/18 11:40:17 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "utils.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+int	nbr_cmds(t_data *data)
 {
-	if (!lst)
+	t_input	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = data->input;
+	while (tmp->prev)
+		tmp = tmp->prev;
+	while (tmp)
 	{
-		return ;
+		if (tmp->type == COMMAND || tmp->type == BUILT_IN)
+			i++;
+		tmp = tmp->next;
 	}
-	else
+	return (i);
+}
+
+int	nbr_cmds_notb(t_data *data)
+{
+	t_input	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = data->input;
+	while (tmp->prev)
+		tmp = tmp->prev;
+	while (tmp)
 	{
-		while (lst)
-		{
-			f(lst -> content);
-			lst = lst -> next;
-		}
+		if (tmp->type == COMMAND)
+			i++;
+		tmp = tmp->next;
 	}
+	return (i);
 }

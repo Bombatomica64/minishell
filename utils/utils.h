@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli < lmicheli@student.42firenze.it>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 18:11:21 by gduranti          #+#    #+#             */
-/*   Updated: 2024/04/18 11:03:59 by sgarigli         ###   ########.fr       */
+/*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
+/*   Updated: 2024/04/18 11:21:37 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ typedef enum e_error
 	DIR
 }	t_error;
 
+typedef struct s_curs
+{
+	int		i;
+	int		j;
+	int		k;
+}	t_curs;
 typedef struct s_quote
 {
 	t_bool	open;
@@ -329,12 +335,10 @@ t_bool	print_matrix(char **mtx);
 int		ft_matrix_len(char **matrix);
 
 void	ft_builtin_error(char *com);
-
 int		ft_isinset(char c, char *set);
-
 int		check_access(char *file, t_type type, t_data *data);
-
 void	close_fds(t_pipex *comm);
+
 //math utils
 
 int		ft_max(int a, int b);
@@ -357,6 +361,17 @@ void	sort_matrix(char ***mtx);
 void	quote_start(t_bool *quote, char c, char *quote_type);
 t_bool	check_quote(char *tmp, char quote_type, t_type type, int index);
 
+//accounting
+
+/**
+ * @brief Function that returns the number of commands in the list
+*/
+int		nbr_cmds(t_data *data);
+
+/**
+ * @brief Function that returns the number of commands that are not builtins
+*/
+int		nbr_cmds_notb(t_data *data);
 extern int	g_duranti;
 
 #endif

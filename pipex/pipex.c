@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli < lmicheli@student.42firenze.it>  +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/18 11:38:50 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/19 10:07:29 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,18 @@ t_type	find_prev_cmd_type(t_input *input)
 	return (tmp->type);
 }
 
+void	wait_pids(pid_t *pid, int nbr_cmds, int *status)
+{
+	int	i;
+
+	i = 0;
+	while (i < nbr_cmds)
+	{
+		waitpid(pid[i], status, 0);
+		i++;
+	}
+}
+
 int	pipex(t_pipex *comm, t_data *data)
 {
 	pid_t	*pid;
@@ -84,7 +96,6 @@ int	pipex(t_pipex *comm, t_data *data)
 	curs = (t_curs){-1, 0, 0};
 	status = 0;
 	curs.k = nbr_cmds(data);
-	printf("nbr_cmds = %d\n", curs.k);
 	pid = malloc(sizeof(pid_t) * nbr_cmds_notb(data));
 	while (++(curs.i) < curs.k)
 	{
@@ -101,6 +112,7 @@ int	pipex(t_pipex *comm, t_data *data)
 		close_fds(&comm[curs.i]);
 		curs.j++;
 	}
+	wait_pids(pid, curs.j, &status);
 	if (WIFEXITED(status))
 		return (WEXITSTATUS(status));
 	else if (WIFSIGNALED(status))

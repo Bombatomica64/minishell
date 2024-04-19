@@ -5,7 +5,6 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
 /*   Updated: 2024/04/17 12:50:05 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -49,8 +48,7 @@ char	*path_execve(char *command, char **envp, t_data *data)
 
 void	child(t_pipex *comm, t_data *data)
 {
-	signal(SIGQUIT, ft_action);
-	fprintf(stderr,"%d",g_duranti);
+	signal(SIGQUIT, SIG_DFL);
 	if (data->in_pipe == TRUE && data->cmd_nbr == 0)
 		close(data->fd[0][0]);
 	else if (data->in_pipe == TRUE
@@ -76,29 +74,49 @@ t_type	find_prev_cmd_type(t_input *input)
 	return (tmp->type);
 }
 
+void	wait_pids(pid_t *pid, int nbr_cmds, int *status)
+{
+	int	i;
+
+	i = 0;
+	while (i < nbr_cmds)
+	{
+		waitpid(pid[i], status, 0);
+		i++;
+	}
+}
+
 int	pipex(t_pipex *comm, t_data *data)
 {
-	pid_t	pid;
+	pid_t	*pid;
 	int		status;
+	t_curs	curs;
 
+	curs = (t_curs){-1, 0, 0};
 	status = 0;
-	if (ft_isbuiltin(comm->cmd[0]) == TRUE)
-		return (builtin_child(comm, data));
-	pid = fork();
-	if (pid == -1)
-		ft_error("fork", FORK, 124, NULL);
-	if (pid == 0)
-		child(comm, data);
-	else
+	curs.k = nbr_cmds(data);
+	pid = malloc(sizeof(pid_t) * nbr_cmds_notb(data));
+	while (++(curs.i) < curs.k)
 	{
-		waitpid(pid, &status, 0);
-		if (data->in_pipe == TRUE)
-			close_fds(comm);
-		if (WIFEXITED(status))
-			return (WEXITSTATUS(status));
-		else if (WIFSIGNALED(status))
-			return (WTERMSIG(status) + 128);
+		if (ft_isbuiltin(comm[curs.i].cmd[0]) == TRUE)
+		{
+			status = builtin_child(comm, data);
+			continue ;
+		}
+		pid[curs.j] = fork();
+		if (pid[curs.j] == -1)
+			ft_error("fork", FORK, 124, NULL);
+		if (pid[curs.j] == 0)
+			child(&comm[curs.i], data);
+		close_fds(&comm[curs.i]);
+		curs.j++;
 	}
+	wait_pids(pid, curs.j, &status);
+	free (pid);
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
+	else if (WIFSIGNALED(status))
+		return (WTERMSIG(status) + 128);
 	return (0);
 }
 

@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 11:22:43 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/16 12:26:44 by lmicheli         ###   ########.fr       */
+/*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
+/*   Updated: 2024/04/19 12:51:23 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	set_inout(t_pipex *comm, t_input *input, t_data *data)
+static int	set_inout(t_pipex *comm, t_input *input, t_data *data, t_pipex **origin)
 {
 	if (input->type == INPUT)
 	{
@@ -21,7 +21,7 @@ static int	set_inout(t_pipex *comm, t_input *input, t_data *data)
 		comm->fd_in = open_type(input->path, INPUT, data);
 	}
 	else if (input->type == HEREDOC)
-		comm->fd_in = heredoc_creat(ft_strdup(input->node), data, 0, comm);
+		comm->fd_in = heredoc_creat(ft_strdup(input->node), data, comm, origin);
 	else if (input->type == TRUNC || input->type == APPEND)
 	{
 		if (comm->fd_out >= 0 && comm->fd_out != STDOUT_FILENO)
@@ -47,7 +47,6 @@ void	do_pipes(t_data **data, t_pipex *comm)
 {
 	if ((*data)->cmd_nbr == 0 && (*data)->in_pipe == FALSE)
 	{
-		printf("cmd_nbr: %d\n", (*data)->cmd_nbr);
 		pipe((*data)->fd[(*data)->cmd_nbr]);
 		comm->fd_out = fd_io_check(comm->fd_out, STDOUT_FILENO,
 				(*data)->fd[(*data)->cmd_nbr][1]);
@@ -81,7 +80,7 @@ static void	set_command(t_data **data, t_pipex *comm, t_bool *seen)
 	comm->path = (*data)->input->path;
 }
 
-t_pipex	input_exec(t_data **data)
+t_pipex	input_exec(t_data **data, t_pipex **origin)
 {
 	t_pipex	comm;
 	t_bool	seen;
@@ -90,7 +89,7 @@ t_pipex	input_exec(t_data **data)
 	comm = basic_set(data);
 	while ((*data)->input && (*data)->input->type != FINISH)
 	{
-		set_inout(&comm, (*data)->input, *data);
+		set_inout(&comm, (*data)->input, *data, origin);
 		if (ft_iscmd((*data)->input, *data) == ERROR)
 			return (comm_error(data));
 		else if (ft_iscmd((*data)->input, *data) == TRUE)

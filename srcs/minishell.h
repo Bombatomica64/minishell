@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 17:05:20 by sgarigli          #+#    #+#             */
-/*   Updated: 2024/04/15 11:56:24 by gduranti         ###   ########.fr       */
+/*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
+/*   Updated: 2024/04/19 12:51:29 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,35 @@
 # include "../lexer/lexer.h"
 //# pragma once
 
+/**
+ * @brief inizialize data struct
+ * @param envp to inizialize data.home, data.envp, data.pwd
+ * @return data struct inizialized
+*/
+t_data	ft_data_init(char **envp);
+
+/**
+ * @brief infinite cicle doing process_input(data);
+*/
+void	ft_tty_exec(t_data *data);
+
+/**
+ * @brief take input and process it 
+ * (readline, expand_name, lexer, ft_do_it, free_return, ft_data_reinit)
+*/
+void	process_input(t_data *data);
+
 //input manage
 void	ft_action(int sig);
 void	malloc_input(char *str);
-t_data	ft_data_init(char **envp);
 void	ft_data_reinit(t_data *data);
-void	ft_tty_exec(t_data *data);
 
 void	fd_malloc(t_data *data);
 
 //fd_inout
 int		open_type(char *str, t_type type, t_data *data);
 int		fd_io_check(int fd_io, int fd_to_check, int pipe_fd);
-t_pipex	input_exec(t_data **data);
+t_pipex	input_exec(t_data **data, t_pipex **origin);
 
 /**
  * @brief Function that returns the number of arguments in a command string
@@ -66,6 +82,6 @@ char	**ft_splitarg(char *str);
  * @param pid pid to be passed to the function
  * @return fd with the file descriptor of the pipe fd[0]
 */
-int		heredoc_creat(char *limiter, t_data *data, pid_t pid, t_pipex *comm);
+int		heredoc_creat(char *limiter, t_data *data, t_pipex *comm, t_pipex **origin);
 
 #endif

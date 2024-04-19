@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli < lmicheli@student.42firenze.it>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 12:12:34 by mruggier          #+#    #+#             */
-/*   Updated: 2024/04/16 12:19:36 by lmicheli         ###   ########.fr       */
+/*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
+/*   Updated: 2024/04/18 10:31:02 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

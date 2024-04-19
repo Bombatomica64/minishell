@@ -39,6 +39,9 @@ void	process_input(t_data *data)
 	char	*terminal_input;
 
 	terminal_input = readline("\033[0;95;1mミニシェル\033[0;96m> \033[0m");
+	if (g_duranti == 130)
+		data->error_codes = 130;
+	g_duranti = 0;
 	if (terminal_input == NULL)
 	{
 		free(terminal_input);

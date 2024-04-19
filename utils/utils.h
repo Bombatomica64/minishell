@@ -60,16 +60,29 @@ typedef struct s_quote
 	char	type;
 }	t_quote;
 
+/**
+ * @brief enum that defines the type of the node
+ * @note INPUT: file in input
+ * @note TRUNC: file, rewrites the lines in  the output file
+ * @note APPEND: file, add more lines in the output file
+ * @note COMMAND: command to be executed with execve
+ * @note HEREDOC: limiter, terminal input until limiter
+ * @note BUILT_IN: command to be executed without execve
+ * @note PIPPE: pipe
+ * @note FINISH: end of the list
+ * @note USELESS: useless node
+ * @note the type of the node is used to determine the action to be taken
+*/
 typedef enum e_type
 {
-	INPUT = 0,// < file in input
-	TRUNC = O_TRUNC,// > file, rewrites the lines in  the output file
-	APPEND = O_APPEND,// >> file, add more lines in the output file
-	COMMAND,//command to be executed with execve
-	HEREDOC,// << limiter, terminal input until limiter
-	BUILT_IN,//command to be executed without execve
-	PIPPE,// | pipe
-	FINISH = 69,// end of the list
+	INPUT = 0,
+	TRUNC = O_TRUNC,
+	APPEND = O_APPEND,
+	COMMAND,
+	HEREDOC,
+	BUILT_IN,
+	PIPPE,
+	FINISH = 69,
 	USELESS
 }	t_type;
 
@@ -82,22 +95,21 @@ typedef struct s_parser
 
 typedef struct s_input
 {
-	char			*node; // command or file name
-	char			*path; // path of the command or file
-	t_type			type; // type of the node
-	struct s_input	*prev; // previous node
-	struct s_input	*next; // next node
+	char			*node;
+	char			*path;
+	t_type			type;
+	struct s_input	*prev;
+	struct s_input	*next;
 }	t_input;
 
-// pipex input data
 typedef struct s_pipex
 {
-	char	**cmd; // command in matrix status
-	char	*path; // command path
-	char	*filein; // input file name
-	char	*fileout; // output file name
-	int		fd_in; // input file descriptor
-	int		fd_out; // output file descriptor
+	char	**cmd;
+	char	*path;
+	char	*filein;
+	char	*fileout;
+	int		fd_in;
+	int		fd_out;
 }				t_pipex;
 
 typedef struct s_bonus
@@ -110,19 +122,19 @@ typedef struct s_bonus
 
 typedef struct s_data
 {
-	int		original_stdin; // dupped stdin
-	int		original_stdout; // dupped stdout
-	int		error_codes; // sum of the error codes
-	int		**fd; // pipe
-	int		counter; // last pipe
-	int		cmd_nbr; // number of commands
-	int		pipe_nbr; // number of pipes
-	t_bool	in_pipe; // if the command is in a pipe
-	char	**envp; // current environment
-	char	*home; // home directory (~)
-	char	*pwd; // current directory
-	t_input	*input; // list of commands and files
-	t_bonus	*bonus; // list of commands seprated by && and ||
+	int		original_stdin;
+	int		original_stdout;
+	int		error_codes;
+	int		**fd;
+	int		counter;
+	int		cmd_nbr;
+	int		pipe_nbr;
+	t_bool	in_pipe;
+	char	**envp;
+	char	*home;
+	char	*pwd;
+	t_input	*input;
+	t_bonus	*bonus;
 }	t_data;
 
 // free and error functions
@@ -177,7 +189,7 @@ int		free_return(t_data **data, int status);
 
 // list functions
 
-/**
+/**int	g_duranti = -1;
  * @brief Function that creates a new node of t_input type
  * @param node command or file name
  * @param path path of the command or file
@@ -360,5 +372,6 @@ int		nbr_cmds(t_data *data);
  * @brief Function that returns the number of commands that are not builtins
 */
 int		nbr_cmds_notb(t_data *data);
+extern int	g_duranti;
 
 #endif

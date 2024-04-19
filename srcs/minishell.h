@@ -19,12 +19,28 @@
 # include "../lexer/lexer.h"
 //# pragma once
 
+/**
+ * @brief inizialize data struct
+ * @param envp to inizialize data.home, data.envp, data.pwd
+ * @return data struct inizialized
+*/
+t_data	ft_data_init(char **envp);
+
+/**
+ * @brief infinite cicle doing process_input(data);
+*/
+void	ft_tty_exec(t_data *data);
+
+/**
+ * @brief take input and process it 
+ * (readline, expand_name, lexer, ft_do_it, free_return, ft_data_reinit)
+*/
+void	process_input(t_data *data);
+
 //input manage
 void	ft_action(int sig);
 void	malloc_input(char *str);
-t_data	ft_data_init(char **envp);
 void	ft_data_reinit(t_data *data);
-void	ft_tty_exec(t_data *data);
 
 void	fd_malloc(t_data *data);
 

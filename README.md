@@ -4,6 +4,16 @@ ciao copilot
 
 ![cat_girl](https://github.com/Bombatomica64/minishell/assets/145976814/1e2f3800-862b-4b5b-ae99-e103573b31a6)
 
+❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️
+❌️														❌️
+❌️	             COSE CHE NON VANNO						❌️
+❌️														❌️
+❌️		<< ciao | ls									❌️
+❌️		ctrl+c in HEREDOC (e doppio display con cat)	❌️
+❌️		cat | cat | ls									❌️
+❌️														❌️
+❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️❌️
+
 ⭐️minishell_tester    ./tester ...⭐️
 
 bash.supp             ✅️ errori diversi per scelta
@@ -35,3 +45,4 @@ wildcards             ❌️
 bonus_bonus           ❌️
 
 bonus                 ❌️
+

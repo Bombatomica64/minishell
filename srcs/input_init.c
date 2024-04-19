@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli < lmicheli@student.42firenze.it>  +#+  +:+       +#+        */
+/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/18 10:37:20 by lmicheli         ###   ########.fr       */
+/*   Created: 2024/02/19 15:28:06 by gduranti          #+#    #+#             */
+/*   Updated: 2024/04/18 12:20:25 by sgarigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	ft_action(int sig)
 {
 	if (sig == SIGINT)
 	{
+		g_duranti = 130;
 		printf("\n");
 		rl_on_new_line();
 		rl_replace_line("", 0);

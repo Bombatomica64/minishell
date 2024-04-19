@@ -31,6 +31,8 @@
 # include "colours.h"
 # pragma once
 
+extern int	g_duranti; 
+
 typedef enum e_error
 {
 	NO_PATH,

@@ -5,12 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/05 15:07:15 by mruggier          #+#    #+#             */
-/*   Updated: 2024/04/19 11:44:22 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/04/17 12:50:05 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../srcs/minishell.h"
 
 int	builtin_child(t_pipex *comm, t_data *data)
 {

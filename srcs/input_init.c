@@ -45,6 +45,10 @@ void	ft_action(int sig)
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}
+	if (sig == SIGQUIT)
+	{
+		//I LIMONIIIIIIIIIIIIIIIIIII
+	}
 }
 
 void	malloc_input(char *str)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli < lmicheli@student.42firenze.it>  +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/18 11:32:59 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/19 12:46:28 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@ void	ft_do_it(t_data *data, char *terminal_input)
 	int		i;
 
 	parser(terminal_input, data, 0, (t_parser){NULL, NULL, 69});
-	comm = malloc(sizeof(t_pipex) * nbr_cmds(data));
+	comm = ft_calloc(nbr_cmds(data) + 1, sizeof(t_pipex));
 	i = 0;
 	while (data->input && data->input->type != FINISH)
-		comm[i++] = input_exec(&data);
+		comm[i++] = input_exec(&data, &comm);
 	if (comm[0].cmd)
 	{
 		data->error_codes = pipex(comm, data);
-		free_matrix(&comm[0].cmd);
+		while (i--)
+			free_matrix(&comm[i].cmd);
 	}
 	else
 	{

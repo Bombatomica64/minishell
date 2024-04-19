@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli < lmicheli@student.42firenze.it>  +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/18 11:11:29 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/19 12:51:29 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	fd_malloc(t_data *data);
 //fd_inout
 int		open_type(char *str, t_type type, t_data *data);
 int		fd_io_check(int fd_io, int fd_to_check, int pipe_fd);
-t_pipex	input_exec(t_data **data);
+t_pipex	input_exec(t_data **data, t_pipex **origin);
 
 /**
  * @brief Function that returns the number of arguments in a command string
@@ -82,6 +82,6 @@ char	**ft_splitarg(char *str);
  * @param pid pid to be passed to the function
  * @return fd with the file descriptor of the pipe fd[0]
 */
-int		heredoc_creat(char *limiter, t_data *data, pid_t pid, t_pipex *comm);
+int		heredoc_creat(char *limiter, t_data *data, t_pipex *comm, t_pipex **origin);
 
 #endif

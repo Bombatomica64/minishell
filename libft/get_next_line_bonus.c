@@ -42,7 +42,7 @@ char	*get_next_line(int fd)
 	static char	*old_str[4096];
 	char		*line;
 
-	if (fd <= 0 && BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
 	old_str[fd] = ft_read(old_str[fd], fd);
 	if (!old_str[fd])

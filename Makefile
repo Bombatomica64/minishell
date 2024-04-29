@@ -6,7 +6,7 @@
 #    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by gduranti          #+#    #+#              #
-#    Updated: 2024/04/29 10:06:53 by lmicheli         ###   ########.fr        #
+#    Updated: 2024/04/29 10:09:14 by lmicheli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,14 +84,14 @@ fclean: clean
 	
 re: fclean all
 
-play: clean $(OBJ)
+play: clean $(SRC)
 	@rm -f $(NAME)
-	@$(CC) $(OBJ) $(LIB) -o $(NAME) -lreadline
+	@$(CC) $(SRC) $(LIB) -o $(NAME) -lreadline
 	@echo "\033[34mRe-compiled "$(NAME)" successfully!\033[0m"
 	@echo "\033[30mPlease work🙏\033[0m"
 	@./$(NAME)
 
-val: clean $(OBJ)
+val: clean $(SRC)
 	@rm -f $(NAME)
 	@$(CC) $(SRC) $(LIB) -o $(NAME) -lreadline
 	@echo "\033[34mAre you ready for debugging?\033[0m 😈"

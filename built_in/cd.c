@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli < lmicheli@student.42firenze.it>  +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/18 10:31:02 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/29 12:46:04 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,31 +96,31 @@ char	*quptes_and_add_pwd(char *str, t_data *data)
 
 char	*refactor_path(char *tmp, t_data *data, int i, int *off)
 {
-	char	*str;
+	char	*s;
 
-	str = ft_strdup(tmp);
-	if (*str == '~')
-		str = ft_tilde(str, data);
-	else if (*str != '/')
-		str = quptes_and_add_pwd(str, data);
-	while (str[i] != '\0')
+	s = ft_strdup(tmp);
+	if (*s == '~')
+		s = ft_tilde(s, data);
+	else if (*s != '/')
+		s = quptes_and_add_pwd(s, data);
+	while (s[i] != '\0')
 	{
-		if (strncmp(str + i, "./", 2) == 0 || strncmp(str + i, "../", 3) == 0
-			|| strncmp(str + i, "..", 2) == 0)
+		if (ft_strncmp(s + i, "./", 2) == 0 || ft_strncmp(s + i, "../", 3) == 0
+			|| ft_strncmp(s + i, "..", 2) == 0)
 		{
-			if (strncmp(str + i, "./", 2) == 0)
-				str = ft_remove_chars(str, "./", i, off);
-			else if (strncmp(str + i, "../", 3) == 0)
-				str = ft_remove_chars(str, "../", i, off);
-			else if (strncmp(str + i, "..", 2) == 0)
-				str = ft_remove_chars(str, "..", i, off);
+			if (ft_strncmp(s + i, "./", 2) == 0)
+				s = ft_remove_chars(s, "./", i, off);
+			else if (ft_strncmp(s + i, "../", 3) == 0)
+				s = ft_remove_chars(s, "../", i, off);
+			else if (ft_strncmp(s + i, "..", 2) == 0)
+				s = ft_remove_chars(s, "..", i, off);
 			i = 0;
 		}
 		i++;
 	}
-	while (str[ft_strlen(str) - 1] == '/' || str[ft_strlen(str) - 1] == '.')
-		str[ft_strlen(str) - 1] = '\0';
-	return (str);
+	while (s[ft_strlen(s) - 1] == '/' || s[ft_strlen(s) - 1] == '.')
+		s[ft_strlen(s) - 1] = '\0';
+	return (s);
 }
 
 int	ft_cd(char **mtx, t_data *data)

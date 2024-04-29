@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli < lmicheli@student.42firenze.it>  +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/18 10:31:02 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/29 12:35:44 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_bool	ft_atoibool(char *str, unsigned int *nbr, int i, int sign)
 {
 	long long	res;
 
-	if (strcmp(str, "-9223372036854775808") == 0)
+	if (ft_strcmp(str, "-9223372036854775808") == 0)
 	{
 		*nbr = (unsigned int)LLONG_MIN;
 		return (TRUE);

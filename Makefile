@@ -6,7 +6,7 @@
 #    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by gduranti          #+#    #+#              #
-#    Updated: 2024/04/17 12:55:00 by gduranti         ###   ########.fr        #
+#    Updated: 2024/04/29 10:06:53 by lmicheli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,6 @@ SRCS = srcs/main.c \
 BONUS = bonus/input_bonus.c
 
 SRC = $(PIPEX) $(BUILT_IN) $(UTILS) $(PARSER) $(SRCS) $(LEXER) $(BONUS)
-OBJ = $(SRC:.c=.o)
 
 FT_PRINTF = libft
 LIB = libft/libftprintf.a
@@ -68,12 +67,9 @@ all: $(NAME)
 
 bonus: $(NAME)
 
-%.o: %.c
-	@$(CC) -c $< -o $@
-
-$(NAME): $(OBJ)
+$(NAME):
 	@make all -C $(FT_PRINTF)
-	@$(CC) $(OBJ) $(LIB) -o $(NAME) -lreadline
+	@$(CC) $(SRC) $(LIB) -o $(NAME) -lreadline
 	@echo "Compiled "$(NAME)" successfully!"
 
 clean:

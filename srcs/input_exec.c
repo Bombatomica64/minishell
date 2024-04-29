@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/29 11:57:23 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/29 12:18:19 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_data *data, t_pipex **origin)
 			close(comm->fd_out);
 		comm->fd_out = open_type(input->path, input->type, data);
 	}
-	if (comm->fd_in == ERROR || comm->fd_out == ERROR)
+	if (comm->fd_in == ERROR && input->type == HEREDOC)
 		return (ERROR);
 	return (0);
 }

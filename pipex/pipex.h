@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli < lmicheli@student.42firenze.it>  +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/18 10:31:02 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/29 12:37:20 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "../built_in/built_in.h"
 
 char	*path_execve(char *command, char **envp, t_data *data);
-void	child(t_pipex *comm, t_data *data);
+void	child(t_pipex *comm, t_data *data, t_pipex **origin, pid_t **pid);
 t_type	find_prev_cmd_type(t_input *input);
 void	io_redir(t_pipex *comm, t_data *data);
 int		do_builtin(t_pipex *comm, t_data *data);

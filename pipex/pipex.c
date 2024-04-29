@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:50:05 by gduranti          #+#    #+#             */
-/*   Updated: 2024/04/29 11:25:40 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/29 12:41:49 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,19 @@ char	*path_execve(char *command, char **envp, t_data *data)
 	return (NULL);
 }
 
-void	child(t_pipex *comm, t_data *data)
+void	free_childsrcs(t_data *data, t_pipex **origin, pid_t **pid, int flag)
+{
+	int	i;
+
+	i = data->pipe_nbr;
+	while (i >= 0)
+		free_matrix(&(*origin)[i--].cmd);
+	free(*origin);
+	free(*pid);
+	free_close(&data, flag);
+}
+
+void	child(t_pipex *comm, t_data *data, t_pipex **origin, pid_t **pid)
 {
 	signal(SIGQUIT, SIG_DFL);
 	signal(SIGINT, SIG_DFL);
@@ -58,10 +70,9 @@ void	child(t_pipex *comm, t_data *data)
 		close(data->fd[data->cmd_nbr][0]);
 	io_redir(comm, data);
 	if (comm->fd_in < 0 || comm->fd_out < 0)
-		return (free_matrix(&comm->cmd), free_close(&data, 1));
+		return (free_childsrcs(data, origin, pid, 1));
 	execve(comm->path, comm->cmd, data->envp);
-	free_matrix(&comm->cmd);
-	free_close(&data, 127);
+	free_childsrcs(data, origin, pid, 127);
 }
 
 // t_type	find_prev_cmd_type(t_input *input)
@@ -111,7 +122,7 @@ int	pipex(t_pipex *comm, t_data *data)
 		if (pid[curs.j] == -1)
 			ft_error("fork", FORK, 124, NULL);
 		if (pid[curs.j] == 0)
-			child(&comm[curs.i], data);
+			child(&comm[curs.i], data, &comm, &pid);
 		close_fds(&comm[curs.i]);
 		curs.j++;
 	}

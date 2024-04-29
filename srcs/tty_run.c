@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/29 11:11:29 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/29 11:14:52 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_action2(int sig)
 	}
 	if (sig == SIGQUIT)
 	{
-		//I LIMONIIIIIIIIIIIIIIIIIII
+		g_duranti = 131;
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgarigli <sgarigli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:05:49 by gduranti          #+#    #+#             */
-/*   Updated: 2024/04/18 10:42:36 by sgarigli         ###   ########.fr       */
+/*   Updated: 2024/04/29 11:11:06 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ int	main(int argc, char **argv, char **envp)
 	}
 	(void)argv;
 	data = ft_data_init(envp);
-	signal(SIGINT, ft_action);
-	signal(SIGQUIT, SIG_IGN);
 	ft_tty_exec(&data);
 	return (0);
 }

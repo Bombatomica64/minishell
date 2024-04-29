@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:50:05 by gduranti          #+#    #+#             */
-/*   Updated: 2024/04/29 10:40:54 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/29 10:55:43 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ char	*path_execve(char *command, char **envp, t_data *data)
 void	child(t_pipex *comm, t_data *data)
 {
 	signal(SIGQUIT, SIG_DFL);
+	signal(SIGINT, SIG_DFL);
 	if (data->in_pipe == TRUE && data->cmd_nbr == 0)
 		close(data->fd[0][0]);
 	else if (data->in_pipe == TRUE

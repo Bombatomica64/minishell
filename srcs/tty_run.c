@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/29 10:31:17 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/29 11:11:29 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,19 @@ void	ft_do_it(t_data *data, char *terminal_input)
 	}
 }
 
+void	ft_action2(int sig)
+{
+	fprintf(stderr, "\n");
+	if (sig == SIGINT)
+	{
+		g_duranti = 130;
+	}
+	if (sig == SIGQUIT)
+	{
+		//I LIMONIIIIIIIIIIIIIIIIIII
+	}
+}
+
 void	process_input(t_data *data)
 {
 	char	*terminal_input;
@@ -58,6 +71,8 @@ void	process_input(t_data *data)
 	fd_malloc(data);
 	if (*terminal_input == '\0')
 		return ;
+	signal(SIGINT, ft_action2);
+	signal(SIGQUIT, ft_action2);
 	ft_do_it(data, terminal_input);
 	free_return(&data, 0);
 	ft_data_reinit(data);
@@ -82,6 +97,8 @@ void	ft_tty_exec(t_data *data)
 {
 	while (TRUE)
 	{
+		signal(SIGINT, ft_action);
+		signal(SIGQUIT, SIG_IGN);
 		process_input(data);
 	}
 }

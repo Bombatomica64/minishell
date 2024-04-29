@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli < lmicheli@student.42firenze.it>  +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/18 10:31:02 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/29 12:25:45 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,7 @@ char	*cut_pars_str(char *str, char *node)
 			while (node[j] && node[j] == str[i + j])
 				j++;
 			if (!node[j])
-				return (cut_string(i + j,
-						ft_strtrimfree(str, " \t\r\n\v\f", 0)));
+				return (cut_string(i + j, str));
 		}
 		i++;
 	}

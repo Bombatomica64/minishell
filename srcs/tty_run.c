@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/29 11:14:52 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/29 12:00:56 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,27 @@ void	ft_do_it(t_data *data, char *terminal_input)
 {
 	t_pipex	*comm;
 	int		i;
+	int		check;
 
 	parser(terminal_input, data, 0, (t_parser){NULL, NULL, 69});
 	comm = ft_calloc(nbr_cmds(data) + 1, sizeof(t_pipex));
 	i = 0;
 	while (data->input && data->input->type != FINISH)
-		comm[i++] = input_exec(&data, &comm);
-	if (comm[0].cmd)
 	{
-		data->error_codes = pipex(comm, data);
-		while (i--)
-			free_matrix(&comm[i].cmd);
+		check = input_exec_pre(&data, &comm, &i);
+		if (check == ERROR)
+			break ;
 	}
+	if (check == TRUE)
+		data->error_codes = pipex(comm, data);
 	else
 	{
 		close_fds(&comm[0]);
 		data->counter++;
 	}
+	while (i--)
+		free_matrix(&comm[i].cmd);
+	free(comm);
 }
 
 void	ft_action2(int sig)

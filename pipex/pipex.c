@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:50:05 by gduranti          #+#    #+#             */
-/*   Updated: 2024/04/29 10:55:43 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/29 11:25:40 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,27 +64,27 @@ void	child(t_pipex *comm, t_data *data)
 	free_close(&data, 127);
 }
 
-t_type	find_prev_cmd_type(t_input *input)
-{
-	t_input	*tmp;
+// t_type	find_prev_cmd_type(t_input *input)
+// {
+// 	t_input	*tmp;
 
-	tmp = input->prev;
-	if (tmp == NULL)
-		return (FINISH);
-	while (tmp && tmp->type != COMMAND && tmp->type != BUILT_IN)
-		tmp = tmp->prev;
-	return (tmp->type);
-}
+// 	tmp = input->prev;
+// 	if (tmp == NULL)
+// 		return (FINISH);
+// 	while (tmp && tmp->type != COMMAND && tmp->type != BUILT_IN)
+// 		tmp = tmp->prev;
+// 	return (tmp->type);
+// }c
 
 void	wait_pids(pid_t *pid, int nbr_cmds, int *status)
 {
 	int	i;
 
-	i = 0;
-	while (i < nbr_cmds)
+	i = nbr_cmds - 1;
+	while (i >= 0)
 	{
 		waitpid(pid[i], status, 0);
-		i++;
+		i--;
 	}
 }
 

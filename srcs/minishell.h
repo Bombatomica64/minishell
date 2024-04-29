@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/19 12:51:29 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/04/29 11:49:14 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,9 @@ char	**ft_splitarg(char *str);
  * @param pid pid to be passed to the function
  * @return fd with the file descriptor of the pipe fd[0]
 */
-int		heredoc_creat(char *limiter, t_data *data, t_pipex *comm, t_pipex **origin);
+int		heredoc_creat(char *limiter, t_data *data,
+			t_pipex *comm, t_pipex **origin);
+
+t_bool	input_exec_pre(t_data **data, t_pipex **comm, int *i);
 
 #endif

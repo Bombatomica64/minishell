@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Updated: 2024/04/17 12:50:05 by gduranti         ###   ########.fr       */
+/*   Created: 2024/04/17 12:50:05 by gduranti          #+#    #+#             */
+/*   Updated: 2024/04/29 10:40:54 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../srcs/minishell.h"
+#include "pipex.h"
 
 int	builtin_child(t_pipex *comm, t_data *data)
 {
@@ -100,7 +101,9 @@ int	pipex(t_pipex *comm, t_data *data)
 	{
 		if (ft_isbuiltin(comm[curs.i].cmd[0]) == TRUE)
 		{
-			status = builtin_child(comm, data);
+			status = builtin_child(&comm[curs.i], data);
+			dup2(data->original_stdin, STDIN_FILENO);
+			dup2(data->original_stdout, STDOUT_FILENO);
 			continue ;
 		}
 		pid[curs.j] = fork();

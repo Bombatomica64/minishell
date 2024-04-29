@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   input_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/19 12:51:23 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/04/29 10:38:12 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	set_inout(t_pipex *comm, t_input *input, t_data *data, t_pipex **origin)
+static int	set_inout(t_pipex *comm, t_input *input,
+t_data *data, t_pipex **origin)
 {
 	if (input->type == INPUT)
 	{

@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:50:05 by gduranti          #+#    #+#             */
-/*   Updated: 2024/04/30 11:20:06 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/30 16:09:48 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	builtin_child(t_pipex *comm, t_data *data, t_pipex **origin, pid_t **pid)
-{
-	io_redir(comm, data);
-	return (do_builtin(comm, data, origin, pid));
-}
+// int	builtinchild(t_pipex *comm, t_data *data, t_pipex **origin, pid_t **pid)
+// {
+// 	io_redir(comm, data);
+// 	return (do_builtin(comm, data, origin, pid));
+// }
 
 char	*path_execve(char *command, char **envp, t_data *data)
 {
@@ -87,7 +87,7 @@ void	child(t_pipex *comm, t_data *data, t_pipex **origin, pid_t **pid)
 // 	return (tmp->type);
 // }c
 
-void	wait_pids(pid_t *pid, int nbr_cmds, int *status)
+int	wait_pids(pid_t *pid, int nbr_cmds, int *status)
 {
 	int	i;
 
@@ -97,23 +97,27 @@ void	wait_pids(pid_t *pid, int nbr_cmds, int *status)
 		waitpid(pid[i], status, 0);
 		i--;
 	}
+	free (pid);
+	if (WIFEXITED(*status))
+		return (WEXITSTATUS(*status));
+	else if (WIFSIGNALED(*status))
+		return (WTERMSIG(*status) + 128);
+	return (0);
 }
 
 int	pipex(t_pipex *comm, t_data *data)
 {
 	pid_t	*pid;
-	int		status;
 	t_curs	curs;
 
-	curs = (t_curs){-1, 0, 0};
-	status = 0;
-	curs.k = nbr_cmds(data);
+	curs = (t_curs){-1, 0, nbr_cmds(data), 0};
 	pid = malloc(sizeof(pid_t) * nbr_cmds_notb(data));
 	while (++(curs.i) < curs.k)
 	{
 		if (ft_isbuiltin(comm[curs.i].cmd[0]) == TRUE)
 		{
-			status = builtin_child(&comm[curs.i], data, &comm, &pid);
+			io_redir(&comm[curs.i], data);
+			curs.status = do_builtin(&comm[curs.i], data, &comm, &pid);
 			dup2(data->original_stdin, STDIN_FILENO);
 			dup2(data->original_stdout, STDOUT_FILENO);
 			continue ;
@@ -126,13 +130,7 @@ int	pipex(t_pipex *comm, t_data *data)
 		close_fds(&comm[curs.i]);
 		curs.j++;
 	}
-	wait_pids(pid, curs.j, &status);
-	free (pid);
-	if (WIFEXITED(status))
-		return (WEXITSTATUS(status));
-	else if (WIFSIGNALED(status))
-		return (WTERMSIG(status) + 128);
-	return (0);
+	return (wait_pids(pid, curs.j, &curs.status));
 }
 
 //fd [1][0] = -2

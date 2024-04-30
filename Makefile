@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+         #
+#    By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 11:05:48 by gduranti          #+#    #+#              #
-#    Updated: 2024/04/29 10:09:14 by lmicheli         ###   ########.fr        #
+#    Updated: 2024/04/30 15:00:31 by mruggier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,9 +49,11 @@ PARSER = parser/parser.c \
 
 SRCS = srcs/main.c \
 	srcs/input_init.c \
+	srcs/ft_action.c \
 	srcs/tty_run.c \
 	srcs/fd_inout.c \
 	srcs/heredoc.c \
+	srcs/heredoc_utils.c \
 	srcs/arg_to_mtx.c \
 	srcs/neo_argtomtx.c \
 	srcs/input_exec.c

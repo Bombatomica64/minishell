@@ -3,44 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/30 11:30:50 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/30 12:40:44 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static void	ft_putendl_fd_free(char *s, int fd)
-{
-	if (fd < 0)
-		return ;
-	write(fd, s, ft_strlen(s));
-	write(fd, "\n", 1);
-	free(s);
-}
-
-static void	ft_hereaction(int sig)
-{
-	if (sig == SIGINT)
-	{
-		g_duranti = 130;
-		close (0);
-	}
-}
-
-void	close_n_fd(int *fd, int n)
-{
-	int	i;
-
-	i = 0;
-	while (i < n)
-	{
-		close(fd[i]);
-		i++;
-	}
-}
 
 void	free_and_close_resources(t_pipex *comm, t_pipex **origin, t_data **data)
 {
@@ -61,36 +31,41 @@ void	free_and_close_resources(t_pipex *comm, t_pipex **origin, t_data **data)
 	free_matrix(&(*data)->envp);
 	free((*data)->home);
 	free((*data)->pwd);
-	// free(*data);
+}
+
+void	heredoc_child(char *lim, t_data *data, t_pipex *comm, t_pipex **origin)
+{
+	char	*str;
+	int		file;
+
+	free_and_close_resources(comm, origin, &data);
+	signal(SIGINT, ft_hereaction);
+	file = open("temp/.heredoc", O_CREAT | O_WRONLY | O_TRUNC, 0777);
+	while (TRUE)
+	{
+		str = readline(YELLOW BOLD"サ巳尺巳りロと"BRIGHT_CYAN"> "END);
+		if (ft_strcmp(str, lim) == 0 || str == NULL)
+		{
+			if (str == NULL)
+				printf("\n");
+			free(str);
+			break ;
+		}
+		ft_putendl_fd_free(str, file);
+	}
+	close_n_fd((int []){file, 1, 0}, 3);
+	free(lim);
 }
 
 int	fork_heredoc(char *lim, t_data *data, t_pipex *comm, t_pipex **origin)
 {
-	char	*str;
 	pid_t	pid;
-	int		file;
 	int		status;
 
 	pid = fork();
 	if (pid == 0)
 	{
-		free_and_close_resources(comm, origin, &data);
-		signal(SIGINT, ft_hereaction);
-		file = open("temp/.heredoc", O_CREAT | O_WRONLY | O_TRUNC, 0777);
-		while (TRUE)
-		{
-			str = readline(YELLOW BOLD"サ巳尺巳りロと"BRIGHT_CYAN"> "END);
-			if (ft_strcmp(str, lim) == 0 || str == NULL)
-			{
-				if (str == NULL)
-					printf("\n");
-				free(str);
-				break ;
-			}
-			ft_putendl_fd_free(str, file);
-		}
-		close_n_fd((int []){file, 1, 0}, 3);
-		free(lim);
+		heredoc_child(lim, data, comm, origin);
 		exit(0);
 	}
 	else

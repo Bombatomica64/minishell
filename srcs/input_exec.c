@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/30 11:16:29 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/30 14:54:09 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,6 @@ static void	set_command(t_data **data, t_pipex *comm, t_bool *seen)
 	else
 		comm->cmd = ft_splitarg((*data)->input->node);
 	comm->path = (*data)->input->path;
-}
-
-t_bool	input_exec_pre(t_data **data, t_pipex **comm, int *i)
-{
-	(*comm)[(*i)] = input_exec(data, comm);
-	if ((*comm)[(*i)++].cmd != NULL)
-		return (TRUE);
-	return (ERROR);
 }
 
 t_pipex	input_exec(t_data **data, t_pipex **origin)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:28:06 by gduranti          #+#    #+#             */
-/*   Updated: 2024/04/29 11:01:48 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/30 14:58:50 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,6 @@ char	**matrix_dup(char **matrix)
 	}
 	new_matrix[i] = NULL;
 	return (new_matrix);
-}
-
-void	ft_action(int sig)
-{
-	if (sig == SIGINT)
-	{
-		g_duranti = 130;
-		printf("\n");
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-	}
-	if (sig == SIGQUIT)
-	{
-		//I LIMONIIIIIIIIIIIIIIIIIII
-	}
 }
 
 void	malloc_input(char *str)

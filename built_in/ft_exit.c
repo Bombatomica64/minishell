@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli < lmicheli@student.42firenze.it>  +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/18 10:31:02 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/30 11:28:37 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,20 @@ t_bool	is_exit(char *command)
 	if (ft_strcmp(command, "exit") == 0)
 		return (TRUE);
 	return (FALSE);
+}
+
+void	free_exitsrcs(t_data *data, t_pipex **origin, pid_t **pid)
+{
+	int	i;
+
+	i = 0;
+	while (data->cmd_nbr >= i)
+	{
+		free_matrix(&(*origin)[i].cmd);
+		i++;
+	}
+	free(*origin);
+	free(*pid);
 }
 
 // t_bool	ft_atoll(char *str)
@@ -43,7 +57,7 @@ t_bool	is_exit(char *command)
 // 	}
 // }
 
-int	ft_exit(char **cmd, t_data *data)
+int	ft_exit(char **cmd, t_data *data, t_pipex **origin, pid_t **pid)
 {
 	unsigned int		arg2;
 
@@ -62,7 +76,7 @@ int	ft_exit(char **cmd, t_data *data)
 		ft_putstr_fd("minishell: exit: too many arguments\n", 2);
 		return (1);
 	}
-	free_matrix(&cmd);
+	free_exitsrcs(data, origin, pid);
 	free_close(&data, arg2);
 	return (0);
 }

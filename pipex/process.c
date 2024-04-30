@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/29 10:40:59 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/30 11:20:41 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_bool	ft_isthesameas(char *s1, char *s2)
 	return (FALSE);
 }
 
-int	do_builtin(t_pipex *comm, t_data *data)
+int	do_builtin(t_pipex *comm, t_data *data, t_pipex **origin, pid_t **pid)
 {
 	int	ret;
 
@@ -35,7 +35,7 @@ int	do_builtin(t_pipex *comm, t_data *data)
 	else if (ft_strcmp(comm->cmd[0], "env") == 0)
 		ret = ft_env(data->envp, &comm->cmd[1]);
 	else if (ft_strcmp(comm->cmd[0], "exit") == 0)
-		ret = ft_exit(comm->cmd, data);
+		ret = ft_exit(comm->cmd, data, origin, pid);
 	else if (ft_strcmp(comm->cmd[0], "cd") == 0)
 		ret = ft_cd(comm->cmd, data);
 	non_pipe_close(data, comm);

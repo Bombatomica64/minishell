@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/29 12:44:22 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/04/30 11:25:06 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*path_execve(char *command, char **envp, t_data *data);
 void	child(t_pipex *comm, t_data *data, t_pipex **origin, pid_t **pid);
 // t_type	find_prev_cmd_type(t_input *input);
 void	io_redir(t_pipex *comm, t_data *data);
-int		do_builtin(t_pipex *comm, t_data *data);
+int		do_builtin(t_pipex *comm, t_data *data, t_pipex **origin, pid_t **pid);
 
 void	non_pipe_close(t_data *data, t_pipex *comm);
 

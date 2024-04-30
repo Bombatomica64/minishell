@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_in.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli < lmicheli@student.42firenze.it>  +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/18 10:31:02 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/30 11:25:18 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int		ft_errors_cd(char **mtx);
 t_bool	ft_change_env(char **str, char *oldpwd, t_data *data);
 
 t_bool	is_exit(char *command);
-int		ft_exit(char **cmd, t_data *data);
+int		ft_exit(char **cmd, t_data *data, t_pipex **origin, pid_t **pid);	
 int		add_or_update(char ***envp, char *tmp, char **cmd, int j);
 int		add_to_env(char ***envp, char *str);
 int		export_error(char *str);

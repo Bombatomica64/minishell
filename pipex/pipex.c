@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:50:05 by gduranti          #+#    #+#             */
-/*   Updated: 2024/04/29 12:41:49 by gduranti         ###   ########.fr       */
+/*   Updated: 2024/04/30 11:20:06 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	builtin_child(t_pipex *comm, t_data *data)
+int	builtin_child(t_pipex *comm, t_data *data, t_pipex **origin, pid_t **pid)
 {
 	io_redir(comm, data);
-	return (do_builtin(comm, data));
+	return (do_builtin(comm, data, origin, pid));
 }
 
 char	*path_execve(char *command, char **envp, t_data *data)
@@ -113,7 +113,7 @@ int	pipex(t_pipex *comm, t_data *data)
 	{
 		if (ft_isbuiltin(comm[curs.i].cmd[0]) == TRUE)
 		{
-			status = builtin_child(&comm[curs.i], data);
+			status = builtin_child(&comm[curs.i], data, &comm, &pid);
 			dup2(data->original_stdin, STDIN_FILENO);
 			dup2(data->original_stdout, STDOUT_FILENO);
 			continue ;

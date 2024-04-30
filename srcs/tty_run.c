@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tty_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/29 12:00:56 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/30 12:21:07 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	process_input(t_data *data)
 	g_duranti = 0;
 	if (terminal_input == NULL)
 	{
-		free(terminal_input);
 		rl_clear_history();
 		free_close(&data, 0);
 	}

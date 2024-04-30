@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:50:05 by gduranti          #+#    #+#             */
-/*   Updated: 2024/04/30 11:20:06 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/30 12:51:06 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@ int	pipex(t_pipex *comm, t_data *data)
 	t_curs	curs;
 
 	curs = (t_curs){-1, 0, 0};
-	status = 0;
-	curs.k = nbr_cmds(data);
+	status = 0; //curs new
+	curs.k = nbr_cmds(data); //uselles
 	pid = malloc(sizeof(pid_t) * nbr_cmds_notb(data));
 	while (++(curs.i) < curs.k)
 	{

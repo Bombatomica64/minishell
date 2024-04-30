@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/30 10:41:04 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/30 12:43:38 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,12 @@ int		heredoc_creat(char *limiter, t_data *data,
 			t_pipex *comm, t_pipex **origin);
 
 t_bool	input_exec_pre(t_data **data, t_pipex **comm, int *i);
+
+/**
+ * @brief close and free used only in heredoc
+*/
+void	ft_putendl_fd_free(char *s, int fd);
+void	ft_hereaction(int sig);
+void	close_n_fd(int *fd, int n);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli < lmicheli@student.42firenze.it>  +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/18 10:31:02 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/30 16:48:27 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_bool	file_check(char *tmp, t_data *data)
 	line = ft_strncpy(tmp, 0, i);
 	if (!line)
 		return (ERROR);
-	if (strncmp(line, "./", 2) == 0 || strncmp(line, "/", 1) == 0)
+	if (ft_strncmp(line, "./", 2) == 0 || ft_strncmp(line, "/", 1) == 0)
 	{
 		if (stat(line, &st) == -1)
 			return (ft_error(line, NO_EXST, 127, data), ERROR);

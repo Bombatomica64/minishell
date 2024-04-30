@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/30 15:35:49 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/04/30 16:11:36 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -375,6 +375,5 @@ int		nbr_cmds(t_data *data);
  * @brief Function that returns the number of commands that are not builtins
 */
 int		nbr_cmds_notb(t_data *data);
-extern int	g_duranti;
 
 #endif

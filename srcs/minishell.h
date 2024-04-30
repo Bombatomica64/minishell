@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/30 12:43:38 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/04/30 14:59:37 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	process_input(t_data *data);
 
 //input manage
 void	ft_action(int sig);
+void	ft_action2(int sig);
 void	malloc_input(char *str);
 void	ft_data_reinit(t_data *data);
 

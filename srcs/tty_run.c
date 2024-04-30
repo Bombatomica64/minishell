@@ -6,11 +6,19 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/30 12:21:07 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/04/30 14:59:17 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+t_bool	input_exec_pre(t_data **data, t_pipex **comm, int *i)
+{
+	(*comm)[(*i)] = input_exec(data, comm);
+	if ((*comm)[(*i)++].cmd != NULL)
+		return (TRUE);
+	return (ERROR);
+}
 
 void	ft_do_it(t_data *data, char *terminal_input)
 {
@@ -37,19 +45,6 @@ void	ft_do_it(t_data *data, char *terminal_input)
 	while (i--)
 		free_matrix(&comm[i].cmd);
 	free(comm);
-}
-
-void	ft_action2(int sig)
-{
-	fprintf(stderr, "\n");
-	if (sig == SIGINT)
-	{
-		g_duranti = 130;
-	}
-	if (sig == SIGQUIT)
-	{
-		g_duranti = 131;
-	}
 }
 
 void	process_input(t_data *data)

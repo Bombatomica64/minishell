@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/30 10:51:36 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/04/30 11:12:46 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	ft_hereaction(int sig)
 	if (sig == SIGINT)
 	{
 		g_duranti = 130;
-		kill(getpid(), SIGTERM);
+		close (0);
 	}
 }
 
@@ -75,7 +75,7 @@ int	fork_heredoc(char *lim, t_data *data, t_pipex *comm, t_pipex **origin)
 	if (pid == 0)
 	{
 		free_and_close_resources(comm, origin, &data);
-		signal(SIGINT, ft);
+		signal(SIGINT, ft_hereaction);
 		file = open("temp/.heredoc", O_CREAT | O_WRONLY | O_TRUNC, 0777);
 		while (TRUE)
 		{
@@ -89,7 +89,7 @@ int	fork_heredoc(char *lim, t_data *data, t_pipex *comm, t_pipex **origin)
 			}
 			ft_putendl_fd_free(str, file);
 		}
-		close_n_fd((int[]){ file, 1, 0}, 3);
+		close_n_fd((int []){file, 1, 0}, 3);
 		free(lim);
 		exit(0);
 	}
@@ -125,8 +125,8 @@ int	heredoc_creat(char *lim, t_data *data, t_pipex *comm, t_pipex **origin)
 	lim = ft_strncpy_noquote(lim, 0, ft_strlen(lim), (t_quote){0, 0});
 	status = fork_heredoc(lim, data, comm, origin);
 	pipe(fd);
-	if (WIFEXITED(status) && WEXITSTATUS(status) == 130)
-		return (close(fd[1]), free(lim), fprintf(stderr,"sesso"),ERROR);
+	if (WIFSIGNALED(status) || WEXITSTATUS(status) != 0 || g_duranti == 130)
+		return (close(fd[1]), free(lim), ERROR);
 	ft_expand_heredoc(data, fd[1]);
 	return (close(fd[1]), free(lim), fd[0]);
 }

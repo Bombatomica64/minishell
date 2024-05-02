@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1970/01/01 01:00:00 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/04/30 12:40:44 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/05/02 10:03:23 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	heredoc_child(char *lim, t_data *data, t_pipex *comm, t_pipex **origin)
 	while (TRUE)
 	{
 		str = readline(YELLOW BOLD"サ巳尺巳りロと"BRIGHT_CYAN"> "END);
-		if (ft_strcmp(str, lim) == 0 || str == NULL)
+		if (ft_strcmp(str, lim) == 0 || str == NULL || (lim == NULL && !*str))
 		{
 			if (str == NULL)
 				printf("\n");

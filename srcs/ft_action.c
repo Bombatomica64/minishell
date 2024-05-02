@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_action.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gduranti <gduranti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:58:12 by mruggier          #+#    #+#             */
-/*   Updated: 2024/04/30 15:00:51 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/05/02 10:24:01 by gduranti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_action2(int sig)
 {
-	fprintf(stderr, "\n");
+	write(2, "\n", 1);
 	if (sig == SIGINT)
 	{
 		g_duranti = 130;
